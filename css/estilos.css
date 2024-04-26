@@ -1,0 +1,474 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --color-background: black;
+    --color-principal: rgb(226, 24, 24);
+    --color-searchbar: rgb(243, 239, 238);
+    --color-text: rgb(255, 255, 255);
+    --color-link: aliceblue;
+    --color-hover: rgb(196, 146, 144);
+    --color-form: rgb(83, 5, 5);
+    --color-boton: rgb(201, 60, 60);
+    --color-popupbg: rgba(0, 0, 0, 0.7);
+    --color-popup: rgb(83, 5, 5);
+    --color-popupborder: rgb(226, 24, 24);
+    --color-popupboton: rgb(226, 24, 24);
+    --color-popuptxt: rgb(255, 255, 255);
+
+    scroll-behavior: smooth;
+}
+
+html{
+    margin: 0 auto;
+}
+
+html::-webkit-scrollbar , .custom-scroll::-webkit-scrollbar{
+    width: 10px;
+    background-color: var(--color-background);
+}
+    
+html::-webkit-scrollbar-track,  .custom-scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+    
+html::-webkit-scrollbar-thumb, .custom-scroll::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    height: 30px;
+    background-color: var(--color-text);
+}
+
+    
+body{
+    font-family: 'Bebas Neue', sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    margin: 0 auto;
+
+    height: 100vh;
+    width: 100%;
+    border: none;
+    overflow-x: hidden;
+}
+
+body a {
+    color: var(--color-searchbar);
+}
+body a:hover {
+    color: var(--color-link);
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+}    
+
+/* HEADER */
+.container header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+    padding-left: 1.8%;
+
+    width: 100%;
+    height: 12vh;
+
+    z-index: 999;
+}
+
+.link-logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0%;
+    min-height: 100%;
+    min-width: fit-content;
+    margin: 0%;
+}
+    
+.link-logo img{
+    object-fit:scale-down;
+    align-items: center;
+    width: 100%;
+}
+
+header form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+}
+    
+header form input{
+    font: inherit; 
+    background:rgb(243, 239, 238);
+    /*font-weight: bold;*/
+	padding-left: 24px;
+    background-image: url(../images/buscador.png);
+    background-size: 15px;
+    background-position:10px;
+	background-repeat: no-repeat;
+    border-radius: 30px;
+
+    padding: 10px 22px 9px 29px;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    
+    width: 55%;
+    
+
+    border: 2px solid brown;
+}
+
+.menu{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* margin-right: 3%; */
+    /* width: fit-content; */
+    width: 100%;
+    height: 100%;
+}
+
+.menu__lista{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+    list-style: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 12vh;
+    color: var(--color-text);
+    gap: 1rem;
+
+    width: 100%;
+    height: 100%;
+
+}
+.menu__item{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    list-style-type: none;
+    text-transform: uppercase;
+    width: 100%;
+    height: 100%;
+    
+    color: var(--color-text);
+}
+.menu__item a{
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: var(--color-text);
+    width: 100%;
+}
+
+.menu__item:hover{
+    /* background-color: var(--color-text); */
+    color: var(--color-principal);
+
+    transition: all .5s;
+}
+.menu__item a:hover{
+    /* background-color: var(--color-text); */
+    color: var(--color-principal);
+
+    transition: all .5s;
+
+}
+
+/* MAIN */
+.container main{
+    /* display: none; */
+    justify-content: center;
+    align-items: center; 
+    text-align: left;
+    font-size: 1.5rem;
+    /* background-image: url(../images/background_principal.jpg); */
+    /* background-size: cover; */
+    background-color: var(--color-background);
+    color: var(--color-text);
+
+    /* min-height: 79vh; */
+    height: 100vh;
+    width: 100%;
+    
+    z-index: 1;
+}
+
+hr{
+    border: 1px solid brown;
+    width: 50%;
+    margin-bottom: 40px;
+}
+
+/*  CARUSEL */
+.carousel-container{
+    z-index: 3;
+    padding-top: 20px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin: 0 auto;
+    height: 500px;
+    width: 96vw; /* Set the width to 100vw */
+    overflow: hidden;
+}
+    
+.carousel-slide{
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+    align-items: center;
+    justify-content: center;
+}
+    
+/* Style the .cont elements within the carousel */
+.carousel-slide .cont{
+    transition: transform 0.3s; /* Add a smooth transition effect */
+}
+    
+.carousel-slide .cont{
+    max-width: 50%;
+    height: 500px;
+    margin: 0 10px;
+    vertical-align: middle;
+}
+    
+.carousel-slide .cont img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+   
+/* Style the arrow controls for the small carousel */
+.carousel-prev,
+.carousel-next{
+    background-color: var(--color-princpal);
+    border: none;
+    border-radius: 17%;
+    color: var(--color-text);
+    padding: 10px 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+    
+.carousel-prev,
+.carousel-next{
+    top: 62%;
+}
+    
+.carousel-prev{
+    left: 0;
+}
+.carousel-next{
+    right: 0;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover{
+    background-color: var(--color-text);
+    color: var(--color-principal);
+}
+
+.puesto{
+    position: absolute;
+    background-color: var(--color-principal);
+    width: 80px;
+    bottom: 20px;
+    height: 80px;
+    border-radius:  0 50% 0 0;
+    font-size: 2rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    transition:  transform 0.3s ease-in-out;
+    align-items: center;
+    flex-direction: row;
+}
+
+/* INICIO DE SESION */
+.main-login{
+    background-image: url(../images/background_principal.jpg);
+    background-size: cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 100%;
+    max-height: 87vh;
+}
+
+.div-form{
+    background: transparent;
+    color: var(--color-text);
+    text-align: center;
+    font-size: 1.2rem;
+    border: 2px transparent solid;
+    border-radius: 5px;
+    margin: 0 auto;
+    padding: 3% 0%;
+    top:10%;
+
+    width: 60%;
+}
+
+.formulario-login{
+    background:var(--color-form);
+    color: var(--color-text);
+    border: solid var(--color-principal) 1px;
+    border-radius: 2%;
+    margin: auto;
+    padding:2%;
+
+    width: 75%;
+  
+}
+.formulario-login h1{
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.input-login{
+    background: var(--color-form);
+    color: var(--color-text);
+    border:1px solid var(--color-principal);
+    border-radius: 3%;
+    margin-bottom: 5%;
+    padding: 3%;
+
+    width: 100%;
+}
+.input-login:hover{
+    border-color: var(--color-hover);
+}
+
+.boton-login{
+    background:var(--color-principal) ;
+    color: var(--color-text);
+    font-size: 2rem;
+    border: none;
+    /* margin: 16px 0; */
+    padding: 1%;
+
+    width: 100%;
+}
+.boton-login:hover{
+    background-color: brown;
+}
+
+.link-registro{
+    color: var(--color-text);
+    text-decoration: none;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    margin: 3%;    
+}
+.link-registro:hover{
+    color: var(--color-hover);
+}
+
+/* POPUPS DE LOGIN */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-popupbg); /* Semi-transparent black overlay */
+    z-index: 1000;
+}
+    
+.show{
+    display: block;
+}
+    
+.popup {
+    background-color: var(--color-popup);
+    color: var(--color-text);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--color-popupborder);
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    padding: 20px;
+    padding-bottom: 4%;
+    
+    height: fit-content;
+    width: 50%;
+
+    z-index: 1001;
+}
+    
+/* Styles for the close button */
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 2rem;
+}
+    
+/* Add styles for the content and buttons inside the pop-up as needed */
+.popup-content {
+    text-align: center;
+    font-weight: bold;
+    font-size: 4rem;
+    align-items: center;
+    padding: 5%;
+}
+    
+.descripcion_accion{
+    font-size: 1.8rem;
+    text-align: start;
+    margin-top: 3%;
+}
+    
+.popup-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    
+    width: 80%;
+
+    border: solid yellow;
+}
+    
+.popup-buttons form , .popup-buttons button{
+    width: 40%;
+}
+    
+.popup-buttons button{
+    background-color: var(--color-popupboton);
+    color: var(--color-text);
+}
+    
+.popup-buttons button:hover{
+    transform: scale(1.1);
+}
+    
+.popup-buttons form button{
+    width: 100%;
+    height: 100%;
+}
