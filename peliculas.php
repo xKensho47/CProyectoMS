@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="css/estilos.css">
         <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
         <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
-        <title>Home</title>
+        <title>Peliculas</title>
     </head>
 
     <body>
@@ -37,47 +37,10 @@
                     $_SESSION['administrador'] = 0;
                 }
 
-                echo '
-                <main>
-                    <h1 id="top10">Películas con mejor puntuación</h1>
-                    <hr>
-                    <div class="carousel-container">
-                        <button class="carousel-prev">&#60</button>
-                        <div class="carousel-slide">';
-
-                            $sql = "SELECT DISTINCT peli.path_poster as poster, peli.id_peli as id FROM peli
-                            GROUP BY peli.titulo
-                            ORDER BY peli.calificacion DESC
-                            LIMIT 10;";
-
-                            $result = mysqli_query($conexion,$sql);
-                            $puesto = 1;
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    $imagePath = $row["poster"];
-                                    echo '
-                                        <div class="cont">
-                                            <a href="info.php?id_peli=' . $row["id"] . '" >
-                                                <img src="' . $imagePath . '" alt="Movie Posters">
-                                            </a>
-                                            <div class="puesto">
-                                                <p>'.$puesto.'°</p>
-                                            </div>
-                                        </div>';
-                                    $puesto++;
-                                }
-                            } else {
-                                echo '<p>No movies found.</p>';
-                            }
-                        echo '
-                        </div>
-                        <button class="carousel-next">&#62</button>
-                    </div>';
-                    echo'
-                </main>
-           
-                ';
             ?>
+            <main>
+
+            </main>
         
            
 

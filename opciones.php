@@ -12,8 +12,9 @@ ob_start();
             <ul class="menu__lista">
                 <li class="menu__item"><a href="index.php">Inicio</a></li>
                 <li class="menu__item"><a href="peliculas.php">Peliculas</a></li>
-                <li class="menu__item"><a href="contacto.php">Contacto</a></li>
-                <li class="menu__item"><a href="logout.php">Cerrar sesión</a></li>
+                <li class="menu__item"><a href="notificaciones.php">Notificaciones</a></li>
+                <li class="menu__item"><a href="logout.php">Perfil</a></li>
+                
             </ul>
         </nav>
     </header>
@@ -31,8 +32,8 @@ ob_start();
             <ul class="menu__lista">
                 <li class="menu__item"><a href="index.php">Inicio</a></li>
                 <li class="menu__item"><a href="peliculas.php">Peliculas</a></li>
-                <li class="menu__item"><a href="abm.php">Opciones de Administrador</a></li>
-                <li class="menu__item"><a href="logout.php">Cerrar sesión</a></li>
+                <li class="menu__item"><a href="abm.php">CRUD</a></li>
+                <li class="menu__item"><a href="logout.php">Perfil</a></li>
             </ul>
         </nav>
     </header>
@@ -48,9 +49,9 @@ ob_start();
         </form>
         <nav class="menu">
             <ul class="menu__lista">
-                <li class="menu__item"><a href="login.php">Iniciar Sesión</a></li>
-                <li class="menu__item"><a href="peliculas.php">Registrarse</a></li>
-                <li class="menu__item"><a href="contacto.php">Contacto</a></li>
+                <li class="menu__item"><a href="peliculas.php">Peliculas</a></li>
+                <li class="menu__item"><a href="form_login.php">Iniciar Sesión</a></li>
+                <li class="menu__item"><a href="form_registro.php">Registrarse</a></li>
             </ul>
         </nav>
     </header>
