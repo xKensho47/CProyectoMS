@@ -13,7 +13,7 @@ ob_start();
                 <li class="menu__item"><a href="index.php">Inicio</a></li>
                 <li class="menu__item"><a href="peliculas.php">Peliculas</a></li>
                 <li class="menu__item"><a href="notificaciones.php">Notificaciones</a></li>
-                <li class="menu__item"><a href="logout.php">Perfil</a></li>
+                <li class="menu__item"><a href="profile.php">Perfil</a></li>
                 
             </ul>
         </nav>
@@ -33,7 +33,7 @@ ob_start();
                 <li class="menu__item"><a href="index.php">Inicio</a></li>
                 <li class="menu__item"><a href="peliculas.php">Peliculas</a></li>
                 <li class="menu__item"><a href="abm.php">CRUD</a></li>
-                <li class="menu__item"><a href="logout.php">Perfil</a></li>
+                <li class="menu__item"><a href="profile.php">Perfil</a></li>
             </ul>
         </nav>
     </header>
