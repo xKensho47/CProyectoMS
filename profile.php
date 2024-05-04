@@ -33,46 +33,54 @@
                             <div class="profile-button">
                                 <button class="button-logout" href="logout.php">Logout</button>
                             </div>
-
                         </article>
                         <hr>
-                        <article class="profile-aboutme">
-                            <h2 class="tittle">About Me</h2>
-                            <p class="profile-description">
-                                I\'m a passionate movie enthusiast who loves exploring new films and sharing my thoughts with others. In my
-                                free time, you can find me curating my collection of favorites, discovering hidden gems, and discussing the
-                                latest releases with my friends.
-                            </p>
+                        <article class="profile-info">
+                            <aside class="profile-aboutme">
+                                <h2 class="tittle">About Me</h2>
+                                <p class="profile-description">
+                                    I\'m a passionate movie enthusiast who loves exploring new films and sharing my thoughts with others. In my
+                                    free time, you can find me curating my collection of favorites, discovering hidden gems, and discussing the
+                                    latest releases with my friends.
+                                </p>
+                            </aside>
+                            <aside class="profile-generos">
+                                <h2 class="tittle">Favorite Movie Genres</h2>
+                                <div class="generos-container">
+                                    <span class="generos-name">Drama</span>
+                                    <span class="generos-name">Action</span>
+                                    <span class="generos-name">Sci-Fi</span>
+                                    <span class="generos-name">Comedy</span>
+                                </div>
+                            </aside>
                         </article>
-                    </section>
-                    <section class="container profile-container friends">
-                        <article class="friends-usser">
+                        <article class="profile-friends">
                             <h2 class="tittle">Friends</h2>
                             <div class="container friends-container">
-                                <article class="friends-data">
+                                <aside class="friends-data">
                                     <div class="friends-avatar">
                                         <img class="friends-img" src="/placeholder.svg" alt="Friend 1"/>
                                     </div>
                                     <p class="friends-name">Jane Doe</p>
-                                </article>
-                                <article class="friends-data">
+                                </aside>
+                                <aside class="friends-data">
                                     <div class="friends-avatar">
                                         <img class="friends-img" src="/placeholder.svg" alt="Friend 2"/>
                                     </div>
                                     <p class="friends-name">Bob Smith</p>
-                                </article>
-                                <article class="friends-data">
+                                </aside>
+                                <aside class="friends-data">
                                     <div class="friends-avatar">
                                         <img class="friends-img" src="/placeholder.svg" alt="Friend 3"/>
                                     </div>
                                     <p class="friends-name">Emily Johnson</p>
-                                </article>
-                                <article class="friends-data">
+                                </aside>
+                                <aside class="friends-data">
                                     <div class="friends-avatar">
                                         <img class="friends-img" src="/placeholder.svg" alt="Friend 4"/>
                                     </div>
                                     <p class="friends-name">Michael Brown</p>
-                                </article>
+                                </aside>
                             </div>
                         </article>
                     </section>
@@ -104,17 +112,6 @@
                                         <h3 class="favorite-tittle">Forrest Gump</h3>
                                     </div>
                                 </article>
-                            </div>
-                        </article>
-                    </section>
-                    <section class="container profile-container generos">
-                        <article class="generos-usser">
-                            <h2 class="tittle">Favorite Movie Genres</h2>
-                            <div class="generos-container">
-                                <span class="generos-name">Drama</span>
-                                <span class="generos-name">Action</span>
-                                <span class="generos-name">Sci-Fi</span>
-                                <span class="generos-name">Comedy</span>
                             </div>
                         </article>
                     </section>
