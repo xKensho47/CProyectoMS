@@ -16,8 +16,7 @@
 <body>
     <?php
         include("conexion.php");
-        include("comprobar_usuario");
-        include("opciones.php"); 
+        include("comprobar_usuario.php");
 
         echo '
         <main>';// EMPIEZA EL MAIN

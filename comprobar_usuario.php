@@ -1,5 +1,6 @@
 <?php
 ob_start();
+    include("opciones.php");
     if(isset($_SESSION['id_usuario']))
     {
         $id_usuario = $_SESSION['id_usuario'];

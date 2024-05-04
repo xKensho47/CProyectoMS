@@ -16,8 +16,7 @@
         <div class="container">
             <?php
                 include("conexion.php");
-                include("comprobar_usuario");
-                include("opciones.php");
+                include("comprobar_usuario.php");
 
                 echo '
                 <main class="main-profile">
@@ -30,7 +29,7 @@
                             <p class="profile-ussername">@johndoe</p>
                         </div>
                         <div class="profile-button">
-                            <button class="button-logout">Logout</button>
+                            <button class="button-logout" href="logout.php">Logout</button>
                         <div/>
                     </section>
                     <section class="container profile-container aboutme">
