@@ -1,4 +1,3 @@
-
 <html>
     <head>
     <meta charset="utf-8">
@@ -10,28 +9,28 @@
         <link rel="stylesheet" href="css/estilos.css">
         <title>Registro</title>
     </head>
-    <body >
+    <body>
         <div class="container">
             <?php
-                        include("conexion.php");
-                        include("opciones.php");
+                include("conexion.php");
+                include("opciones.php");
 
-                        if(isset($_SESSION['id_usuario']))
-                        {
-                            header('Location: Index.php');                                    
-                        }
-                        else {echo $opciones_sin_sesion;
-                            $_SESSION['administrador'] = 0;
-                        } 
+                if(isset($_SESSION['id_usuario']))
+                {
+                    header('Location: Index.php');                                    
+                }
+                else {echo $opciones_sin_sesion;
+                    $_SESSION['administrador'] = 0;
+                } 
                                
             ?>
          
             <form class="formulario-login" action="" method="post" >
-               <h1>Registrate</h1>
-               <?php
-               include("conexion.php");
-               include("registro.php");
-               ?>
+                <h1>Registrate</h1>
+                <?php
+                    include("conexion.php");
+                    include("registro.php");
+                ?>
                 <input class="input-login" type="text" name="nombre" required placeholder="Ingrese su nombre"/>
 
                 <input class="input-login" type="text" name="apellido" required placeholder="Ingrese su apellido"/>
