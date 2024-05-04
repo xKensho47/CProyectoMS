@@ -32,10 +32,9 @@
             <script src="script/script.js"></script>
             <script src="script/botonTop.js"></script>
         </div>
-    </body>
-    <footer>
-        <div class="menu__item"><a href="contacto.php">Contacto</a></div>
-    </footer>
+        <footer>
+            <div class="menu__item"><a href="contacto.php">Contacto</a></div>
+        </footer>
     <p>&copy; CineFlow 2024</p>
-    
+    </body>    
 </html>

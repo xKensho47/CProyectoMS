@@ -13,7 +13,7 @@
         <div class="container">
             <?php
                 include("conexion.php");
-                include("opciones.php");
+                include("comprobar_usuario.php");
 
                 if(isset($_SESSION['id_usuario']))
                 {
@@ -48,12 +48,10 @@
         </div>   
         <script src="script/jquery.js"></script>
         <script src="script/pop-ups.js"></script>
-        <script src="script/botonTop.js"></script>     
+        <script src="script/botonTop.js"></script>
+
+        <footer>
+            <p>&copy; CineFlow 2024</p>
+        </footer>
     </body>
-    <footer>
-       <a href="#" class="a"><i class="fa-brands fa-youtube item" style="color: #ffffff;"></i></a>
-        <a href="#" class="a"><i class="fa-brands fa-facebook item" style="color: #ffffff;"></i></a>
-        <a href="#" class="a"><i class="fa-brands fa-instagram item" style="color: #ffffff;"></i></a>
-        <a href="#" class="a"><i class="fa-brands fa-twitter item" style="color: #ffffff;"></i></a>
-    </footer>
 </html>

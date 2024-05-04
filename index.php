@@ -58,18 +58,16 @@
                         <button class="carousel-next">&#62</button>
                     </div>';
                     echo'
-                </main>
-           
+                </main>           
                 ';
-            ?>           
-
+            ?>
             <script src="script/jquery.js"></script>
             <script src="slick/slick.min.js"></script>
             <script src="script/script.js"></script>
             <script src="script/botonTop.js"></script>
         </div>
+        <footer>
+            <p>&copy; CineFlow 2024</p>
+        </footer>
     </body>
-    <footer>
-        <p>&copy; CineFlow 2024</p>
-    </footer>
 </html>
