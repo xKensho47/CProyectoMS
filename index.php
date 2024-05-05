@@ -1,4 +1,4 @@
-<?php session_start();?>
+<?php session_start(); ?>
 <!doctype html>
 <html lang="es">
     <head>
@@ -20,45 +20,43 @@
             <?php
                 include("conexion.php");
                 include("comprobar_usuario.php");
+                include("carrousel_query.php");
 
                 echo '
-                <main>
-                    <h1 id="top10">Películas con mejor puntuación</h1>
-                    <hr>
-                    <div class="carousel-container">
-                        <button class="carousel-prev">&#60</button>
-                        <div class="carousel-slide">';
-
-                            $sql = "SELECT DISTINCT peli.path_poster as poster, peli.id_peli as id FROM peli
-                            GROUP BY peli.titulo
-                            ORDER BY peli.calificacion DESC
-                            LIMIT 10;";
-
-                            $result = mysqli_query($conexion,$sql);
-                            $puesto = 1;
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    $imagePath = $row["poster"];
-                                    echo '
-                                        <div class="cont">
-                                            <a href="info.php?id_peli=' . $row["id"] . '" >
-                                                <img src="' . $imagePath . '" alt="Movie Posters">
-                                            </a>
-                                            <div class="puesto">
-                                                <p>'.$puesto.'°</p>
-                                            </div>
-                                        </div>';
-                                    $puesto++;
-                                }
-                            } else {
-                                echo '<p>No movies found.</p>';
-                            }
-                        echo '
-                        </div>
-                        <button class="carousel-next">&#62</button>
-                    </div>';
-                    echo'
-                </main>           
+                <main class="main-principal">
+                    <section class="container movies-container movies">
+                        <article class="best-score">
+                            <div class="movie-tittle">
+                                <h1 class="tittle">Películas con mejor puntuación</h1>
+                                <hr>
+                            </div>
+                            <div class="carousel-container">
+                                <button class="carousel-prev">&#60</button>
+                                <div class="carousel-slide">';
+                                    if ($result_mejor->num_rows > 0) {
+                                        while ($row = $result_mejor->fetch_assoc()) {
+                                            $imagePath = $row["poster"];
+                                            echo '
+                                                <div class="movie-container">
+                                                    <a href="info.php?id_peli=' . $row["id"] . '" >
+                                                        <img src="' . $imagePath . '" alt="Movie Posters">
+                                                    </a>
+                                                    <div class="movie-rank">
+                                                        <p>' . $puesto . '°</p>
+                                                    </div>
+                                                </div>';
+                                            $puesto++;
+                                        }
+                                    } else {
+                                        echo '<p>No movies found.</p>';
+                                    }
+                                echo'
+                                </div>
+                                <button class="carousel-next">&#62</button>
+                            </div>
+                        </article>
+                    </section>
+                </main>
                 ';
             ?>
             <script src="script/jquery.js"></script>

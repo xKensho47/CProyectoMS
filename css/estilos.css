@@ -193,84 +193,125 @@ header form input{
 
 /* MAIN */
 .container main{
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    font-size: 1.5rem;
-    /* background-image: url(../images/background_principal.jpg); */
-    /* background-size: cover; */
     background-color: var(--color-background);
     color: var(--color-text);
+    font-size: 1.5rem;
 
-    /* min-height: 79vh; */
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    
     width: 100%;
     
     z-index: 1;
+}
+
+/* MAIN PRINCIPAL */
+.main-principal{
+    /* padding: 3%; */
+    /* padding-bottom: 4%; */
+}
+.movies-container{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    font-size: 1.2rem;
+    /* padding-left: 3% ;
+    padding-right: 3%; */
+
+    height: 100%;
+    width: 100%;
+}
+.movies-container article{
+    margin-top: 2%;
+    margin-bottom: 2%;
+
+    width: 100%;
+}
+.movies-container div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+}
+.movie-tittle{
+    flex-direction: column;
+}
+.movie-tittle .tittle {
+    color: var(--color-text);
+    padding-left: 2.5%;
+
+    width: 100%;
 }
 
 hr{
+    position: relative;
+    left: -25%;
     border: 1px solid brown;
-    width: 50%;
     margin-bottom: 4rem;
-    /* margin-top: 4rem; */
+
+    width: 50%;
 }
 
-/*  CARUSEL */
-.carousel-container{
-    z-index: 3;
-    padding-top: 20px;
+.carousel-container {
     justify-content: center;
-    align-content: center;
-    align-items: center;
-    margin: 0 auto;
-    height: 500px;
-    width: 96vw; /* Set the width to 100vw */
+
+    height: auto;
+    width: 95vw;
+
     overflow: hidden;
+    z-index: 3;
 }
-    
-.carousel-slide{
-    display: flex;
+
+.carousel-slide {
     transition: transform 0.3s ease-in-out;
-    align-items: center;
+    /* display: flex;
+    align-items: center; */
+    flex-direction: column;
+}
+    
+.carousel-slide .movie-container{
+    transition: transform 0.3s;
+    display: flex;
     justify-content: center;
-}
-    
-/* Style the .cont elements within the carousel */
-.carousel-slide .cont{
-    transition: transform 0.3s; /* Add a smooth transition effect */
-}
-    
-.carousel-slide .cont{
-    max-width: 50%;
-    height: 500px;
+    align-items: center;
     margin: 0 10px;
-    vertical-align: middle;
+
+    height: 33.5rem;
+    width: 22.5rem;
 }
-    
-.carousel-slide .cont img{
+.movie-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.carousel-slide .movie-container img{
     object-fit: cover;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
 }
-   
-/* Style the arrow controls for the small carousel */
-.carousel-prev,
-.carousel-next{
-    background-color: var(--color-princpal);
+
+.carousel-container button{
+    background-color: var(--color-principal);
     border: none;
     border-radius: 17%;
     color: var(--color-text);
-    padding: 10px 20px;
     cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1;
-}
+
+    padding: 10px 20px;
     
+    z-index: 100;
+}
+
 .carousel-prev,
 .carousel-next{
+    position: absolute;
     top: 62%;
 }
     
@@ -283,25 +324,34 @@ hr{
 
 .carousel-prev:hover,
 .carousel-next:hover{
-    background-color: var(--color-text);
-    color: var(--color-principal);
+    background-color: darkred;
+    color: var(--color-text);
 }
 
-.puesto{
-    position: absolute;
+.movie-rank{
     background-color: var(--color-principal);
-    width: 80px;
-    bottom: 20px;
-    height: 80px;
+    transition:  transform 0.3s ease-in-out;
     border-radius:  0 50% 0 0;
     font-size: 2rem;
-    justify-content: center;
-    align-items: center;
+
     display: flex;
     justify-content: center;
-    transition:  transform 0.3s ease-in-out;
     align-items: center;
-    flex-direction: row;
+    position: absolute;
+    bottom: 0;
+
+    max-width: 4rem;
+    height: 4.5rem;
+
+    border: solid white;
+}
+.movie-rank p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
 }
 
 /* INICIO DE SESION */
@@ -515,12 +565,16 @@ hr{
     left: -25%;
 }
 .profile-usser{
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     position: relative;
     left: -37.5%;
 
-    width: 25%;
+    width: 40%;
+}
+.profile-usser div{
+    width: 10rem;
+    height: 10rem;
 }
 /* Foto de perfil */
 .profile-avatar {
@@ -528,14 +582,23 @@ hr{
     background-color: transparent;
     border: 1px solid var(--color-popupborder);
     border-radius: 50%;
-    /* margin-right: 15%; */
-    /* padding: 0.7%; */
-    
-    height: 90%;
+    padding: 1.4%;
 }
 /* Nombre y Usser */
 .profile-data{
+    display: flex;
     flex-direction: column;
+    justify-content: center;
+}
+.profile-name, .profile-ussername{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+
+    width: 100%;
+    min-height: 50%;
 }
 .profile-name {
     color: var(--color-principal);
@@ -719,7 +782,9 @@ footer{
     bottom: 0;
 
     width: 100%;
-    height: 3vh;
+    height: 4vh;
 
     z-index: 890;
+
+    border: solid white;
 }

@@ -37,25 +37,26 @@
                         <hr>
                         <article class="profile-info">
                             <aside class="profile-aboutme">
-                                <h2 class="tittle">About Me</h2>
+                                <h2 class="tittle">Sobre mí</h2>
                                 <p class="profile-description">
-                                    I\'m a passionate movie enthusiast who loves exploring new films and sharing my thoughts with others. In my
-                                    free time, you can find me curating my collection of favorites, discovering hidden gems, and discussing the
-                                    latest releases with my friends.
+                                    Soy un apasionado del cine al que le encanta explorar nuevas películas y 
+                                    compartir mis pensamientos con los demás. En mi tiempo libre, puedes encontrarme 
+                                    seleccionando mi colección de favoritos, descubriendo gemas ocultas y discutiendo 
+                                    los últimos lanzamientos con mis amigos.
                                 </p>
                             </aside>
                             <aside class="profile-generos">
-                                <h2 class="tittle">Favorite Movie Genres</h2>
+                                <h2 class="tittle">Géneros favoritos</h2>
                                 <div class="generos-container">
                                     <span class="generos-name">Drama</span>
-                                    <span class="generos-name">Action</span>
+                                    <span class="generos-name">Acción</span>
                                     <span class="generos-name">Sci-Fi</span>
-                                    <span class="generos-name">Comedy</span>
+                                    <span class="generos-name">Comedia</span>
                                 </div>
                             </aside>
                         </article>
                         <article class="profile-friends">
-                            <h2 class="tittle">Friends</h2>
+                            <h2 class="tittle">Amigos</h2>
                             <div class="container friends-container">
                                 <aside class="friends-data">
                                     <div class="friends-avatar">
@@ -86,7 +87,7 @@
                     </section>
                     <section class="container profile-container favorite">
                         <article class="favorite-usser">
-                            <h2 class="tittle">Favorites</h2>
+                            <h2 class="tittle">Favoritas</h2>
                             <div class="favorite-container">
                                 <article class="favorite-data">
                                     <img class="favorite-img" src="/placeholder.svg" alt="Movie 1"/>
@@ -117,7 +118,7 @@
                     </section>
                     <section class="container profile-container later">
                         <article class="later-usser">
-                            <h2 class="tittle">Watch Later</h2>
+                            <h2 class="tittle">Ver más tarde</h2>
                             <div class="later-container">
                                 <article class="later-data">
                                     <img class="later-img" src="/placeholder.svg" alt="Movie 5"/>
@@ -148,7 +149,7 @@
                     </section>
                     <section class="container profile-container continue">
                         <article class="continue-usser">
-                            <h2 class="tittle">Continue Watching</h2>
+                            <h2 class="tittle">Continuar viendo</h2>
                             <div class="continue-container">
                                 <article class="continue-data">
                                     <img class="continue-img" src="/placeholder.svg" alt="Movie 9"/>
