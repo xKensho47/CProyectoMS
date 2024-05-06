@@ -17,7 +17,7 @@
             <?php
                 include("conexion.php");
                 include("comprobar_usuario.php");
-
+             
                 echo '
                 <main class="main-profile">
                     <section class="container profile-container profile">
