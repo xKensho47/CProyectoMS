@@ -31,7 +31,7 @@
                             </div>
 
                             <div class="profile-button">
-                                <button class="button-logout" href="logout.php">Logout</button>
+                                <a href="logout.php"><button class="button-logout">Logout</button></a>
                             </div>
                         </article>
                         <hr>
