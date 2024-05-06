@@ -1,3 +1,0 @@
-/*
-HACE EL PINCHE PULL D:
-*/
