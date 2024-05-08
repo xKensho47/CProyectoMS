@@ -17,14 +17,6 @@
             <?php
                 include("conexion.php");
                 include("comprobar_usuario.php");
-
-                if(isset($_SESSION['id_usuario']))
-                {
-                    header('Location: Index.php');                                    
-                }
-                else {echo $opciones_sin_sesion;
-                    $_SESSION['administrador'] = 0;
-                } 
                 include("login.php");
                 
                 echo'

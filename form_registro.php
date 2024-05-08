@@ -13,22 +13,12 @@
         <div class="container">
             <?php
                 include("conexion.php");
-                include("comprobar_usuario.php");
-
-                if(isset($_SESSION['id_usuario']))
-                {
-                    header('Location: Index.php');                                    
-                }
-                else {echo $opciones_sin_sesion;
-                    $_SESSION['administrador'] = 0;
-                } 
-                               
+                include("comprobar_usuario.php");                
             ?>
          
             <form class="formulario-login" action="" method="post" >
                 <h1>Registrate</h1>
                 <?php
-                    include("conexion.php");
                     include("registro.php");
                 ?>
                 <input class="input-login" type="text" name="nombre" required placeholder="Ingrese su nombre"/>
