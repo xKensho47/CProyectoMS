@@ -131,7 +131,7 @@ header form input{
 
 .menu{
     display: flex;
-    align-items: center;
+    align-items: right;
     justify-content: space-between;
     /* margin-right: 3%; */
     /* width: fit-content; */

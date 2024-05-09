@@ -44,12 +44,8 @@ ob_start();
             <a class="link-logo" href="./index.php">
                 <img class="logo1" src="./images/logo1.png" alt="logo">
             </a>
-            <form class="barra-busqueda" action="resultados-buscar.php" method="get" autocomplete="off">
-                <input class="input-busqueda" type="search" name="buscar" placeholder="Buscar..." />  
-            </form>
             <nav class="menu">
                 <ul class="menu__lista">
-                    <li class="menu__item"><a href="peliculas.php">Peliculas</a></li>
                     <li class="menu__item"><a href="form_login.php">Iniciar Sesión</a></li>
                     <li class="menu__item"><a href="form_registro.php">Registrarse</a></li>
                 </ul>
