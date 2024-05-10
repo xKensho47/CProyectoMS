@@ -129,14 +129,16 @@ header form input{
     border: 2px solid brown;
 }
 
-.menu{
-    display: flex;
-    align-items: right;
-    justify-content: space-between;
-    /* margin-right: 3%; */
-    /* width: fit-content; */
+.header-user .menu{
+    width: 30%;
+}
+
+.header-login .menu{
     width: 100%;
-    height: 100%;
+}
+
+.header-admin .menu{
+    width: 100%;
 }
 
 .menu__lista{

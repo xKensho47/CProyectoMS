@@ -1,7 +1,7 @@
 <?php
 ob_start();
     $opciones='
-        <header>
+        <header class="header-login">
             <a class="link-logo" href="./index.php">
                 <img class="logo1" src="./images/logo1.png" alt="logo">
             </a>
@@ -21,7 +21,7 @@ ob_start();
     ';
 
     $opciones_admin='
-        <header>
+        <header class="header-admin">
             <a class="link-logo" href="./index.php">
                 <img class="logo1" src="./images/logo1.png" alt="logo">
             </a>
@@ -40,7 +40,7 @@ ob_start();
     ';
 
     $opciones_sin_sesion='
-        <header>
+        <header class="header-user">
             <a class="link-logo" href="./index.php">
                 <img class="logo1" src="./images/logo1.png" alt="logo">
             </a>
