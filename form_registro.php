@@ -16,7 +16,7 @@
                 include("comprobar_usuario.php");                
             ?>
          
-            <form class="formulario-login" action="" method="post" >
+            <form class="formulario-registro" action="" method="post" >
                 <h1>Registrate</h1>
                 <?php
                     include("registro.php");
@@ -33,8 +33,9 @@
                 
                 <br>
                 <input class="boton-login" type="submit" value="Registrarse" name="registro"/>	
+                <a class="link-registro" href="login.php">¿Ya tenes usuario? Inicia sesion.</a>
             </form>
-            <a class="link-registro" href="login.php">¿Ya tenes usuario? Inicia sesion.</a>
+            
         </div>   
         <script src="script/jquery.js"></script>
         <script src="script/pop-ups.js"></script>
