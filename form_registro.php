@@ -9,32 +9,30 @@
         <link rel="stylesheet" href="css/estilos.css">
         <title>Registro</title>
     </head>
-    <body>
+    <body class="body-login">
         <div class="container">
             <?php
                 include("conexion.php");
                 include("comprobar_usuario.php");                
             ?>
-         
-            <form class="formulario-registro" action="" method="post" >
-                <h1>Registrate</h1>
-                <?php
-                    include("registro.php");
-                ?>
-                <input class="input-login" type="text" name="nombre" required placeholder="Ingrese su nombre"/>
-
-                <input class="input-login" type="text" name="apellido" required placeholder="Ingrese su apellido"/>
-                
-                <input class="input-login" type="email" name="mail" required placeholder="Ingrese su email"/>
-                
-                <input class="input-login" name="usuario" type="text" maxlength="12" placeholder="Ingrese su nombre de usuario"/>
-                
-                <input class="input-login" type="password" name="password" maxlength="12" placeholder="Ingrese su contraseña"/>
-                
-                <br>
-                <input class="boton-login" type="submit" value="Registrarse" name="registro"/>	
-                <a class="link-registro" href="login.php">¿Ya tenes usuario? Inicia sesion.</a>
-            </form>
+            <main>
+                <div class="div-form">
+                    <form class="formulario-login" action="" method="post" >
+                        <h1>Registrate</h1>
+                        <?php
+                            include("registro.php");
+                        ?>
+                        <input class="input-login" type="text" name="nombre" required placeholder="Ingrese su nombre"/>   
+                        <input class="input-login" type="text" name="apellido" required placeholder="Ingrese su apellido"/>                   
+                        <input class="input-login" type="email" name="mail" required placeholder="Ingrese su email"/>                   
+                        <input class="input-login" name="usuario" type="text" maxlength="12" placeholder="Ingrese su nombre de usuario"/>                   
+                        <input class="input-login" type="password" name="password" maxlength="12" placeholder="Ingrese su contraseña"/>
+                        <br>
+                        <input class="boton-login" type="submit" value="Registrarse" name="registro"/>	
+                        <a class="link-registro" href="login.php">¿Ya tenes usuario? Inicia sesion.</a>
+                    </form>
+                </div>
+          </main>
             
         </div>   
         <script src="script/jquery.js"></script>

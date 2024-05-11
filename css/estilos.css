@@ -251,7 +251,7 @@ header form input{
 hr{
     position: relative;
     left: -25%;
-    border: 1px solid brown;
+    border: 1px solid rgb(182, 51, 149);
     margin-bottom: 4rem;
 
     width: 50%;
@@ -357,7 +357,7 @@ hr{
 }
 
 /* INICIO DE SESION */
-.main-login{
+.body-login{
     background-image: url(../images/background_principal.jpg);
     background-size: cover;
 }
@@ -375,16 +375,7 @@ hr{
 
     width: 60%;
 }
-.formulario-registro{
-    background:var(--color-form);
-    color: var(--color-text);
-    border: solid var(--color-principal) 1px;
-    border-radius: 2%;
-    margin: auto;
-    padding:2%;
 
-    width: 45%;
-}
 
 .formulario-login{
     background:var(--color-form);
@@ -398,6 +389,10 @@ hr{
   
 }
 .formulario-login h1{
+    text-align: center;
+    margin-bottom: 5%;
+}
+.formulario-registro h1{
     text-align: center;
     margin-bottom: 5%;
 }

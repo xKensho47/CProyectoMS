@@ -12,7 +12,7 @@
         <title>Log in</title>
     </head>
 
-    <body>
+    <body class="body-login">
         <div class="container">
             <?php
                 include("conexion.php");
@@ -20,7 +20,7 @@
                 include("login.php");
                 
                 echo'
-                <main class="main-login">
+                <main>
 
                     <div class="div-form">
                         <form class="formulario-login" action="" method="post">
