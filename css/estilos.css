@@ -6,6 +6,7 @@
 }
 
 :root{
+    --color-transparent: transparent;
     --color-background: black;
     --color-principal: rgb(161, 5, 182);
     --color-searchbar: rgb(243, 239, 238);
@@ -195,7 +196,7 @@ header form input{
 
 /* MAIN */
 .container main{
-    background-color: var(--color-background);
+    background-color: var(--color-transparent);
     color: var(--color-text);
     font-size: 1.5rem;
 
