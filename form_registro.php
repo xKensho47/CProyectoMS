@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="css/estilos.css">
         <title>Registro</title>
     </head>
-    <body class="body-login">
+    <body >
         <div class="container">
             <?php
                 include("conexion.php");
@@ -29,7 +29,7 @@
                         <input class="input-login" type="password" name="password" maxlength="12" placeholder="Ingrese su contraseña"/>
                         <br>
                         <input class="boton-login" type="submit" value="Registrarse" name="registro"/>	
-                        <a class="link-registro" href="login.php">¿Ya tenes usuario? Inicia sesion.</a>
+                        <a class="link-registro" href="form_login.php">¿Ya tenes usuario? Inicia sesion.</a>
                     </form>
                 </div>
           </main>

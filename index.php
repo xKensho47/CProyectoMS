@@ -56,6 +56,7 @@
                             </div>
                         </article>
                     </section>
+                    
                 </main>
                 ';
             ?>

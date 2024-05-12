@@ -12,7 +12,7 @@
         <title>Log in</title>
     </head>
 
-    <body class="body-login">
+    <body >
         <div class="container">
             <?php
                 include("conexion.php");
@@ -23,7 +23,7 @@
                 <main>
 
                     <div class="div-form">
-                        <form class="formulario-login" action="" method="post">
+                        <form class="formulario-login log" action="" method="post">
                             <h1>Iniciar sesión</h1>
                             <input class="input-login" name="usuario" type="text" maxlength="12" placeholder="Ingrese su nombre de usuario" required>
                             <input class="input-login" type="password" name="password" maxlength="12" placeholder="Ingrese su contraseña" required>
