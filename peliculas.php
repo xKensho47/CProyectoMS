@@ -13,6 +13,8 @@
         <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
         <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
         <title>Peliculas</title>
+
+       
     </head>
 
     <body>
@@ -23,28 +25,34 @@
 
             ?>
             <main>
-                <div class="conteiner-card">
-                    <?php
-                        $consulta="select id_genero,nombre_genero from genero order by nombre_genero asc";
-                        $result = $conexion->query($consulta);
-                        if ($result->num_rows > 0) {
+                <section class="">
+                        <?php
+                            $id=$_GET['id'];
+                            $sql = "SELECT p.id_peli,titulo, path_poster FROM peli p inner join peli_genero g on 
+                                    p.id_peli=g.id_peli where id_genero='$id' ";
+                            $result = $conexion->query($sql);
+                            if ($result->num_rows > 0) {
+                                echo '<div class="">';
                             
-                            while($row = $result->fetch_assoc()) {
-                                echo '<div class="card">';
-                                echo '<div class="card-body">';
-                                echo '<a href= "peliculas.php?id=' . $row["id_genero"] . '">'.$row["nombre_genero"].'</a>';
+                                while($row = $result->fetch_assoc()) {
+                                    echo '<div class=" ">';
+                                    echo '<a href="video-pelicula.php?id=' . $row["id_peli"] . '">';
+                                    echo '<img src="' . $row["path_poster"] . '" alt="" > ';
+                                    echo '</a>';
+                                    echo '<h3 class="">' . $row["titulo"] . '</h3>';
+                                    echo '</div>';
+                                }
                                 echo '</div>';
-                                echo '</div>';
+                            } else {
+                                echo "0 resultados";
                             }
-                        } else {
-                            echo "0 resultados";
-                        }
-                    ?>  
-                </div>
+                
+                        ?>  
+                </section>
                 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
             </main>
         
-           
+            
 
             <script src="script/jquery.js"></script>
             <script src="slick/slick.min.js"></script>
