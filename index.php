@@ -20,7 +20,7 @@
             <?php
                 include("conexion.php");
                 include("comprobar_usuario.php");
-                include("carrousel_query.php");
+               /* include("carrousel_query.php");*/
 
                 echo '
                 <main class="main-principal">

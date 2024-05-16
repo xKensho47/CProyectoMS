@@ -2,9 +2,9 @@
 ob_start();
     include("conexion.php");
     $mejor_puntuacion =
-        "SELECT DISTINCT peli.path_poster as poster, peli.id_peli as id FROM peli
-        GROUP BY peli.titulo
-        ORDER BY peli.calificacion DESC
+        "SELECT DISTINCT peliculas.path_poster as poster, peliculas.id_peli as id FROM peliculas
+        GROUP BY peliculas.titulo
+        ORDER BY peliculas.calificacion DESC
         LIMIT 10;
     ";
 

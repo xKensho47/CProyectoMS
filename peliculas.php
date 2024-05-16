@@ -28,7 +28,7 @@
                 <section class="peliculas-container">
                     <?php
                         $id = $_GET['id'];
-                        $sql = "SELECT p.id_peli, path_poster FROM peli p INNER JOIN peli_genero g ON p.id_peli = g.id_peli WHERE id_genero='$id'";
+                        $sql = "SELECT p.id_peli, path_poster FROM peliculas p INNER JOIN peli_genero g ON p.id_peli = g.id_peli WHERE id_genero='$id'";
                         $result = $conexion->query($sql);
 
                         if ($result->num_rows > 0) {

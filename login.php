@@ -3,8 +3,8 @@
         $usuario = $_POST['usuario'];
         $contra= md5($_POST['password']);
 
-        $usuario_regis = mysqli_query($conexion,"SELECT id_usuario from usuario where nombre_usuario = '$usuario'");
-        $pregunta = mysqli_query($conexion,"SELECT id_usuario , nombre_usuario, mail from usuario where nombre_usuario = '$usuario' and contraseña = '$contra'");
+        $usuario_regis = mysqli_query($conexion,"SELECT id_usuario from usuarios where nombre_usuario = '$usuario'");
+        $pregunta = mysqli_query($conexion,"SELECT id_usuario , nombre_usuario, mail from usuarios where nombre_usuario = '$usuario' and contraseña = '$contra'");
         if($usuario_regis->num_rows == 0 ){
             echo'
             <div class="overlay show" id="overlay-mail-nuevo">

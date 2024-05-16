@@ -9,12 +9,12 @@
 			$mail = $_POST["mail"];
 			$usuario = $_POST["usuario"];
 			$password = md5($_POST["password"]);
-			$validar="SELECT * FROM usuario WHERE mail ='$mail' || nombre_usuario='$usuario'";
+			$validar="SELECT * FROM usuarios WHERE mail ='$mail' || nombre_usuario='$usuario'";
 			$validando=$conexion->query($validar);
 			if($validando->num_rows>0){
 				echo 'el usuario y/o mail ya estan registrados';
 			}else{
-				$sql=$conexion->query("insert into usuario(nombre, apellido, nombre_usuario, mail,contraseña) values ('$nombre','$apellido','$usuario','$mail', '$password') ");
+				$sql=$conexion->query("insert into usuarios(nombre, apellido, nombre_usuario, mail,contraseña,id_tipo) values ('$nombre','$apellido','$usuario','$mail', '$password',2) ");
 				if ($sql==1) {
 					echo 'usuario registrado correctamente';
 				} else {
