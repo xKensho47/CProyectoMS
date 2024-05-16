@@ -25,30 +25,26 @@
 
             ?>
             <main>
-                <section class="">
-                        <?php
-                            $id=$_GET['id'];
-                            $sql = "SELECT p.id_peli,titulo, path_poster FROM peli p inner join peli_genero g on 
-                                    p.id_peli=g.id_peli where id_genero='$id' ";
-                            $result = $conexion->query($sql);
-                            if ($result->num_rows > 0) {
-                                echo '<div class="">';
-                            
-                                while($row = $result->fetch_assoc()) {
-                                    echo '<div class=" ">';
-                                    echo '<a href="video-pelicula.php?id=' . $row["id_peli"] . '">';
-                                    echo '<img src="' . $row["path_poster"] . '" alt="" > ';
-                                    echo '</a>';
-                                    echo '<h3 class="">' . $row["titulo"] . '</h3>';
-                                    echo '</div>';
-                                }
+                <section class="peliculas-container">
+                    <?php
+                        $id = $_GET['id'];
+                        $sql = "SELECT p.id_peli, path_poster FROM peli p INNER JOIN peli_genero g ON p.id_peli = g.id_peli WHERE id_genero='$id'";
+                        $result = $conexion->query($sql);
+
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo '<div class="pelicula-item">';
+                                echo '<a href="video-pelicula.php?id=' . $row["id_peli"] . '">';
+                                echo '<img src="' . $row["path_poster"] . '" alt="">';
+                                echo '</a>';
                                 echo '</div>';
-                            } else {
-                                echo "0 resultados";
                             }
-                
-                        ?>  
+                        } else {
+                            echo "0 resultados";
+                        }
+                    ?>
                 </section>
+
                 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
             </main>
         
