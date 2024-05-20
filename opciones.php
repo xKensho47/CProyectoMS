@@ -32,7 +32,14 @@ ob_start();
                 <ul class="menu__lista">
                     <li class="menu__item"><a href="index.php">Inicio</a></li>
                     <li class="menu__item"><a href="generos.php">Generos</a></li>
-                    <li class="menu__item"><a href="abm.php">CRUD</a></li>
+                    <li class="menu__item"><a href="crud_peliculas.php">CRUD</a>
+                        <ul>
+                            <li class=" lista"><a href="crud_peliculas.php">Peliculas</a></li>
+                            <li class=" lista"><a href="crud_generos.php">Generos</a></li>
+                            <li class=" lista"><a href="crud_actores.php">Actor</a></li>
+                            <li class=" lista"><a href="crud_directores.php">Director</a></li>
+                        </ul>
+                    </li>
                     <li class="menu__item"><a href="profile.php">Perfil</a></li>
                 </ul>
             </nav>

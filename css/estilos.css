@@ -154,7 +154,7 @@ header form input{
     list-style: none;
     text-transform: uppercase;
     font-weight: 700;
-    line-height: 12vh;
+    line-height: 7vh;
     color: var(--color-text);
     gap: 1rem;
 
@@ -851,7 +851,30 @@ footer{
 .pelicula-item img {
     width: 100%; /* Ajusta el tamaño de la imagen dentro de su contenedor */
     height: auto;
- }
+ }   
+.menu__item ul {
+    display: none;
+    position: absolute;
+    top: 9%; /* Posicionar el submenú debajo del item principal */
+    background-color:  var( --color-background); 
+    z-index: 1;
+    border-radius:  1%;
+    }
+.menu__item ul li {
+    display: block;
+    padding: 10px;
+}
+
+/* Mostrar el submenú al pasar el ratón sobre el item principal */
+.menu__item:hover ul {
+    display: block;
+}
+
+   
+   
+ 
+
+
 
  
 
