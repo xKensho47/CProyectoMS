@@ -60,7 +60,7 @@ body {
     border: none;
     overflow-x: hidden;
     background-size: cover;
-}
+} 
 
 body a {
     color: var(--color-searchbar);
