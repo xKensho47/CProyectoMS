@@ -1,24 +1,25 @@
-<?php session_start();?>
+<?php session_start(); ?>
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <link rel="icon" href="moviely favicon.png" type="image/ico">
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/estilos.css">
-        <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
-        <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
-        <link rel="stylesheet" href="css\font-awesome-4.7.0/css/font-awesome.min.css">
-        <title>Mi Perfil</title>
-    </head>
 
-    <body>
-        <div class="container">
-            <?php
-                include("conexion.php");
-                include("comprobar_usuario.php");
-             
-                echo '
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" href="moviely favicon.png" type="image/ico">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" type="text/css" href="slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
+    <link rel="stylesheet" href="css\font-awesome-4.7.0/css/font-awesome.min.css">
+    <title>Mi Perfil</title>
+</head>
+
+<body>
+    <div class="container">
+        <?php
+        include("conexion.php");
+        include("comprobar_usuario.php");
+
+        echo '
                 <main class="main-profile">
                     <section class="container profile-container profile">
                         <article class="profile-usser">
@@ -181,13 +182,14 @@
                     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
                 </main>
                 ';
-            ?>
-            <script src="script/jquery.js"></script>
-            <script src="script/pop-ups.js"></script>
-            <script src="script/botonTop.js"></script>
-        </div>
-        <footer>
-            <p>&copy; CineFlow 2024</p>
-        </footer>
-    </body>
+        ?>
+        <script src="script/jquery.js"></script>
+        <script src="script/pop-ups.js"></script>
+        <script src="script/botonTop.js"></script>
+    </div>
+    <footer>
+        <p>&copy; CineFlow 2024</p>
+    </footer>
+</body>
+
 </html>

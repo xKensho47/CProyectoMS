@@ -45,12 +45,12 @@
 
                     <div class="mb-3">
                         <label for="video_mp4" class="form-label">Video_mp4:</label>
-                        <input type="text" name="video_mp4" id="video_mp4" class="form-control" >
+                        <input type="text" name="video_mp4" id="video_mp4" class="form-control">
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="video_iframe" class="form-label">video_iframe:</label>
-                        <input type="text" name="video_iframe" id="video_iframe" class="form-control" >
+                        <input type="text" name="video_iframe" id="video_iframe" class="form-control">
                     </div>
 
                     <div class="">

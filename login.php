@@ -1,12 +1,12 @@
 <?php
-    if(isset($_POST['login'])){
-        $usuario = $_POST['usuario'];
-        $contra= md5($_POST['password']);
+if (isset($_POST['login'])) {
+    $usuario = $_POST['usuario'];
+    $contra = md5($_POST['password']);
 
-        $usuario_regis = mysqli_query($conexion,"SELECT id_usuario from usuarios where nombre_usuario = '$usuario'");
-        $pregunta = mysqli_query($conexion,"SELECT id_usuario , nombre_usuario, mail from usuarios where nombre_usuario = '$usuario' and contraseña = '$contra'");
-        if($usuario_regis->num_rows == 0 ){
-            echo'
+    $usuario_regis = mysqli_query($conexion, "SELECT id_usuario from usuarios where nombre_usuario = '$usuario'");
+    $pregunta = mysqli_query($conexion, "SELECT id_usuario , nombre_usuario, mail from usuarios where nombre_usuario = '$usuario' and contraseña = '$contra'");
+    if ($usuario_regis->num_rows == 0) {
+        echo '
             <div class="overlay show" id="overlay-mail-nuevo">
                 <div class="popup">
                     <span class="popup-close" id="pop-mail-nuevo">&times;</span>
@@ -24,9 +24,8 @@
                 </div>
             </div>
             ';
-        }
-        else if ( $pregunta->num_rows == 0){
-            echo'
+    } else if ($pregunta->num_rows == 0) {
+        echo '
             <div class="overlay show" id="overlay-incorrecto">
                 <div class="popup">
                     <span class="popup-close" id="pop-incorrecto">&times;</span>
@@ -39,17 +38,15 @@
                 </div>
             </div>
             ';
-        }
-        else if ( $pregunta->num_rows == 1){
-            $row = $pregunta->fetch_assoc();
-            $_SESSION['id_usuario'] = $row['id_usuario'];
-            $_SESSION['nombre_usuario'] = $row['nombre_usuario'];
-            $_SESSION['mail_usuario'] = $row['mail'];
-            header('Location: index.php');                            
-        }
-    }                         
+    } else if ($pregunta->num_rows == 1) {
+        $row = $pregunta->fetch_assoc();
+        $_SESSION['id_usuario'] = $row['id_usuario'];
+        $_SESSION['nombre_usuario'] = $row['nombre_usuario'];
+        $_SESSION['mail_usuario'] = $row['mail'];
+        header('Location: index.php');
+    }
+}
 ?>
 <script>
-    history.replaceState(null,null,location.pathname)
+    history.replaceState(null, null, location.pathname)
 </script>
-      
