@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php session_start(); 
+
+?>
 <!doctype html>
 <html lang="es">
     <head>
@@ -21,7 +23,12 @@
             <?php
                 include("conexion.php");
                 include("comprobar_usuario.php");
+                
+                $sqlPeliculas = "SELECT p.id_peli, p.titulo, p.descripcion,p.estreno,p.path_poster,p.duracion,p.video_iframe,
+                p.video_mp4 FROM peliculas AS p";
+                $peliculas=$conexion->query($sqlPeliculas);
             ?>
+            
             <h2 class="text-center">Peliculas</h2>
             <!-- BOTON DE REGISTRO-->
             <div class="row justify-content-end">
@@ -31,24 +38,40 @@
             </div>
 
             <!-- ENCABEZADO DE LA TABLA-->
-            <table class="table table-sm table-striped table-hover mt-4">
+            <table class="table table-xl table-striped table-hover mt-4 ">
                 <thead class="table-dark">
                     <tr>
-                        <th>#</th>
-                        <th>Titulo</th>
-                        <th width="10%">Descripción</th>
-                        <th>Estreno</th>
-                        <th>Path_poster</th>
-                        <th>Duracion</th>
-                        <th>Género</th>
-                        <th>Poster</th>
-                        <th>video_iframe</th>
-                        <th>video_mp4</th>
-                        <th>Acción</th>
+                        <th width="10">#</th>
+                        <th width="10">Titulo</th>
+                        <th width="100">Descripción</th>
+                        <th width="20">Estreno</th>
+                        <th width="5">Path_poster</th>
+                        <th width="1">Duracion</th>
+                        <th width="5">video_iframe</th>
+                        <th width="5">video_mp4</th>
+                        <th width="10">Acción</th>
                     </tr>
                 </thead>
 
                 <tbody>
+
+                <?php while ($row = $peliculas->fetch_object()) { ?>
+                    <tr>
+                        <td><?= $row->id_peli; ?></td>
+                        <td><?= $row->titulo; ?></td>
+                        <td><?= $row->descripcion; ?></td>
+                        <td><?= $row->estreno; ?></td>
+                        <td><img src="<?= $row->path_poster; ?>" width="80"></td>
+                        <td><?= $row->duracion; ?></td>
+                        <td><?= $row->video_iframe; ?></td>
+                        <td><?= $row->video_mp4; ?></td>
+                        <td>
+                            <a href="#" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editaModal" data-bs-id="<?= $row->id_peli; ?>"><i class="fa-solid fa-pen-to-square"></i> Editar</a>
+                            <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#eliminaModal" data-bs-id="<?= $row->id_peli; ?>"><i class="fa-solid fa-trash"></i> Eliminar</a>
+                        </td>
+                    </tr>
+                <?php } ?>
+
 
                 </tbody>
             </table>
