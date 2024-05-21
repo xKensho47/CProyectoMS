@@ -14,12 +14,12 @@
         <link rel="stylesheet" href="css/estilos.css">
         <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
         <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
-        <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <title>CRUD Peliculas</title>
     </head>
 
     <body>
-        <div class="container  py-3">
+        <div class="container  ">
             <?php
                 include("conexion.php");
                 include("comprobar_usuario.php");
