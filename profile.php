@@ -1,195 +1,168 @@
 <?php session_start(); ?>
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <meta charset="utf-8">
-    <link rel="icon" href="moviely favicon.png" type="image/ico">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" type="text/css" href="slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
-    <link rel="stylesheet" href="css\font-awesome-4.7.0/css/font-awesome.min.css">
     <title>Mi Perfil</title>
 </head>
-
 <body>
     <div class="container">
         <?php
         include("conexion.php");
         include("comprobar_usuario.php");
+        include("profileCarousel.php");
 
         echo '
-                <main class="main-profile">
-                    <section class="container profile-container profile">
-                        <article class="profile-usser">
-                            <div class="profile-avatar">
-                                <img class="profile-img" src="/placeholder.svg" alt="User Avatar"/>
-                            </div>
-                            <div class="profile-data">
-                                <h1 class="profile-name">John Doe</h1>
-                                <p class="profile-ussername">@johndoe</p>
-                            </div>
-
-                            <div class="profile-button">
-                                <a href="logout.php"><button class="button-logout">Logout</button></a>
-                            </div>
-                        </article>
-                        <hr>
-                        <article class="profile-info">
-                            <aside class="profile-aboutme">
-                                <h2 class="tittle">Sobre mí</h2>
-                                <p class="profile-description">
-                                    Soy un apasionado del cine al que le encanta explorar nuevas películas y 
-                                    compartir mis pensamientos con los demás. En mi tiempo libre, puedes encontrarme 
-                                    seleccionando mi colección de favoritos, descubriendo gemas ocultas y discutiendo 
-                                    los últimos lanzamientos con mis amigos.
-                                </p>
-                            </aside>
-                            <aside class="profile-generos">
-                                <h2 class="tittle">Géneros favoritos</h2>
-                                <div class="generos-container">
-                                    <span class="generos-name">Drama</span>
-                                    <span class="generos-name">Acción</span>
-                                    <span class="generos-name">Sci-Fi</span>
-                                    <span class="generos-name">Comedia</span>
+        <main class="main-profile">
+            <section class="userinfo-container">
+                <aside class="profile-userinfo">
+                    <section class="userinfo-data">
+                        <article class="data-user">
+                            <aside class="user-container">
+                                <div class="user-avatar">
+                                    <img class="profile-img" src="/placeholder.svg" alt="User Avatar"/>
+                                </div>
+                                <div class="user-info">
+                                    <h1 class="info-name">John Doe</h1>
+                                    <p class="info-username">@johndoe</p>
                                 </div>
                             </aside>
-                        </article>
-                        <article class="profile-friends">
-                            <h2 class="tittle">Amigos</h2>
-                            <div class="container friends-container">
-                                <aside class="friends-data">
-                                    <div class="friends-avatar">
-                                        <img class="friends-img" src="/placeholder.svg" alt="Friend 1"/>
-                                    </div>
-                                    <p class="friends-name">Jane Doe</p>
-                                </aside>
-                                <aside class="friends-data">
-                                    <div class="friends-avatar">
-                                        <img class="friends-img" src="/placeholder.svg" alt="Friend 2"/>
-                                    </div>
-                                    <p class="friends-name">Bob Smith</p>
-                                </aside>
-                                <aside class="friends-data">
-                                    <div class="friends-avatar">
-                                        <img class="friends-img" src="/placeholder.svg" alt="Friend 3"/>
-                                    </div>
-                                    <p class="friends-name">Emily Johnson</p>
-                                </aside>
-                                <aside class="friends-data">
-                                    <div class="friends-avatar">
-                                        <img class="friends-img" src="/placeholder.svg" alt="Friend 4"/>
-                                    </div>
-                                    <p class="friends-name">Michael Brown</p>
-                                </aside>
-                            </div>
+                            <aside class="user-button">
+                                <a href="logout.php"><button class="button-logout">Logout</button></a>
+                            </aside>
                         </article>
                     </section>
-                    <section class="container profile-container favorite">
-                        <article class="favorite-usser">
-                            <h2 class="tittle">Favoritas</h2>
-                            <div class="favorite-container">
-                                <article class="favorite-data">
-                                    <img class="favorite-img" src="/placeholder.svg" alt="Movie 1"/>
-                                    <div class="favorite-name">
-                                        <h3 class="favorite-tittle">The Shawshank Redemption</h3>
-                                    </div>
-                                </article>
-                                <article class="favorite-data">
-                                    <img class="favorite-img" src="/placeholder.svg" alt="Movie 2"/>
-                                    <div class="favorite-name">
-                                        <h3 class="favorite-tittle">Inception</h3>
-                                    </div>
-                                </article>
-                                <article class="favorite-data">
-                                    <img class="favorite-img" src="/placeholder.svg" alt="Movie 3"/>
-                                    <div class="favorite-name">
-                                        <h3 class="favorite-tittle">The Dark Knight</h3>
-                                    </div>
-                                </article>
-                                <article class="favorite-data">
-                                    <img class="favorite-img" src="/placeholder.svg" alt="Movie 4"/>
-                                    <div class="favorite-name">
-                                        <h3 class="favorite-tittle">Forrest Gump</h3>
-                                    </div>
-                                </article>
-                            </div>
+                    <section class="userinfo-genres">
+                        <h2 class="genres-tittle">Géneros favoritos</h2>
+                        <div class="genres-container">
+                            <span class="genres-favorites">Drama</span>
+                            <span class="genres-favorites">Acción</span>
+                            <span class="genres-favorites">Sci-Fi</span>
+                        </div>
+                    </section>
+                    <section class="userinfo-description">
+                        <h2 class="description-tittle">Sobre mí</h2>
+                        <p class="description-aboutme">
+                            Soy un apasionado del cine al que le encanta explorar nuevas películas y 
+                            compartir mis pensamientos con los demás. En mi tiempo libre, puedes encontrarme 
+                            seleccionando mi colección de favoritos, descubriendo gemas ocultas y discutiendo 
+                            los últimos lanzamientos con mis amigos.
+                        </p>
+                    </section>
+                </aside>
+
+                <aside class="profile-userinfo2">
+                    <section class="userinfo2-container">
+                        <article class="container-menu">
+                            <nav class="userinfo2-menu">
+                                <ul class="userinfo2-menu-list checkbox-container" name="userinfo2-menu-list">
+                                    <li class="userinfo2-menu-item"><input class="radio-profile" type="radio" id="movies" name="option-menu" value="movies" checked><label for="movies">Resumen del perfil</label></li>
+                                    <li class="userinfo2-menu-item"><input class="radio-profile" type="radio" id="friends" name="option-menu" value="friends"><label for="friends">Lista de Amigos</label></li>
+                                    <li class="userinfo2-menu-item"><input class="radio-profile" type="radio" id="discover" name="option-menu" value="discover"><label for="discover">Descubrir Amigos</label></li>
+                                </ul>
+                            </nav>
+                        </article>
+                        <article class="userinfo2-screen">
+
+                            <script src="script/profileCarousel.js"></script>
+
+                            <section class="userinfo2-movies option" id="userinfo2-movies">
+                            ';
+                            generateMovieSection('Continuar viendo');
+                            generateMovieSection('Ver más tarde');
+                            generateMovieSection('Favoritas');
+                            
+                            echo'
+                            </section>
+                            <section class="userinfo2-friends option" id="userinfo2-friends">
+                                <section class="friends-container">
+                                    <article class="friends-grid-container">
+                                        <div class="friends-grid-item">
+                                            prueba
+                                        </div>
+                                        <div class="friends-grid-item">
+                                        
+                                        </div>
+                                        <div class="friends-grid-item">
+                                        
+                                        </div>
+                                        <div class="friends-grid-item">
+                                        
+                                        </div>
+                                        <div class="friends-grid-item">
+                                        
+                                        </div>
+                                        <div class="friends-grid-item">
+                                        
+                                        </div>
+                                        <div class="friends-grid-item">
+                                        
+                                        </div>
+                                        <div class="friends-grid-item">
+                                        
+                                        </div>
+                                        <div class="friends-grid-item">
+                                        
+                                        </div>
+                                    </article>
+                                </section>
+                            </section>
+                            <section class="userinfo2-discover option" id="userinfo2-discover">
+                                <section class="discover-container">
+                                    <article class="discover-grid-container">
+                                        <div class="discover-grid-item">
+                                            prueba
+                                        </div>
+                                        <div class="discover-grid-item">
+                                        
+                                        </div>
+                                        <div class="discover-grid-item">
+                                        
+                                        </div>
+                                        <div class="discover-grid-item">
+                                        
+                                        </div>
+                                        <div class="discover-grid-item">
+                                        
+                                        </div>
+                                        <div class="discover-grid-item">
+                                        
+                                        </div>
+                                        <div class="discover-grid-item">
+                                        
+                                        </div>
+                                        <div class="discover-grid-item">
+                                        
+                                        </div>
+                                        <div class="discover-grid-item">
+                                        
+                                        </div>
+                                    </article>
+                                </section>
+                            </section>
                         </article>
                     </section>
-                    <section class="container profile-container later">
-                        <article class="later-usser">
-                            <h2 class="tittle">Ver más tarde</h2>
-                            <div class="later-container">
-                                <article class="later-data">
-                                    <img class="later-img" src="/placeholder.svg" alt="Movie 5"/>
-                                    <div class="later-name">
-                                        <h3 class="later-tittle">The Godfather</h3>
-                                    </div>
-                                </article>
-                                <article class="later-data">
-                                    <img class="later-img" src="/placeholder.svg" alt="Movie 6"/>
-                                    <div class="later-name">
-                                        <h3 class="later-tittle">Pulp Fiction</h3>
-                                    </div>
-                                </article>
-                                <article class="later-data">
-                                    <img class="later-img" src="/placeholder.svg" alt="Movie 7"/>
-                                    <div class="later-name">
-                                        <h3 class="later-tittle">The Lord of the Rings</h3>
-                                    </div>
-                                </article>
-                                <article class="later-data">
-                                    <img class="later-img" src="/placeholder.svg" alt="Movie 8"/>
-                                    <div class="later-name">
-                                        <h3 class="later-tittle">The Silence of the Lambs</h3>
-                                    </div>
-                                </article>
-                            </div>
-                        </article>
-                    </section>
-                    <section class="container profile-container continue">
-                        <article class="continue-usser">
-                            <h2 class="tittle">Continuar viendo</h2>
-                            <div class="continue-container">
-                                <article class="continue-data">
-                                    <img class="continue-img" src="/placeholder.svg" alt="Movie 9"/>
-                                    <div class="continue-name">
-                                        <h3 class="continue-tittle">The Shining</h3>
-                                    </div>
-                                </article>
-                                <article class="continue-data">
-                                    <img class="continue-img" src="/placeholder.svg" alt="Movie 10"/>
-                                    <div class="continue-name">
-                                        <h3 class="continue-tittle">Interstellar</h3>
-                                    </div>
-                                </article>
-                                <article class="continue-data">
-                                    <img class="continue-img" src="/placeholder.svg" alt="Movie 11"/>
-                                    <div class="continue-name">
-                                        <h3 class="continue-tittle">The Departed</h3>
-                                    </div>
-                                </article>
-                                <article class="continue-data">
-                                    <img class="continue-img" src="/placeholder.svg" alt="Movie 12"/>
-                                    <div class="continue-name">
-                                        <h3 class="continue-tittle">The Prestige</h3>
-                                    </div>
-                                </article>
-                            </div>
-                        </article>
-                    </section>
-                    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-                </main>
-                ';
+                </aside>
+                <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+            </section>
+        </main>';
         ?>
         <script src="script/jquery.js"></script>
         <script src="script/pop-ups.js"></script>
         <script src="script/botonTop.js"></script>
+        <script src="script/profileOptions.js"></script>
+        <script src="script/profileCarousel.js"></script>
     </div>
     <footer>
         <p>&copy; CineFlow 2024</p>
     </footer>
+    
 </body>
-
 </html>

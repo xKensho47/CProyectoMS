@@ -712,7 +712,7 @@ hr {
 }
 
 /* SEGUNDO ASIDE */
-/* Películas, amigos y descubrir amigos */
+/* MENU DEL PERFIL */
 .profile-userinfo2{
     flex-direction: column;
     border-left: solid 2px var(--color-principal);
@@ -737,10 +737,13 @@ hr {
     width: 100%;
     height: 3vh;
 }
-.userinfo2-menu-list{
+.userinfo2-menu-list{    
+    font-size: 1rem;
+    border-radius: 5px;
+    background: transparent;
     text-transform: uppercase;
     color: var(--color-text);
-    list-style: none;
+    
     font-weight: 700;
     gap: 1rem;
 
@@ -753,17 +756,10 @@ hr {
     list-style-type: none;
     text-transform: uppercase;
     border: solid 1.5px var(--color-principal);
+    position: relative;
     width: 100%;
 
     color: var(--color-text);
-}
-.userinfo2-menu-item a {
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.8rem;
-    color: var(--color-text);
-    width: 100%;
 }
 .userinfo2-menu-item:hover {
     /* background-color: var(--color-text); */
@@ -771,83 +767,142 @@ hr {
 
     transition: all .5s;
 }
-.userinfo2-menu-item a:hover {
-    /* background-color: var(--color-text); */
-    color: var(--color-principal);
+.userinfo2-menu-list input[type="radio"] {
+    display: none;
+}
+.userinfo2-menu-list label {
+    font-size: 1.5rem;
+    line-height: 3vh;
+    display: block;
 
-    transition: all .5s;
+    width: 100%;
+    height: 100%;
 
+    cursor: pointer;
+}
+.userinfo2-menu-list input:checked + label {
+    background-color: var(--color-principal);
+    color: var(--color-text);
+}
+.option {
+    display: none;
+    margin-top: 20px;
+}
+
+.option.active {
+    display: block;
 }
 
 /* PANTALLAS DEL MENU DEL PERFIL */
 .userinfo2-screen{
+    position: relative;
     width: 100%;
     max-height: 82vh;
 }
 .userinfo2-movies,
-.userinfo-friends,
+.userinfo2-friends,
 .userinfo2-discover{
-    /* display: none; */
-    overflow: hidden;
     position: absolute;
-    top: 15vh;
-    right: 0;
+    top: -1vh;
+    left: 0;
+    padding: 1.5%;
 
-    max-width: 75%;
-    min-height: 82vh;
+    width: 100%;
+    min-height: 100%;
+    max-height: 81vh;
 
     z-index: 300;
+    overflow: auto;
 }
-/* --------------------------------------------------------------------------------- */
-/* PANTALLA DE RESUMEN DEL PERFIL */
-/* Carouseles del perfil */
-.movies-container{
+.option {
+    display: none;
+}
+.option > section[class="movies-container"]{
+    min-height: inherit;
+}
+.option > section[class="friends-container"]{
+    min-height: inherit;
+}
+.option > section[class="discover-container"]{
+    min-height: inherit;
+}
+/* Contenedores */
+.movies-container,
+.friends-container,
+.discover-container{
     font-size: 1.0rem;
 
-    display: flex;
-    align-items: start;
-    flex-direction: column;
     position: relative;
-    top: 5vh;
+    top: -2vh;
 
-
-    padding-left: 3% ;
+    padding-left: 3%;
     padding-right: 3%;
 
     width: 100%;
-    max-height: calc(82vh / 2 - 1.5vh);
 }
- 
+.userinfo2-movies::-webkit-scrollbar,
+.custom-scroll::-webkit-scrollbar {
+    width: 10px;
+    background-color: var(--color-background);
+}
+
+.userinfo2-movies::-webkit-scrollbar-track,
+.custom-scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.userinfo2-movies::-webkit-scrollbar-thumb,
+.custom-scroll::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    height: 30px;
+    background-color: var(--color-principal);
+}
+/* --------------------------------------------------------------------------------- */
+/* PANTALLAS DEL PERFIL */
+.movies-container{
+    justify-content: space-evenly;
+}
+/* Carouseles del perfil */ 
+.x-carousel-tittle{    
+    font-size: 1.2rem;
+}
+.movies-dinamic-tittle{
+    flex-direction: column;
+    max-height: calc((80vh / 3) / 3 - 4vh);
+}
 .x-carousel-tittle .x-tittle{
+    text-align: start;
     color: var(--color-text);
     padding-left: 2.5%;
     padding-right: 2.5%;
-
+    
     width: 100%;
 } 
-
-.movies-dinamic-tittle{
-    line-height: calc(82vh / 50 - 1.5vh);
-    flex-direction: column;
-
-    max-height: calc(82vh / 10 - 1.5vh);
-}
 .x-carousel-container{
     display: flex;
     justify-content: center;
     align-items: center;
 
-    min-height: calc(82vh / 3 - 1.5vh);
+    min-height: calc(80vh / 3 - 5vh);
 }
 .carousel-slide{
     min-height: inherit;
 }
 .x-carousel-movie{
+    flex-direction: column;
     min-height: inherit;
+    max-height: calc(80vh / 3 - 5vh);
 }
 .x-carousel-movie a{
-    width: calc(75vw / 5 - 4vw);
+    position: relative;
+    min-width: calc(75vw / 6 - 4vw);
+    max-height: calc(80vh / 3 - 5vh);
     min-height: inherit;
+}
+.x-carousel-movie img{
+    min-height: calc(80vh / 3 - 5vh);
+    min-width: inherit;
 }
 .x-carousel-rank {
     background-color: var(--color-principal);
@@ -856,8 +911,8 @@ hr {
     font-size: 1.4rem;
 
     position: absolute;
-    bottom: calc((85vh / 3 - 1.5vh) / 9.5);
-    
+    bottom: 0;
+    left: 0;
 
     max-width: 3rem;
     height: 3.75rem;
@@ -870,6 +925,17 @@ hr {
     width: 100%;
     height: 100%;
 }
+.x-carousel-container button {
+    background-color: var(--color-principal);
+    border: none;
+    border-radius: 17%;
+    color: var(--color-text);
+    cursor: pointer;
+
+    padding: 10px 20px;
+
+    z-index: 100;
+}
 /* --------------------------------------------------------------------------------- */
 
 /* --------------------------------------------------------------------------------- */
@@ -879,7 +945,6 @@ hr {
 
 }
 .friends-container{
-
 }
 .friends-grid-item{
 
@@ -893,7 +958,6 @@ hr {
 
 }
 .discover-container{
-
 }
 .discover-grid-item{
     
@@ -932,7 +996,7 @@ footer {
     bottom: 0;
 
     width: 100%;
-    height: 5vh;
+    height: 3vh;
 
     z-index: 890;
 }
