@@ -562,86 +562,80 @@ hr {
 
 /* PAGINA DEL PERFIL */
 .main-profile {
-    padding: 3%;
-    padding-bottom: 4%;
+    /* padding: 3%;
+    padding-bottom: 4%; */
 }
-
-.profile-container {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    font-size: 1.2rem;
-    padding-left: 3%;
-    padding-right: 3%;
-
-    height: 100%;
-    width: 80%;
-}
-
-.profile-container article {
-    margin-top: 2%;
-    margin-bottom: 2%;
-}
-
-.profile-container div {
+.userinfo-container{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-}
+    justify-content: center;
 
-.tittle {
+    max-height: 85vh;
+}
+.tittle{
     color: var(--color-principal);
     padding-left: 2.5%;
 }
-
-/* DATOS DEL PERFIL */
-.profile {
-    align-items: center;
-    min-height: 78.5vh;
+.profile-userinfo section,
+.profile-userinfo2 section{
+    width: 100%;
 }
-
-.profile article {
+/* Contenedores para la información del perfil de usuario */
+.profile-userinfo, .profile-userinfo2{
     display: flex;
-    /* width: 100%; */
-}
-
-.profile hr {
-    position: relative;
-    left: -25%;
-}
-
-.profile-usser {
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-evenly;
+    padding: 1.25%;
+}
+/* PRIMER ASIDE */
+/* Información de usuario */
+.profile-userinfo{
+    flex-direction: column;
+
+    width: 25%;
+    max-height: 85vh;
+}
+.userinfo-data{
     position: relative;
-    left: -37.5%;
-
-    width: 40%;
+    bottom: 5vh;
+    max-height: 25vh;
 }
+.data-user{
+    display: flex;
+    align-items: center;
+    flex-direction:row;
 
-.profile-usser div {
-    width: 10rem;
-    height: 10rem;
+    width: 100%;
+    min-height: inherit;
 }
+.user-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
 
-/* Foto de perfil */
-.profile-avatar {
+    width: 50%;
+    min-height: inherit;
+}
+/* Avatar de usuario */
+.user-avatar {
     text-align: center;
     background-color: transparent;
     border: 1px solid var(--color-popupborder);
     border-radius: 50%;
     padding: 1.4%;
+    
+    height: 12.5vh;
 }
 
-/* Nombre y Usser */
-.profile-data {
+/* Nombre y Username */
+.user-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-
-.profile-name,
-.profile-ussername {
+.info-name,
+.info-ussername {
     text-align: center;
     display: flex;
     align-items: center;
@@ -652,21 +646,23 @@ hr {
     min-height: 50%;
 }
 
-.profile-name {
+.info-name {
     color: var(--color-principal);
     font-size: 2.1rem;
     font-weight: bold;
 }
-
-.profile-ussername {
+.info-ussername {
     color: var(--color-text);
     font-size: 1.1rem;
 }
 
 /* Boton Logout */
-.profile-button {
-    width: 35%;
-    height: 100%;
+.user-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    max-height: 25vh;
 }
 
 .button-logout {
@@ -682,162 +678,227 @@ hr {
 
 .button-logout:hover {
     background-color: rgb(116, 0, 139);
+    transform: scale(1.1);
 }
 
-.profile-info {
-    display: flex;
-    align-content: center;
-    justify-content: space-evenly;
+/* GENEROS DEL PERFIL */
+.userinfo-genres {
+    /* border: solid blue; */
+    position: relative;
+    bottom: 4vh;
+    text-align: center;
+    line-height: 10vh;
+}
+.genres-container {
+    margin: 0 auto;
 
     width: 100%;
+    line-height: 5vh;
+}
+.genres-favorites {
+    display: inline-block;
+    width: calc(100% / 3 - 1.5%);
 }
 
-.profile-info aside {
-    align-items: start;
-    justify-content: space-between;
-
-    width: 48.5%;
-    height: 100%;
+/* SOBRE MI */
+.userinfo-description{
+    position: relative;
+    top: 2vh;
+    padding: 1.5%;
 }
-
-/* ABOUT ME */
-.profile-description {
+.description-aboutme {
     color: var(--color-text);
     padding: 1% 5%;
 }
 
-/* GENEROS */
-.profile-generos {
-    /* border: solid blue; */
-}
-
-.generos-container {
-    flex-direction: row;
-    margin: 0 auto;
-
-    width: 80%;
-    height: 4.8rem;
-}
-
-.generos-name {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 100%;
-    height: 100%;
-}
-
-/* AMIGOS */
-.profile-friends {
-    display: flex;
-    align-content: center;
-    justify-content: center;
+/* SEGUNDO ASIDE */
+/* Películas, amigos y descubrir amigos */
+.profile-userinfo2{
     flex-direction: column;
-
-    width: 100%;
+    border-left: solid 2px var(--color-principal);
+    width: 75%;
+    min-height: 85vh;
 }
-
-.friends-container {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-between;
-
-
-    width: 100%;
-    height: 150px;
-}
-
-/* DATOS DE AMIGOS */
-.friends-data {
-    display: flex;
+.userinfo2-container{
+    display: inherit;
     flex-direction: column;
-    align-items: center;
-
-    width: calc(25% - 1%);
+    min-height: inherit;
+    max-height: 85vh;
 }
-
-/* Imagen de amigo */
-.friends-avatar {
-    text-align: center;
-    background-color: transparent;
-    border: 1px solid var(--color-popupborder);
-    border-radius: 50%;
-    /* margin-right: 15%; */
-    /* padding: 0.7%; */
-
-    width: 80px;
-    height: 80px;
+.container-menu{
+    display: inherit;
+    justify-content: space-evenly;
+    flex-direction: row;
+    max-height: 3vh;
 }
-
-.friends-img {
+.userinfo2-menu {
+    display: flex;
+    flex-direction: row;
     width: 100%;
-    height: auto;
-    border-radius: 50%;
+    height: 3vh;
 }
-
-/* Nombre de amigo */
-.friends-name {
+.userinfo2-menu-list{
+    text-transform: uppercase;
     color: var(--color-text);
-    font-size: 1.2rem;
-}
+    list-style: none;
+    font-weight: 700;
+    gap: 1rem;
 
-/* FAVORITE, LATER, CONTINUE */
-.favorite,
-.later,
-.continue {
-    /* border: solid white; */
-}
+    display: inherit;
 
-.favorite-usser,
-.later-usser,
-.continue-usser {
     width: 100%;
-    height: 400px;
+}
+.userinfo2-menu-item {
+    text-align: center;
+    list-style-type: none;
+    text-transform: uppercase;
+    border: solid 1.5px var(--color-principal);
+    width: 100%;
+
+    color: var(--color-text);
+}
+.userinfo2-menu-item a {
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: var(--color-text);
+    width: 100%;
+}
+.userinfo2-menu-item:hover {
+    /* background-color: var(--color-text); */
+    color: var(--color-principal);
+
+    transition: all .5s;
+}
+.userinfo2-menu-item a:hover {
+    /* background-color: var(--color-text); */
+    color: var(--color-principal);
+
+    transition: all .5s;
+
 }
 
-.favorite-container,
-.later-container,
-.continue-container {
-    margin: 0 auto;
-
-    width: 90%;
-    height: 350px;
+/* PANTALLAS DEL MENU DEL PERFIL */
+.userinfo2-screen{
+    width: 100%;
+    max-height: 82vh;
 }
+.userinfo2-movies,
+.userinfo-friends,
+.userinfo2-discover{
+    /* display: none; */
+    overflow: hidden;
+    position: absolute;
+    top: 15vh;
+    right: 0;
 
-.favorite-data,
-.later-data,
-.continue-data {
+    max-width: 75%;
+    min-height: 82vh;
+
+    z-index: 300;
+}
+/* --------------------------------------------------------------------------------- */
+/* PANTALLA DE RESUMEN DEL PERFIL */
+/* Carouseles del perfil */
+.movies-container{
+    font-size: 1.0rem;
+
     display: flex;
+    align-items: start;
     flex-direction: column;
+    position: relative;
+    top: 5vh;
+
+
+    padding-left: 3% ;
+    padding-right: 3%;
+
+    width: 100%;
+    max-height: calc(82vh / 2 - 1.5vh);
+}
+ 
+.x-carousel-tittle .x-tittle{
+    color: var(--color-text);
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+
+    width: 100%;
+} 
+
+.movies-dinamic-tittle{
+    line-height: calc(82vh / 50 - 1.5vh);
+    flex-direction: column;
+
+    max-height: calc(82vh / 10 - 1.5vh);
+}
+.x-carousel-container{
+    display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    margin: 0 calc(2.5% / 2);
 
-    width: calc(23% - 2.5%);
+    min-height: calc(82vh / 3 - 1.5vh);
+}
+.carousel-slide{
+    min-height: inherit;
+}
+.x-carousel-movie{
+    min-height: inherit;
+}
+.x-carousel-movie a{
+    width: calc(75vw / 5 - 4vw);
+    min-height: inherit;
+}
+.x-carousel-rank {
+    background-color: var(--color-principal);
+    transition: transform 0.3s ease-in-out;
+    border-radius: 0 50% 0 0;
+    font-size: 1.4rem;
+
+    position: absolute;
+    bottom: calc((85vh / 3 - 1.5vh) / 9.5);
+    
+
+    max-width: 3rem;
+    height: 3.75rem;
+}
+.x-carousel-rank p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
     height: 100%;
 }
+/* --------------------------------------------------------------------------------- */
 
-.favorite-img,
-.later-img,
-.continue-img {
-    display: flex;
-    width: 100%;
-    height: 290px;
-    min-height: 91%;
+/* --------------------------------------------------------------------------------- */
+/* PANTALLA DE LISTA DE AMIGOS */
+/* Grid de Lista de Amigos */
+.userinfo2-friends{
+
 }
+.friends-container{
 
-.favorite-name,
-.later-name,
-.continue-name {
-    align-content: end;
 }
+.friends-grid-item{
 
-.favorite-tittle,
-.later-tittle,
-.continue-tittle {}
+}
+/* --------------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------------- */
+/* PANTALLA DE DESCUBRIR AMIGOS */
+/* Grid de Lista de Descubrir Amigos */
+.userinfo2-discover{
+
+}
+.discover-container{
+
+}
+.discover-grid-item{
+    
+}
+/* --------------------------------------------------------------------------------- */
 
 /* BOTON GO TOP */
 #myBtn {
@@ -902,7 +963,7 @@ footer {
     transition: all .2s;
 }
 
-.card-body {}
+/* .card-body {} */
 
 .card-body a {
     display: flex;

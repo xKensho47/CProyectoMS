@@ -32,10 +32,10 @@
                             <div class="carousel-container">
                                 <button class="carousel-prev">&#60</button>
                                 <div class="carousel-slide">';
-        if ($result_mejor->num_rows > 0) {
-            while ($row = $result_mejor->fetch_assoc()) {
-                $imagePath = $row["poster"];
-                echo '
+                                    if ($result_mejor->num_rows > 0) {
+                                        while ($row = $result_mejor->fetch_assoc()) {
+                                            $imagePath = $row["poster"];
+                                            echo '
                                                 <div class="movie-container">
                                                     <a href="info.php?id_peli=' . $row["id"] . '" >
                                                         <img src="' . $imagePath . '" alt="Movie Posters">
@@ -44,12 +44,12 @@
                                                         <p>' . $puesto . '°</p>
                                                     </div>
                                                 </div>';
-                $puesto++;
-            }
-        } else {
-            echo '<p>No movies found.</p>';
-        }
-        echo '
+                                            $puesto++;
+                                        }
+                                    } else {
+                                        echo '<p>No movies found.</p>';
+                                    }
+                                echo '
                                 </div>
                                 <button class="carousel-next">&#62</button>
                             </div>
