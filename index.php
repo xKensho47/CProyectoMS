@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container showcase">
         <?php
         include("conexion.php");
         include("comprobar_usuario.php");
