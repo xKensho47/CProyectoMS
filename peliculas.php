@@ -15,15 +15,17 @@
 
 
 </head>
-
-<body>
-    <div class="container">
+<body class="body-peli">
+    <div>
+        <div class="container">
         <?php
-        include("conexion.php");
-        include("comprobar_usuario.php");
-
-        ?>
-        <main>
+                include("conexion.php");
+                include("comprobar_usuario.php");
+        
+                ?>
+        </div>
+       
+        <main class="main-peliculas">
             <section class="peliculas-container">
                 <?php
                 $id = $_GET['id'];

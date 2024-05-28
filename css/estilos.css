@@ -12,7 +12,7 @@
     --color-principal: #A105B6;
     --color-searchbar: #92B4A7;
     --color-text: #E1E9D8;
-    --color-link: #649080;
+    --color-link: #dcf1ea;
     --color-hover: #6A0377;
     --color-form: #470250;
     --color-boton: #A105B6;
@@ -21,6 +21,8 @@
     --color-popupborder: #A105B6;
     --color-popupboton: #A105B6;
     --color-popuptxt: #183A37;
+    --color-label: #d547e7;
+    --color-input: #e8d5eb;
 
     scroll-behavior: smooth;
 }
@@ -60,6 +62,7 @@ body {
     border: none;
     overflow-x: hidden;
     background-size: cover;
+    
 } 
 
 body a {
@@ -77,8 +80,8 @@ body a:hover {
 
 /* HEADER */
 .container header {
-    /* background-color: var(--color-background); */
-    background-color: transparent;
+     background-color:#000; 
+   /* background-color: transparent;*/
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -88,6 +91,7 @@ body a:hover {
     height: 12vh;
 
     z-index: 999;
+    margin-bottom: 3%;
 
 }
 
@@ -156,7 +160,7 @@ header form input {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
+    
     list-style: none;
     text-transform: uppercase;
     font-weight: 700;
@@ -563,7 +567,8 @@ hr {
 
 /* PAGINA DEL PERFIL */
 .main-profile {
-    
+ 
+  margin-bottom: 3%;  
 }
 .userinfo-container{
     display: flex;
@@ -1034,7 +1039,7 @@ footer {
 }
 .container-card::-webkit-scrollbar-track,
 .custom-scroll::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
     border-radius: 10px;
 }
 .container-card::-webkit-scrollbar-thumb,
@@ -1099,6 +1104,16 @@ footer {
 }
 /*PELICULAS*/
 
+.main-peliculas{
+  
+}
+.body-peli{
+
+    
+}
+.crud{
+    padding: 1%;
+}
 .peliculas-container {
     display: flex;
     flex-wrap: wrap;
@@ -1121,14 +1136,17 @@ footer {
     height: auto;
 }
 
+/* ARREGLO DEL MENU*/
 .menu__item ul {
     display: none;
     position: absolute;
     top: 9%;
+   /* right: 20%;*/
     /* Posicionar el submenú debajo del item principal */
-    background-color: var(--color-background);
+   /* background-color:#272727;*/
     z-index: 1;
     border-radius: 1%;
+
 }
 
 .menu__item ul li {
@@ -1140,3 +1158,63 @@ footer {
 .menu__item:hover ul {
     display: block;
 }
+.menu__item ul li a{
+    text-shadow: 
+                -1px -1px 0 #000,  
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
+}
+
+.container-crud header {
+     background-color:#000; 
+    /*background-color: transparent;*/
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 1.0%;
+
+    width: 100%;
+    height: 10vh;
+
+    z-index: 999;
+
+}
+/* ARREGLOS DEL MODAL*/
+.modal-content label {
+    color: var(--color-label); /* Cambia el color del texto de los labels */
+}
+.modal-content h1 {
+    color: var(--color-label); /* Cambia el color del texto de los labels */
+}
+.modal-content  {
+    background-color: var(--color-form); 
+}
+.modal-content  input{
+    background-color: var(--color-input); 
+}
+.modal-content  textarea{
+    background-color: var(--color-input); 
+}
+.modal-content  select{
+    background-color: var(--color-input); 
+}
+.guardar{
+    background-color: var(--color-principal); 
+    color:var(--color-text)
+}
+.salir{
+    background-color: var(--color-label); 
+    color:var(--color-text)
+}
+.guardar:hover{
+    background-color:#8f04a1 
+    
+}
+.salir:hover{
+    background-color:#bb2cce 
+}
+.color-titulo-tabla th{
+    color:#d03ae4; 
+}
+
