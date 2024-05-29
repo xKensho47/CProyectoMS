@@ -6,6 +6,9 @@ class CCarousel{
 
     //GETTERS Y SETTERS
     //Getters
+    public function setConexion(object $conexion):void{
+        $this->conexion = $conexion;
+    }
     public function setTitulo(string $titulo):void{
         $this->titulo = $titulo;
     }
@@ -13,6 +16,9 @@ class CCarousel{
         $this->id_usuario = $id_usuario;
     }
     //Setters
+    public function getConexion():object{
+        return $this->conexion;
+    }
     public function getTitulo():string{
         return $this->titulo;
     }
