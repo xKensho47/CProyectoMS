@@ -19,45 +19,19 @@
         <?php
         include("conexion.php");
         include("comprobar_usuario.php");
-        /* include("carrousel_query.php");*/
+        require_once("generate_carousel.php");
 
         echo '
-                <main class="main-principal">
-                    <section class="container movies-container movies">
-                        <article class="best-score">
-                            <div class="movie-tittle">
-                                <h1 class="tittle">Películas con mejor puntuación</h1>
-                                <hr>
-                            </div>
-                            <div class="carousel-container">
-                                <button class="carousel-prev">&#60</button>
-                                <div class="carousel-slide">';
-                                    if ($result_mejor->num_rows > 0) {
-                                        while ($row = $result_mejor->fetch_assoc()) {
-                                            $imagePath = $row["poster"];
-                                            echo '
-                                                <div class="movie-container">
-                                                    <a href="info.php?id_peli=' . $row["id"] . '" >
-                                                        <img src="' . $imagePath . '" alt="Movie Posters">
-                                                    </a>
-                                                    <div class="movie-rank">
-                                                        <p>' . $puesto . '°</p>
-                                                    </div>
-                                                </div>';
-                                            $puesto++;
-                                        }
-                                    } else {
-                                        echo '<p>No movies found.</p>';
-                                    }
-                                echo '
-                                </div>
-                                <button class="carousel-next">&#62</button>
-                            </div>
-                        </article>
-                    </section>
-                    
-                </main>
-                ';
+        <main class="main-principal">
+            <section class="container movies-container movies">';
+                generateMovieSection($conexion, 'Películas más valoradas');
+                generateMovieSection($conexion, 'Recientes');
+
+            echo'
+            </section>
+            
+        </main>
+        ';
         ?>
         <script src="script/jquery.js"></script>
         <script src="slick/slick.min.js"></script>

@@ -17,7 +17,7 @@
         <?php
         include("conexion.php");
         include("comprobar_usuario.php");
-        include("profileCarousel.php");
+        include("generate_carousel.php");
 
         echo '
         <main class="main-profile">
@@ -75,9 +75,9 @@
 
                             <section class="userinfo2-movies option" id="userinfo2-movies">
                             ';
-                            generateMovieSection('Continuar viendo');
-                            generateMovieSection('Ver más tarde');
-                            generateMovieSection('Favoritas');
+                            generateMovieSection($conexion, 'Continuar viendo');
+                            generateMovieSection($conexion, 'Ver más tarde');
+                            generateMovieSection($conexion, 'Favoritas');
                             
                             echo'
                             </section>

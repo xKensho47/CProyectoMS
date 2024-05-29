@@ -280,112 +280,7 @@ hr {
     width: 50%;
 }
 
-.carousel-container {
-    justify-content: center;
-
-    height: auto;
-    width: 95vw;
-
-    overflow: hidden;
-    z-index: 3;
-}
-
-.carousel-slide {
-    transition: transform 0.3s ease-in-out;
-    /* display: flex;
-    align-items: center; */
-    flex-direction: column;
-}
-
-.carousel-slide .movie-container {
-    transition: transform 0.3s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 10px;
-
-    height: 18.5rem;
-    width: 12.5rem;
-}
-
-.movie-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.carousel-slide .movie-container img {
-    object-fit: cover;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-}
-
-.carousel-container button {
-    background-color: var(--color-principal);
-    border: none;
-    border-radius: 17%;
-    color: var(--color-text);
-    cursor: pointer;
-
-    padding: 10px 20px;
-
-    z-index: 100;
-}
-
-.carousel-prev,
-.carousel-next {
-    position: absolute;
-    top: 47%;
-}
-
-.carousel-prev {
-    left: 0;
-}
-
-.carousel-next {
-    right: 0;
-}
-
-.carousel-prev:hover,
-.carousel-next:hover {
-    background-color: rgb(111, 0, 139);
-    color: var(--color-text);
-}
-
-.movie-rank {
-    background-color: var(--color-principal);
-    transition: transform 0.3s ease-in-out;
-    border-radius: 0 50% 0 0;
-    font-size: 2rem;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    bottom: 0;
-
-    max-width: 4rem;
-    height: 4.5rem;
-
-    /*border: solid white;*/
-}
-
-.movie-rank p {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 100%;
-    height: 100%;
-}
-
 /* INICIO DE SESION */
-
-
 .div-form {
     background: transparent;
     color: var(--color-text);
@@ -399,8 +294,6 @@ hr {
 
     width: 60%;
 }
-
-
 .formulario-login {
     background: var(--color-form);
     color: var(--color-text);
@@ -908,7 +801,7 @@ hr {
     min-height: inherit;
 }
 .x-carousel-movie img{
-    min-height: calc(80vh / 3 - 5vh);
+    max-height: calc(80vh / 3 - 5vh);
     min-width: inherit;
 }
 .x-carousel-rank {
