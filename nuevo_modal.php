@@ -34,14 +34,18 @@
                         <input type="text" name="Path_poster" id="Path_poster" class="form-control" required>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="genero" class="form-label">Género:</label>
-                        <select name="genero" id="genero" class="form-select" required>
-                            <option value="">Seleccionar...</option>
-                            <?php while ($row_genero = $generos->fetch_assoc()) { ?>
-                                <option value="<?php echo $row_genero["id_genero"]; ?>"><?= $row_genero["nombre_genero"] ?></option>
-                            <?php } ?>
-                        </select>
+                    <div class="row mb-3">
+                        <label for="Path_poster" class="form-label">Genero:</label>
+                        <?php while ($row_genero = $generos->fetch_assoc()) { ?>
+                            <div class="col-md-6"> <!-- Cada checkbox y su nombre ocuparán la mitad del ancho del modal en pantallas medianas y superiores -->
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="generoSeleccionado[]" value="<?php echo $row_genero["id_genero"]; ?>" id="check<?php echo $row_genero["id_genero"]; ?>">
+                                    <label class="form-check-label" for="check<?php echo $row_genero["id_genero"]; ?>">
+                                        <?php echo $row_genero["nombre_genero"]; ?>
+                                    </label>
+                                </div>
+                            </div>
+                        <?php } ?>
                     </div>
 
                     <div class="mb-3">

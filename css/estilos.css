@@ -153,6 +153,7 @@ header form input {
 
 .header-admin .menu {
     width: 100%;
+   
 }
 
 .menu__lista {
@@ -164,7 +165,7 @@ header form input {
     list-style: none;
     text-transform: uppercase;
     font-weight: 700;
-    line-height: 7vh;
+    line-height: 10vh;
     color: var(--color-text);
     gap: 1rem;
 
@@ -1143,7 +1144,7 @@ footer {
     top: 9%;
    /* right: 20%;*/
     /* Posicionar el submenú debajo del item principal */
-   /* background-color:#272727;*/
+   background-color:#000;
     z-index: 1;
     border-radius: 1%;
 
@@ -1175,7 +1176,7 @@ footer {
     padding-left: 1.0%;
 
     width: 100%;
-    height: 10vh;
+    height: 9vh;
 
     z-index: 999;
 
@@ -1187,8 +1188,12 @@ footer {
 .modal-content h1 {
     color: var(--color-label); /* Cambia el color del texto de los labels */
 }
+.modal-content h2 {
+    color: var(--color-form); /* Cambia el color del texto de los labels */
+}
 .modal-content  {
-    background-color: var(--color-form); 
+    /*background-color: var(--color-form); */
+   background-color:#ffffff; 
 }
 .modal-content  input{
     background-color: var(--color-input); 
@@ -1216,5 +1221,21 @@ footer {
 }
 .color-titulo-tabla th{
     color:#d03ae4; 
+}
+.btn-color{
+    background-color:#d24ce4 ;
+    color: white;
+}
+.btn-color2{
+    background-color:#b18fb4 ;
+    color: white;
+}
+.btn-color:hover{
+   
+    background-color:#b027c2 ;
+}
+.btn-color2:hover{
+    background-color:#a979ad ;
+  
 }
 
