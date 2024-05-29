@@ -19,13 +19,15 @@
         <?php
         include("conexion.php");
         include("comprobar_usuario.php");
-        require_once("generate_carousel.php");
+        require_once("CCarousel.php");
 
         echo '
         <main class="main-principal">
             <section class="container movies-container movies">';
-                generateMovieSection($conexion, 'Películas más valoradas');
-                generateMovieSection($conexion, 'Recientes');
+                $carouseles = new CCarousel($conexion);
+
+                $carouseles->generateMovieSection($conexion, 'Películas más valoradas');
+                $carouseles->generateMovieSection($conexion, 'Recientes');
 
             echo'
             </section>
