@@ -1,7 +1,7 @@
 <?php
 include("conexion.php");
 
-if(!empty($_POST['nombre']) && !empty($_POST['nombre'])){
+if(!empty($_POST['nombre']) && !empty($_POST['genero'])){
 #mensaje de error
 }else{
 
@@ -22,5 +22,5 @@ if(!empty($_POST['nombre']) && !empty($_POST['nombre'])){
         #eliminar el genero
     }
 }
-/*
-header('Location: crud_peliculas.php');*/
+
+header('Location: crud_peliculas.php');

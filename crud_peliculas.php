@@ -36,87 +36,91 @@
             director d ON d.id_director = pd.id_director GROUP BY pd.id_peli) AS dir ON p.id_peli = dir.id_peli
             GROUP BY p.id_peli";
             $peliculas = $conexion->query($sqlPeliculas);
+            $actores = $conexion->query("SELECT id_actor, nombre, apellido FROM actor");
+            $directores = $conexion->query("SELECT id_director, nombre, apellido FROM director");
             ?>
             <div class="crud  ">
                 <div class="animate-from-bottom">
-                <!-- BOTON DE REGISTRO-->
+                    <!-- BOTON DE REGISTRO-->
                 
-                <div class="row justify-content-end mt-5 ">
-                    
-                        <div class="col-auto me-auto mt-5" >
-                            <h2 class="text-left pi h2-animate">Peliculas</h2>
-                        </div>
-                        <div class="col-auto mt-5 animate-from-bottom" >
-                            <a href="#" class="btn btn-color fs-5" data-bs-toggle="modal" data-bs-target="#nuevoModalGenero"><i class="fa-solid fa-circle-plus"></i> Administrar Genero</a>
-                        </div>
+                    <div class="row justify-content-end mt-5 ">
+                        
+                            <div class="col-auto me-auto mt-5" >
+                                <h2 class="text-left pi h2-animate">Peliculas</h2>
+                            </div>
+                            <div class="col-auto mt-5 animate-from-bottom" >
+                                <a href="#" class="btn btn-color fs-5" data-bs-toggle="modal" data-bs-target="#nuevoModalGenero"><i class="fa-solid fa-circle-plus"></i> Administrar Genero</a>
+                            </div>
 
-                        <div class="col-auto mt-5 animate-from-bottom">
-                            <a href="#" class="btn btn-color2 fs-5" data-bs-toggle="modal" data-bs-target="#nuevoModal"><i class="fa-solid fa-circle-plus"></i> Administrar Actor</a>
+                            <div class="col-auto mt-5 animate-from-bottom">
+                                <a href="#" class="btn btn-color2 fs-5" data-bs-toggle="modal" data-bs-target="#nuevoModalActor"><i class="fa-solid fa-circle-plus"></i> Administrar Actor</a>
+                            </div>
+                            
+                            <div class="col-auto mt-5 animate-from-bottom">
+                                <a href="#" class="btn btn-color fs-5" data-bs-toggle="modal" data-bs-target="#nuevoModalDirector"><i class="fa-solid fa-circle-plus"></i> Administrar Director</a>
+                            </div>
+                            
+                            <div class="col-auto mt-5 animate-from-bottom">
+                                <a href="#" class="btn btn-color2 fs-5" data-bs-toggle="modal" data-bs-target="#nuevoModal"><i class="fa-solid fa-circle-plus"></i> Nuevo registro</a>
+                            </div>
                         </div>
                         
-                        <div class="col-auto mt-5 animate-from-bottom">
-                            <a href="#" class="btn btn-color fs-5" data-bs-toggle="modal" data-bs-target="#nuevoModal"><i class="fa-solid fa-circle-plus"></i> Administrar Director</a>
-                        </div>
-                        
-                        <div class="col-auto mt-5 animate-from-bottom">
-                            <a href="#" class="btn btn-color2 fs-5" data-bs-toggle="modal" data-bs-target="#nuevoModal"><i class="fa-solid fa-circle-plus"></i> Nuevo registro</a>
-                        </div>
-                    </div>
-                    
-        
-                <!-- ENCABEZADO DE LA TABLA-->
-                <table class="table table-xl table-striped table-hover mt-4 ">
-                    <thead class="table-dark fs-4">
-                        <tr class="color-titulo-tabla">
-                            <th width="1">#</th>
-                            <th width="10">Titulo</th>
-                            <th width="100">Descripción</th>
-                            <th width="20">Estreno</th>
-                            <th width="5">Path_poster</th>
-                            <th width="1">Duracion</th>
-                            <th width="2">Genero</th>
-                            <th width="1">Actor</th>
-                            <th width="1">Director</th>
-                            <th width="5">video_iframe</th>
-                            <th width="5">video_mp4</th>
-                            <th width="10">Acción</th>
-                        </tr>
-                    </thead>
-        
-                    <tbody class="fs-5">
-                         <!-- TRAE LOS GENEROS-->
-                        <?php
-                            $sqlGenero = "SELECT id_genero, nombre_genero FROM genero";
-                            $generos = $conexion->query($sqlGenero);
-                        ?>
-                        <?php while ($row = $peliculas->fetch_object()) { ?>
-                            <tr>
-                                <td><?= $row->id_peli; ?></td>
-                                <td><?= $row->titulo; ?></td>
-                                <td><?= $row->descripcion; ?></td>
-                                <td><?= $row->estreno; ?></td>
-                                <td><img src="<?= $row->path_poster; ?>" width="80"></td>
-                                <td><?= $row->duracion; ?></td>
-                                <td><?= $row->nombres_generos; ?></td>
-                                <td><?= $row->nom_ape_actor; ?></td>
-                                <td><?= $row->nom_ape_director; ?></td>
-                                <td><?= $row->video_iframe; ?></td>
-                                <td><?= $row->video_mp4; ?></td>
-                                <td>
-                                    <a href="#" class="btn btn-sm btn-warning mt-5 fs-6" data-bs-toggle="modal" data-bs-target="#editaModal" data-bs-id="<?= $row->id_peli; ?>"><i class="fa-solid fa-pen-to-square"></i> Editar</a>
-                                    <a href="#" class="btn btn-sm btn-danger mt-4 fs-6" data-bs-toggle="modal" data-bs-target="#eliminaModal" data-bs-id="<?= $row->id_peli; ?>"><i class="fa-solid fa-trash"></i> Eliminar</a>
-                                </td>
+            
+                    <!-- ENCABEZADO DE LA TABLA-->
+                    <table class="table table-xl table-striped table-hover mt-4 ">
+                        <thead class="table-dark fs-4">
+                            <tr class="color-titulo-tabla">
+                                <th width="1">#</th>
+                                <th width="10">Titulo</th>
+                                <th width="100">Descripción</th>
+                                <th width="20">Estreno</th>
+                                <th width="5">Path_poster</th>
+                                <th width="1">Duracion</th>
+                                <th width="2">Genero</th>
+                                <th width="1">Actor</th>
+                                <th width="1">Director</th>
+                                <th width="5">video_iframe</th>
+                                <th width="5">video_mp4</th>
+                                <th width="10">Acción</th>
                             </tr>
-                        <?php } ?>
-        
-        
-                    </tbody>
-                </table>
+                        </thead>
+            
+                        <tbody class="fs-5">
+                            <!-- TRAE LOS GENEROS-->
+                            <?php
+                                $sqlGenero = "SELECT id_genero, nombre_genero FROM genero";
+                                $generos = $conexion->query($sqlGenero);
+                            ?>
+                            <?php while ($row = $peliculas->fetch_object()) { ?>
+                                <tr>
+                                    <td><?= $row->id_peli; ?></td>
+                                    <td><?= $row->titulo; ?></td>
+                                    <td><?= $row->descripcion; ?></td>
+                                    <td><?= $row->estreno; ?></td>
+                                    <td><img src="<?= $row->path_poster; ?>" width="80"></td>
+                                    <td><?= $row->duracion; ?></td>
+                                    <td><?= $row->nombres_generos; ?></td>
+                                    <td><?= $row->nom_ape_actor; ?></td>
+                                    <td><?= $row->nom_ape_director; ?></td>
+                                    <td><?= $row->video_iframe; ?></td>
+                                    <td><?= $row->video_mp4; ?></td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-warning mt-5 fs-6" data-bs-toggle="modal" data-bs-target="#editaModal" data-bs-id="<?= $row->id_peli; ?>"><i class="fa-solid fa-pen-to-square"></i> Editar</a>
+                                        <a href="#" class="btn btn-sm btn-danger mt-4 fs-6" data-bs-toggle="modal" data-bs-target="#eliminaModal" data-bs-id="<?= $row->id_peli; ?>"><i class="fa-solid fa-trash"></i> Eliminar</a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+            
+            
+                        </tbody>
+                    </table>
                 </div>
                
+                <!--MODALES-->
                 <?php include 'nuevo_modal.php'; ?>
-        
                 <?php include 'nuevo_modal_genero.php'; ?>
+                <?php include 'nuevo_modal_actor.php'; ?>
+                <?php include 'nuevo_modal_director.php'; ?>
         
         
         

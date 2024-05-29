@@ -21,31 +21,31 @@
         include("comprobar_usuario.php");
 
         ?>
-<main class="main-genres">
-    <section class="genres-container">
-        <div class="container-card">
-            <?php
-            $consulta = "select id_genero,nombre_genero from genero order by nombre_genero asc";
-            $result = $conexion->query($consulta);
-            if ($result->num_rows > 0) {
-                $index = 0;
-                while ($row = $result->fetch_assoc()) {
-                    echo '
-                    <div class="card">
-                        <div class="card-body">
-                            <a href="peliculas.php?id=' . $row["id_genero"] . '">' . $row["nombre_genero"] . '</a>
-                        </div>
-                    </div>';
-                    $index++;
-                }
-            } else {
-                echo "0 resultados";
-            }
-            ?>
-        </div>
-    </section>
-    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-</main>
+        <main class="main-genres">
+            <section class="genres-container">
+                <div class="container-card">
+                    <?php
+                    $consulta = "select id_genero,nombre_genero from genero order by nombre_genero asc";
+                    $result = $conexion->query($consulta);
+                    if ($result->num_rows > 0) {
+                        $index = 0;
+                        while ($row = $result->fetch_assoc()) {
+                            echo '
+                            <div class="card">
+                                <div class="card-body">
+                                    <a href="peliculas.php?id=' . $row["id_genero"] . '">' . $row["nombre_genero"] . '</a>
+                                </div>
+                            </div>';
+                            $index++;
+                        }
+                    } else {
+                        echo "0 resultados";
+                    }
+                    ?>
+                </div>
+            </section>
+            <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+        </main>
 
 
 

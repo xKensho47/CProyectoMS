@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-Tz66Ovr4uSly5Yz0oSnWIbge5iQZ1IYbYi8POE1DbTFHl2aW+7p2G+MTkpaDLfN/" crossorigin="anonymous">
 
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/estilos.css">
@@ -22,13 +23,24 @@
                 include("conexion.php");
                 include("comprobar_usuario.php");
         
-                ?>
+        ?>
         </div>
        
         <main class="main-peliculas">
-            <section class="peliculas-container">
+            <div class="volver-atras">
                 <?php
-                $id = $_GET['id'];
+                    $id = $_GET['id'];
+                    $consulta="select nombre_genero from genero where id_genero=$id";
+                    $resultado = $conexion->query($consulta);
+                    $fila = $resultado->fetch_assoc();
+                    $nombre_genero = $fila['nombre_genero'];
+                ?>
+                <a href="generos.php" class="h2-animate"><i class="fas fa-arrow-left"></i> <?= $nombre_genero ?></a>
+            </div>
+
+            <section class="peliculas-container animate-from-bottom">
+
+                <?php
                 $sql = "SELECT p.id_peli, path_poster FROM peliculas p INNER JOIN peli_genero g ON p.id_peli = g.id_peli WHERE id_genero='$id'";
                 $result = $conexion->query($sql);
 

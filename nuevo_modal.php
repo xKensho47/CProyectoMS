@@ -35,13 +35,43 @@
                     </div>
 
                     <div class="row mb-3">
-                        <label for="Path_poster" class="form-label">Genero:</label>
+                        <label for="genero" class="form-label">Genero:</label>
                         <?php while ($row_genero = $generos->fetch_assoc()) { ?>
-                            <div class="col-md-6"> <!-- Cada checkbox y su nombre ocuparán la mitad del ancho del modal en pantallas medianas y superiores -->
+                            <div class="col-md-3"> <!-- Cada checkbox y su nombre ocuparán la mitad del ancho del modal en pantallas medianas y superiores -->
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="generoSeleccionado[]" value="<?php echo $row_genero["id_genero"]; ?>" id="check<?php echo $row_genero["id_genero"]; ?>">
                                     <label class="form-check-label" for="check<?php echo $row_genero["id_genero"]; ?>">
                                         <?php echo $row_genero["nombre_genero"]; ?>
+                                    </label>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
+
+                    <!-- Campos adicionales para los datos de los actores -->
+                    <div class="row mb-3">
+                        <label for="actores" class="form-label">Actores:</label>
+                        <?php while ($row_actor = $actores->fetch_assoc()) { ?>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="actorSeleccionados[]" value="<?php echo $row_actor["id_actor"]; ?>" id="check<?php echo $row_actor["id_actor"]; ?>">
+                                    <label class="form-check-label" for="check<?php echo $row_actor["id_actor"]; ?>">
+                                        <?php echo $row_actor["nombre"] . " " . $row_actor["apellido"]; ?>
+                                    </label>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
+
+                    <!-- Campos adicionales para los datos de los directores -->
+                    <div class="row mb-3">
+                        <label for="directores" class="form-label">Directores:</label>
+                        <?php while ($row_director = $directores->fetch_assoc()) { ?>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="directoresSeleccionados[]" value="<?php echo $row_director["id_director"]; ?>" id="check<?php echo $row_director["id_director"]; ?>">
+                                    <label class="form-check-label" for="check<?php echo $row_director["id_director"]; ?>">
+                                        <?php echo $row_director["nombre"] . " " . $row_director["apellido"]; ?>
                                     </label>
                                 </div>
                             </div>

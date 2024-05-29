@@ -1221,5 +1221,15 @@ footer {
     animation-delay: 0.8s;
 }
 
-
+.volver-atras {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    
+}
+.volver-atras a{
+    font-size: 2.7rem;
+    padding: 2%;
+    text-decoration: none;
+    
+}
 
