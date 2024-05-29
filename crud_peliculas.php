@@ -37,25 +37,28 @@
             GROUP BY p.id_peli";
             $peliculas = $conexion->query($sqlPeliculas);
             ?>
-            <div class="crud">
-                
-                <h2 class="text-right fs-1 mt-1">Peliculas</h2>
+            <div class="crud  ">
+                <div class="animate-from-bottom">
                 <!-- BOTON DE REGISTRO-->
-             
-                    <div class="row justify-content-end">
-                        <div class="col-auto " >
+                
+                <div class="row justify-content-end mt-5 ">
+                    
+                        <div class="col-auto me-auto mt-5" >
+                            <h2 class="text-left pi h2-animate">Peliculas</h2>
+                        </div>
+                        <div class="col-auto mt-5 animate-from-bottom" >
                             <a href="#" class="btn btn-color fs-5" data-bs-toggle="modal" data-bs-target="#nuevoModalGenero"><i class="fa-solid fa-circle-plus"></i> Administrar Genero</a>
                         </div>
 
-                        <div class="col-auto">
+                        <div class="col-auto mt-5 animate-from-bottom">
                             <a href="#" class="btn btn-color2 fs-5" data-bs-toggle="modal" data-bs-target="#nuevoModal"><i class="fa-solid fa-circle-plus"></i> Administrar Actor</a>
                         </div>
-
-                        <div class="col-auto">
+                        
+                        <div class="col-auto mt-5 animate-from-bottom">
                             <a href="#" class="btn btn-color fs-5" data-bs-toggle="modal" data-bs-target="#nuevoModal"><i class="fa-solid fa-circle-plus"></i> Administrar Director</a>
                         </div>
-
-                        <div class="col-auto">
+                        
+                        <div class="col-auto mt-5 animate-from-bottom">
                             <a href="#" class="btn btn-color2 fs-5" data-bs-toggle="modal" data-bs-target="#nuevoModal"><i class="fa-solid fa-circle-plus"></i> Nuevo registro</a>
                         </div>
                     </div>
@@ -109,7 +112,7 @@
         
                     </tbody>
                 </table>
-        
+                </div>
                
                 <?php include 'nuevo_modal.php'; ?>
         
@@ -123,7 +126,7 @@
         
         
         
-        
+                
                 <script src="script/jquery.js"></script>
                 <script src="slick/slick.min.js"></script>
                 <script src="script/script.js"></script>

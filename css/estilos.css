@@ -1128,4 +1128,98 @@ footer {
     background-color:#a979ad ;
   
 }
+/*ANIMACION DEL H2 DE PELICULAS*/
+@keyframes slideInFromBottom {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+@keyframes colorReflectFuchsiaLilac {
+    0% {
+      color: #FF00FF; /* Fuchsia */
+      text-shadow: 0 0 5px #FF00FF, 0 0 10px #FF69B4, 0 0 15px #EE82EE;
+    }
+    25% {
+      color: #FF69B4; /* Hot Pink */
+      text-shadow: 0 0 5px #FF69B4, 0 0 10px #EE82EE, 0 0 15px #DDA0DD;
+    }
+    50% {
+      color: #EE82EE; /* Violet */
+      text-shadow: 0 0 5px #EE82EE, 0 0 10px #DDA0DD, 0 0 15px #DA70D6;
+    }
+    75% {
+      color: #d184d1; /* Plum */
+      text-shadow: 0 0 5px #d184d1, 0 0 10px #DA70D6, 0 0 15px #FF00FF;
+    }
+    100% {
+      color: #DA70D6; /* Orchid */
+      text-shadow: 0 0 5px #DA70D6, 0 0 10px #e24be2, 0 0 15px #FF69B4;
+    }
+  }
+  
+.h2-animate {
+    display: inline-block;
+    animation: slideInFromBottom 1s ease-out forwards, colorReflectFuchsiaLilac 3s infinite;
+}
+
+.pi{
+    font-size:3rem;
+}
+.custom-container {
+    display: flex;
+    align-items: center;
+}
+/*ANIMACION DE LOS DIV DEL CRUD*/
+.animate-from-bottom {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 1s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/*ANIMACION DE LOS GENEROS*/
+
+.card {
+    opacity: 0;
+    animation: slide-in 0.7s forwards;
+}
+
+@keyframes slide-in {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.card:nth-child(3n+1) {
+    animation-delay: 0s;
+}
+
+.card:nth-child(3n+2) {
+    animation-delay: 0.4s;
+}
+
+.card:nth-child(3n+3) {
+    animation-delay: 0.8s;
+}
+
+
 
