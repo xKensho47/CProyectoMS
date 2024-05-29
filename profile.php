@@ -41,7 +41,7 @@
                     </section>
                     <section class="userinfo-genres">
                         <h2 class="genres-tittle">Géneros favoritos</h2>
-                        <div class="genres-container">
+                        <div class="user-genres">
                             <span class="genres-favorites">Drama</span>
                             <span class="genres-favorites">Acción</span>
                             <span class="genres-favorites">Sci-Fi</span>
