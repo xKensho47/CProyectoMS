@@ -25,7 +25,7 @@
             <?php
             include("conexion.php");
             include("comprobar_usuario.php");
-            
+            /*DEVUELVE TODA LA INFORMACION DE UNA PELICULA*/
             $sqlPeliculas = " SELECT p.id_peli, p.titulo, p.descripcion, p.estreno, p.path_poster, p.duracion, 
             p.video_iframe, p.video_mp4,gen.nombres_generos, act.nom_ape_actor,dir.nom_ape_director FROM 
             peliculas AS p LEFT JOIN (SELECT pg.id_peli, GROUP_CONCAT(g.nombre_genero SEPARATOR ', ') AS nombres_generos
@@ -36,12 +36,14 @@
             director d ON d.id_director = pd.id_director GROUP BY pd.id_peli) AS dir ON p.id_peli = dir.id_peli
             GROUP BY p.id_peli";
             $peliculas = $conexion->query($sqlPeliculas);
+            /*LLAMA A LA TABLA ACTORES*/
             $actores = $conexion->query("SELECT id_actor, nombre, apellido FROM actor");
+            /*LLAMA A LA TABLA DIRECTORES*/
             $directores = $conexion->query("SELECT id_director, nombre, apellido FROM director");
             ?>
             <div class="crud  ">
                 <div class="animate-from-bottom">
-                    <!-- BOTON DE REGISTRO-->
+                    <!-- BOTONES DE REGISTRO Y MODIFICACIONES-->
                 
                     <div class="row justify-content-end mt-5 ">
                         
@@ -71,20 +73,20 @@
                         <thead class="table-dark fs-4">
                             <tr class="color-titulo-tabla">
                                 <th width="1">#</th>
-                                <th width="10">Titulo</th>
-                                <th width="100">Descripción</th>
-                                <th width="20">Estreno</th>
+                                <th width="1">Titulo</th>
+                                <th width="1">Descripción</th>
+                                <th width="2">Estreno</th>
                                 <th width="5">Path_poster</th>
                                 <th width="1">Duracion</th>
                                 <th width="2">Genero</th>
                                 <th width="1">Actor</th>
                                 <th width="1">Director</th>
-                                <th width="5">video_iframe</th>
-                                <th width="5">video_mp4</th>
-                                <th width="10">Acción</th>
+                                <!--<th width="5">video_iframe</th>
+                                <th width="5">video_mp4</th>-->
+                                <th width="1">Acción</th>
                             </tr>
                         </thead>
-            
+                    <!--BODY DE LA TABLA-->
                         <tbody class="fs-5">
                             <!-- TRAE LOS GENEROS-->
                             <?php
@@ -102,10 +104,8 @@
                                     <td><?= $row->nombres_generos; ?></td>
                                     <td><?= $row->nom_ape_actor; ?></td>
                                     <td><?= $row->nom_ape_director; ?></td>
-                                    <td><?= $row->video_iframe; ?></td>
-                                    <td><?= $row->video_mp4; ?></td>
                                     <td>
-                                        <a href="#" class="btn btn-sm btn-warning mt-5 fs-6" data-bs-toggle="modal" data-bs-target="#editaModal" data-bs-id="<?= $row->id_peli; ?>"><i class="fa-solid fa-pen-to-square"></i> Editar</a>
+                                        <a href="#" class="btn btn-sm btn-warning mt-5 fs-6" data-bs-toggle="modal" data-bs-target="#editar_modal" data-bs-id="<?= $row->id_peli; ?>"><i class="fa-solid fa-pen-to-square"></i> Editar</a>
                                         <a href="#" class="btn btn-sm btn-danger mt-4 fs-6" data-bs-toggle="modal" data-bs-target="#eliminaModal" data-bs-id="<?= $row->id_peli; ?>"><i class="fa-solid fa-trash"></i> Eliminar</a>
                                     </td>
                                 </tr>
@@ -121,6 +121,7 @@
                 <?php include 'nuevo_modal_genero.php'; ?>
                 <?php include 'nuevo_modal_actor.php'; ?>
                 <?php include 'nuevo_modal_director.php'; ?>
+                <?php include 'editar_modal.php'; ?>
         
         
         

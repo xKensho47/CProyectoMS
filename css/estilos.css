@@ -54,7 +54,7 @@ html::-webkit-scrollbar-thumb,
 body {
     background-image: url(../images/imagen_fondo.jpg);
     font-family: 'Bebas Neue', sans-serif;
-    background-color: var(--color-background);
+    background-color:#b194b4;
     color: var(--color-text);
     margin: 0 auto;
     height: 100vh;
@@ -80,7 +80,7 @@ body a:hover {
 
 /* HEADER */
 .container header {
-     background-color:#000; 
+     background-color:#000000; 
    /* background-color: transparent;*/
     display: flex;
     align-items: center;
@@ -168,13 +168,13 @@ header form input {
     line-height: 10vh;
     color: var(--color-text);
     gap: 1rem;
-
     width: 100%;
     height: 100%;
-
+    
 }
 
 .menu__item {
+    margin-top: 0%;
     display: flex;
     align-items: center;
     text-align: center;
@@ -1056,7 +1056,7 @@ footer {
                 -1px 1px 0 #000,
                 1px 1px 0 #000;
 }
-
+/*ARREGLOS PARA EL HEADER DEL CRUD*/
 .container-crud header {
      background-color:#000; 
     /*background-color: transparent;*/
@@ -1066,11 +1066,18 @@ footer {
     padding-left: 1.0%;
 
     width: 100%;
-    height: 9vh;
+    height: 12vh;
+    margin-top: -1.4%;
 
     z-index: 999;
 
 }
+.container-crud header .menu__item{
+  margin-top: 4%;
+  margin-left: -3%;
+
+}
+
 /* ARREGLOS DEL MODAL*/
 .modal-content label {
     color: var(--color-label); /* Cambia el color del texto de los labels */
@@ -1233,3 +1240,7 @@ footer {
     
 }
 
+tbody{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 0.4rem;
+}

@@ -1,6 +1,8 @@
+
 <?php
 include("conexion.php");
 
+// Escapar los datos recibidos del formulario
 $nombre = $conexion->real_escape_string($_POST['nombre']);
 $descripcion = $conexion->real_escape_string($_POST['descripcion']);
 $estreno = $conexion->real_escape_string($_POST['estreno']);
@@ -28,8 +30,8 @@ if ($conexion->query($sql)) {
     }
 
     // Guardar los actores en peli_actor
-    if (isset($_POST['actoresSeleccionado'])) {
-        $actoresSeleccionados = $_POST['actoresSeleccionado'];
+    if (isset($_POST['actorSeleccionados'])) { // Nombre correcto del campo
+        $actoresSeleccionados = $_POST['actorSeleccionados'];
         $stmt = $conexion->prepare("INSERT INTO peli_actor (id_peli, id_actor) VALUES (?, ?)");
         foreach ($actoresSeleccionados as $id_actor) {
             $stmt->bind_param("ii", $id_peli, $id_actor);
@@ -39,8 +41,8 @@ if ($conexion->query($sql)) {
     }
 
     // Guardar los directores en peli_director
-    if (isset($_POST['directoresSeleccionado'])) {
-        $directoresSeleccionados = $_POST['directoresSeleccionado'];
+    if (isset($_POST['directoresSeleccionados'])) { // Nombre correcto del campo
+        $directoresSeleccionados = $_POST['directoresSeleccionados'];
         $stmt = $conexion->prepare("INSERT INTO peli_director (id_peli, id_director) VALUES (?, ?)");
         foreach ($directoresSeleccionados as $id_director) {
             $stmt->bind_param("ii", $id_peli, $id_director);
@@ -60,4 +62,5 @@ if ($conexion->query($sql)) {
 
 $conexion->close();
 ?>
+
 

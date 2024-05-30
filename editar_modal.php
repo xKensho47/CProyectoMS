@@ -1,9 +1,18 @@
+<?php
+/*LLAMO A LOS GENEROS*/
+ $sqlGenero = "SELECT id_genero, nombre_genero FROM genero";
+ $generos = $conexion->query($sqlGenero);
+ /*LLAMA A LA TABLA ACTORES*/
+ $actores = $conexion->query("SELECT id_actor, nombre, apellido FROM actor");
+ /*LLAMA A LA TABLA DIRECTORES*/
+ $directores = $conexion->query("SELECT id_director, nombre, apellido FROM director");
+?>
 <!-- Modal -->
-<div class="modal fade" id="nuevoModal" tabindex="-1" aria-labelledby="nuevoModalLabel" aria-hidden="true">
+<div class="modal fade" id="editar_modal" tabindex="-1" aria-labelledby="editaModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-3" id="nuevoModalLabel">Agregar registro</h1>
+                <h1 class="modal-title fs-3" id="editaModalLabel">Editar registro</h1>
                 <button type="button" class="btn-close btn-color" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body fs-5">
