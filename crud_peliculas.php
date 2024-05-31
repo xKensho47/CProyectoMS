@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
     <title>CRUD Peliculas</title>
 </head>
-  
+
 
 <body class="body-crud">
     <main>
@@ -44,30 +44,30 @@
             <div class="crud  ">
                 <div class="animate-from-bottom">
                     <!-- BOTONES DE REGISTRO Y MODIFICACIONES-->
-                
-                    <div class="row justify-content-end mt-5 ">
-                        
-                            <div class="col-auto me-auto mt-5" >
-                                <h2 class="text-left pi h2-animate">Peliculas</h2>
-                            </div>
-                            <div class="col-auto mt-5 animate-from-bottom" >
-                                <a href="#" class="btn btn-color fs-5" data-bs-toggle="modal" data-bs-target="#nuevoModalGenero"><i class="fa-solid fa-circle-plus"></i> Administrar Genero</a>
-                            </div>
 
-                            <div class="col-auto mt-5 animate-from-bottom">
-                                <a href="#" class="btn btn-color2 fs-5" data-bs-toggle="modal" data-bs-target="#nuevoModalActor"><i class="fa-solid fa-circle-plus"></i> Administrar Actor</a>
-                            </div>
-                            
-                            <div class="col-auto mt-5 animate-from-bottom">
-                                <a href="#" class="btn btn-color fs-5" data-bs-toggle="modal" data-bs-target="#nuevoModalDirector"><i class="fa-solid fa-circle-plus"></i> Administrar Director</a>
-                            </div>
-                            
-                            <div class="col-auto mt-5 animate-from-bottom">
-                                <a href="#" class="btn btn-color2 fs-5" data-bs-toggle="modal" data-bs-target="#nuevoModal"><i class="fa-solid fa-circle-plus"></i> Nuevo registro</a>
-                            </div>
+                    <div class="row justify-content-end mt-5 ">
+
+                        <div class="col-auto me-auto mt-5">
+                            <h2 class="text-left pi h2-animate">Peliculas</h2>
                         </div>
-                        
-            
+                        <div class="col-auto mt-5 animate-from-bottom">
+                            <a href="#" class="btn btn-color fs-5" data-bs-toggle="modal" data-bs-target="#nuevoModalGenero"><i class="fa-solid fa-circle-plus"></i> Administrar Genero</a>
+                        </div>
+
+                        <div class="col-auto mt-5 animate-from-bottom">
+                            <a href="#" class="btn btn-color2 fs-5" data-bs-toggle="modal" data-bs-target="#nuevoModalActor"><i class="fa-solid fa-circle-plus"></i> Administrar Actor</a>
+                        </div>
+
+                        <div class="col-auto mt-5 animate-from-bottom">
+                            <a href="#" class="btn btn-color fs-5" data-bs-toggle="modal" data-bs-target="#nuevoModalDirector"><i class="fa-solid fa-circle-plus"></i> Administrar Director</a>
+                        </div>
+
+                        <div class="col-auto mt-5 animate-from-bottom">
+                            <a href="#" class="btn btn-color2 fs-5" data-bs-toggle="modal" data-bs-target="#nuevoModal"><i class="fa-solid fa-circle-plus"></i> Nuevo registro</a>
+                        </div>
+                    </div>
+
+
                     <!-- ENCABEZADO DE LA TABLA-->
                     <table class="table table-xl table-striped table-hover mt-4 ">
                         <thead class="table-dark fs-4">
@@ -86,12 +86,12 @@
                                 <th width="1">Acción</th>
                             </tr>
                         </thead>
-                    <!--BODY DE LA TABLA-->
+                        <!--BODY DE LA TABLA-->
                         <tbody class="fs-5">
                             <!-- TRAE LOS GENEROS-->
                             <?php
-                                $sqlGenero = "SELECT id_genero, nombre_genero FROM genero";
-                                $generos = $conexion->query($sqlGenero);
+                            $sqlGenero = "SELECT id_genero, nombre_genero FROM genero";
+                            $generos = $conexion->query($sqlGenero);
                             ?>
                             <?php while ($row = $peliculas->fetch_object()) { ?>
                                 <tr>
@@ -110,28 +110,103 @@
                                     </td>
                                 </tr>
                             <?php } ?>
-            
-            
+
+
                         </tbody>
                     </table>
                 </div>
-               
+
                 <!--MODALES-->
                 <?php include 'nuevo_modal.php'; ?>
                 <?php include 'nuevo_modal_genero.php'; ?>
                 <?php include 'nuevo_modal_actor.php'; ?>
                 <?php include 'nuevo_modal_director.php'; ?>
                 <?php include 'editar_modal.php'; ?>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-                
+
+
+                <script>
+                    /*let nuevoModal = document.getElementById('nuevoModal')*/
+                    let editar_modal = document.getElementById('editar_modal')
+                    /*let eliminaModal = document.getElementById('eliminaModal')*/
+
+                   /* nuevoModal.addEventListener('shown.bs.modal', event => {
+                        nuevoModal.querySelector('.modal-body #nombre').focus()
+                    })
+
+                    nuevoModal.addEventListener('hide.bs.modal', event => {
+                        nuevoModal.querySelector('.modal-body #nombre').value = ""
+                        nuevoModal.querySelector('.modal-body #descripcion').value = ""
+                        nuevoModal.querySelector('.modal-body #genero').value = ""
+                        nuevoModal.querySelector('.modal-body #poster').value = ""
+                    })*/
+
+                    editar_modal.addEventListener('hide.bs.modal', event => {
+                        editar_modal.querySelector('.modal-body #nombre').value = ""
+                        editar_modal.querySelector('.modal-body #descripcion').value = ""
+                        editar_modal.querySelector('.modal-body #estreno').value = ""
+                        editar_modal.querySelector('.modal-body #duracion').value = ""
+                        editar_modal.querySelector('.modal-body #Path_poster').value = ""
+                        editar_modal.querySelector('.modal-body #genero').value = ""
+                        editar_modal.querySelector('.modal-body #actores').value = ""
+                        editar_modal.querySelector('.modal-body #directores').value = ""
+                        editar_modal.querySelector('.modal-body #video_mp4').value = ""
+                        editar_modal.querySelector('.modal-body #video_iframe').value = ""
+                    })
+
+                    editar_modal.addEventListener('shown.bs.modal', event => {
+                        let button = event.relatedTarget
+                        let id = button.getAttribute('data-bs-id')
+                        let inputNombre = editaModal.querySelector('.modal-body #nombre')
+                        let inputDescripcion = editaModal.querySelector('.modal-body #descripcion')
+                        let inputEstreno = editaModal.querySelector('.modal-body #estreno')
+                        let inputDuracion = editaModal.querySelector('.modal-body #duracion')
+                        let inputPath_poster = editaModal.querySelector('.modal-body #Path_poster')
+                        let inputGenero = editaModal.querySelector('.modal-body #genero')
+                        let inputActores = editaModal.querySelector('.modal-body #actores')
+                        let inputDirectores = editaModal.querySelector('.modal-body #directores')
+                        let inputVideo_mp4 = editaModal.querySelector('.modal-body #video_mp4')
+                        let inputVideo_iframe = editaModal.querySelector('.modal-body #video_iframe')
+
+                        let url = "get_pelicula.php"
+                        let formData = new FormData()
+                        formData.append('id', id)
+
+                        fetch(url, {
+                                method: "POST",
+                                body: formData
+                            }).then(response => response.json())
+                            .then(data => {
+
+                                inputId.value = data.id
+                                inputNombre.value = data.nombre
+                                inputDescripcion.value = data.descripcion
+                                inputEstreno.value = data.estreno
+                                inputDuracion.value = data.duracion
+                                inputPath_poster.value = data.Path_poster
+                                inputGenero.value = data.id_genero
+                                inputActores.value = data.actores
+                                inputDirectores.value = data.directores
+                                inputVideo_mp4.value = data.video_mp4
+                                inputVideo_iframe.value = data.video_iframe
+                                
+
+                            }).catch(err => console.log(err))
+
+                    })
+
+                   /* eliminaModal.addEventListener('shown.bs.modal', event => {
+                        let button = event.relatedTarget
+                        let id = button.getAttribute('data-bs-id')
+                        eliminaModal.querySelector('.modal-footer #id').value = id
+                    })*/
+                </script>
+
+
+
+
+
+
+
                 <script src="script/jquery.js"></script>
                 <script src="slick/slick.min.js"></script>
                 <script src="script/script.js"></script>

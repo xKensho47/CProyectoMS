@@ -16,7 +16,9 @@
                 <button type="button" class="btn-close btn-color" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body fs-5">
-                <form action="guardar_pelicula.php" method="post" enctype="multipart/form-data">
+                <form action="actualizar.php" method="post" enctype="multipart/form-data">
+                
+                    <input type="hidden" id="id" name="id">
 
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Titulo:</label>
