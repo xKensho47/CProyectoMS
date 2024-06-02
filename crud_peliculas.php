@@ -88,11 +88,17 @@
                         </thead>
                         <!--BODY DE LA TABLA-->
                         <tbody class="fs-5">
-                            <!-- TRAE LOS GENEROS-->
+                            <!-- TRAE LOS GENEROS, DIRECTORES Y ACTORES-->
                             <?php
                             $sqlGenero = "SELECT id_genero, nombre_genero FROM genero";
                             $generos = $conexion->query($sqlGenero);
-                            ?>
+                            
+                            $sqlDirector = "SELECT id_director, nombre, apellido FROM director";
+                            $directores = $conexion->query($sqlDirector);
+
+                            $sqlActor = "SELECT id_actor, nombre, apellido FROM actor";
+                            $actores = $conexion->query($sqlActor);
+                            ?> 
                             <?php while ($row = $peliculas->fetch_object()) { ?>
                                 <tr>
                                     <td><?= $row->id_peli; ?></td>
@@ -110,7 +116,7 @@
                                     </td>
                                 </tr>
                             <?php } ?>
-
+                            
 
                         </tbody>
                     </table>
