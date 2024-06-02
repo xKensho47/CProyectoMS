@@ -5,8 +5,8 @@ ob_start();
             <a class="link-logo" href="./index.php">
                 <img class="logo1" src="./images/logo1.png" alt="logo">
             </a>
-            <form class="barra-busqueda" action="resultados-buscar.php" method="get" autocomplete="off">
-                <input class="input-busqueda" type="search" name="buscar" placeholder="Buscar..." />  
+            <form class="barra-busqueda" id="busqueda" action="buscar.php" method="get" autocomplete="off">
+                <input class="input-busqueda" type="search" id="busca" name="buscar" placeholder="Buscar..." />  
             </form>
             <nav class="menu">
                 <ul class="menu__lista">

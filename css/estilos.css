@@ -1006,16 +1006,13 @@ footer {
     padding: 1%;
 }
 .peliculas-container {
-    display: flex;
-    flex-wrap: wrap;
-    /* Permite que los elementos se envuelvan a medida que el espacio horizontal se agota */
-    justify-content: space-between;
-    /* Distribuye el espacio entre los elementos */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
 }
-
 .pelicula-item {
     padding: 10px;
-    width: 21%;
+    width: 100%;
     /* Establece el ancho deseado para cada película */
     margin-bottom: 20px;
     /* Espacio entre cada fila de películas */
@@ -1023,8 +1020,8 @@ footer {
 
 .pelicula-item img {
     width: 100%;
-    /* Ajusta el tamaño de la imagen dentro de su contenedor */
-    height: auto;
+    height: auto; /* Mantener la proporción de la imagen */
+    object-fit: cover;
 }
 
 /* ARREGLO DEL MENU*/
