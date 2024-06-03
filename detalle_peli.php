@@ -1,20 +1,29 @@
 <?php session_start();
-include("conexion.php");
-include("header.php");
 
-$id = intval($_GET['id_peli']);
-$peli = mysqli_query($conexion,"SELECT * FROM peliculas WHERE id_peli = $id");
-$actores = mysqli_query($conexion,"SELECT nombre, apellido FROM actor JOIN peli_actor WHERE peli_actor.id_actor = actor.id_actor AND peli_actor.id_peli = $id");
-$directores = mysqli_query($conexion,"SELECT nombre, apellido FROM director JOIN peli_director WHERE peli_director.id_director = director.id_director AND peli_director.id_peli = $id");
-$generos = mysqli_query($conexion,"SELECT nombre_genero FROM genero JOIN peli_genero WHERE peli_genero.id_genero = genero.id_genero AND peli_genero.id_peli = $id");
+    include("conexion.php");
+    include("header.php");
+    
+    require_once("loginVerification.php");
 
-if ($peli->num_rows > 0) {
-    $row = $peli->fetch_assoc();
-} else {
-    echo "Película no encontrada";
-    exit;
-}
-$conexion->close();
+    $id_cuenta = $_SESSION['id_cuenta'];
+    $id = $_GET['id_peli'];
+    $peli = mysqli_query($conexion,"SELECT * FROM peliculas WHERE id_peli = $id");
+    $actores = mysqli_query($conexion,"SELECT nombre, apellido FROM actor JOIN peli_actor WHERE peli_actor.id_actor = actor.id_actor AND peli_actor.id_peli = $id");
+    $directores = mysqli_query($conexion,"SELECT nombre, apellido FROM director JOIN peli_director WHERE peli_director.id_director = director.id_director AND peli_director.id_peli = $id");
+    $generos = mysqli_query($conexion,"SELECT nombre_genero FROM genero JOIN peli_genero WHERE peli_genero.id_genero = genero.id_genero AND peli_genero.id_peli = $id");
+
+    if ($peli->num_rows > 0) {
+        $row = $peli->fetch_assoc();
+    } else {
+        echo "Película no encontrada";
+        exit;
+    }
+
+    $existe_mastarde = mysqli_query($conexion,"SELECT * FROM mas_tarde WHERE id_cuenta = $id_cuenta AND id_peli = $id");
+    $existe_favorito = mysqli_query($conexion,"SELECT * FROM peli_favorita WHERE id_cuenta = $id_cuenta AND id_peli = $id");
+    $existe_like = mysqli_query($conexion,"SELECT * FROM peli_like WHERE id_cuenta = $id_cuenta AND id_peli = $id");
+
+    $conexion->close();
 ?>
 <!doctype html>
 <html lang="es">
@@ -37,6 +46,7 @@ $conexion->close();
             $anoEstreno = date("Y", strtotime($fechaEstreno));
         ?>
         <main class="main-detallepeli">
+            <div class="contenedor-detalle_peli">
             <div class="detallepeli-poster">
                 <img src="<?php echo $row['path_poster'] ?>" alt="<?php echo $row['titulo'] ?>">
             </div>
@@ -58,7 +68,6 @@ $conexion->close();
                         <input id="star-1" type="radio" name="rating" value="1" onclick="submitRating(1)">
                         <label for="star-1" title="1 estrella">★</label>
                     </div>
-                    
                 </div>
                 <div class="info-detalles">
                     <p><?php echo $fechaEstreno ?></p>
@@ -83,20 +92,20 @@ $conexion->close();
                         <a href="" class="info-boton boton-play"><i class="fa-solid fa-play"></i></a>
                     </div>
                     <div>
-                        <form action="" method="post" class="">
-                            <input type="hidden" name="pelicula_id" value="<?php echo $id?>">
-                            <input type="hidden" name="user_id" value="">
-                            <button type="submit" class="info-boton"><i class="fa-solid fa-clock"></i></i></button>
+                        <form action="mas_tarde.php" method="post">
+                            <input type="hidden" name="pelicula_id" value="<?php echo $id ?>">
+                            <input type="hidden" name="usuario_id" value="<?php echo $_SESSION['id_cuenta']; ?>">
+                            <button type="submit" class="info-boton <?php if($existe_mastarde->num_rows > 0) {echo 'existe';} ?>"><i class="fa-solid fa-clock"></i></i></button>
                         </form>
-                        <form action="" method="post" class="">
-                            <input type="hidden" name="pelicula_id" value="<?php echo $id?>">
-                            <input type="hidden" name="user_id" value="">
-                            <button type="submit" class="info-boton"><i class="fa-solid fa-star"></i></button>
+                        <form action="favoritos.php" method="post">
+                            <input type="hidden" name="pelicula_id" value="<?php echo $id ?>">
+                            <input type="hidden" name="usuario_id" value="<?php echo $_SESSION['id_cuenta']; ?>">
+                            <button type="submit" class="info-boton <?php if($existe_favorito->num_rows > 0) {echo 'existe';} ?>"><i class="fa-solid fa-star"></i></button>
                         </form>
-                        <form action="" method="post" class="">
-                            <input type="hidden" name="pelicula_id" value="<?php echo $id?>">
-                            <input type="hidden" name="user_id" value="">
-                            <button type="submit" class="info-boton"><i class="fa-solid fa-thumbs-up"></i></button>
+                        <form action="like.php" method="post">
+                            <input type="hidden" name="pelicula_id" value="<?php echo $id ?>">
+                            <input type="hidden" name="usuario_id" value="<?php echo $_SESSION['id_cuenta']; ?>">
+                            <button type="submit" class="info-boton <?php if($existe_like->num_rows > 0) {echo 'existe';} ?>"><i class="fa-solid fa-thumbs-up"></i></button>
                         </form>
                     </div>
                 </div>
@@ -144,7 +153,17 @@ $conexion->close();
                     </div>
                 </div>
             </div>
+            </div>
+            
+            
         </main>
+        <footer>
+            <p>&copy; CineFlow 2024</p>
+        </footer>
+        <script src="script/jquery.js"></script>
+        <script src="slick/slick.min.js"></script>
+        <script src="script/script.js"></script>
+        <script src="script/botonTop.js"></script>
         <script src="https://kit.fontawesome.com/81c8161a36.js" crossorigin="anonymous"></script>
     </body>
 </html>
