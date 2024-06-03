@@ -17,7 +17,8 @@
 <body>
     <?php
     include("conexion.php");
-    include("comprobar_usuario.php");
+    include("header.php");
+    require_once("loginVerification.php");
 
     echo '
         <main>'; // EMPIEZA EL MAIN

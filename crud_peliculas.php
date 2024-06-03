@@ -24,7 +24,9 @@
         <div class="  container-crud py-3">
             <?php
             include("conexion.php");
-            include("comprobar_usuario.php");
+            include("header.php");
+            require_once("loginVerification.php");
+            
             /*DEVUELVE TODA LA INFORMACION DE UNA PELICULA*/
             $sqlPeliculas = " SELECT p.id_peli, p.titulo, p.descripcion, p.estreno, p.path_poster, p.duracion, 
             p.video_iframe, p.video_mp4,gen.nombres_generos, act.nom_ape_actor,dir.nom_ape_director FROM 
