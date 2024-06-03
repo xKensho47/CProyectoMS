@@ -11,22 +11,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // id_tipo correspondiente al rol "normal" para que le quede por defecto.
     $id_tipo = 2;
     // id_img por defecto para una imagen de perfil genérica.
-    $id_img = ""; // Asegúrate de que esta imagen exista en la tabla `img_perfil`.
+    $id_img = null; // Asegúrate de que esta imagen exista en la tabla `img_perfil`.
 
-    // Verificar si el correo electrónico ya está en uso
-    $q = "SELECT id_usuario FROM usuarios WHERE mail = ?";
+    // Verificar si el correo electrónico o el nombre de usuario ya están en uso
+    $q = "SELECT id_usuario FROM usuarios WHERE mail = ? OR id_usuario IN (SELECT id_usuario FROM cuenta_usuario WHERE nombre_usuario = ?)";
     $stmt = $conexion->prepare($q);
     if (!$stmt) {
         echo "Error de preparación de consulta: " . $conexion->error;
         exit();
     }
-    $stmt->bind_param('s', $mail);
+    $stmt->bind_param('ss', $mail, $nombre_usuario);
     $stmt->execute();
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        // El email ya está en uso
-        echo "El email ya está en uso. Por favor, elige otro.";
+        // El email o el nombre de usuario ya están en uso
+        echo "
+        <div class='overlay show' id='overlay-usuario-repe'>
+            <div class='popup'>
+                <span class='popup-close' id='pop-usuario-repe'>&times;</span>
+                <div class='popup-content'>
+                    <div class='descripcion_accion'><p>Ups! este nombre de usuario o mail ya están ocupados 🙁 <br> Prueba con otro!</p></div>
+                </div>
+                <div class='popup-buttons'>
+                    <button id='boton-usuario-repe' class='boton-cancelo'>Intentar denuevo</button>
+                </div>
+            </div>
+        </div>
+        ";
         $stmt->close(); // Cerrar aquí después de la verificación
     } else {
         // Insertar el nuevo usuario en la base de datos
@@ -45,14 +57,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $id_usuario = $conexion->insert_id;
 
-            $q_insertar_cuenta = "INSERT INTO cuenta_usuario (about_me, cant_amigos, id_usuario, nombre_usuario, contraseña) VALUES ('', 0, ?, ?, ?)";
+            $q_insertar_cuenta = "INSERT INTO cuenta_usuario (about_me, cant_amigos, id_usuario, id_img, nombre_usuario, contraseña) VALUES ('', 0, ?, ?, ?, ?)";
             $stmt_insertar_cuenta = $conexion->prepare($q_insertar_cuenta);
             if (!$stmt_insertar_cuenta) {
                 throw new Exception("Error de preparación de consulta: " . $conexion->error);
             }
-            $stmt_insertar_cuenta->bind_param('iss', $id_usuario, $nombre_usuario, $contraseña_hash);
+            $stmt_insertar_cuenta->bind_param('iiss', $id_usuario, $id_img, $nombre_usuario, $contraseña_hash);
             $stmt_insertar_cuenta->execute();
-
 
             $conexion->commit();
 
@@ -76,3 +87,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 } else {
     echo "Método de solicitud no válido.";
 }
+?>
