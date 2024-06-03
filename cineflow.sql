@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-06-2024 a las 14:00:44
+-- Tiempo de generación: 03-06-2024 a las 14:21:32
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -1264,6 +1264,12 @@ ALTER TABLE `peli_genero`
 ALTER TABLE `peli_like`
   ADD CONSTRAINT `cuenta_usuario_id_cuenta_peli_like` FOREIGN KEY (`id_cuenta`) REFERENCES `cuenta_usuario` (`id_cuenta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `peliculas_id_peli_peli_like` FOREIGN KEY (`id_peli`) REFERENCES `peliculas` (`id_peli`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `tipo_usuario_id_tipo_usuarios` FOREIGN KEY (`id_tipo`) REFERENCES `tipo_usuario` (`id_tipo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `valoracion_peliculas`
