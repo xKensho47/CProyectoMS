@@ -111,7 +111,7 @@
                                     <td><?= $row->nom_ape_actor; ?></td>
                                     <td><?= $row->nom_ape_director; ?></td>
                                     <td>
-                                        <a href="#" class="btn btn-sm btn-warning mt-5 fs-6" data-bs-toggle="modal" data-bs-target="#editar_modal" data-bs-id="<?= $row->id_peli; ?>"><i class="fa-solid fa-pen-to-square"></i> Editar</a>
+                                        <a href="#" class="btn btn-sm btn-warning mt-5 fs-6" data-bs-toggle="modal" data-bs-target="#editaModal" data-bs-id="<?= $row->id_peli; ?>"><i class="fa-solid fa-pen-to-square"></i> Editar</a>
                                         <a href="#" class="btn btn-sm btn-danger mt-4 fs-6" data-bs-toggle="modal" data-bs-target="#eliminaModal" data-bs-id="<?= $row->id_peli; ?>"><i class="fa-solid fa-trash"></i> Eliminar</a>
                                     </td>
                                 </tr>
@@ -131,37 +131,15 @@
 
 
                 <script>
-                    /*let nuevoModal = document.getElementById('nuevoModal')*/
-                    let editar_modal = document.getElementById('editar_modal')
-                    /*let eliminaModal = document.getElementById('eliminaModal')*/
+                    
+                    let editaModal = document.getElementById('editaModal')
 
-                   /* nuevoModal.addEventListener('shown.bs.modal', event => {
-                        nuevoModal.querySelector('.modal-body #nombre').focus()
-                    })
+                    editaModal.addEventListener('shown.bs.modal', event => {
 
-                    nuevoModal.addEventListener('hide.bs.modal', event => {
-                        nuevoModal.querySelector('.modal-body #nombre').value = ""
-                        nuevoModal.querySelector('.modal-body #descripcion').value = ""
-                        nuevoModal.querySelector('.modal-body #genero').value = ""
-                        nuevoModal.querySelector('.modal-body #poster').value = ""
-                    })*/
-
-                    editar_modal.addEventListener('hide.bs.modal', event => {
-                        editar_modal.querySelector('.modal-body #nombre').value = ""
-                        editar_modal.querySelector('.modal-body #descripcion').value = ""
-                        editar_modal.querySelector('.modal-body #estreno').value = ""
-                        editar_modal.querySelector('.modal-body #duracion').value = ""
-                        editar_modal.querySelector('.modal-body #Path_poster').value = ""
-                        editar_modal.querySelector('.modal-body #genero').value = ""
-                        editar_modal.querySelector('.modal-body #actores').value = ""
-                        editar_modal.querySelector('.modal-body #directores').value = ""
-                        editar_modal.querySelector('.modal-body #video_mp4').value = ""
-                        editar_modal.querySelector('.modal-body #video_iframe').value = ""
-                    })
-
-                    editar_modal.addEventListener('shown.bs.modal', event => {
                         let button = event.relatedTarget
                         let id = button.getAttribute('data-bs-id')
+
+                        let inputId = editaModal.querySelector('.modal-body #id')
                         let inputNombre = editaModal.querySelector('.modal-body #nombre')
                         let inputDescripcion = editaModal.querySelector('.modal-body #descripcion')
                         let inputEstreno = editaModal.querySelector('.modal-body #estreno')
@@ -199,12 +177,6 @@
                             }).catch(err => console.log(err))
 
                     })
-
-                   /* eliminaModal.addEventListener('shown.bs.modal', event => {
-                        let button = event.relatedTarget
-                        let id = button.getAttribute('data-bs-id')
-                        eliminaModal.querySelector('.modal-footer #id').value = id
-                    })*/
                 </script>
 
 
