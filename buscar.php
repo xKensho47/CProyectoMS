@@ -53,7 +53,7 @@
          $resultado .= '<section class="peliculas-container animate-from-bottom">';
          while ($row = mysqli_fetch_assoc($buscar)) {
            $resultado .= '<div class="pelicula-item">';
-           $resultado .= '<a href="video-pelicula.php?id=' . $row["id_peli"] . '">';
+           $resultado .= '<a href="detalle_peli.php?id_peli=' . $row["id_peli"] . '">';
            $resultado .= '<img src="' . $row["path_poster"] . '" alt="">';
            $resultado .= '</a>';
            $resultado .= '</div>';

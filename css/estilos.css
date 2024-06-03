@@ -1242,3 +1242,144 @@ tbody{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 0.4rem;
 }
+
+/* detalle_peli.php */
+.main-detallepeli{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.detallepeli-poster {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30vh;
+}
+
+.detallepeli-poster img {
+    width: 300px;
+}
+
+.detallepeli-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-left: 30px;
+}
+
+.info-titulo{
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.info-titulo_titulo{
+    display: flex;
+}
+
+.info-titulo_titulo > p{
+    font-size: 2.2rem;
+    margin-left: 10px;
+}
+
+.info-detalles {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.info-detalles > p {
+    margin-right: 10px;
+}
+
+.info-botones {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.info-botones > div {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.info-boton{
+    border: none;
+    padding: 16px 20px;
+    background-color: #A105B6;
+    border-radius: 50%;
+    margin-right: 15px;
+    cursor: pointer;
+    color: #fff;
+    transition: background-color .4s ease;
+}
+
+.info-boton:hover {
+    background-color: #7c0989;
+}
+
+.boton-play > i {
+    font-size: 30px;
+}
+
+.info-descripcion{
+    margin: 10px 0;
+}
+
+.info-elenco{
+    display: flex;
+    margin: 10px 0;
+}
+
+.elenco-actores{
+    margin-left: 50px;
+}
+
+.star-rating {
+    direction: rtl;
+    display: inline-block;
+}
+.star-rating input {
+    display: none;
+}
+.star-rating label {
+    color: #bbb;
+    font-size: 25px;
+    padding: 0;
+    cursor: pointer;
+    display: inline-block;
+}
+.star-rating input:checked ~ label,
+.star-rating input:hover ~ label {
+    color: #f2b600;
+}
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #f2b600;
+}
+
+@media screen and (max-width: 830px){
+    .main-detallepeli{
+        flex-direction: column;
+        height: auto;
+    }
+
+    .detallepeli-poster{
+        height: auto;
+        margin-top: 10px;
+        margin-bottom: 40px;
+        width: 100%;
+    }
+
+    .detallepeli-poster img {
+        width: 200px;
+    }
+    
+
+
+}

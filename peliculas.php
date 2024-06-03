@@ -48,7 +48,7 @@
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo '<div class="pelicula-item">';
-                        echo '<a href="video-pelicula.php?id=' . $row["id_peli"] . '">';
+                        echo '<a href="detalle_peli.php?id_peli=' . $row["id_peli"] . '">';
                         echo '<img src="' . $row["path_poster"] . '" alt="">';
                         echo '</a>';
                         echo '</div>';

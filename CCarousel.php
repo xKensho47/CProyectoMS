@@ -178,7 +178,7 @@ class CCarousel{
                       $imagePath = $row["poster"];
                       echo "
                       <div class='x-carousel-movie'>
-                        <a href='info.php?id_peli=" . $row['id'] . "'>
+                        <a href='detalle_peli.php?id_peli=" . $row['id'] . "'>
                           <img src=' " . $imagePath . " ' alt='Movie Posters'>
                           <div class='x-carousel-rank'>
                             <p># " .$puesto. " </p>
