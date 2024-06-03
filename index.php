@@ -1,7 +1,8 @@
-<?php session_start(); ?>
+<?php session_start();
+include('conexion.php');
+?>
 <!doctype html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,23 +18,38 @@
 <body>
     <div class="container showcase">
         <?php
-        include("conexion.php");
-        include("comprobar_usuario.php");
+
+        include("header.php");
+        require_once("loginVerification.php");
         require_once("CCarousel.php");
 
         echo '
         <main class="main-principal">
-            <section class="container movies-container movies">';
-                $carouseles = new CCarousel($conexion);
+            <section class="movies-container movies" id="movies-container movies">';
 
-                $carouseles->generateMovieSection($conexion, 'Películas más valoradas');
-                $carouseles->generateMovieSection($conexion, 'Recientes');
+            $titles = array("Películas más valoradas", "Recientes", "Ver más tarde", "Ver de nuevo");
 
-            echo'
-            </section>
+            $carouseles = new CCarousel($conexion);
             
+            if (!verification()) {
+                for ($i = 0; $i < count($titles); $i++) {
+                    if ($i < count($titles) - 2) {
+                        $carouseles->generateMovieSection($conexion, $titles[$i]);
+                    }
+                }
+            } else {
+                foreach ($titles as $title) {
+                    $carouseles->generateMovieSection($conexion, $title);
+                }
+            }
+          
+        echo '
+            </section>
         </main>
         ';
+
+
+
         ?>
         <script src="script/jquery.js"></script>
         <script src="slick/slick.min.js"></script>
