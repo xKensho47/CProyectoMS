@@ -20,8 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `cineflow`
 --
-CREATE DATABASE cineflow;
-USE cineflow;
+
 -- --------------------------------------------------------
 
 --

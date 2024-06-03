@@ -16,48 +16,18 @@
     <div class="container">
         <?php
         include("conexion.php");
-        include("comprobar_usuario.php");
-        include("generate_carousel.php");
+        include("header.php");
+        require_once("CProfile.php");
+        require_once("CCarousel.php");        
 
         echo '
         <main class="main-profile">
             <section class="userinfo-container">
-                <aside class="profile-userinfo">
-                    <section class="userinfo-data">
-                        <article class="data-user">
-                            <aside class="user-container">
-                                <div class="user-avatar">
-                                    <img class="profile-img" src="/placeholder.svg" alt="User Avatar"/>
-                                </div>
-                                <div class="user-info">
-                                    <h1 class="info-name">John Doe</h1>
-                                    <p class="info-username">@johndoe</p>
-                                </div>
-                            </aside>
-                            <aside class="user-button">
-                                <a href="logout.php"><button class="button-logout">Logout</button></a>
-                            </aside>
-                        </article>
-                    </section>
-                    <section class="userinfo-genres">
-                        <h2 class="genres-tittle">Géneros favoritos</h2>
-                        <div class="user-genres">
-                            <span class="genres-favorites">Drama</span>
-                            <span class="genres-favorites">Acción</span>
-                            <span class="genres-favorites">Sci-Fi</span>
-                        </div>
-                    </section>
-                    <section class="userinfo-description">
-                        <h2 class="description-tittle">Sobre mí</h2>
-                        <p class="description-aboutme">
-                            Soy un apasionado del cine al que le encanta explorar nuevas películas y 
-                            compartir mis pensamientos con los demás. En mi tiempo libre, puedes encontrarme 
-                            seleccionando mi colección de favoritos, descubriendo gemas ocultas y discutiendo 
-                            los últimos lanzamientos con mis amigos.
-                        </p>
-                    </section>
-                </aside>
+            ';
+                $profile = new CProfile($conexion);
+                $profile->generateProfileData();
 
+                echo'
                 <aside class="profile-userinfo2">
                     <section class="userinfo2-container">
                         <article class="container-menu">
@@ -70,14 +40,15 @@
                             </nav>
                         </article>
                         <article class="userinfo2-screen">
-
                             <script src="script/profileCarousel.js"></script>
-
                             <section class="userinfo2-movies option" id="userinfo2-movies">
-                            ';
-                            generateMovieSection($conexion, 'Continuar viendo');
-                            generateMovieSection($conexion, 'Ver más tarde');
-                            generateMovieSection($conexion, 'Favoritas');
+                            ';                                
+                                $carouseles = new CCarousel($conexion);
+                                
+                                $carouseles->generateMovieSection($conexion, 'Continuar viendo');
+                                $carouseles->generateMovieSection($conexion, 'Ver más tarde');
+                                $carouseles->generateMovieSection($conexion, 'Favoritas');
+                            
                             
                             echo'
                             </section>
@@ -155,10 +126,12 @@
         </main>';
         ?>
         <script src="script/jquery.js"></script>
-        <script src="script/pop-ups.js"></script>
+        <script src="slick/slick.min.js"></script>
+        <script src="script/script.js"></script>
         <script src="script/botonTop.js"></script>
+
         <script src="script/profileOptions.js"></script>
-        <script src="script/profileCarousel.js"></script>
+        <!-- <script src="script/profileCarousel.js"></script> -->
     </div>
     <footer>
         <p>&copy; CineFlow 2024</p>
