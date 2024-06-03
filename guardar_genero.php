@@ -24,3 +24,5 @@ if(!empty($_POST['nombre']) && !empty($_POST['genero'])){
     }
 }
 header('Location: crud_peliculas.php');
+
+?>

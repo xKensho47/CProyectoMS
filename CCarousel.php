@@ -1,58 +1,58 @@
 <?php
-class CCarousel{
+class CCarousel {
     private $conexion;
     private string $titulo;
-    private $id_usuario;
+    private $id_cuenta;
 
     //GETTERS Y SETTERS
     //Getters
-    public function setConexion(object $conexion){
+    public function setConexion(object $conexion) {
         $this->conexion = $conexion;
     }
-    public function setTitulo(string $titulo):void{
+    public function setTitulo(string $titulo): void {
         $this->titulo = $titulo;
     }
-    public function setIDUsuario($id_usuario){
-        $this->id_usuario = $id_usuario;
+    public function setIDCuenta($id_cuenta) {
+        $this->id_cuenta = $id_cuenta;
     }
     //Setters
-    public function getConexion(){
+    public function getConexion() {
         return $this->conexion;
     }
-    public function getTitulo():string{
+    public function getTitulo(): string {
         return $this->titulo;
     }
-    public function getIDusuario(){
-        return $this->id_usuario;
+    public function getIDCuenta() {
+        return $this->id_cuenta;
     }
     //CONSTRUCTOR
-    function __construct(object $conexion){
+    function __construct(object $conexion) {
         $this->conexion = $conexion;
-        if (isset($_SESSION['id_usuario'])) {
-            $this->id_usuario = $_SESSION['id_usuario'];
+        if (isset($_SESSION['id_cuenta'])) {
+            $this->id_cuenta = $_SESSION['id_cuenta'];
         }
     }
 
     //METODOS
     // Método para obtener el tipo de usuario
-    private function obtenerTipoUsuario($id_usuario){
+    private function obtenerTipoUsuario($id_cuenta) {
         $tipo_usuario = "";
         // Preparar la consulta SQL para obtener el tipo de usuario
         $query = 
         "SELECT 
             t.tipo_usuario 
         FROM 
-            usuarios u 
+            cuenta_usuario cu 
         INNER JOIN 
-            tipo_usuario t 
-        ON 
-            u.id_tipo = t.id_tipo 
+            usuarios u ON cu.id_usuario = u.id_usuario
+        INNER JOIN 
+            tipo_usuario t ON u.id_tipo = t.id_tipo 
         WHERE 
-            u.id_usuario = ?";
+            cu.id_cuenta = ?";
 
         // Preparar y ejecutar la declaración
         $stmt = $this->conexion->prepare($query);
-        $stmt->bind_param('i', $id_usuario);
+        $stmt->bind_param('i', $id_cuenta);
         $stmt->execute();
         $stmt->store_result();
 
@@ -68,44 +68,65 @@ class CCarousel{
         $stmt->close();
         return $tipo_usuario;
     }
-    public function resultCarousel($conexion, $title){
+
+    public function resultCarousel($conexion, $title) {
         $q = "";
-        if($this->obtenerTipoUsuario($this->id_usuario) == "Normal"){
-            switch($title){
+        if ($this->obtenerTipoUsuario($this->id_cuenta) == "Normal") {
+            switch ($title) {
                 case 'Continuar viendo':
-                    $q =
-                    "
-
+                    $q = "
+                    SELECT 
+                        peli.id_peli AS id,
+                        peli.path_poster AS poster,
+                        peli.titulo AS titulo
+                    FROM 
+                        peliculas_continuar_viendo cv
+                    INNER JOIN 
+                        peliculas peli ON cv.id_peli = peli.id_peli
+                    WHERE 
+                        cv.id_cuenta = ?
                     ";
-                
                     break;
-    
+
                 case 'Ver más tarde':
-                    $q =
-                    "
+                    $q = "
+                    SELECT 
+                        peli.id_peli AS id,
+                        peli.path_poster AS poster,
+                        peli.titulo AS titulo
+                    FROM 
+                        mas_tarde mt
+                    INNER JOIN 
+                        peliculas peli ON mt.id_peli = peli.id_peli
+                    WHERE 
+                        mt.id_cuenta = ?
+                    ";
+                    break;
 
-                    ";
-                
-                    break;
-    
                 case 'Favoritas':
-                    $q =
-                    "
-                        
+                    $q = "
+                    SELECT 
+                        peli.id_peli AS id,
+                        peli.path_poster AS poster,
+                        peli.titulo AS titulo
+                    FROM 
+                        peli_favorita pf
+                    INNER JOIN 
+                        peliculas peli ON pf.id_peli = peli.id_peli
+                    WHERE 
+                        pf.id_cuenta = ?
                     ";
-                
                     break;
-                
+
                 default:
                     echo 'Datos no encontrados';
                     return false;
             }
-        }
-        else{
-            switch($title){
+        } else {
+            switch ($title) {
                 case 'Películas más valoradas':
-                    $q =
-                    "SELECT 
+                    $q = "
+                    SELECT 
                         val.id_peli AS id,
                         val.calificacion AS calificacion,
                         peli.path_poster AS poster,
@@ -122,13 +143,11 @@ class CCarousel{
                         val.calificacion DESC
                     LIMIT 10;
                     ";
-    
-                
                     break;
-    
+
                 case 'Recientes':
-                    $q =
-                    "SELECT 
+                    $q = "
+                    SELECT 
                         peli.id_peli AS id,
                         peli.path_poster AS poster,
                         peli.titulo AS titulo,
@@ -139,26 +158,30 @@ class CCarousel{
                         peli.fecha_subida DESC
                     LIMIT 10;
                     ";
-                
                     break;
-                
+
                 default:
                     echo 'Datos no encontrados';
                     return false;
             }
         }
 
-        $result = mysqli_query($conexion, $q);
+        $stmt = $conexion->prepare($q);
+        if ($this->obtenerTipoUsuario($this->id_cuenta) == "Normal") {
+            $stmt->bind_param('i', $this->id_cuenta);
+        }
+        $stmt->execute();
+        $result = $stmt->get_result();
 
         if (!$result) {
-            echo "Error en la consulta: " . mysqli_error($conexion);
+            echo "Error en la consulta: " . $conexion->error;
             return false;
         }
-    
+
         return $result;
     }
 
-    public function generateMovieSection($conexion, $title){
+    public function generateMovieSection($conexion, $title) {
         echo "
         <section class='movies-container x-carousel' id='movies-container-$title'>
           <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
@@ -173,7 +196,7 @@ class CCarousel{
                 $result = $this->resultCarousel($conexion, $title);
                 /* Ordenar por puesto */
                 $puesto = 1;
-                if ($result->num_rows > 0) {
+                if ($result && $result->num_rows > 0) {
                   while ($row = $result->fetch_assoc()) {
                       $imagePath = $row["poster"];
                       echo "
@@ -199,6 +222,5 @@ class CCarousel{
         </section>
         ";
     }
-        
 }
 ?>

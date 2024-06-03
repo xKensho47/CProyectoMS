@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php 
+session_start(); 
+include("conexion.php");
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,19 +19,21 @@
 <body>
     <div class="container">
         <?php
-        include("conexion.php");
         include("header.php");
         require_once("CProfile.php");
-        require_once("CCarousel.php");        
-
-        echo '
+        require_once("CCarousel.php");
+        ?>
         <main class="main-profile">
             <section class="userinfo-container">
-            ';
-                $profile = new CProfile($conexion);
-                $profile->generateProfileData();
+                <aside class="profile-userinfo">
+                    <?php
+                    /* PRIMER ASIDE */
+                    $profile = new CProfile($conexion);
 
-                echo'
+                    $profile->generateProfileData($conexion);
+
+                    ?>                    
+                </aside>
                 <aside class="profile-userinfo2">
                     <section class="userinfo2-container">
                         <article class="container-menu">
@@ -40,81 +46,29 @@
                             </nav>
                         </article>
                         <article class="userinfo2-screen">
-                            <script src="script/profileCarousel.js"></script>
                             <section class="userinfo2-movies option" id="userinfo2-movies">
-                            ';                                
+                                <?php
                                 $carouseles = new CCarousel($conexion);
-                                
                                 $carouseles->generateMovieSection($conexion, 'Continuar viendo');
                                 $carouseles->generateMovieSection($conexion, 'Ver más tarde');
                                 $carouseles->generateMovieSection($conexion, 'Favoritas');
-                            
-                            
-                            echo'
+                                ?>
                             </section>
                             <section class="userinfo2-friends option" id="userinfo2-friends">
                                 <section class="friends-container">
                                     <article class="friends-grid-container">
-                                        <div class="friends-grid-item">
-                                            prueba
-                                        </div>
-                                        <div class="friends-grid-item">
-                                        
-                                        </div>
-                                        <div class="friends-grid-item">
-                                        
-                                        </div>
-                                        <div class="friends-grid-item">
-                                        
-                                        </div>
-                                        <div class="friends-grid-item">
-                                        
-                                        </div>
-                                        <div class="friends-grid-item">
-                                        
-                                        </div>
-                                        <div class="friends-grid-item">
-                                        
-                                        </div>
-                                        <div class="friends-grid-item">
-                                        
-                                        </div>
-                                        <div class="friends-grid-item">
-                                        
-                                        </div>
+                                        <?php
+                                        $profile->FriendsList($conexion, $id_cuenta);
+                                        ?>
                                     </article>
                                 </section>
                             </section>
                             <section class="userinfo2-discover option" id="userinfo2-discover">
                                 <section class="discover-container">
                                     <article class="discover-grid-container">
-                                        <div class="discover-grid-item">
-                                            prueba
-                                        </div>
-                                        <div class="discover-grid-item">
-                                        
-                                        </div>
-                                        <div class="discover-grid-item">
-                                        
-                                        </div>
-                                        <div class="discover-grid-item">
-                                        
-                                        </div>
-                                        <div class="discover-grid-item">
-                                        
-                                        </div>
-                                        <div class="discover-grid-item">
-                                        
-                                        </div>
-                                        <div class="discover-grid-item">
-                                        
-                                        </div>
-                                        <div class="discover-grid-item">
-                                        
-                                        </div>
-                                        <div class="discover-grid-item">
-                                        
-                                        </div>
+                                        <?php
+                                        //$profile->discoverFriends($conexion);
+                                        ?>
                                     </article>
                                 </section>
                             </section>
@@ -123,19 +77,23 @@
                 </aside>
                 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
             </section>
-        </main>';
-        ?>
-        <script src="script/jquery.js"></script>
-        <script src="slick/slick.min.js"></script>
-        <script src="script/script.js"></script>
-        <script src="script/botonTop.js"></script>
-
-        <script src="script/profileOptions.js"></script>
-        <!-- <script src="script/profileCarousel.js"></script> -->
+        </main>
     </div>
     <footer>
         <p>&copy; CineFlow 2024</p>
     </footer>
     
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="script/jquery.js"></script>
+    <script src="slick/slick.min.js"></script>
+    <script src="script/script.js"></script>
+    <script src="script/botonTop.js"></script>
+    <script src="script/profileOptions.js"></script>
+    <script src="script/agregarAmigos.js"></script>
+    <script src="script/profileEdit.js"></script>
 </body>
 </html>
+
+<?php include("editarPerfil_modal.php") ?>
