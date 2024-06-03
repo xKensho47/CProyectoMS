@@ -31,7 +31,7 @@
 
                     <div class="mb-3">
                         <label for="Path_poster" class="form-label">Path_poster:</label>
-                        <input type="text" name="Path_poster" id="Path_poster" class="form-control" required>
+                        <input type="file" name="Path_poster" id="Path_poster" class="form-control"  required>
                     </div>
                     <!-- TRAE TODOS LOS GENEROS -->
                     <div class="row mb-3">

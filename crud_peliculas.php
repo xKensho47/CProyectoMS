@@ -196,8 +196,8 @@
         </div>
     </main>
 
-    <footer>
-        <p>&copy; CineFlow 2024</p>
+    <footer >
+        <p class="p">&copy; CineFlow 2024</p>
     </footer>
 </body>
 

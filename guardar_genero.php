@@ -3,6 +3,7 @@ include("conexion.php");
 
 if(!empty($_POST['nombre']) && !empty($_POST['genero'])){
 #mensaje de error
+
 }else{
 
     if (!empty($_POST['nombre'])) { // Verifica si se ha enviado un nombre
@@ -22,5 +23,4 @@ if(!empty($_POST['nombre']) && !empty($_POST['genero'])){
         #eliminar el genero
     }
 }
-
 header('Location: crud_peliculas.php');
