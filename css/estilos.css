@@ -786,6 +786,7 @@ hr {
 }
 .carousel-slide{
     min-height: inherit;
+    max-width: 90%;
 }
 .x-carousel-movie{
     flex-direction: column;
