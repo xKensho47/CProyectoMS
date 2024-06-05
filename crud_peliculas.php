@@ -130,11 +130,13 @@
                 <?php include 'nuevo_modal_actor.php'; ?>
                 <?php include 'nuevo_modal_director.php'; ?>
                 <?php include 'editar_modal.php'; ?>
+                <?php include 'elimina_modal.php'; ?>
 
 
                 <script>
                     
                     let editaModal = document.getElementById('editaModal')
+                    let eliminaModal = document.getElementById('eliminaModal')
 
                     editaModal.addEventListener('shown.bs.modal', event => {
 
@@ -178,6 +180,12 @@
 
                             }).catch(err => console.log(err))
 
+                    })
+
+                    eliminaModal.addEventListener('shown.bs.modal', event => {
+                        let button = event.relatedTarget
+                        let id = button.getAttribute('data-bs-id')
+                        eliminaModal.querySelector('.modal-footer #id').value = id
                     })
                 </script>
 
