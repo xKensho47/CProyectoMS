@@ -471,6 +471,10 @@ hr {
 
     overflow: hidden;
 }
+.title-profile{
+    color: var(--color-principal);
+    text-align: center;
+}
 .tittle{
     color: var(--color-principal);
     padding-left: 2.5%;
@@ -525,8 +529,25 @@ hr {
     border: 1px solid var(--color-popupborder);
     border-radius: 50%;
     padding: 1.4%;
-    
+
+    width: 12.5vh;
     height: 12.5vh;
+
+    overflow: hidden;
+}
+.user-avatar img {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: 25vh;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 /* Nombre y Username */
@@ -561,7 +582,7 @@ hr {
 .user-button {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-direction: column;
     width: 50%;
     min-height: 25vh;
