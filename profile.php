@@ -94,6 +94,7 @@ include("conexion.php");
     <script src="script/profileOptions.js"></script>
     <script src="script/agregarAmigos.js"></script>
     <script src="script/profileEdit.js"></script>
+    <script src="script/editarSobreMi.js"></script>
 </body>
 </html>
 

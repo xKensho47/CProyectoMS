@@ -485,6 +485,8 @@ hr {
     align-items: center;
     justify-content: space-evenly;
     padding: 1.25%;
+
+    min-height: 80vh;
 }
 /* PRIMER ASIDE */
 /* Información de usuario */
@@ -606,9 +608,36 @@ hr {
     top: 2vh;
     padding: 1.5%;
 }
+.modifAboutMe{
+    width: 100%;
+    margin: 0 auto;
+}
+
 .description-aboutme {
     color: var(--color-text);
     padding: 1% 5%;
+}
+textarea{
+    font-size: 1.3rem;
+    border-radius: 5px;
+    background: transparent;
+    color: var(--blanco);
+    resize: none;
+
+    width: 95%;
+}
+input[type="submit"]{
+    background-color: var(--color-principal);
+    color: var(--blanco);
+    font-size: 1.5rem;
+    border-radius: 5px;
+    
+    margin-bottom: 0%;
+    margin: 2% auto;    
+    padding: 1%;
+
+    border: none;
+    outline: none;
 }
 
 /* SEGUNDO ASIDE */
@@ -657,6 +686,7 @@ hr {
     text-transform: uppercase;
     border: solid 1.5px var(--color-principal);
     position: relative;
+    height: 3vh;
     width: 100%;
 
     color: var(--color-text);
@@ -676,7 +706,7 @@ hr {
     display: block;
 
     width: 100%;
-    height: 100%;
+    height: inherit;
 
     cursor: pointer;
 }

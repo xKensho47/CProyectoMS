@@ -50,31 +50,40 @@ class CProfile
 
             // Generar el HTML con los datos del usuario, incluyendo el campo about_me
             echo "
-                <section class='userinfo-data'>
-                    <article class='data-user'>
-                        <aside class='user-container'>
-                            <div class='user-avatar'>
-                                <img class='profile-img' src='" . $row['id_img'] . "' alt='User Avatar'/>
-                            </div>
-                            <div class='user-info'>
-                                <h1 class='info-name'>" . $row['nombre_usuario'] . "</h1>
-                            </div>
-                        </aside>
-                        <aside class='user-button'>
-                            <a href='logout.php'><button class='button-logout'>Logout</button></a>
-                            <div class='col-auto mt-5 animate-from-bottom'>
-                                <a href='#' class='btn btn-color fs-5' data-bs-toggle='modal' data-bs-target='#editaModal' data-bs-id=' "; echo $row['id_cuenta']; echo" '><i class='fa-solid fa-circle-plus'></i> Editar Perfil</a>
-                            </div>
+            <section class='userinfo-data'>
+                <article class='data-user'>
+                    <aside class='user-container'>
+                        <div class='user-avatar'>
+                            <img class='profile-img' src='" . $row['id_img'] . "' alt='User Avatar'/>
+                        </div>
+                        <div class='user-info'>
+                            <h1 class='info-name'>" . $row['nombre_usuario'] . "</h1>
+                        </div>
+                    </aside>
+                    <aside class='user-button'>
+                        <a href='logout.php'><button class='button-logout'>Logout</button></a>
+                        <div class='col-auto mt-5 animate-from-bottom'>
+                            <a href='#' class='btn btn-color fs-5' data-bs-toggle='modal' data-bs-target='#editaModal' data-bs-id=' "; echo $row['id_cuenta']; echo" '>
+                                <i class='fa-solid fa-circle-plus'>
+                                </i> Editar Perfil
+                            </a>
+                        </div>
 
-                        </aside>
-                    </article>
-                </section>
-                <section class='userinfo-description'>
-                    <h2 class='description-tittle'>Sobre mí</h2>
-                    <p class='description-aboutme'>
-                        " . $row['about_me'] . "
-                    </p>
-                </section>
+                    </aside>
+                </article>
+            </section>
+            <section class='userinfo-description'>
+                <form id='modificaAboutMe' class='modifAboutMe' method='POST' action='editarSobreMi.php'>
+                    <label class='description-tittle'>
+                        Sobre Mí
+                        <label style='font-size: 1rem;'> ------->Modificar: <input type='checkbox' id='modifAboutMeCheckbox' name='modifAboutMeCheckbox'/></label>
+                        <input type='submit' name='submit-modificacion' value='Registrar Modificación'>
+                        <textarea readonly class='description-aboutme' name='aboutMeRead' id='aboutMeRead' cols='30' rows='10' required> ". $row['about_me']. "</textarea>
+                        <textarea class='description-aboutme d-none' name='about_me' id='aboutMeMod' cols='30' rows='10' placeholder='Escriba aquí...'></textarea>
+                        <input type='hidden' name='id_cuenta' value=' ". $id_cuenta ." '>
+                    </label>
+                </form>
+            </section>
             ";
         } else {
             echo "No se encontraron datos del usuario.";
