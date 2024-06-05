@@ -471,6 +471,10 @@ hr {
 
     overflow: hidden;
 }
+.title-profile{
+    color: var(--color-principal);
+    text-align: center;
+}
 .tittle{
     color: var(--color-principal);
     padding-left: 2.5%;
@@ -485,6 +489,8 @@ hr {
     align-items: center;
     justify-content: space-evenly;
     padding: 1.25%;
+
+    min-height: 80vh;
 }
 /* PRIMER ASIDE */
 /* Información de usuario */
@@ -523,8 +529,25 @@ hr {
     border: 1px solid var(--color-popupborder);
     border-radius: 50%;
     padding: 1.4%;
-    
+
+    width: 12.5vh;
     height: 12.5vh;
+
+    overflow: hidden;
+}
+.user-avatar img {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: 25vh;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 /* Nombre y Username */
@@ -559,7 +582,7 @@ hr {
 .user-button {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-direction: column;
     width: 50%;
     min-height: 25vh;
@@ -606,9 +629,36 @@ hr {
     top: 2vh;
     padding: 1.5%;
 }
+.modifAboutMe{
+    width: 100%;
+    margin: 0 auto;
+}
+
 .description-aboutme {
     color: var(--color-text);
     padding: 1% 5%;
+}
+textarea{
+    font-size: 1.3rem;
+    border-radius: 5px;
+    background: transparent;
+    color: var(--blanco);
+    resize: none;
+
+    width: 95%;
+}
+input[type="submit"]{
+    background-color: var(--color-principal);
+    color: var(--blanco);
+    font-size: 1.5rem;
+    border-radius: 5px;
+    
+    margin-bottom: 0%;
+    margin: 2% auto;    
+    padding: 1%;
+
+    border: none;
+    outline: none;
 }
 
 /* SEGUNDO ASIDE */
@@ -657,6 +707,7 @@ hr {
     text-transform: uppercase;
     border: solid 1.5px var(--color-principal);
     position: relative;
+    height: 3vh;
     width: 100%;
 
     color: var(--color-text);
@@ -676,7 +727,7 @@ hr {
     display: block;
 
     width: 100%;
-    height: 100%;
+    height: inherit;
 
     cursor: pointer;
 }
@@ -1010,7 +1061,7 @@ footer {
 }
 .peliculas-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 20px;
 }
 .pelicula-item {

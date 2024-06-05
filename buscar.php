@@ -73,7 +73,7 @@
         <script src="script/botonTop.js"></script>
         <script>
                 $('#busca').val("<?= $busqueda ?>");
-
+                $("#genero_seleccionado").val("<?= $genero; ?>");
         </script>
     
     <footer>

@@ -1,50 +1,44 @@
 <?php
-// Verificar si se han enviado los datos del formulario
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validar los datos del formulario
-    $nuevo_nombre_usuario = trim($_POST["nombre_usuario"]);
-    $nuevo_email = trim($_POST["email"]);
-    $nueva_contrasena = trim($_POST["password"]);
+session_start();
+include("conexion.php");
 
-    // Validar que los campos no estén vacíos
-    if (empty($nuevo_nombre_usuario) || empty($nuevo_email) || empty($nueva_contrasena)) {
-        echo "Todos los campos son obligatorios.";
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $id_cuenta = $_POST['id_cuenta'];
+    $nombre_usuario = $_POST['nombre_usuario'];
+    $contraseña = $_POST['contraseña'];
+    $id_img = $_POST['id_img'];
+
+    // Encriptar la contraseña antes de guardarla
+    $contraseña_hashed = password_hash($contraseña, PASSWORD_DEFAULT);
+
+    // Verificar si el nombre de usuario ya existe en la base de datos
+    $sql_check_user = "SELECT id_cuenta FROM cuenta_usuario WHERE nombre_usuario = ? AND id_cuenta != ?";
+    $stmt_check_user = $conexion->prepare($sql_check_user);
+    $stmt_check_user->bind_param('si', $nombre_usuario, $id_cuenta);
+    $stmt_check_user->execute();
+    $result_check_user = $stmt_check_user->get_result();
+
+    if ($result_check_user->num_rows > 0) {
+        // Si el nombre de usuario ya existe, mostrar una alerta y redireccionar
+        echo "<script>alert('Ya existe otro usuario con ese nombre.'); window.location.href = 'profile.php';</script>";
         exit();
-    }
-
-    // Aquí puedes agregar más validaciones, como la longitud mínima de la contraseña o el formato del correo electrónico
-
-    // Conectar a la base de datos (reemplaza los valores con los de tu configuración)
-    $servername = "localhost";
-    $username = "nombre_usuario";
-    $password = "contraseña";
-    $dbname = "nombre_base_de_datos";
-
-    $conexion = new mysqli($servername, $username, $password, $dbname);
-
-    // Verificar la conexión
-    if ($conexion->connect_error) {
-        die("Error de conexión: " . $conexion->connect_error);
-    }
-
-    // Preparar la consulta para actualizar el perfil
-    $consulta = "UPDATE cuenta_usuario SET nombre_usuario=?, email=?, contraseña=? WHERE id_cuenta=?";
-
-    // Preparar la declaración
-    $stmt = $conexion->prepare($consulta);
-
-    // Enlazar los parámetros
-    $stmt->bind_param("sssi", $nuevo_nombre_usuario, $nuevo_email, $nueva_contrasena, $_SESSION['id_cuenta']);
-
-    // Ejecutar la declaración
-    if ($stmt->execute()) {
-        echo "Perfil actualizado correctamente.";
     } else {
-        echo "Error al actualizar el perfil: " . $stmt->error;
+        // Si el nombre de usuario no existe, actualizar los datos en la base de datos
+        $sql = "UPDATE cuenta_usuario SET nombre_usuario = ?, contraseña = ?, id_img = ? WHERE id_cuenta = ?";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param('ssii', $nombre_usuario, $contraseña_hashed, $id_img, $id_cuenta);
+
+        if ($stmt->execute()) {
+            header("Location: profile.php");
+            exit();
+        } else {
+            echo "Error: " . $sql . "<br>" . $conexion->error;
+        }
+
+        $stmt->close();
     }
 
-    // Cerrar la conexión y la declaración
-    $stmt->close();
+    $stmt_check_user->close();
     $conexion->close();
 }
 ?>
