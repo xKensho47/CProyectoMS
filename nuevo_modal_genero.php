@@ -2,6 +2,7 @@
 $sqlGenero = "SELECT id_genero, nombre_genero FROM genero";
 $generos = $conexion->query($sqlGenero);
 ?>
+
 <div class="modal fade " id="nuevoModalGenero" tabindex="-1" aria-labelledby="nuevoModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg ">
         <div class="modal-content">
