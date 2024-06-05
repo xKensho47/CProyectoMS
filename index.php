@@ -48,8 +48,6 @@ include('conexion.php');
         </main>
         ';
 
-
-
         ?>
         <script src="script/jquery.js"></script>
         <script src="slick/slick.min.js"></script>

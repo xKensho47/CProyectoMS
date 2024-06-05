@@ -41,5 +41,5 @@ if (isset($_SESSION['id_cuenta'])) {
 }
 ?>
 <script>
-    history.replaceState(null, null, location.pathname);
+    // history.replaceState(null, null, location.pathname);
 </script>
