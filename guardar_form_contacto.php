@@ -2,20 +2,18 @@
 
 include("conexion.php");
 
-	if (isset($_POST['id_usuario'])) {
+	if (isset($_POST['id_cuenta'])) {
  		
- 		$id_usuario = $conexion->real_escape_string($_POST['id_usuario']);
+ 		$id_cuenta = $conexion->real_escape_string($_POST['id_cuenta']);
  		$asunto = $conexion->real_escape_string($_POST['asunto']);
 		$mensaje = $conexion->real_escape_string($_POST['mensaje']);
 		$mensaje_asunto = $asunto .' : '. $mensaje;
         
 		$sql = "INSERT INTO contacto (id_cuenta,mensaje)
-				VALUES ('$id_usuario', '$mensaje_asunto')";
+				VALUES ('$id_cuenta', '$mensaje_asunto')";
 
 		$conexion->query($sql);
 
 		header('Location:index.php');
-
 	}
-
 ?>

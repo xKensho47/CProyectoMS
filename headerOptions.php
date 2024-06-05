@@ -23,7 +23,7 @@ if (!function_exists('mostrarHeader')) {
                                     <li class="lista"><a href="crud_directores.php">Director</a></li>
                                 </ul> -->
                             </li>
-                            <li class="menu__item"><a href="profile.php">Perfil</a></li>
+                            <li class="menu__item"><a href="admin_usuarios.php">Usuarios</a></li>
                         </ul>
                     </nav>
                 </header>
