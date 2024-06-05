@@ -21,7 +21,7 @@ class CProfile
     {
         return $this->id_cuenta;
     }
-    
+
     // CONSTRUCTOR
     function __construct(object $conexion)
     {
@@ -36,8 +36,8 @@ class CProfile
     {
         $id_cuenta = $_SESSION['id_cuenta'];
 
-        // Consulta para obtener los datos del usuario, incluyendo el campo about_me
-        $q = "SELECT nombre_usuario, id_img, about_me FROM cuenta_usuario WHERE id_cuenta = ?";
+        // Consulta para obtener los datos del usuario, incluyendo el campo about_me y la ruta completa de la imagen
+        $q = "SELECT cu.nombre_usuario, cu.about_me, ip.img FROM cuenta_usuario cu JOIN img_perfil ip ON cu.id_img = ip.id_img WHERE cu.id_cuenta = ?";
         $stmt = $conexion->prepare($q);
         $stmt->bind_param('i', $id_cuenta);
         $stmt->execute();
@@ -48,29 +48,34 @@ class CProfile
             // Obtener los datos del usuario
             $row = $result->fetch_assoc();
 
-            // Generar el HTML con los datos del usuario, incluyendo el campo about_me
+            // Generar el HTML con los datos del usuario, incluyendo la imagen de perfil y el campo about_me
             echo "
             <section class='userinfo-data'>
-                <article class='data-user'>
+                <h1 class='title-profile'> PERFIL DE USUARIO </h1>
+                <article class='data-user'>                    
                     <aside class='user-container'>
                         <div class='user-avatar'>
-                            <img class='profile-img' src='" . $row['id_img'] . "' alt='User Avatar'/>
+                            <img class='profile-img' src='" . $row['img'] . "' alt='User Avatar'/>
                         </div>
                         <div class='user-info'>
-                            <h1 class='info-name'>" . $row['nombre_usuario'] . "</h1>
+                            <h2 class='info-name'> @" . $row['nombre_usuario'] . "</h2>
                         </div>
                     </aside>
                     <aside class='user-button'>
-                        <a href='logout.php'><button class='button-logout'>Logout</button></a>
                         <div class='col-auto mt-5 animate-from-bottom'>
-                            <a href='#' class='btn btn-color fs-5' data-bs-toggle='modal' data-bs-target='#editaModal' data-bs-id=' "; echo $row['id_cuenta']; echo" '>
-                                <i class='fa-solid fa-circle-plus'>
-                                </i> Editar Perfil
+                            <a href='#' class='btn btn-color fs-5' data-bs-toggle='modal' data-bs-target='#editaModal' data-bs-id='" . $id_cuenta . "'>
+                                <i class='fa-solid fa-circle-plus'></i> Editar Perfil
                             </a>
                         </div>
-
+                        <div class='col-auto mt-5 animate-from-bottom'>
+                            <a href='logout.php'>
+                                <button class='button-logout'>Logout</button>
+                            </a>
+                        </div>
                     </aside>
                 </article>
+            </section>
+            <section>
             </section>
             <section class='userinfo-description'>
                 <form id='modificaAboutMe' class='modifAboutMe' method='POST' action='editarSobreMi.php'>
@@ -78,9 +83,9 @@ class CProfile
                         Sobre Mí
                         <label style='font-size: 1rem;'> ------->Modificar: <input type='checkbox' id='modifAboutMeCheckbox' name='modifAboutMeCheckbox'/></label>
                         <input type='submit' name='submit-modificacion' value='Registrar Modificación'>
-                        <textarea readonly class='description-aboutme' name='aboutMeRead' id='aboutMeRead' cols='30' rows='10' required> ". $row['about_me']. "</textarea>
+                        <textarea readonly class='description-aboutme' name='aboutMeRead' id='aboutMeRead' cols='30' rows='10' required> " . $row['about_me'] . "</textarea>
                         <textarea class='description-aboutme d-none' name='about_me' id='aboutMeMod' cols='30' rows='10' placeholder='Escriba aquí...'></textarea>
-                        <input type='hidden' name='id_cuenta' value=' ". $id_cuenta ." '>
+                        <input type='hidden' name='id_cuenta' value='" . $id_cuenta . "'>
                     </label>
                 </form>
             </section>
@@ -91,6 +96,7 @@ class CProfile
 
         $stmt->close();
     }
+
 
     public function friendsList($conexion)
     {
@@ -166,7 +172,7 @@ class CProfile
         $stmt_usuario->execute();
         $result_usuario = $stmt_usuario->get_result();
         $generos_usuario = [];
-        
+
         while ($row_usuario = $result_usuario->fetch_assoc()) {
             $generos_usuario[] = $row_usuario['id_genero'];
         }
