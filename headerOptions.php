@@ -10,6 +10,7 @@ if (!function_exists('mostrarHeader')) {
                     </a>
                     <form class="barra-busqueda" id="busqueda" action="buscar.php" method="get" autocomplete="off">
                         <input class="input-busqueda" type="search" id="busca" name="buscar" placeholder="Buscar..." />
+                        <input id="genero_seleccionado" name="genero_buscar" type="hidden" value=""/>
                     </form>
                     <nav class="menu">
                         <ul class="menu__lista">
@@ -38,6 +39,7 @@ if (!function_exists('mostrarHeader')) {
                     </a>
                     <form class="barra-busqueda" id="busqueda" action="buscar.php" method="get" autocomplete="off">
                         <input class="input-busqueda" type="search" id="busca" name="buscar" placeholder="Buscar..." />
+                        <input id="genero_seleccionado" name="genero_buscar" type="hidden" value=""/>
                     </form>
                     <nav class="menu">
                         <ul class="menu__lista">

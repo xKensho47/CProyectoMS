@@ -68,6 +68,11 @@
         <script src="slick/slick.min.js"></script>
         <script src="script/script.js"></script>
         <script src="script/botonTop.js"></script>
+        <script>
+            $(document).ready(function(){
+            $("#genero_seleccionado").val("<?= $nombre_genero; ?>");
+            });
+        </script> 
 
     </div>
     <footer>
