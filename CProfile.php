@@ -32,70 +32,100 @@ class CProfile
     }
 
     // METODOS
-    public function generateProfileData($conexion)
-    {
-        $id_cuenta = $_SESSION['id_cuenta'];
-
-        // Consulta para obtener los datos del usuario, incluyendo el campo about_me y la ruta completa de la imagen
-        $q = "SELECT cu.nombre_usuario, cu.about_me, ip.img FROM cuenta_usuario cu JOIN img_perfil ip ON cu.id_img = ip.id_img WHERE cu.id_cuenta = ?";
-        $stmt = $conexion->prepare($q);
-        $stmt->bind_param('i', $id_cuenta);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        // Verificar si se encontraron resultados
-        if ($result->num_rows > 0) {
-            // Obtener los datos del usuario
-            $row = $result->fetch_assoc();
-
-            // Generar el HTML con los datos del usuario, incluyendo la imagen de perfil y el campo about_me
-            echo "
-            <section class='userinfo-data'>
-                <h1 class='title-profile'> PERFIL DE USUARIO </h1>
-                <article class='data-user'>                    
-                    <aside class='user-container'>
-                        <div class='user-avatar'>
-                            <img class='profile-img' src='" . $row['img'] . "' alt='User Avatar'/>
-                        </div>
-                        <div class='user-info'>
-                            <h2 class='info-name'> @" . $row['nombre_usuario'] . "</h2>
-                        </div>
-                    </aside>
-                    <aside class='user-button'>
-                        <div class='col-auto mt-5 animate-from-bottom'>
-                            <a href='#' class='btn btn-color fs-5' data-bs-toggle='modal' data-bs-target='#editaModal' data-bs-id='" . $id_cuenta . "'>
-                                <i class='fa-solid fa-circle-plus'></i> Editar Perfil
-                            </a>
-                        </div>
-                        <div class='col-auto mt-5 animate-from-bottom'>
-                            <a href='logout.php'>
-                                <button class='button-logout'>Logout</button>
-                            </a>
-                        </div>
-                    </aside>
-                </article>
-            </section>
-            <section>
-            </section>
-            <section class='userinfo-description'>
-                <form id='modificaAboutMe' class='modifAboutMe' method='POST' action='editarSobreMi.php'>
-                    <label class='description-tittle'>
-                        Sobre Mí
-                        <label style='font-size: 1rem;'> ------->Modificar: <input type='checkbox' id='modifAboutMeCheckbox' name='modifAboutMeCheckbox'/></label>
-                        <input type='submit' name='submit-modificacion' value='Registrar Modificación'>
-                        <textarea readonly class='description-aboutme' name='aboutMeRead' id='aboutMeRead' cols='30' rows='10' required> " . $row['about_me'] . "</textarea>
-                        <textarea class='description-aboutme d-none' name='about_me' id='aboutMeMod' cols='30' rows='10' placeholder='Escriba aquí...'></textarea>
-                        <input type='hidden' name='id_cuenta' value='" . $id_cuenta . "'>
-                    </label>
-                </form>
-            </section>
-            ";
-        } else {
-            echo "No se encontraron datos del usuario.";
-        }
-
-        $stmt->close();
+    public function generateProfileData()
+{
+    // Asegurarse de que la sesión esté iniciada y el id_cuenta esté establecido
+    if (!isset($_SESSION['id_cuenta'])) {
+        echo "No se ha iniciado sesión.";
+        return;
     }
+
+    $id_cuenta = $_SESSION['id_cuenta'];
+
+    // Verificar si el id_cuenta es válido
+    if (empty($id_cuenta) || !is_numeric($id_cuenta)) {
+        echo "ID de cuenta no válido.";
+        return;
+    }
+
+    // Consulta para obtener los datos del usuario, incluyendo el campo about_me y la imagen de perfil
+    $q = 
+    "SELECT 
+        cu.nombre_usuario, cu.about_me, ip.img 
+    FROM 
+        cuenta_usuario cu 
+    JOIN 
+        img_perfil ip 
+    ON 
+        cu.id_img = ip.id_img 
+    WHERE 
+        cu.id_cuenta = ?
+    ";
+
+    $stmt = $this->conexion->prepare($q);
+    if (!$stmt) {
+        echo "Error de preparación de consulta: " . $this->conexion->error;
+        return;
+    }
+
+    $stmt->bind_param('i', $id_cuenta);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Verificar si se encontraron resultados
+    if ($result->num_rows > 0) {
+        // Obtener los datos del usuario
+        $row = $result->fetch_assoc();
+
+        // Generar el HTML con los datos del usuario, incluyendo la imagen de perfil y el campo about_me
+        echo "
+        <section class='userinfo-data'>
+            <h1 class='title-profile'> PERFIL DE USUARIO </h1>
+            <article class='data-user'>                    
+                <aside class='user-container'>
+                    <div class='user-avatar'>
+                        <img class='profile-img' src='" . $row['img'] . "' alt='User Avatar'/>
+                    </div>
+                    <div class='user-info'>
+                        <h2 class='info-name'> @" . $row['nombre_usuario'] . "</h2>
+                    </div>
+                </aside>
+                <aside class='user-button'>
+                    <div class='col-auto mt-5 animate-from-bottom'>
+                        <a href='#' class='btn btn-color fs-5' data-bs-toggle='modal' data-bs-target='#editaModal' data-bs-id='" . $id_cuenta . "'>
+                            <i class='fa-solid fa-circle-plus'></i> Editar Perfil
+                        </a>
+                    </div>
+                    <div class='col-auto mt-5 animate-from-bottom'>
+                        <a href='logout.php'>
+                            <button class='button-logout'>Logout</button>
+                        </a>
+                    </div>
+                </aside>
+            </article>
+        </section>
+        <section>
+        </section>
+        <section class='userinfo-description'>
+            <form id='modificaAboutMe' class='modifAboutMe' method='POST' action='editarSobreMi.php'>
+                <label class='description-tittle'>
+                    Sobre Mí
+                    <label style='font-size: 1rem;'> ------->Modificar: <input type='checkbox' id='modifAboutMeCheckbox' name='modifAboutMeCheckbox'/></label>
+                    <input type='submit' name='submit-modificacion' value='Registrar Modificación'>
+                    <textarea readonly class='description-aboutme' name='aboutMeRead' id='aboutMeRead' cols='30' rows='10' required> " . $row['about_me'] . "</textarea>
+                    <textarea class='description-aboutme d-none' name='about_me' id='aboutMeMod' cols='30' rows='10' placeholder='Escriba aquí...'></textarea>
+                    <input type='hidden' name='id_cuenta' value='" . $id_cuenta . "'>
+                </label>
+            </form>
+        </section>
+        ";
+    } else {
+        echo "No se encontraron datos del usuario.";
+    }
+
+    $stmt->close();
+}
+
 
 
     public function friendsList($conexion)

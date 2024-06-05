@@ -897,10 +897,127 @@ input[type="submit"]{
 
 }
 .friends-container{
-}
-.friends-grid-item{
+    display: flex;
+    align-items: start;
+    justify-content: start;
 
+    padding: 2%;
+
+    height: 75vh;
+    border: solid red;
 }
+.friends-grid-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 5px;
+    padding: 10px;
+
+    width: 100%;
+    max-width: calc((100% / 3) - (5px * 3));
+    height: auto;
+    min-height: calc(75vh / 4 - 5px * 4);
+    border: solid yellow;
+}
+/* Información de amigo */
+.data-friend{
+    flex-direction: column;
+
+    min-width: 25vw;
+    max-height: 85vh;
+
+    border: solid blue;
+}
+.data-friend{
+    display: flex;
+    align-items: center;
+    flex-direction:row;
+
+    width: 100%;
+    min-height: inherit;
+}
+.friend-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+
+    width: 50%;
+    min-height: inherit;
+}
+/* Avatar de usuario */
+.friend-avatar {
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid var(--color-popupborder);
+    border-radius: 50%;
+    padding: 1.4%;
+
+    width: 12.5vh;
+    height: 12.5vh;
+
+    overflow: hidden;
+}
+.friend-avatar img {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: 25vh;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Nombre y Username */
+.friend-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.friend-username {
+    color: var(--color-text);
+    font-size: 1.1rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+
+    width: 100%;
+    min-height: 50%;
+}
+
+/* Boton Logout */
+.friend-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    min-height: 25vh;
+}
+
+.button-delete-friend {
+    background-color: var(--color-principal);
+    color: var(--color-link);
+    padding: 7% 12%;
+    border: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    border-radius: 19%;
+    margin: 0 auto;
+}
+
+.button-delete-friend:hover {
+    background-color: rgb(116, 0, 139);
+    transform: scale(1.1);
+}
+
+
 /* --------------------------------------------------------------------------------- */
 
 /* --------------------------------------------------------------------------------- */
