@@ -1,11 +1,7 @@
 <<<<<<< Updated upstream
 <?php session_start(); ?>
 =======
-<?php
-session_start();
 
-?>
->>>>>>> Stashed changes
 <!doctype html>
 <html lang="es">
 
