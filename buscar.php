@@ -27,9 +27,11 @@
         ?>
         </div>
         <?php
+       
        $busqueda= $_GET["buscar"];
-        
-     
+       $genero=$_GET["genero_buscar"];
+
+       if($genero===""){
        $consulta="SELECT * FROM peliculas INNER JOIN peli_director ON peliculas.id_peli = peli_director.id_peli
        INNER JOIN director ON peli_director.id_director = director.id_director
        INNER JOIN peli_actor ON peliculas.id_peli = peli_actor.id_peli
@@ -61,10 +63,58 @@
          $resultado .= '</section>';
        }
       else {
-       $resultado ='<p>No se encontraron resultados.</p>';
+        $resultado='<div class="volver-atras">';
+        $resultado.='<a href="index.php" class="h2-animate"><i class="fas fa-arrow-left"></i>No se encontraron resultados</a>';
+        $resultado.='</div>';
          
       }
       echo $resultado;
+
+      $conexion->close();
+      }
+      else{
+
+        $consulta="SELECT * FROM peliculas INNER JOIN peli_director ON peliculas.id_peli = peli_director.id_peli
+        INNER JOIN director ON peli_director.id_director = director.id_director
+        INNER JOIN peli_actor ON peliculas.id_peli = peli_actor.id_peli
+        INNER JOIN actor ON peli_actor.id_actor = actor.id_actor
+        INNER JOIN peli_genero ON peliculas.id_peli = peli_genero.id_peli
+        INNER JOIN genero ON peli_genero.id_genero = genero.id_genero
+        WHERE (peliculas.titulo LIKE '%$busqueda%'
+        OR director.nombre LIKE '%$busqueda%'
+        OR director.apellido LIKE '%$busqueda%'
+        OR actor.nombre LIKE '%$busqueda%'
+        OR actor.apellido LIKE '%$busqueda%')
+        AND genero.nombre_genero LIKE '%$genero%'
+        GROUP BY peliculas.id_peli, peliculas.titulo";
+        $buscar = mysqli_query($conexion, $consulta);
+
+
+     
+        if ($buscar-> num_rows > 0){
+          $resultado='<div class="volver-atras">';
+          $resultado.='<a href="generos.php" class="h2-animate"><i class="fas fa-arrow-left"></i>'.$genero.'</a>';
+          $resultado.='</div>';
+          $resultado .= '<section class="peliculas-container animate-from-bottom">';
+          while ($row = mysqli_fetch_assoc($buscar)) {
+            $resultado .= '<div class="pelicula-item">';
+            $resultado .= '<a href="detalle_peli.php?id_peli=' . $row["id_peli"] . '">';
+            $resultado .= '<img src="' . $row["path_poster"] . '" alt="">';
+            $resultado .= '</a>';
+            $resultado .= '</div>';
+          }
+          $resultado .= '</section>';
+        }
+       else {
+        $resultado='<div class="volver-atras">';
+        $resultado.='<a href="generos.php" class="h2-animate"><i class="fas fa-arrow-left"></i>No se encontraron resultados</a>';
+        $resultado.='</div>';
+       }
+       echo $resultado;
+
+       $conexion->close();
+      }
+
 
       ?>
         <script src="script/jquery.js"></script>
@@ -74,6 +124,7 @@
         <script>
                 $('#busca').val("<?= $busqueda ?>");
                 $("#genero_seleccionado").val("<?= $genero; ?>");
+
         </script>
     
     <footer>
