@@ -90,7 +90,7 @@
                         <div class="input-group">
                             <input type="text" name="busqueda" placeholder="Buscar..." class="form-control  mr-sm-2 fs-5">
                             <div class="input-group-append ">
-                                <button type="submit" class="btn btn-primary fs-5">Buscar</button>
+                                <button type="submit" class="btn guardar fs-5">Buscar</button>
                             </div>
                         </div>
                     </form>
@@ -212,11 +212,6 @@
                         eliminaModal.querySelector('.modal-footer #id').value = id
                     })
                 </script>
-
-
-
-
-
 
 
                 <script src="script/jquery.js"></script>

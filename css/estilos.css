@@ -1529,3 +1529,10 @@ tbody{
 .notificaciones-main h2{
     margin-left: 20px;
 }
+/*arreglos para los modales*/
+.oculto {
+    display: none;
+}
+.form-check-input:hover {
+    cursor: pointer;
+}
