@@ -104,3 +104,13 @@ $(document).ready(function(){
 
 });
 
+
+/* detalle_peli.php */
+
+const formEstrellas = document.querySelector(".star-rating");
+const botonEnviarEstrellas = document.querySelector(".botonEstrellas");
+
+formEstrellas.addEventListener('click', function(){
+    botonEnviarEstrellas.classList.add('botonVisible')
+})
+

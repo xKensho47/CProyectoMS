@@ -1355,7 +1355,7 @@ tbody{
 
 .star-rating {
     direction: rtl;
-    display: inline-block;
+    display: flex;
 }
 .star-rating input {
     display: none;
@@ -1376,8 +1376,52 @@ tbody{
     color: #f2b600;
 }
 
+.botonEstrellas{
+    visibility: hidden;
+    opacity: 0;
+    background-color: #A105B6;
+    color: #fff;
+    border: none;
+    border-radius: 25%;
+    padding: 5px;
+    margin-left: 10px;
+    font-size: 20px;
+    cursor:pointer;
+}
 
-@media screen and (max-width: 830px){
+.botonEstrellas.botonVisible{
+    visibility: visible;
+    opacity: 1;
+}
+
+.contenedor-estrellas{
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedor-estrellas > div{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.contenedor-estrellas > div p{
+    font-size: 22px;
+    margin-left: 5px;
+}
+
+.estrella{
+    color: #f2b600;
+}
+
+
+@media screen and (max-width: 840px){
+    
+    .contenedor-detalle_peli{
+        flex-direction: column;
+        height: auto;
+    }
+
     .main-detallepeli{
         flex-direction: column;
         height: auto;
@@ -1392,6 +1436,21 @@ tbody{
 
     .detallepeli-poster img {
         width: 200px;
+    }
+
+    .info-titulo{
+        flex-direction: column;
+        justify-content: left;
+        align-items: center;
+    }
+
+    .detallepeli-info{
+        margin-left: 0;
+    }
+
+    .contenedor-estrellas{
+        margin: 20px 0;
+        justify-content: left;
     }
     
 

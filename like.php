@@ -20,6 +20,22 @@
         $resultado = mysqli_query($conexion, $sql);
     }
 
+    // tabla valoracion_peliculas :
+
+    $cant_likes = mysqli_query($conexion,"SELECT COUNT(*) AS likes FROM peli_like WHERE id_peli = $pelicula_id");
+
+    $existe_registro = mysqli_query($conexion,"SELECT * FROM valoracion_peliculas WHERE id_peli = $pelicula_id");
+
+    $row = $cant_likes->fetch_assoc();
+    $likes = $row['likes'];
+
+    if($existe_registro->num_rows > 0){
+        mysqli_query($conexion,"UPDATE valoracion_peliculas SET cant_like = $likes WHERE id_peli = $pelicula_id");
+    } 
+    else{
+        mysqli_query($conexion,"INSERT INTO valoracion_peliculas (id_peli,cant_like) VALUES($pelicula_id,$likes)");
+    }
+
     mysqli_close($conexion);
 
     // Redirigir de vuelta a la página de detalles de la película
