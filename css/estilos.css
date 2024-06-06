@@ -631,6 +631,7 @@ hr {
 
 /* GENEROS DEL PERFIL */
 .userinfo-genres {
+    
     text-align: center;
     line-height: 6vh;
 }
@@ -653,14 +654,20 @@ hr {
     align-items: center;
     justify-content: space-evenly;
     flex-direction: row;
-    width: 100%;
+    width: 23.5vw;
+    max-width: 100%;
 }
 .genres-favorites {
     background-color: #d24ce4;
     color: white;
     border-radius: 5px;
+    font-size: 1.4rem;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow-wrap: break-word;
     
-    width: calc(33% - 15px);
+    width: calc(33% - 1vw);
+    max-width: 100%;
     height: 5vh;
 
 }
