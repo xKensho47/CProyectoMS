@@ -52,13 +52,44 @@ if (isset($_SESSION['id_cuenta'])) {
                     ?>
                     <a href="generos.php" class="h2-animate"><i class="fas fa-arrow-left"></i> <?= $nombre_genero ?></a>
                 </div>
-        
-                <form action="genero_fav.php" method="post" class="formulario">
+
+                <!-- VERIFICA SI EXISTE YA LA RELACION O NO-->
+                <?php
+                $favorito = $conexion->query("SELECT * FROM genero_favorito WHERE id_genero='$id' AND id_cuenta='$user_id'");
+                $checked = $favorito->num_rows > 0 ? 'checked' : '';
+             
+                ?>
+
+                <form action="genero_fav.php" method="post" class="formulario" id="genero_form">
                     <input type="hidden" name="id_genero" value="<?= $id ?>">
                     <input type="hidden" name="user_id" value="<?= $user_id ?>">
-                    <input type="checkbox" id="genero_fav" name="genero_fav" value="yes">
+                    <?php
+                    // Verificamos si el género es favorito
+                    if ($favorito->num_rows > 0) {
+                        // Si es favorito, marcamos el checkbox
+                        echo '<input type="checkbox" id="genero_fav" name="genero_fav" value="yes" checked>';
+                    } else {
+                        // Si no es favorito, dejamos el checkbox desmarcado
+                        echo '<input type="checkbox" id="genero_fav" name="genero_fav" value="yes">';
+                    }
+                    ?>
                     <label for="genero_fav">Marcar como género favorito</label>
                 </form>
+                
+                <!-- ESCUCHA SI EL FORM SE CARGO-->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var form = document.getElementById('genero_form');
+                        var checkbox = document.getElementById('genero_fav');
+
+                        checkbox.addEventListener('change', function() {
+                            form.submit();
+                        });
+                    });
+                </script>
+
+
+
 
             </div>
             <section class="peliculas-container animate-from-bottom">

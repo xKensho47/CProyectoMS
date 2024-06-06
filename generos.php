@@ -20,7 +20,12 @@
         include("conexion.php");
         include("header.php");
         require_once("loginVerification.php");
-
+        if(isset($_GET['status'])) {
+            // Verificar si el parámetro 'status' tiene el valor 'success'
+            if($_GET['status'] === 'success') {
+                echo '<div class="mensaje-exito">Ya has seleccionado el máximo de 3 géneros favoritos.</div>';
+            }
+        }
         ?>
         <main class="main-genres">
             <section class="genres-container">
