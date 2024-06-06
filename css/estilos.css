@@ -1263,6 +1263,9 @@ footer {
 .modal-content h2 {
     color: var(--color-form); /* Cambia el color del texto de los labels */
 }
+.modal-title{
+    color: var(--color-principal);
+}
 .modal-content  {
     /*background-color: var(--color-form); */
    background-color:#ffffff; 
