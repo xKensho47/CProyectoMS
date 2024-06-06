@@ -74,8 +74,9 @@ body a:hover {
 }
 .container {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 /* HEADER */
@@ -223,27 +224,46 @@ header form input {
     align-items: center;
 
     width: 100%;
-    max-height: 85vh;
+    height: 82vh;
 
     z-index: 1;
 }
 
 /* MAIN PRINCIPAL */
 .main-principal {
-    /* padding: 3%; */
-    /* padding-bottom: 4%; */
+
 }
 
-.movies-container {
+.movies-containerp {
     display: flex;
     flex-direction: column;
     align-items: start;
     font-size: 1.0rem;
-    /* padding-left: 3% ;
-    padding-right: 3%; */
+    padding-left: 3% ;
+    padding-right: 3%;
 
-    max-height: 85vh;
+    height: 80vh;
     width: 100%;
+
+    overflow-y: scroll;
+}
+.movies-containerp::-webkit-scrollbar,
+.custom-scroll::-webkit-scrollbar {
+    width: 10px;
+    background-color: var(--color-background);
+}
+
+.movies-containerp::-webkit-scrollbar-track,
+.custom-scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.movies-containerp::-webkit-scrollbar-thumb,
+.custom-scroll::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    height: 30px;
+    background-color: var(--color-principal);
 }
 
 .movies-container article {
@@ -612,7 +632,11 @@ hr {
 /* GENEROS DEL PERFIL */
 .userinfo-genres {
     text-align: center;
-    line-height: 10vh;
+    line-height: 6vh;
+}
+.userinfo-genres:hover {
+    cursor: default;
+    user-select: none;
 }
 .user-genres {
     display: flex;
@@ -691,7 +715,7 @@ input[type="submit"]{
     display: inherit;
     flex-direction: column;
     min-height: inherit;
-    max-height: 82vh;
+    max-height: 80vh;
 }
 .container-menu{
     display: inherit;
@@ -1456,7 +1480,7 @@ tbody{
     display: flex;
     align-items: center;
     flex-direction: row;
-    width: 80%;
+    width: 85%;
     height: inherit;
 }
 
@@ -1486,10 +1510,16 @@ tbody{
 
 .info-titulo_titulo{
     display: flex;
+    align-items: center;
+}
+
+.info-titulo_titulo > h1{
+    font-size: 2.6rem;
+    margin: 0;
 }
 
 .info-titulo_titulo > p{
-    font-size: 2.2rem;
+    font-size: 2.8rem;
     margin-left: 10px;
 }
 
@@ -1554,7 +1584,7 @@ tbody{
 
 .star-rating {
     direction: rtl;
-    display: inline-block;
+    display: flex;
 }
 .star-rating input {
     display: none;
@@ -1575,8 +1605,52 @@ tbody{
     color: #f2b600;
 }
 
+.botonEstrellas{
+    visibility: hidden;
+    opacity: 0;
+    background-color: #A105B6;
+    color: #fff;
+    border: none;
+    border-radius: 25%;
+    padding: 5px;
+    margin-left: 10px;
+    font-size: 20px;
+    cursor:pointer;
+}
 
-@media screen and (max-width: 830px){
+.botonEstrellas.botonVisible{
+    visibility: visible;
+    opacity: 1;
+}
+
+.contenedor-estrellas{
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedor-estrellas > div{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.contenedor-estrellas > div p{
+    font-size: 22px;
+    margin-left: 5px;
+}
+
+.estrella{
+    color: #f2b600;
+}
+
+
+@media screen and (max-width: 840px){
+    
+    .contenedor-detalle_peli{
+        flex-direction: column;
+        height: auto;
+    }
+
     .main-detallepeli{
         flex-direction: column;
         height: auto;
@@ -1591,6 +1665,21 @@ tbody{
 
     .detallepeli-poster img {
         width: 200px;
+    }
+
+    .info-titulo{
+        flex-direction: column;
+        justify-content: left;
+        align-items: center;
+    }
+
+    .detallepeli-info{
+        margin-left: 0;
+    }
+
+    .contenedor-estrellas{
+        margin: 20px 0;
+        justify-content: left;
     }
     
 
