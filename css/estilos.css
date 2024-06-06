@@ -224,7 +224,7 @@ header form input {
     align-items: center;
 
     width: 100%;
-    height: 82vh;
+    height: 80vh;
 
     z-index: 1;
 }
@@ -479,7 +479,7 @@ hr {
 
 /* PAGINA DEL PERFIL */
 .main-profile {
-    /* margin-bottom: 3%; */
+
 }
 .userinfo-container{
     display: flex;
@@ -790,7 +790,7 @@ input[type="submit"]{
 .userinfo2-screen{
     position: relative;
     width: 100%;
-    max-height: 82vh;
+    max-height: 80vh;
 }
 .userinfo2-movies,
 .userinfo2-friends,
@@ -1110,7 +1110,9 @@ footer {
 
     z-index: 890;
 }
-
+.footer p{
+    margin-bottom: 0;
+}
 /* GENERO */
 .main-genres{
 
@@ -1472,7 +1474,7 @@ tbody{
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 82vh;
+    height: 80vh;
     padding: 10px;
 }
 

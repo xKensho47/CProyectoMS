@@ -81,11 +81,7 @@
                 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
             </section>
         </main>
-    </div>
-    <footer>
-        <p>&copy; CineFlow 2024</p>
-    </footer>
-    
+    </div>    
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
@@ -97,6 +93,10 @@
     <script src="script/agregarAmigos.js"></script>
     <script src="script/profileEdit.js"></script>
     <script src="script/editarSobreMi.js"></script>
+    
+    <footer class="footer">
+        <p>&copy; CineFlow 2024</p>
+    </footer>
 </body>
 </html>
 
