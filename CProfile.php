@@ -139,7 +139,7 @@ class CProfile
                         </aside>
                     </article>
                 </section>
-                <section class='userinfo-genres'>
+                <section class='userinfo-genres' onlyread>
                     <article class='user-genres'>
                         <h2>Géneros Favoritos</h2>
                         <div class='genres-prof'>

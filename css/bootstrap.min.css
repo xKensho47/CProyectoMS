@@ -6274,8 +6274,7 @@ fieldset:disabled .btn {
 }
 .modal-editprofile {
     position: relative;
-    top: 25%;
-    transform: translate(-50%, -50%);
+    top: 20%;
 
     width: auto;
     margin: var(--bs-modal-margin);
