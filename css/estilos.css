@@ -466,7 +466,7 @@ hr {
     align-items: center;
     justify-content: center;
 
-    max-height: 85vh;
+    max-height: 80vh;
     min-width: 100vw;
 
     overflow: hidden;
@@ -490,7 +490,7 @@ hr {
     justify-content: space-evenly;
     padding: 1.25%;
 
-    min-height: 80vh;
+    height: 80vh;
 }
 /* PRIMER ASIDE */
 /* Información de usuario */
@@ -500,10 +500,12 @@ hr {
     min-width: 25vw;
     max-height: 85vh;
 }
-.userinfo-data{
-    position: relative;
-    bottom: 5vh;
-    max-height: 25vh;
+.userinfo-data aside{
+    max-height: 16vh;
+}
+.title-profile{
+    background-color: var(--color-transparent);
+    max-height: 3vh;
 }
 .data-user{
     display: flex;
@@ -512,6 +514,7 @@ hr {
 
     width: 100%;
     min-height: inherit;
+    max-height: 20vh;
 }
 .user-container{
     display: flex;
@@ -582,13 +585,15 @@ hr {
 .user-button {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-direction: column;
     width: 50%;
-    min-height: 25vh;
 }
-
-.button-logout {
+.user-button div{
+    position: relative;
+    top: -4vh;
+}
+/* .button-logout {
     background-color: var(--color-principal);
     color: var(--color-link);
     padding: 7% 12%;
@@ -597,7 +602,7 @@ hr {
     font-size: 1.6rem;
     border-radius: 19%;
     margin: 0 auto;
-}
+} */
 
 .button-logout:hover {
     background-color: rgb(116, 0, 139);
@@ -606,21 +611,24 @@ hr {
 
 /* GENEROS DEL PERFIL */
 .userinfo-genres {
-    /* border: solid blue; */
-    position: relative;
-    bottom: 4vh;
     text-align: center;
     line-height: 10vh;
 }
 .user-genres {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     margin: 0 auto;
 
     width: 100%;
     line-height: 5vh;
 }
 .genres-favorites {
-    display: inline-block;
-    width: calc(100% / 3 - 1.5%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
 }
 
 /* SOBRE MI */
@@ -760,7 +768,7 @@ input[type="submit"]{
 
     width: 100%;
     min-height: 100%;
-    max-height: 81vh;
+    max-height: 75vh;
 
     z-index: 300;
     overflow: auto;
@@ -898,13 +906,12 @@ input[type="submit"]{
 }
 .friends-container{
     display: flex;
-    align-items: start;
-    justify-content: start;
-
+    align-items: center;
+    justify-content: center;
+    
     padding: 2%;
 
-    height: 75vh;
-    border: solid red;
+    height: 71vh;
 }
 .friends-grid-container{
     display: grid;
@@ -1255,6 +1262,9 @@ footer {
 }
 .modal-content h2 {
     color: var(--color-form); /* Cambia el color del texto de los labels */
+}
+.modal-title{
+    color: var(--color-principal);
 }
 .modal-content  {
     /*background-color: var(--color-form); */

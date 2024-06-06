@@ -1,8 +1,4 @@
-<?php 
-session_start(); 
-include("conexion.php");
-?>
-
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,9 +16,10 @@ include("conexion.php");
 <body>
     <div class="container">
         <?php
+        include("conexion.php");
         include("header.php");
-        require_once("CProfile.php");
-        require_once("CCarousel.php");
+        include("CProfile.php");
+        include("CCarousel.php");
         ?>
         <main class="main-profile">
             <section class="userinfo-container">
@@ -31,7 +28,7 @@ include("conexion.php");
                     /* PRIMER ASIDE */
                     $profile = new CProfile($conexion);
 
-                    $profile->generateProfileData($conexion);
+                    $profile->generateProfileData();
 
                     ?>                    
                 </aside>
