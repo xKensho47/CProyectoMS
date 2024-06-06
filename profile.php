@@ -28,6 +28,7 @@
                     /* PRIMER ASIDE */
                     $profile = new CProfile($conexion);
 
+
                     $profile->generateProfileData();
 
                     ?>                    
