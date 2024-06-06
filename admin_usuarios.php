@@ -1,6 +1,4 @@
-
 <?php session_start(); ?>
-
 
 <!doctype html>
 <html lang="es">
@@ -27,16 +25,37 @@
             include("conexion.php");
             include("header.php");
 
-            $sqlUsuarios = ("SELECT *
-                                FROM usuarios");
+            //si la variable busqueda no esta vacia
+            if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
+                $busqueda = $conexion->real_escape_string($_GET['busqueda']);
 
-            $infoUsuarios = $conexion->query($sqlUsuarios);
+                //busco coincidencias
+                $sqlBusqueda = ("SELECT * 
+                                    FROM usuarios
+                                     WHERE nombre LIKE '%$busqueda%' 
+                                        OR apellido LIKE '%$busqueda%'
+                                        OR mail LIKE '%$busqueda%'");
+            } else { //si no hay coincidencias, muestro todo
+                $sqlBusqueda = ("SELECT *
+                    FROM usuarios");
+            }
+
+            $infoUsuarios = $conexion->query($sqlBusqueda);
             ?>
 
             <div class="crud animate-from-bottom">
                 <div class="col-auto me-auto mt-5">
                     <h2 class="text-left pi h2-animate">Administrar Usuarios</h2>
                 </div>
+
+                <form action="" method="get" class="mt-4 form-inline justify-content-center">
+                    <div class="input-group">
+                        <input type="text" name="busqueda" placeholder="Buscar..." class="form-control  mr-sm-2 fs-5">
+                        <div class="input-group-append ">
+                            <button type="submit" class="btn guardar fs-5">Buscar</button>
+                        </div>
+                    </div>
+                </form>
                 <table class="table table-xl table-striped table-hover mt-4 ">
                     <thead class="table-dark fs-4">
                         <tr class="color-titulo-tabla">

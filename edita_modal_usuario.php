@@ -22,13 +22,13 @@ $usuarios = $conexion->query($sqlUsuario);
                         <input type="hidden" name="id_usuario" id="id_usuario" class="form-control fs-5">
 
                         <label for="nombre" class="form-label">Nombre:</label>
-                        <input type="text" name="nombre" id="nombre" class="form-control fs-5" required>
+                        <input type="text" name="nombre" id="nombre" class="form-control fs-5" disabled>
 
                         <label for="apellido" class="form-label">Apellido:</label>
-                        <input type="text" name="apellido" id="apellido" class="form-control fs-5" required>
+                        <input type="text" name="apellido" id="apellido" class="form-control fs-5" disabled>
 
                         <label for="mail" class="form-label">Mail:</label>
-                        <input type="text" name="mail" id="mail" class="form-control fs-5" required>
+                        <input type="text" name="mail" id="mail" class="form-control fs-5" disabled>
 
                         <label for="tipo_usuario" class="form-label">Tipo Usuario:</label>
 
