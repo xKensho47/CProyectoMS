@@ -3,13 +3,14 @@
 <html lang="es">
 
 <head>
-    <title><?php echo $row['titulo']; ?></title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" type="text/css" href="slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
-    <link rel="stylesheet" href="css\font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/estilos.css">
+    <title><?php echo $row['titulo']; ?></title>
 </head>
 
 <body>
