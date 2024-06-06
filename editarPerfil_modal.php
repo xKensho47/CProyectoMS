@@ -5,8 +5,6 @@ include("conexion.php");
 $sqlProfile = "SELECT id_img, img FROM img_perfil";
 $resultado_imagenes = $conexion->query($sqlProfile);
 
-session_start();
-
 // Verificar si la sesión está iniciada y si 'id_cuenta' está definida
 if (!isset($_SESSION['id_cuenta'])) {
     die("Error: No se ha iniciado sesión.");

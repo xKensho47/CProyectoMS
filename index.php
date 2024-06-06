@@ -29,7 +29,7 @@ include('conexion.php');
 
         echo '
         <main class="main-principal">
-            <section class="movies-container movies" id="movies-container movies">';
+            <section class="movies-containerp movies" id="movies-container movies">';
 
             $titles = array("Películas más valoradas", "Recientes", "Ver más tarde", "Ver de nuevo");
 
