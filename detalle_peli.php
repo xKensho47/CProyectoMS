@@ -44,9 +44,13 @@
         $anoEstreno = date("Y", strtotime($fechaEstreno));
         ?>
         <main class="main-detallepeli">
-            <div class="contenedor-detalle_peli">
-                <div class="detallepeli-poster">
-                    <img src="<?php echo $row['path_poster'] ?>" alt="<?php echo $row['titulo'] ?>">
+    
+            <div class="volver-atras" style="float: left;">
+                <a href="generos.php" class="h2-animate"><i class="fas fa-arrow-left"></i></a>
+            </div>
+            <div class="contenedor-detalle_peli animate-from-bottom">
+                <div class="detallepeli-poster ">
+                    <img src="<?php echo $row['path_poster'] ?>" alt="<?php echo $row['titulo'] ?>" class="imagen-deslizar ">
                 </div>
                 <div class="detallepeli-info">
                     <div class="info-titulo">

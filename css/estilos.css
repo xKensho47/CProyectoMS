@@ -1199,18 +1199,27 @@ footer {
     gap: 20px;
 }
 .pelicula-item {
+    position: relative;
+    overflow: hidden; /* Para que la superposición no se extienda más allá de la imagen */
     padding: 10px;
     width: 100%;
-    /* Establece el ancho deseado para cada película */
-    margin-bottom: 20px;
-    /* Espacio entre cada fila de películas */
+    transition: transform 0.3s ease; /* Transición suave para la transformación */
+    margin-bottom: 20px; /* Espacio entre cada fila de películas */
+ 
+}
+
+.pelicula-item:hover {
+    transform: scale(1.1); /* Escala un 10% más grande al pasar el mouse sobre el elemento */
 }
 
 .pelicula-item img {
+    display: block;
     width: 100%;
     height: auto; /* Mantener la proporción de la imagen */
     object-fit: cover;
 }
+
+
 
 /* ARREGLO DEL MENU*/
 .menu__item ul {
@@ -1695,3 +1704,14 @@ tbody{
     width: 1.5rem; /* Ancho del checkbox */
     height: 1.5rem; /* Alto del checkbox */
 }
+
+
+/*detalle peli*/
+.imagen-deslizar {
+    transition: transform 0.3s ease;
+}
+
+.imagen-deslizar:hover {
+    transform: translateY(-10px); /* Desliza la imagen hacia arriba 10px */
+}
+
