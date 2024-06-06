@@ -142,7 +142,9 @@ class CProfile
                 <section class='userinfo-genres'>
                     <article class='user-genres'>
                         <h2>Géneros Favoritos</h2>
-                        $genres_html
+                        <div class='genres-prof'>
+                            $genres_html
+                        </div>
                     </article>
                 </section>
                 <section class='userinfo-description'>

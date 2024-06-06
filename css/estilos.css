@@ -624,11 +624,21 @@ hr {
     width: 100%;
     line-height: 5vh;
 }
-.genres-favorites {
+.genres-prof{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-direction: row;
+    width: 100%;
+}
+.genres-favorites {
+    background-color: #d24ce4;
+    color: white;
+    border-radius: 5px;
+    
+    width: calc(33% - 15px);
+    height: 5vh;
+
 }
 
 /* SOBRE MI */
