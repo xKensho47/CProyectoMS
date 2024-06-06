@@ -1,4 +1,31 @@
-<?php session_start(); ?>
+<?php session_start();
+
+include("conexion.php");
+
+$id_cuenta = $_SESSION['id_cuenta'];
+$id = $_GET['id_peli'];
+$peli = mysqli_query($conexion, "SELECT * FROM peliculas WHERE id_peli = $id");
+$actores = mysqli_query($conexion, "SELECT nombre, apellido FROM actor JOIN peli_actor WHERE peli_actor.id_actor = actor.id_actor AND peli_actor.id_peli = $id");
+$directores = mysqli_query($conexion, "SELECT nombre, apellido FROM director JOIN peli_director WHERE peli_director.id_director = director.id_director AND peli_director.id_peli = $id");
+$generos = mysqli_query($conexion, "SELECT nombre_genero FROM genero JOIN peli_genero WHERE peli_genero.id_genero = genero.id_genero AND peli_genero.id_peli = $id");
+
+if ($peli->num_rows > 0) {
+    $row = $peli->fetch_assoc();
+} else {
+    echo "Película no encontrada";
+    exit;
+}
+
+$existe_mastarde = mysqli_query($conexion, "SELECT * FROM mas_tarde WHERE id_cuenta = $id_cuenta AND id_peli = $id");
+$existe_favorito = mysqli_query($conexion, "SELECT * FROM peli_favorita WHERE id_cuenta = $id_cuenta AND id_peli = $id");
+$existe_like = mysqli_query($conexion, "SELECT * FROM peli_like WHERE id_cuenta = $id_cuenta AND id_peli = $id");
+
+$conexion->close();
+
+$fechaEstreno = $row["estreno"];
+$anoEstreno = date("Y", strtotime($fechaEstreno));
+
+?>
 <!doctype html>
 <html lang="es">
 
@@ -10,38 +37,18 @@
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" type="text/css" href="slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./images/favicon/site.webmanifest">
     <title><?php echo $row['titulo']; ?></title>
 </head>
 
 <body>
     <div class="container">
         <?php
-        include("conexion.php");
         require_once("loginVerification.php");
         include("header.php");
-
-        $id_cuenta = $_SESSION['id_cuenta'];
-        $id = $_GET['id_peli'];
-        $peli = mysqli_query($conexion, "SELECT * FROM peliculas WHERE id_peli = $id");
-        $actores = mysqli_query($conexion, "SELECT nombre, apellido FROM actor JOIN peli_actor WHERE peli_actor.id_actor = actor.id_actor AND peli_actor.id_peli = $id");
-        $directores = mysqli_query($conexion, "SELECT nombre, apellido FROM director JOIN peli_director WHERE peli_director.id_director = director.id_director AND peli_director.id_peli = $id");
-        $generos = mysqli_query($conexion, "SELECT nombre_genero FROM genero JOIN peli_genero WHERE peli_genero.id_genero = genero.id_genero AND peli_genero.id_peli = $id");
-
-        if ($peli->num_rows > 0) {
-            $row = $peli->fetch_assoc();
-        } else {
-            echo "Película no encontrada";
-            exit;
-        }
-
-        $existe_mastarde = mysqli_query($conexion, "SELECT * FROM mas_tarde WHERE id_cuenta = $id_cuenta AND id_peli = $id");
-        $existe_favorito = mysqli_query($conexion, "SELECT * FROM peli_favorita WHERE id_cuenta = $id_cuenta AND id_peli = $id");
-        $existe_like = mysqli_query($conexion, "SELECT * FROM peli_like WHERE id_cuenta = $id_cuenta AND id_peli = $id");
-
-        $conexion->close();
-
-        $fechaEstreno = $row["estreno"];
-        $anoEstreno = date("Y", strtotime($fechaEstreno));
         ?>
         <main class="main-detallepeli">
     
