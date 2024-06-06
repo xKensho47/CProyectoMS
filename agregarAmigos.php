@@ -10,8 +10,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Obtiene el id de la cuenta del amigo desde la solicitud POST
-    $friendId = $_POST['friend_id'];
+    $friendId = $_POST['amigo'];
     $userId = $_SESSION['id_cuenta']; // Id de la cuenta del usuario actual
+
+    // Verifica que friendId no sea el mismo que userId para evitar que el usuario se agregue a sí mismo como amigo
+    if ($friendId == $userId) {
+        echo "No puedes agregarte a ti mismo como amigo.";
+        exit();
+    }
+
+    // Verifica si ya son amigos
+    $q = "SELECT COUNT(*) FROM lista_amigos WHERE id_cuenta = ? AND amigo = ?";
+    $stmt = $conexion->prepare($q);
+    $stmt->bind_param('ii', $userId, $friendId);
+    $stmt->execute();
+    $stmt->bind_result($count);
+    $stmt->fetch();
+    $stmt->close();
+
+    if ($count > 0) {
+        echo "Ya son amigos.";
+        exit();
+    }
 
     // Inserta al amigo en la lista de amigos
     $q = "INSERT INTO lista_amigos (id_cuenta, amigo) VALUES (?, ?)";

@@ -3,25 +3,42 @@ session_start();
 include("conexion.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id = $_POST['id'];
-    $avatar = $_POST['id_img'];
+    $id_cuenta = $_POST['id_cuenta'];
     $nombre_usuario = $_POST['nombre_usuario'];
-    $mail = $_POST['mail'];
     $contraseña = $_POST['contraseña'];
+    $id_img = $_POST['id_img'];
 
-    $q = "UPDATE cuenta_usuario SET id_img = ?, nombre_usuario = ?, mail = ?, contraseña = ? WHERE id_cuenta = ?";
-    $stmt = $conexion->prepare($q);
-    $stmt->bind_param('ssssi', $avatar, $nombre_usuario, $mail, $contraseña, $id);
+    // Encriptar la contraseña antes de guardarla
+    $contraseña_hashed = password_hash($contraseña, PASSWORD_DEFAULT);
 
-    if ($stmt->execute()) {
-        echo "Perfil actualizado correctamente.";
+    // Verificar si el nombre de usuario ya existe en la base de datos
+    $sql_check_user = "SELECT id_cuenta FROM cuenta_usuario WHERE nombre_usuario = ? AND id_cuenta != ?";
+    $stmt_check_user = $conexion->prepare($sql_check_user);
+    $stmt_check_user->bind_param('si', $nombre_usuario, $id_cuenta);
+    $stmt_check_user->execute();
+    $result_check_user = $stmt_check_user->get_result();
+
+    if ($result_check_user->num_rows > 0) {
+        // Si el nombre de usuario ya existe, mostrar una alerta y redireccionar
+        echo "<script>alert('Ya existe otro usuario con ese nombre.'); window.location.href = 'profile.php';</script>";
+        exit();
     } else {
-        echo "Error al actualizar el perfil: " . $conexion->error;
+        // Si el nombre de usuario no existe, actualizar los datos en la base de datos
+        $sql = "UPDATE cuenta_usuario SET nombre_usuario = ?, contraseña = ?, id_img = ? WHERE id_cuenta = ?";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param('ssii', $nombre_usuario, $contraseña_hashed, $id_img, $id_cuenta);
+
+        if ($stmt->execute()) {
+            header("Location: profile.php");
+            exit();
+        } else {
+            echo "Error: " . $sql . "<br>" . $conexion->error;
+        }
+
+        $stmt->close();
     }
 
-    $stmt->close();
+    $stmt_check_user->close();
+    $conexion->close();
 }
-
-$conexion->close();
-header("Location: profile.php");
 ?>

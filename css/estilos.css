@@ -466,10 +466,14 @@ hr {
     align-items: center;
     justify-content: center;
 
-    max-height: 85vh;
+    max-height: 80vh;
     min-width: 100vw;
 
     overflow: hidden;
+}
+.title-profile{
+    color: var(--color-principal);
+    text-align: center;
 }
 .tittle{
     color: var(--color-principal);
@@ -485,6 +489,8 @@ hr {
     align-items: center;
     justify-content: space-evenly;
     padding: 1.25%;
+
+    height: 80vh;
 }
 /* PRIMER ASIDE */
 /* Información de usuario */
@@ -494,10 +500,12 @@ hr {
     min-width: 25vw;
     max-height: 85vh;
 }
-.userinfo-data{
-    position: relative;
-    bottom: 5vh;
-    max-height: 25vh;
+.userinfo-data aside{
+    max-height: 16vh;
+}
+.title-profile{
+    background-color: var(--color-transparent);
+    max-height: 3vh;
 }
 .data-user{
     display: flex;
@@ -506,6 +514,7 @@ hr {
 
     width: 100%;
     min-height: inherit;
+    max-height: 20vh;
 }
 .user-container{
     display: flex;
@@ -523,8 +532,25 @@ hr {
     border: 1px solid var(--color-popupborder);
     border-radius: 50%;
     padding: 1.4%;
-    
+
+    width: 12.5vh;
     height: 12.5vh;
+
+    overflow: hidden;
+}
+.user-avatar img {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: 25vh;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 /* Nombre y Username */
@@ -562,10 +588,12 @@ hr {
     justify-content: space-evenly;
     flex-direction: column;
     width: 50%;
-    min-height: 25vh;
 }
-
-.button-logout {
+.user-button div{
+    position: relative;
+    top: -4vh;
+}
+/* .button-logout {
     background-color: var(--color-principal);
     color: var(--color-link);
     padding: 7% 12%;
@@ -574,7 +602,7 @@ hr {
     font-size: 1.6rem;
     border-radius: 19%;
     margin: 0 auto;
-}
+} */
 
 .button-logout:hover {
     background-color: rgb(116, 0, 139);
@@ -583,21 +611,34 @@ hr {
 
 /* GENEROS DEL PERFIL */
 .userinfo-genres {
-    /* border: solid blue; */
-    position: relative;
-    bottom: 4vh;
     text-align: center;
     line-height: 10vh;
 }
 .user-genres {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     margin: 0 auto;
 
     width: 100%;
     line-height: 5vh;
 }
+.genres-prof{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 100%;
+}
 .genres-favorites {
-    display: inline-block;
-    width: calc(100% / 3 - 1.5%);
+    background-color: #d24ce4;
+    color: white;
+    border-radius: 5px;
+    
+    width: calc(33% - 15px);
+    height: 5vh;
+
 }
 
 /* SOBRE MI */
@@ -606,9 +647,36 @@ hr {
     top: 2vh;
     padding: 1.5%;
 }
+.modifAboutMe{
+    width: 100%;
+    margin: 0 auto;
+}
+
 .description-aboutme {
     color: var(--color-text);
     padding: 1% 5%;
+}
+textarea{
+    font-size: 1.3rem;
+    border-radius: 5px;
+    background: transparent;
+    color: var(--blanco);
+    resize: none;
+
+    width: 95%;
+}
+input[type="submit"]{
+    background-color: var(--color-principal);
+    color: var(--blanco);
+    font-size: 1.5rem;
+    border-radius: 5px;
+    
+    margin-bottom: 0%;
+    margin: 2% auto;    
+    padding: 1%;
+
+    border: none;
+    outline: none;
 }
 
 /* SEGUNDO ASIDE */
@@ -657,6 +725,7 @@ hr {
     text-transform: uppercase;
     border: solid 1.5px var(--color-principal);
     position: relative;
+    height: 3vh;
     width: 100%;
 
     color: var(--color-text);
@@ -676,7 +745,7 @@ hr {
     display: block;
 
     width: 100%;
-    height: 100%;
+    height: inherit;
 
     cursor: pointer;
 }
@@ -709,7 +778,7 @@ hr {
 
     width: 100%;
     min-height: 100%;
-    max-height: 81vh;
+    max-height: 75vh;
 
     z-index: 300;
     overflow: auto;
@@ -846,10 +915,126 @@ hr {
 
 }
 .friends-container{
-}
-.friends-grid-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    padding: 2%;
 
+    height: 71vh;
 }
+.friends-grid-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 5px;
+    padding: 10px;
+
+    width: 100%;
+    max-width: calc((100% / 3) - (5px * 3));
+    height: auto;
+    min-height: calc(75vh / 4 - 5px * 4);
+    border: solid yellow;
+}
+/* Información de amigo */
+.data-friend{
+    flex-direction: column;
+
+    min-width: 25vw;
+    max-height: 85vh;
+
+    border: solid blue;
+}
+.data-friend{
+    display: flex;
+    align-items: center;
+    flex-direction:row;
+
+    width: 100%;
+    min-height: inherit;
+}
+.friend-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+
+    width: 50%;
+    min-height: inherit;
+}
+/* Avatar de usuario */
+.friend-avatar {
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid var(--color-popupborder);
+    border-radius: 50%;
+    padding: 1.4%;
+
+    width: 12.5vh;
+    height: 12.5vh;
+
+    overflow: hidden;
+}
+.friend-avatar img {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: 25vh;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Nombre y Username */
+.friend-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.friend-username {
+    color: var(--color-text);
+    font-size: 1.1rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+
+    width: 100%;
+    min-height: 50%;
+}
+
+/* Boton Logout */
+.friend-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    min-height: 25vh;
+}
+
+.button-delete-friend {
+    background-color: var(--color-principal);
+    color: var(--color-link);
+    padding: 7% 12%;
+    border: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    border-radius: 19%;
+    margin: 0 auto;
+}
+
+.button-delete-friend:hover {
+    background-color: rgb(116, 0, 139);
+    transform: scale(1.1);
+}
+
+
 /* --------------------------------------------------------------------------------- */
 
 /* --------------------------------------------------------------------------------- */
@@ -1010,22 +1195,31 @@ footer {
 }
 .peliculas-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 20px;
 }
 .pelicula-item {
+    position: relative;
+    overflow: hidden; /* Para que la superposición no se extienda más allá de la imagen */
     padding: 10px;
     width: 100%;
-    /* Establece el ancho deseado para cada película */
-    margin-bottom: 20px;
-    /* Espacio entre cada fila de películas */
+    transition: transform 0.3s ease; /* Transición suave para la transformación */
+    margin-bottom: 20px; /* Espacio entre cada fila de películas */
+ 
+}
+
+.pelicula-item:hover {
+    transform: scale(1.1); /* Escala un 10% más grande al pasar el mouse sobre el elemento */
 }
 
 .pelicula-item img {
+    display: block;
     width: 100%;
     height: auto; /* Mantener la proporción de la imagen */
     object-fit: cover;
 }
+
+
 
 /* ARREGLO DEL MENU*/
 .menu__item ul {
@@ -1087,6 +1281,9 @@ footer {
 }
 .modal-content h2 {
     color: var(--color-form); /* Cambia el color del texto de los labels */
+}
+.modal-title{
+    color: var(--color-principal);
 }
 .modal-content  {
     /*background-color: var(--color-form); */
@@ -1251,21 +1448,23 @@ tbody{
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100%;
+    height: 82vh;
     padding: 10px;
 }
 
 .contenedor-detalle_peli{
     display: flex;
+    align-items: center;
     flex-direction: row;
     width: 80%;
+    height: inherit;
 }
 
 .detallepeli-poster {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 30vh;
+    height: calc(82vh/3*2);
 }
 
 .detallepeli-poster img {
@@ -1460,3 +1659,118 @@ tbody{
    margin-top: 1%; 
 
 }
+
+.notificaciones {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px;
+}
+
+.notificacion {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    width: 800px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.notificacion .mensaje {
+    font-size: 1.1em;
+    margin: 0 0 5px 0;
+}
+
+.notificacion .fecha {
+    font-size: 0.9em;
+    color: #bbbbbb;
+    text-align: right;
+}
+
+.contacto {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    top: 30%;
+    width: 500px;
+    right: 2%;
+    list-style-type: none;
+    text-transform: uppercase;
+    color: var(--color-text);
+}
+
+.contacto a{
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 36px;
+    color: var(--color-text);
+    width: 25%;
+    margin-top: 30px;
+}
+
+.contacto:hover{
+    cursor: default;
+}
+
+.contacto:hover a{
+    color: var(--color-principal);
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.notificaciones-main {
+    background-color: var(--color-transparent);
+    color: var(--color-text);
+    font-size: 1.5rem;
+    width: 100%;
+    max-height: 85vh;
+    position: relative;
+
+    z-index: 1;
+}
+
+.notificaciones-main h2{
+    margin-left: 20px;
+}
+/*arreglos para los modales*/
+.oculto {
+    display: none;
+}
+.form-check-input:hover {
+    cursor: pointer;
+}
+/*arreglo generos*/
+.contenedor-horizontal {
+   
+    
+}
+.volver-atras {
+   /* margin-right: 20px; /* Espacio entre el enlace y el formulario */
+}
+
+.formulario {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+.formulario input[type="checkbox"] {
+    margin-right: 5px; /* Espacio entre el checkbox y el label */
+    width: 1.5rem; /* Ancho del checkbox */
+    height: 1.5rem; /* Alto del checkbox */
+}
+
+
+/*detalle peli*/
+.imagen-deslizar {
+    transition: transform 0.3s ease;
+}
+
+.imagen-deslizar:hover {
+    transform: translateY(-10px); /* Desliza la imagen hacia arriba 10px */
+}
+
