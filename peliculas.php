@@ -64,7 +64,7 @@ if (isset($_SESSION['id_cuenta'])) {
              
                 ?>
 
-                <form action="genero_fav.php" method="post" class="formulario" id="genero_form">
+                <form action="genero_fav.php" method="post" class="formulario animate-from-bottom" id="genero_form">
                     <input type="hidden" name="id_genero" value="<?= $id ?>">
                     <input type="hidden" name="user_id" value="<?= $user_id ?>">
                     <?php

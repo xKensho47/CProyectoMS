@@ -15,16 +15,24 @@ if ($peli->num_rows > 0) {
     echo "Película no encontrada";
     exit;
 }
+    if ($peli->num_rows > 0) {
+        $row = mysqli_fetch_assoc($peli);
+    } else {
+        echo "Película no encontrada";
+        exit;
+    }
 
 $existe_mastarde = mysqli_query($conexion, "SELECT * FROM mas_tarde WHERE id_cuenta = $id_cuenta AND id_peli = $id");
 $existe_favorito = mysqli_query($conexion, "SELECT * FROM peli_favorita WHERE id_cuenta = $id_cuenta AND id_peli = $id");
 $existe_like = mysqli_query($conexion, "SELECT * FROM peli_like WHERE id_cuenta = $id_cuenta AND id_peli = $id");
 
-$conexion->close();
-
 $fechaEstreno = $row["estreno"];
 $anoEstreno = date("Y", strtotime($fechaEstreno));
 
+$cant_estrellas = mysqli_query($conexion,"SELECT SUM(estrellas) AS cant_estrellas FROM peli_estrellas WHERE id_peli = $id");
+$cant_registros = mysqli_query($conexion,"SELECT COUNT(*) AS cant_registros FROM peli_estrellas WHERE id_peli = $id");
+
+    mysqli_close($conexion);
 ?>
 <!doctype html>
 <html lang="es">
@@ -51,9 +59,13 @@ $anoEstreno = date("Y", strtotime($fechaEstreno));
         include("header.php");
         ?>
         <main class="main-detallepeli">
-            <div class="contenedor-detalle_peli">
-                <div class="detallepeli-poster">
-                    <img src="<?php echo $row['path_poster'] ?>" alt="<?php echo $row['titulo'] ?>">
+    
+            <div class="volver-atras" style="float: left;">
+                <a href="generos.php" class="h2-animate"><i class="fas fa-arrow-left"></i></a>
+            </div>
+            <div class="contenedor-detalle_peli animate-from-bottom">
+                <div class="detallepeli-poster ">
+                    <img src="<?php echo $row['path_poster'] ?>" alt="<?php echo $row['titulo'] ?>" class="imagen-deslizar ">
                 </div>
                 <div class="detallepeli-info">
                     <div class="info-titulo">
@@ -78,6 +90,57 @@ $anoEstreno = date("Y", strtotime($fechaEstreno));
                         <p><?php echo $fechaEstreno ?></p>
                         <p>-</p>
                         <?php
+            <div class="contenedor-detalle_peli">
+            <div class="detallepeli-poster">
+                <img src="<?php echo $row['path_poster'] ?>" alt="<?php echo $row['titulo'] ?>">
+            </div>
+            <div class="detallepeli-info">
+                <div class="info-titulo">
+                    
+                    <div class="info-titulo_titulo">
+                        <h1><?php echo $row['titulo'] ?></h1>
+                        <p>(<?php echo $anoEstreno ?>)</p>
+                    </div>
+                    <div class="contenedor-estrellas">
+                        <form class="star-rating" action="estrellas.php" method="post">
+                            <button type="submit" class="botonEstrellas"><i class="fa-solid fa-share"></i></button>
+                            <input id="star-5" type="radio" name="rating" value="5">
+                            <label for="star-5" title="5 estrellas">★</label>
+                            <input id="star-4" type="radio" name="rating" value="4">
+                            <label for="star-4" title="4 estrellas">★</label>
+                            <input id="star-3" type="radio" name="rating" value="3">
+                            <label for="star-3" title="3 estrellas">★</label>
+                            <input id="star-2" type="radio" name="rating" value="2">
+                            <label for="star-2" title="2 estrellas">★</label>
+                            <input id="star-1" type="radio" name="rating" value="1">
+                            <label for="star-1" title="1 estrella">★</label>
+                            <input type="hidden" name="usuario_id" value="<?php echo $_SESSION['id_cuenta']; ?>">  
+                            <input type="hidden" name="pelicula_id" value="<?php echo $id ?>">
+                        </form>
+                        <div>
+                            <p>
+                                <?php
+                                $estrellas = mysqli_fetch_assoc($cant_estrellas);
+                                $registros = mysqli_fetch_assoc($cant_registros);
+                                
+                                if($registros['cant_registros'] != 0){
+                                    $promedio = $estrellas['cant_estrellas'] / $registros['cant_registros'];
+                                } 
+                                else{
+                                    $promedio = 0;
+                                }
+                                
+                                echo $promedio;
+                            ?> / 5 <span class="estrella">★</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="info-detalles">
+                    <p><?php echo $fechaEstreno ?></p>
+                    <p>-</p>
+                    <?php 
 
                         if ($generos->num_rows > 0) {
                             while ($r_generos = $generos->fetch_assoc()) {
