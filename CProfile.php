@@ -35,8 +35,7 @@ class CProfile
     }
 
     // MÉTODOS
-    public function generateProfileData()
-    {
+    public function generateProfileData(){
         // Asegurarse de que la sesión esté iniciada y el id_cuenta esté establecido
         if (!isset($_SESSION['id_cuenta'])) {
             echo "No se ha iniciado sesión.";
@@ -55,7 +54,7 @@ class CProfile
         $q =
             "SELECT 
         cu.nombre_usuario, cu.about_me, ip.img 
-    FROM 
+    FROM
         cuenta_usuario cu 
     LEFT JOIN 
         img_perfil ip 
@@ -115,49 +114,49 @@ class CProfile
 
                 // Generar el HTML con los datos del usuario, incluyendo la imagen de perfil, el campo about_me y los géneros favoritos
                 echo "
-            <section class='userinfo-data'>
-                <h1 class='title-profile'> PERFIL DE USUARIO </h1>
-                <article class='data-user'>                    
-                    <aside class='user-container'>
-                        <div class='user-avatar'>
-                            <img class='profile-img' src='" . htmlspecialchars($row['img'], ENT_QUOTES, 'UTF-8') . "' alt='User Avatar'/>
-                        </div>
-                        <div class='user-info'>
-                            <h2 class='info-name'> @" . htmlspecialchars($row['nombre_usuario'], ENT_QUOTES, 'UTF-8') . "</h2>
-                        </div>
-                    </aside>
-                    <aside class='user-button'>
-                        <div class='col-auto mt-5 animate-from-bottom'>
-                            <a href='#' class='btn btn-color fs-5' data-bs-toggle='modal' data-bs-target='#editaModal' data-bs-id='" . htmlspecialchars($id_cuenta, ENT_QUOTES, 'UTF-8') . "'>
-                                Editar Perfil
-                            </a>
-                        </div>
-                        <div class='col-auto mt-5 animate-from-bottom'>
-                            <a href='logout.php'>
-                                <button class='btn btn-color fs-5 button-logout'>Logout</button>
-                            </a>
-                        </div>
-                    </aside>
-                </article>
-            </section>
-            <section class='userinfo-genres'>
-                <article class='user-genres'>
-                    <h2>Géneros Favoritos</h2>
-                    $genres_html
-                </article>
-            </section>
-            <section class='userinfo-description'>
-                <form id='modificaAboutMe' class='modifAboutMe' method='POST' action='editarSobreMi.php'>
-                    <label class='description-tittle'>
-                        Sobre Mí
-                        <label style='font-size: 1rem;'> ------->Modificar: <input type='checkbox' id='modifAboutMeCheckbox' name='modifAboutMeCheckbox'/></label>
-                        <input type='submit' name='submit-modificacion' value='Registrar Modificación'>
-                        <textarea readonly class='description-aboutme' name='aboutMeRead' id='aboutMeRead' cols='30' rows='10' required>" . htmlspecialchars($row['about_me'], ENT_QUOTES, 'UTF-8') . "</textarea>
-                        <textarea class='description-aboutme d-none' name='about_me' id='aboutMeMod' cols='30' rows='10' placeholder='Escriba aquí...'></textarea>
-                        <input type='hidden' name='id_cuenta' value='" . htmlspecialchars($id_cuenta, ENT_QUOTES, 'UTF-8') . "'>
-                    </label>
-                </form>
-            </section>
+                <section class='userinfo-data'>
+                    <h1 class='title-profile'> PERFIL DE USUARIO </h1>
+                    <article class='data-user'>                    
+                        <aside class='user-container'>
+                            <div class='user-avatar'>
+                                <img class='profile-img' src='" . htmlspecialchars($row['img'], ENT_QUOTES, 'UTF-8') . "' alt='User Avatar'/>
+                            </div>
+                            <div class='user-info'>
+                                <h2 class='info-name'> @" . htmlspecialchars($row['nombre_usuario'], ENT_QUOTES, 'UTF-8') . "</h2>
+                            </div>
+                        </aside>
+                        <aside class='user-button'>
+                            <div class='col-auto mt-5 animate-from-bottom'>
+                                <a href='#' class='btn btn-color fs-5' data-bs-toggle='modal' data-bs-target='#editaModal' data-bs-id='" . htmlspecialchars($id_cuenta, ENT_QUOTES, 'UTF-8') . "'>
+                                    Editar Perfil
+                                </a>
+                            </div>
+                            <div class='col-auto mt-5 animate-from-bottom'>
+                                <a href='logout.php'>
+                                    <button class='btn btn-color fs-5 button-logout'>Logout</button>
+                                </a>
+                            </div>
+                        </aside>
+                    </article>
+                </section>
+                <section class='userinfo-genres'>
+                    <article class='user-genres'>
+                        <h2>Géneros Favoritos</h2>
+                        $genres_html
+                    </article>
+                </section>
+                <section class='userinfo-description'>
+                    <form id='modificaAboutMe' class='modifAboutMe' method='POST' action='editarSobreMi.php'>
+                        <label class='description-tittle'>
+                            Sobre Mí
+                            <label style='font-size: 1rem;'> ------->Modificar: <input type='checkbox' id='modifAboutMeCheckbox' name='modifAboutMeCheckbox'/></label>
+                            <input type='submit' name='submit-modificacion' value='Registrar Modificación'>
+                            <textarea readonly class='description-aboutme' name='aboutMeRead' id='aboutMeRead' cols='30' rows='10' required>" . htmlspecialchars($row['about_me'], ENT_QUOTES, 'UTF-8') . "</textarea>
+                            <textarea class='description-aboutme d-none' name='about_me' id='aboutMeMod' cols='30' rows='10' placeholder='Escriba aquí...'></textarea>
+                            <input type='hidden' name='id_cuenta' value='" . htmlspecialchars($id_cuenta, ENT_QUOTES, 'UTF-8') . "'>
+                        </label>
+                    </form>
+                </section>
             ";
             } else {
                 echo "Error al obtener los datos del usuario.";
