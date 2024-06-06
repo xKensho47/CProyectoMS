@@ -26,13 +26,11 @@ $existe_mastarde = mysqli_query($conexion, "SELECT * FROM mas_tarde WHERE id_cue
 $existe_favorito = mysqli_query($conexion, "SELECT * FROM peli_favorita WHERE id_cuenta = $id_cuenta AND id_peli = $id");
 $existe_like = mysqli_query($conexion, "SELECT * FROM peli_like WHERE id_cuenta = $id_cuenta AND id_peli = $id");
 
-$conexion->close();
-
 $fechaEstreno = $row["estreno"];
 $anoEstreno = date("Y", strtotime($fechaEstreno));
 
-    $cant_estrellas = mysqli_query($conexion,"SELECT SUM(estrellas) AS cant_estrellas FROM peli_estrellas WHERE id_peli = $id");
-    $cant_registros = mysqli_query($conexion,"SELECT COUNT(*) AS cant_registros FROM peli_estrellas WHERE id_peli = $id");
+$cant_estrellas = mysqli_query($conexion,"SELECT SUM(estrellas) AS cant_estrellas FROM peli_estrellas WHERE id_peli = $id");
+$cant_registros = mysqli_query($conexion,"SELECT COUNT(*) AS cant_registros FROM peli_estrellas WHERE id_peli = $id");
 
     mysqli_close($conexion);
 ?>
