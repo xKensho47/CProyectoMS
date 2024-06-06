@@ -1663,3 +1663,23 @@ tbody{
 .form-check-input:hover {
     cursor: pointer;
 }
+/*arreglo generos*/
+.contenedor-horizontal {
+   
+    
+}
+.volver-atras {
+   /* margin-right: 20px; /* Espacio entre el enlace y el formulario */
+}
+
+.formulario {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+.formulario input[type="checkbox"] {
+    margin-right: 5px; /* Espacio entre el checkbox y el label */
+    width: 1.5rem; /* Ancho del checkbox */
+    height: 1.5rem; /* Alto del checkbox */
+}
