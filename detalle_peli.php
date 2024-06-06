@@ -9,16 +9,10 @@ $actores = mysqli_query($conexion, "SELECT nombre, apellido FROM actor JOIN peli
 $directores = mysqli_query($conexion, "SELECT nombre, apellido FROM director JOIN peli_director WHERE peli_director.id_director = director.id_director AND peli_director.id_peli = $id");
 $generos = mysqli_query($conexion, "SELECT nombre_genero FROM genero JOIN peli_genero WHERE peli_genero.id_genero = genero.id_genero AND peli_genero.id_peli = $id");
 
-if ($peli->num_rows > 0) {
-    $row = $peli->fetch_assoc();
-} else {
-    echo "Película no encontrada";
-    exit;
-}
     if ($peli->num_rows > 0) {
         $row = mysqli_fetch_assoc($peli);
     } else {
-        echo "Película no encontrada";
+        echo
         exit;
     }
 
@@ -63,40 +57,13 @@ $cant_registros = mysqli_query($conexion,"SELECT COUNT(*) AS cant_registros FROM
             <div class="volver-atras" style="float: left;">
                 <a href="generos.php" class="h2-animate"><i class="fas fa-arrow-left"></i></a>
             </div>
+
             <div class="contenedor-detalle_peli animate-from-bottom">
                 <div class="detallepeli-poster ">
                     <img src="<?php echo $row['path_poster'] ?>" alt="<?php echo $row['titulo'] ?>" class="imagen-deslizar ">
-                </div>
-                <div class="detallepeli-info">
-                    <div class="info-titulo">
-                        <div class="info-titulo_titulo">
-                            <h1><?php echo $row['titulo'] ?></h1>
-                            <p>(<?php echo $anoEstreno ?>)</p>
-                        </div>
-                        <div class="star-rating">
-                            <input id="star-5" type="radio" name="rating" value="5" onclick="submitRating(5)">
-                            <label for="star-5" title="5 estrellas">★</label>
-                            <input id="star-4" type="radio" name="rating" value="4" onclick="submitRating(4)">
-                            <label for="star-4" title="4 estrellas">★</label>
-                            <input id="star-3" type="radio" name="rating" value="3" onclick="submitRating(3)">
-                            <label for="star-3" title="3 estrellas">★</label>
-                            <input id="star-2" type="radio" name="rating" value="2" onclick="submitRating(2)">
-                            <label for="star-2" title="2 estrellas">★</label>
-                            <input id="star-1" type="radio" name="rating" value="1" onclick="submitRating(1)">
-                            <label for="star-1" title="1 estrella">★</label>
-                        </div>
-                    </div>
-                    <div class="info-detalles">
-                        <p><?php echo $fechaEstreno ?></p>
-                        <p>-</p>
-                        <?php
-            <div class="contenedor-detalle_peli">
-            <div class="detallepeli-poster">
-                <img src="<?php echo $row['path_poster'] ?>" alt="<?php echo $row['titulo'] ?>">
-            </div>
+                </div>      
             <div class="detallepeli-info">
                 <div class="info-titulo">
-                    
                     <div class="info-titulo_titulo">
                         <h1><?php echo $row['titulo'] ?></h1>
                         <p>(<?php echo $anoEstreno ?>)</p>
@@ -131,7 +98,7 @@ $cant_registros = mysqli_query($conexion,"SELECT COUNT(*) AS cant_registros FROM
                                 }
                                 
                                 echo $promedio;
-                            ?> / 5 <span class="estrella">★</span>
+                                ?> / 5 <span class="estrella">★</span>
                             </p>
                         </div>
                     </div>

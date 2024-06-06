@@ -11,7 +11,8 @@ include("conexion.php");
                     WHERE id_usuario= $id_usuario"; 
             
         $conexion->query($sql);
-        header('Location: admin_usuarios.php');
+        header('Location: admin_usuarios.php?status=success');
+        exit();
     }
 
 ?>

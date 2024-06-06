@@ -90,7 +90,7 @@
                     </div>
 
                     <!--BUSCADOR-->
-                    <form action="" method="get" class="mt-4 form-inline justify-content-center">
+                    <form action="" method="get" class="mt-4 form-inline justify-content-center mb-1">
                         <div class="input-group">
                             <input type="text" name="busqueda" placeholder="Buscar..." class="form-control  mr-sm-2 fs-5">
                             <div class="input-group-append ">
@@ -98,7 +98,20 @@
                             </div>
                         </div>
                     </form>
-
+                    <?php
+                    if (isset($_GET['status'])) {
+                        // Verificar si el parámetro 'status' tiene el valor 'success'
+                        if ($_GET['status'] === 'success') {
+                            echo '<div class="alert alert-success alert-dismissible fade show fs-5" role="alert"> Cambios Guardados.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>';
+                        }elseif ($_GET['status'] === 'danger'){
+                            echo '<div class="alert alert-danger alert-dismissible fade show fs-5" role="alert"> no pueden realizarse dos acciones a la vez, ni tener ambos campos vacios.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>';
+                        }
+                    } ?>
+                    
                     <!-- ENCABEZADO DE LA TABLA-->
                     <table class="table table-xl table-striped table-hover mt-3 ">
                         <thead class="table-dark fs-4">

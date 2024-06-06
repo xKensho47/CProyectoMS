@@ -1482,7 +1482,7 @@ tbody{
     display: flex;
     align-items: center;
     flex-direction: row;
-    width: 80%;
+    width: 85%;
     height: inherit;
 }
 
@@ -1512,10 +1512,16 @@ tbody{
 
 .info-titulo_titulo{
     display: flex;
+    align-items: center;
+}
+
+.info-titulo_titulo > h1{
+    font-size: 2.6rem;
+    margin: 0;
 }
 
 .info-titulo_titulo > p{
-    font-size: 2.2rem;
+    font-size: 2.8rem;
     margin-left: 10px;
 }
 

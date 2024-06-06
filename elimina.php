@@ -23,5 +23,6 @@ $conexion->query("COMMIT");
 // Cerrar la conexión
 $conexion->close();
 
-header('Location: crud_peliculas.php');
+header('Location: crud_peliculas.php?status=success');
+exit();
 ?>
