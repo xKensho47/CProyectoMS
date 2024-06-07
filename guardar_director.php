@@ -1,33 +1,33 @@
 <?php
 include("conexion.php");
 
-if (!empty($_POST['nombre']) && !empty($_POST['apellido'])) {
-    $nombre = $conexion->real_escape_string($_POST['nombre']);
-    $apellido = $conexion->real_escape_string($_POST['apellido']);   
+if (!empty($_POST['nombre']) && !empty($_POST['apellido'])) { 
+    // Verifica si se ha enviado un nombre y apellido
+    $nombre = $conexion->real_escape_string($_POST['nombre']); 
+    $apellido = $conexion->real_escape_string($_POST['apellido']);  
     $sql = "INSERT INTO director (nombre, apellido) VALUES ('$nombre', '$apellido')";
-      
+    
     if ($conexion->query($sql)) {
         $id = $conexion->insert_id;
-        //Mensaje de agregado exitoso
     } else {
         // Manejo de error si la inserción falla
+        echo "Error al insertar el director: " . $conexion->error;
     }
-} elseif (isset($_POST['director']) && !empty($_POST['director'])) {
-    $director_id = $conexion->real_escape_string($_POST['director']);
-    $sql = "DELETE FROM director WHERE id_director = '$director_id'";
-      
-    if ($conexion->query($sql)) {
-        // Éxito en la eliminación
-    } else {
-        // Manejo de error si la eliminación falla
-    }
-} else {
-    // Mensaje de error si los campos están vacíos
+}
+
+if (!empty($_POST['director'])) {
+    // Verifica si se ha enviado un director para eliminar
+    $director = $conexion->real_escape_string($_POST['director']); 
+    $conexion->query("START TRANSACTION");
+    
+    // Eliminar las relaciones en la tabla peli_director
+    $conexion->query("DELETE FROM peli_director WHERE id_director = $director");
+    $conexion->query("DELETE FROM director WHERE id_director = $director");
+    
+    // Confirmar la transacción
+    $conexion->query("COMMIT");
 }
 
 $conexion->close();
 header('Location: crud_peliculas.php');
 ?>
-<script>
-    history.replaceState(null, null, location.pathname)
-</script>
