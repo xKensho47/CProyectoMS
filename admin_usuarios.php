@@ -114,7 +114,7 @@
                                         <a href="#" class="btn btn-sm btn-warning mt-2 fs-6" data-bs-toggle="modal" data-bs-target="#editaModal" data-bs-id="<?= $id_usuario; ?>" onclick="IdUsuarioEditarEnModal(<?= $id_usuario ?>,
                                                                             '<?= $nombre ?>',
                                                                             '<?= $apellido ?>',
-                                                                            '<?= $mail ?>')">
+                                                                            '<?= $mail ?>')"> 
                                             <i class="fa-solid fa-pen-to-square"></i> Editar</a>
                                         <a href="#" class="btn btn-sm btn-danger mt-2 fs-6" data-bs-toggle="modal" data-bs-target="#eliminaModal" data-bs-id="<?= $id_usuario; ?>" onclick="IdUsuarioEliminarEnModal(<?= $id_usuario ?>)"><i class="fa-solid fa-trash"></i> Eliminar</a>
                                     </div>

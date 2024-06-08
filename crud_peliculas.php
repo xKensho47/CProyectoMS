@@ -143,19 +143,35 @@
                             $sqlActor = "SELECT id_actor, nombre, apellido FROM actor";
                             $actores = $conexion->query($sqlActor);
                             ?>
-                            <?php while ($row = $peliculas->fetch_object()) { ?>
+                            <?php while ($row = $peliculas->fetch_object()) {
+
+                                $id_peli = $row->id_peli;
+                                $titulo = $row->titulo;
+                                $descripcion = $row->descripcion;
+                                $estreno = $row->estreno;
+                                $duracion = $row->duracion; 
+                                $path_poster = $row->path_poster;    
+                            ?> 
+                                
                                 <tr>
-                                    <td><?= $row->id_peli; ?></td>
-                                    <td><?= $row->titulo; ?></td>
-                                    <td><?= $row->descripcion; ?></td>
-                                    <td><?= $row->estreno; ?></td>
+                                    <td><?= $id_peli; ?></td>
+                                    <td><?= $titulo; ?></td>
+                                    <td><?= $descripcion; ?></td>
+                                    <td><?= $estreno; ?></td>
                                     <td><img src="<?= $row->path_poster; ?>" width="80"></td>
-                                    <td><?= $row->duracion; ?></td>
+                                    <td><?= $duracion; ?></td>
                                     <td><?= $row->nombres_generos; ?></td>
                                     <td><?= $row->nom_ape_actor; ?></td>
                                     <td><?= $row->nom_ape_director; ?></td>
                                     <td>
-                                        <a href="#" class="btn btn-sm btn-warning mt-5 fs-6" data-bs-toggle="modal" data-bs-target="#editaModal" data-bs-id="<?= $row->id_peli; ?>"><i class="fa-solid fa-pen-to-square"></i> Editar</a>
+                                        <a href="#" class="btn btn-sm btn-warning mt-5 fs-6" data-bs-toggle="modal" data-bs-target="#editaModal" data-bs-id="<?= $id_peli; ?>" onclick="IdPeliculaEditarEnModal('<?= $id_peli ?>',
+                                                                    '<?= $titulo ?>',
+                                                                    '<?= $descripcion ?>',
+                                                                    '<?= $estreno ?>',
+                                                                    '<?= $duracion ?>',
+                                                                    '<?= $duracion ?>',
+                                                                    '<?= $path_poster?>')">
+                                         <i class="fa-solid fa-pen-to-square"></i> Editar </a>
                                         <a href="#" class="btn btn-sm btn-danger mt-4 fs-6" data-bs-toggle="modal" data-bs-target="#eliminaModal" data-bs-id="<?= $row->id_peli; ?>"><i class="fa-solid fa-trash"></i> Eliminar</a>
                                     </td>
                                 </tr>
@@ -167,69 +183,29 @@
                 </div>
 
                 <!--MODALES-->
-                <?php include 'nuevo_modal.php'; ?>
                 <?php include 'nuevo_modal_genero.php'; ?>
                 <?php include 'nuevo_modal_actor.php'; ?>
                 <?php include 'nuevo_modal_director.php'; ?>
                 <?php include 'editar_modal.php'; ?>
                 <?php include 'elimina_modal.php'; ?>
 
-
-                <script>
-                    let editaModal = document.getElementById('editaModal')
-                    let eliminaModal = document.getElementById('eliminaModal')
-
-                    editaModal.addEventListener('shown.bs.modal', event => {
-
-                        let button = event.relatedTarget
-                        let id = button.getAttribute('data-bs-id')
-
-                        let inputId = editaModal.querySelector('.modal-body #id')
-                        let inputNombre = editaModal.querySelector('.modal-body #nombre')
-                        let inputDescripcion = editaModal.querySelector('.modal-body #descripcion')
-                        let inputEstreno = editaModal.querySelector('.modal-body #estreno')
-                        let inputDuracion = editaModal.querySelector('.modal-body #duracion')
-                        let inputPath_poster = editaModal.querySelector('.modal-body #Path_poster')
-                        let inputGenero = editaModal.querySelector('.modal-body #genero')
-                        let inputActores = editaModal.querySelector('.modal-body #actores')
-                        let inputDirectores = editaModal.querySelector('.modal-body #directores')
-                        let inputVideo_mp4 = editaModal.querySelector('.modal-body #video_mp4')
-                        let inputVideo_iframe = editaModal.querySelector('.modal-body #video_iframe')
-
-                        let url = "get_pelicula.php"
-                        let formData = new FormData()
-                        formData.append('id', id)
-
-                        fetch(url, {
-                                method: "POST",
-                                body: formData
-                            }).then(response => response.json())
-                            .then(data => {
-
-                                inputId.value = data.id
-                                inputNombre.value = data.nombre
-                                inputDescripcion.value = data.descripcion
-                                inputEstreno.value = data.estreno
-                                inputDuracion.value = data.duracion
-                                inputPath_poster.value = data.Path_poster
-                                inputGenero.value = data.id_genero
-                                inputActores.value = data.actores
-                                inputDirectores.value = data.directores
-                                inputVideo_mp4.value = data.video_mp4
-                                inputVideo_iframe.value = data.video_iframe
-
-
-                            }).catch(err => console.log(err))
-
-                    })
-
-                    eliminaModal.addEventListener('shown.bs.modal', event => {
-                        let button = event.relatedTarget
-                        let id = button.getAttribute('data-bs-id')
-                        eliminaModal.querySelector('.modal-footer #id').value = id
-                    })
+                <script> 
+                    function IdPeliculaEditarEnModal(id_peli, titulo, descripcion, estreno, duracion, path_poster) {
+                        console.log(id_peli, titulo,descripcion,estreno,duracion);
+                    let inputIdEncontrado = document.getElementById("id_peli");
+                    let inputTituloEncontrado = document.getElementById("nombre_pelicula"); 
+                    let inputDescripcionEncontrada = document.getElementById("descripcion");
+                    let inputEstrenoEncontrado = document.getElementById("estreno");
+                    let inputDuracionEncontrado = document.getElementById("duracion");
+                    let inputPosterEncontrado = document.getElementById("path_poster");
+                    inputIdEncontrado.value = id_peli;
+                    inputTituloEncontrado.value = titulo; //modifica el valor del input con el id recibido
+                    inputDescripcionEncontrada.value = descripcion;
+                    inputEstrenoEncontrado.value = estreno;
+                    inputDuracionEncontrado.value = duracion;
+                    inputPosterEncontrado.value = path_poster;
+                }
                 </script>
-
 
                 <script src="script/jquery.js"></script>
                 <script src="slick/slick.min.js"></script>

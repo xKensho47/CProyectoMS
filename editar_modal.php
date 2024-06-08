@@ -6,6 +6,9 @@
  $actores = $conexion->query("SELECT id_actor, nombre, apellido FROM actor");
  /*LLAMA A LA TABLA DIRECTORES*/
  $directores = $conexion->query("SELECT id_director, nombre, apellido FROM director");
+
+ $pelicula = "SELECT id_peli, titulo, descripcion, estreno, duracion FROM peliculas";
+ $queryPelicula = $conexion->query($pelicula);
 ?>
 <!-- Modal -->
 <div class="modal fade" id="editaModal" tabindex="-1" aria-labelledby="editaModalLabel" aria-hidden="true">
@@ -18,11 +21,11 @@
             <div class="modal-body fs-5">
                 <form action="guardar_pelicula.php" method="post" enctype="multipart/form-data">
 
-                    <input type="hidden" id="id" name="id">
+                    <input type="hidden" id="id_peli" name="id_peli">
                     
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Titulo:</label>
-                        <input type="text" name="nombre" id="nombre" class="form-control" required>
+                        <input type="text" name="nombre" id="nombre_pelicula" class="form-control" required>
                     </div>
 
                     <div class="mb-3">
@@ -42,7 +45,7 @@
 
                     <div class="mb-3">
                         <label for="Path_poster" class="form-label">Path_poster:</label>
-                        <input type="text" name="Path_poster" id="Path_poster" class="form-control" required>
+                        <input type="text" name="Path_poster" id="path_poster" class="form-control" required>
                     </div>
                     <!-- TRAE TODOS LOS GENEROS -->
                     <div class="row mb-3">
