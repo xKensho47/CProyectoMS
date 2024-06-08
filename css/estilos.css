@@ -74,8 +74,9 @@ body a:hover {
 }
 .container {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 /* HEADER */
@@ -223,27 +224,46 @@ header form input {
     align-items: center;
 
     width: 100%;
-    max-height: 85vh;
+    height: 80vh;
 
     z-index: 1;
 }
 
 /* MAIN PRINCIPAL */
 .main-principal {
-    /* padding: 3%; */
-    /* padding-bottom: 4%; */
+
 }
 
-.movies-container {
+.movies-containerp {
     display: flex;
     flex-direction: column;
     align-items: start;
     font-size: 1.0rem;
-    /* padding-left: 3% ;
-    padding-right: 3%; */
+    padding-left: 3% ;
+    padding-right: 3%;
 
-    height: 100%;
+    height: 80vh;
     width: 100%;
+
+    overflow-y: scroll;
+}
+.movies-containerp::-webkit-scrollbar,
+.custom-scroll::-webkit-scrollbar {
+    width: 10px;
+    background-color: var(--color-background);
+}
+
+.movies-containerp::-webkit-scrollbar-track,
+.custom-scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.movies-containerp::-webkit-scrollbar-thumb,
+.custom-scroll::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    height: 30px;
+    background-color: var(--color-principal);
 }
 
 .movies-container article {
@@ -459,16 +479,21 @@ hr {
 
 /* PAGINA DEL PERFIL */
 .main-profile {
-    /* margin-bottom: 3%; */
+
 }
 .userinfo-container{
     display: flex;
     align-items: center;
     justify-content: center;
 
-    max-height: 85vh;
+    max-height: 80vh;
+    min-width: 100vw;
 
     overflow: hidden;
+}
+.title-profile{
+    color: var(--color-principal);
+    text-align: center;
 }
 .tittle{
     color: var(--color-principal);
@@ -484,19 +509,23 @@ hr {
     align-items: center;
     justify-content: space-evenly;
     padding: 1.25%;
+
+    height: 80vh;
 }
 /* PRIMER ASIDE */
 /* Información de usuario */
 .profile-userinfo{
     flex-direction: column;
 
-    width: 25%;
+    min-width: 25vw;
     max-height: 85vh;
 }
-.userinfo-data{
-    position: relative;
-    bottom: 5vh;
-    max-height: 25vh;
+.userinfo-data aside{
+    max-height: 16vh;
+}
+.title-profile{
+    background-color: var(--color-transparent);
+    max-height: 3vh;
 }
 .data-user{
     display: flex;
@@ -505,6 +534,7 @@ hr {
 
     width: 100%;
     min-height: inherit;
+    max-height: 20vh;
 }
 .user-container{
     display: flex;
@@ -522,8 +552,25 @@ hr {
     border: 1px solid var(--color-popupborder);
     border-radius: 50%;
     padding: 1.4%;
-    
+
+    width: 12.5vh;
     height: 12.5vh;
+
+    overflow: hidden;
+}
+.user-avatar img {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: 25vh;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 /* Nombre y Username */
@@ -558,12 +605,15 @@ hr {
 .user-button {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    flex-direction: column;
     width: 50%;
-    max-height: 25vh;
 }
-
-.button-logout {
+.user-button div{
+    position: relative;
+    top: -4vh;
+}
+/* .button-logout {
     background-color: var(--color-principal);
     color: var(--color-link);
     padding: 7% 12%;
@@ -572,7 +622,7 @@ hr {
     font-size: 1.6rem;
     border-radius: 19%;
     margin: 0 auto;
-}
+} */
 
 .button-logout:hover {
     background-color: rgb(116, 0, 139);
@@ -581,21 +631,45 @@ hr {
 
 /* GENEROS DEL PERFIL */
 .userinfo-genres {
-    /* border: solid blue; */
-    position: relative;
-    bottom: 4vh;
+    
     text-align: center;
-    line-height: 10vh;
+    line-height: 6vh;
+}
+.userinfo-genres:hover {
+    cursor: default;
+    user-select: none;
 }
 .user-genres {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     margin: 0 auto;
 
     width: 100%;
     line-height: 5vh;
 }
+.genres-prof{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 23.5vw;
+    max-width: 100%;
+}
 .genres-favorites {
-    display: inline-block;
-    width: calc(100% / 3 - 1.5%);
+    background-color: #d24ce4;
+    color: white;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    
+    width: calc(33% - 1vw);
+    max-width: 100%;
+    height: 5vh;
+
 }
 
 /* SOBRE MI */
@@ -604,9 +678,36 @@ hr {
     top: 2vh;
     padding: 1.5%;
 }
+.modifAboutMe{
+    width: 100%;
+    margin: 0 auto;
+}
+
 .description-aboutme {
     color: var(--color-text);
     padding: 1% 5%;
+}
+textarea{
+    font-size: 1.3rem;
+    border-radius: 5px;
+    background: transparent;
+    color: var(--blanco);
+    resize: none;
+
+    width: 95%;
+}
+input[type="submit"]{
+    background-color: var(--color-principal);
+    color: var(--blanco);
+    font-size: 1.5rem;
+    border-radius: 5px;
+    
+    margin-bottom: 0%;
+    margin: 2% auto;    
+    padding: 1%;
+
+    border: none;
+    outline: none;
 }
 
 /* SEGUNDO ASIDE */
@@ -614,14 +715,14 @@ hr {
 .profile-userinfo2{
     flex-direction: column;
     border-left: solid 2px var(--color-principal);
-    width: 75%;
+    min-width: 75vw;
     min-height: 85vh;
 }
 .userinfo2-container{
     display: inherit;
     flex-direction: column;
     min-height: inherit;
-    max-height: 82vh;
+    max-height: 80vh;
 }
 .container-menu{
     display: inherit;
@@ -655,6 +756,7 @@ hr {
     text-transform: uppercase;
     border: solid 1.5px var(--color-principal);
     position: relative;
+    height: 3vh;
     width: 100%;
 
     color: var(--color-text);
@@ -674,7 +776,7 @@ hr {
     display: block;
 
     width: 100%;
-    height: 100%;
+    height: inherit;
 
     cursor: pointer;
 }
@@ -695,7 +797,7 @@ hr {
 .userinfo2-screen{
     position: relative;
     width: 100%;
-    max-height: 82vh;
+    max-height: 80vh;
 }
 .userinfo2-movies,
 .userinfo2-friends,
@@ -707,7 +809,7 @@ hr {
 
     width: 100%;
     min-height: 100%;
-    max-height: 81vh;
+    max-height: 75vh;
 
     z-index: 300;
     overflow: auto;
@@ -786,6 +888,7 @@ hr {
 }
 .carousel-slide{
     min-height: inherit;
+    max-width: 90%;
 }
 .x-carousel-movie{
     flex-direction: column;
@@ -843,10 +946,126 @@ hr {
 
 }
 .friends-container{
-}
-.friends-grid-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    padding: 2%;
 
+    height: 71vh;
 }
+.friends-grid-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 5px;
+    padding: 10px;
+
+    width: 100%;
+    max-width: calc((100% / 3) - (5px * 3));
+    height: auto;
+    min-height: calc(75vh / 4 - 5px * 4);
+    border: solid yellow;
+}
+/* Información de amigo */
+.data-friend{
+    flex-direction: column;
+
+    min-width: 25vw;
+    max-height: 85vh;
+
+    border: solid blue;
+}
+.data-friend{
+    display: flex;
+    align-items: center;
+    flex-direction:row;
+
+    width: 100%;
+    min-height: inherit;
+}
+.friend-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+
+    width: 50%;
+    min-height: inherit;
+}
+/* Avatar de usuario */
+.friend-avatar {
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid var(--color-popupborder);
+    border-radius: 50%;
+    padding: 1.4%;
+
+    width: 12.5vh;
+    height: 12.5vh;
+
+    overflow: hidden;
+}
+.friend-avatar img {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: 25vh;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Nombre y Username */
+.friend-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.friend-username {
+    color: var(--color-text);
+    font-size: 1.1rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+
+    width: 100%;
+    min-height: 50%;
+}
+
+/* Boton Logout */
+.friend-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    min-height: 25vh;
+}
+
+.button-delete-friend {
+    background-color: var(--color-principal);
+    color: var(--color-link);
+    padding: 7% 12%;
+    border: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    border-radius: 19%;
+    margin: 0 auto;
+}
+
+.button-delete-friend:hover {
+    background-color: rgb(116, 0, 139);
+    transform: scale(1.1);
+}
+
+
 /* --------------------------------------------------------------------------------- */
 
 /* --------------------------------------------------------------------------------- */
@@ -898,7 +1117,9 @@ footer {
 
     z-index: 890;
 }
-
+.footer p{
+    margin-bottom: 0;
+}
 /* GENERO */
 .main-genres{
 
@@ -1006,26 +1227,32 @@ footer {
     padding: 1%;
 }
 .peliculas-container {
-    display: flex;
-    flex-wrap: wrap;
-    /* Permite que los elementos se envuelvan a medida que el espacio horizontal se agota */
-    justify-content: space-between;
-    /* Distribuye el espacio entre los elementos */
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+}
+.pelicula-item {
+    position: relative;
+    overflow: hidden; /* Para que la superposición no se extienda más allá de la imagen */
+    padding: 10px;
+    width: 100%;
+    transition: transform 0.3s ease; /* Transición suave para la transformación */
+    margin-bottom: 20px; /* Espacio entre cada fila de películas */
+ 
 }
 
-.pelicula-item {
-    padding: 10px;
-    width: 21%;
-    /* Establece el ancho deseado para cada película */
-    margin-bottom: 20px;
-    /* Espacio entre cada fila de películas */
+.pelicula-item:hover {
+    transform: scale(1.1); /* Escala un 10% más grande al pasar el mouse sobre el elemento */
 }
 
 .pelicula-item img {
+    display: block;
     width: 100%;
-    /* Ajusta el tamaño de la imagen dentro de su contenedor */
-    height: auto;
+    height: auto; /* Mantener la proporción de la imagen */
+    object-fit: cover;
 }
+
+
 
 /* ARREGLO DEL MENU*/
 .menu__item ul {
@@ -1087,6 +1314,9 @@ footer {
 }
 .modal-content h2 {
     color: var(--color-form); /* Cambia el color del texto de los labels */
+}
+.modal-title{
+    color: var(--color-principal);
 }
 .modal-content  {
     /*background-color: var(--color-form); */
@@ -1244,3 +1474,342 @@ tbody{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 0.4rem;
 }
+
+/* detalle_peli.php */
+.main-detallepeli{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80vh;
+    padding: 10px;
+}
+
+.contenedor-detalle_peli{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 85%;
+    height: inherit;
+}
+
+.detallepeli-poster {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(82vh/3*2);
+}
+
+.detallepeli-poster img {
+    width: 370px;
+}
+
+.detallepeli-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-left: 30px;
+}
+
+.info-titulo{
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.info-titulo_titulo{
+    display: flex;
+    align-items: center;
+}
+
+.info-titulo_titulo > h1{
+    font-size: 2.6rem;
+    margin: 0;
+}
+
+.info-titulo_titulo > p{
+    font-size: 2.8rem;
+    margin-left: 10px;
+}
+
+.info-detalles {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.info-detalles > p {
+    margin-right: 10px;
+}
+
+.info-botones {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.info-botones > div {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.info-boton{
+    border: none;
+    padding: 18px 21px;
+    background-color: #A105B6;
+    border-radius: 50%;
+    margin-right: 15px;
+    cursor: pointer;
+    color: #fff;
+    transition: background-color .4s ease;
+}
+
+.info-boton:hover {
+    background-color: #7c0989;
+}
+
+.boton-play > i {
+    font-size: 30px;
+}
+
+.existe{
+    background-color: #212121;
+    color: #fff;
+    
+}
+
+.info-descripcion{
+    margin: 10px 0;
+}
+
+.info-elenco{
+    display: flex;
+    margin: 10px 0;
+}
+
+.elenco-actores{
+    margin-left: 50px;
+}
+
+.star-rating {
+    direction: rtl;
+    display: flex;
+}
+.star-rating input {
+    display: none;
+}
+.star-rating label {
+    color: #bbb;
+    font-size: 35px;
+    padding: 0;
+    cursor: pointer;
+    display: inline-block;
+}
+.star-rating input:checked ~ label,
+.star-rating input:hover ~ label {
+    color: #f2b600;
+}
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #f2b600;
+}
+
+.botonEstrellas{
+    visibility: hidden;
+    opacity: 0;
+    background-color: #A105B6;
+    color: #fff;
+    border: none;
+    border-radius: 25%;
+    padding: 5px;
+    margin-left: 10px;
+    font-size: 20px;
+    cursor:pointer;
+}
+
+.botonEstrellas.botonVisible{
+    visibility: visible;
+    opacity: 1;
+}
+
+.contenedor-estrellas{
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedor-estrellas > div{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.contenedor-estrellas > div p{
+    font-size: 22px;
+    margin-left: 5px;
+}
+
+.estrella{
+    color: #f2b600;
+}
+
+
+@media screen and (max-width: 840px){
+    
+    .contenedor-detalle_peli{
+        flex-direction: column;
+        height: auto;
+    }
+
+    .main-detallepeli{
+        flex-direction: column;
+        height: auto;
+    }
+
+    .detallepeli-poster{
+        height: auto;
+        margin-top: 10px;
+        margin-bottom: 40px;
+        width: 100%;
+    }
+
+    .detallepeli-poster img {
+        width: 200px;
+    }
+
+    .info-titulo{
+        flex-direction: column;
+        justify-content: left;
+        align-items: center;
+    }
+
+    .detallepeli-info{
+        margin-left: 0;
+    }
+
+    .contenedor-estrellas{
+        margin: 20px 0;
+        justify-content: left;
+    }
+    
+
+}
+/*FOOTER PARA CRUD*/
+.p{
+   margin-top: 1%; 
+
+}
+
+.notificaciones {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px;
+}
+
+.notificacion {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    width: 800px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.notificacion .mensaje {
+    font-size: 1.1em;
+    margin: 0 0 5px 0;
+}
+
+.notificacion .fecha {
+    font-size: 0.9em;
+    color: #bbbbbb;
+    text-align: right;
+}
+
+.contacto {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    top: 30%;
+    width: 500px;
+    right: 2%;
+    list-style-type: none;
+    text-transform: uppercase;
+    color: var(--color-text);
+}
+
+.contacto a{
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 36px;
+    color: var(--color-text);
+    width: 25%;
+    margin-top: 30px;
+}
+
+.contacto:hover{
+    cursor: default;
+}
+
+.contacto:hover a{
+    color: var(--color-principal);
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.notificaciones-main {
+    background-color: var(--color-transparent);
+    color: var(--color-text);
+    font-size: 1.5rem;
+    width: 100%;
+    max-height: 85vh;
+    position: relative;
+
+    z-index: 1;
+}
+
+.notificaciones-main h2{
+    margin-left: 20px;
+}
+/*arreglos para los modales*/
+.oculto {
+    display: none;
+}
+.form-check-input:hover {
+    cursor: pointer;
+}
+/*arreglo generos*/
+.contenedor-horizontal {
+   
+    
+}
+.volver-atras {
+   /* margin-right: 20px; /* Espacio entre el enlace y el formulario */
+}
+
+.formulario {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+.formulario input[type="checkbox"] {
+    margin-right: 5px; /* Espacio entre el checkbox y el label */
+    width: 1.5rem; /* Ancho del checkbox */
+    height: 1.5rem; /* Alto del checkbox */
+}
+
+
+/*detalle peli*/
+.imagen-deslizar {
+    transition: transform 0.3s ease;
+}
+
+.imagen-deslizar:hover {
+    transform: translateY(-10px); /* Desliza la imagen hacia arriba 10px */
+}
+

@@ -31,13 +31,16 @@
 
                     <div class="mb-3">
                         <label for="Path_poster" class="form-label">Path_poster:</label>
-                        <input type="text" name="Path_poster" id="Path_poster" class="form-control" required>
+                        <input type="file" name="Path_poster" id="Path_poster" class="form-control" required>
                     </div>
                     <!-- TRAE TODOS LOS GENEROS -->
+
+                    <!-- Buscador para géneros -->
+                    <label for="genero" class="form-label">Género:</label>
+                    <input type="text" id="busquedaGenero" placeholder="Buscar género..." class="form-control mb-3">
                     <div class="row mb-3">
-                        <label for="genero" class="form-label">Genero:</label>
                         <?php while ($row_genero = $generos->fetch_assoc()) { ?>
-                            <div class="col-md-3">
+                            <div class="col-md-3 generoItem">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="generoSeleccionado[]" value="<?php echo $row_genero["id_genero"]; ?>" id="check<?php echo $row_genero["id_genero"]; ?>">
                                     <label class="form-check-label" for="check<?php echo $row_genero["id_genero"]; ?>">
@@ -48,11 +51,12 @@
                         <?php } ?>
                     </div>
 
-                    <!-- TRAE TODOS LOS ACTORES CON SUS NOMBRES Y APELLIDOS CONCATENADOS -->
+                    <!-- Buscador para actores -->
+                    <label for="actores" class="form-label">Actores:</label>
+                    <input type="text" id="busquedaActor" placeholder="Buscar actor..." class="form-control mb-3 ">
                     <div class="row mb-3">
-                        <label for="actores" class="form-label">Actores:</label>
                         <?php while ($row_actor = $actores->fetch_assoc()) { ?>
-                            <div class="col-md-4">
+                            <div class="col-md-4 actorItem">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="actorSeleccionados[]" value="<?php echo $row_actor["id_actor"]; ?>" id="check<?php echo $row_actor["id_actor"]; ?>">
                                     <label class="form-check-label" for="check<?php echo $row_actor["id_actor"]; ?>">
@@ -63,11 +67,12 @@
                         <?php } ?>
                     </div>
 
-                    <!-- TRAE TODOS LOS DIRECTORES CON SUS NOMBRES Y APELLIDOS CONCATENADOS -->
+                    <!-- Buscador para directores -->
+                    <label for="directores" class="form-label">Directores:</label>
+                    <input type="text" id="busquedaDirector" placeholder="Buscar director..." class="form-control mb-3">
                     <div class="row mb-3">
-                        <label for="directores" class="form-label">Directores:</label>
                         <?php while ($row_director = $directores->fetch_assoc()) { ?>
-                            <div class="col-md-4">
+                            <div class="col-md-4 directorItem">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="directoresSeleccionados[]" value="<?php echo $row_director["id_director"]; ?>" id="check<?php echo $row_director["id_director"]; ?>">
                                     <label class="form-check-label" for="check<?php echo $row_director["id_director"]; ?>">
@@ -98,3 +103,6 @@
         </div>
     </div>
 </div>
+<!-- BUSCADORES-->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="script\buscador_gad.js"></script>

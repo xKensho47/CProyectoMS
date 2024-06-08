@@ -8,18 +8,18 @@
  $directores = $conexion->query("SELECT id_director, nombre, apellido FROM director");
 ?>
 <!-- Modal -->
-<div class="modal fade" id="editar_modal" tabindex="-1" aria-labelledby="editar_modalLabel" aria-hidden="true">
+<div class="modal fade" id="editaModal" tabindex="-1" aria-labelledby="editaModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-3" id="editar_modalLabel">Editar registro</h1>
+                <h1 class="modal-title fs-3" id="editaModalLabel">Agregar registro</h1>
                 <button type="button" class="btn-close btn-color" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body fs-5">
-                <form action="actualizar.php" method="post" enctype="multipart/form-data">
-                
-                    <input type="hidden" id="id" name="id">
+                <form action="guardar_pelicula.php" method="post" enctype="multipart/form-data">
 
+                    <input type="hidden" id="id" name="id">
+                    
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Titulo:</label>
                         <input type="text" name="nombre" id="nombre" class="form-control" required>

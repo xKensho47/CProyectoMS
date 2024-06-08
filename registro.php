@@ -1,31 +1,50 @@
-<?php
-if (!empty($_POST["registro"])) {
-	if (empty($_POST["nombre"]) or empty($_POST["apellido"]) or empty($_POST["mail"]) or empty($_POST["usuario"]) or empty($_POST["password"])) {
-		echo 'esta vacio';
-	} else {
+<html>
 
-		$nombre = $_POST["nombre"];
-		$apellido = $_POST["apellido"];
-		$mail = $_POST["mail"];
-		$usuario = $_POST["usuario"];
-		$password = md5($_POST["password"]);
-		$validar = "SELECT * FROM usuarios WHERE mail ='$mail' || nombre_usuario='$usuario'";
-		$validando = $conexion->query($validar);
-		if ($validando->num_rows > 0) {
-			echo 'el usuario y/o mail ya estan registrados';
-		} else {
-			$sql = $conexion->query("insert into usuarios(nombre, apellido, nombre_usuario, mail,contraseña,id_tipo) values ('$nombre','$apellido','$usuario','$mail', '$password',2) ");
-			if ($sql == 1) {
-				echo 'usuario registrado correctamente';
-			} else {
-				echo 'usuario no registrado';
-			}
-		}
-	}
-}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" type="text/css" href="slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./images/favicon/site.webmanifest">
+    <title>Registro</title>
+</head>
 
+<body>
+    <div class="container">
+        <?php
+        include("header.php");
+        ?>
+        <main>
+            <div class="div-form">
+                <form class="formulario-login" action="registro_process.php" method="post">
+                    <h1>Registrate</h1>
+                    <input class="input-login" type="text" name="nombre" required placeholder="Ingrese su nombre" />
+                    <input class="input-login" type="text" name="apellido" required placeholder="Ingrese su apellido" />
+                    <input class="input-login" type="email" name="mail" required placeholder="Ingrese su email" />
+                    <input class="input-login" type="text" name="nombre_usuario" maxlength="12" placeholder="Ingrese su nombre de usuario" />
+                    <input class="input-login" type="password" name="contraseña" maxlength="12" placeholder="Ingrese su contraseña" />
+                    <br>
+                    <input class="boton-login" type="submit" value="Registrarse" name="registro" />
+                    <a class="link-registro" href="login.php">¿Ya tenes usuario? Inicia sesion.</a>
+                </form>
+            </div>
+        </main>
 
-?>
-<script>
-	history.replaceState(null, null, location.pathname)
-</script>
+    </div>
+        <script src="script/jquery.js"></script>
+        <script src="slick/slick.min.js"></script>
+        <script src="script/script.js"></script>
+        <script src="script/botonTop.js"></script>
+
+    <footer>
+        <p>&copy; CineFlow 2024</p>
+    </footer>
+</body>
+
+</html>

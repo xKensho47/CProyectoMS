@@ -1,7 +1,8 @@
-<?php session_start(); ?>
+<?php session_start();
+include('conexion.php');
+?>
 <!doctype html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,29 +12,46 @@
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" type="text/css" href="slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./images/favicon/site.webmanifest">
     <title>Home</title>
 </head>
 
 <body>
     <div class="container showcase">
         <?php
-        include("conexion.php");
-        include("comprobar_usuario.php");
+
+        include("header.php");
+        require_once("loginVerification.php");
         require_once("CCarousel.php");
 
         echo '
         <main class="main-principal">
-            <section class="container movies-container movies">';
-                $carouseles = new CCarousel($conexion);
+            <section class="movies-containerp movies" id="movies-container movies">';
 
-                $carouseles->generateMovieSection($conexion, 'Películas más valoradas');
-                $carouseles->generateMovieSection($conexion, 'Recientes');
+            $titles = array("Películas más valoradas", "Recientes", "Ver más tarde", "Ver de nuevo");
 
-            echo'
-            </section>
+            $carouseles = new CCarousel($conexion);
             
+            if (!verification()) {
+                for ($i = 0; $i < count($titles); $i++) {
+                    if ($i < count($titles) - 2) {
+                        $carouseles->generateMovieSection($conexion, $titles[$i]);
+                    }
+                }
+            } else {
+                foreach ($titles as $title) {
+                    $carouseles->generateMovieSection($conexion, $title);
+                }
+            }
+          
+        echo '
+            </section>
         </main>
         ';
+
         ?>
         <script src="script/jquery.js"></script>
         <script src="slick/slick.min.js"></script>

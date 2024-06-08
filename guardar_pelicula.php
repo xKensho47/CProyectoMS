@@ -10,10 +10,25 @@ $duracion = $conexion->real_escape_string($_POST['duracion']);
 $Path_poster = $conexion->real_escape_string($_POST['Path_poster']);
 $video_mp4 = $conexion->real_escape_string($_POST['video_mp4']);
 $video_iframe = $conexion->real_escape_string($_POST['video_iframe']);
+$carpeta_destino = "posters/";
+
+if(isset($_FILES['Path_poster'])) {
+    $archivo_nombre = $_FILES['Path_poster']['name'];
+    $archivo_temporal = $_FILES['Path_poster']['tmp_name'];
+    
+    $ruta_destino = $carpeta_destino . $archivo_nombre;
+    
+    if(move_uploaded_file($archivo_temporal, $ruta_destino)) {
+        echo "Imagen guardada correctamente en: " . $ruta_destino;
+    } else {
+        echo "Error al guardar la imagen.";
+    }
+}
+
 
 // Insertar la película en la base de datos
 $sql = "INSERT INTO peliculas (titulo, descripcion, estreno, Path_poster, duracion, video_iframe, video_mp4, fecha_subida) 
-        VALUES ('$nombre', '$descripcion', '$estreno', '$Path_poster', '$duracion', '$video_iframe', '$video_mp4', NOW())";
+        VALUES ('$nombre', '$descripcion', '$estreno', '$ruta_destino', '$duracion', '$video_iframe', '$video_mp4', NOW())";
 
 if ($conexion->query($sql)) {
     $id_peli = $conexion->insert_id;

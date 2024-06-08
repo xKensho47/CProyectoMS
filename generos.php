@@ -11,15 +11,25 @@
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" type="text/css" href="slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
-    <title>Peliculas</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./images/favicon/site.webmanifest">
+    <title>Generos</title>
 </head>
 
 <body>
     <div class="container">
         <?php
         include("conexion.php");
-        include("comprobar_usuario.php");
-
+        include("header.php");
+        require_once("loginVerification.php");
+        if(isset($_GET['status'])) {
+            // Verificar si el parámetro 'status' tiene el valor 'success'
+            if($_GET['status'] === 'success') {
+                echo '<div class="mensaje-exito">Ya has seleccionado el máximo de 3 géneros favoritos.</div>';
+            }
+        }
         ?>
         <main class="main-genres">
             <section class="genres-container">

@@ -1,3 +1,4 @@
+
 <?php
 include("conexion.php");
 
@@ -29,7 +30,6 @@ if (!empty($_POST['actor'])) {
 }
 
 $conexion->close();
-header('Location: crud_peliculas.php');
 ?>
 
 

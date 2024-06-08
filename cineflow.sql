@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-06-2024 a las 00:41:55
+-- Tiempo de generación: 03-06-2024 a las 14:59:21
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,7 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `cineflow`
 --
-
+CREATE DATABASE cineflow;
+USE cineflow;
 -- --------------------------------------------------------
 
 --
@@ -200,9 +201,10 @@ CREATE TABLE `cuenta_usuario` (
   `id_cuenta` int(8) NOT NULL,
   `about_me` text NOT NULL,
   `cant_amigos` int(8) DEFAULT NULL,
-  `id_notificacion` int(10) NOT NULL,
   `id_usuario` int(8) NOT NULL,
-  `id_img` int(1) NOT NULL
+  `id_img` int(1) DEFAULT NULL,
+  `nombre_usuario` varchar(25) NOT NULL,
+  `contraseña` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -369,7 +371,8 @@ CREATE TABLE `mas_tarde` (
 --
 
 CREATE TABLE `notificacion` (
-  `id_notificacion` int(10) NOT NULL,
+  `usuario_envia` int(8) NOT NULL,
+  `usuario_recibe` int(8) NOT NULL,
   `mensaje` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -979,9 +982,7 @@ CREATE TABLE `usuarios` (
   `id_usuario` int(8) NOT NULL,
   `nombre` varchar(20) NOT NULL,
   `apellido` varchar(30) NOT NULL,
-  `nombre_usuario` varchar(20) NOT NULL,
   `mail` varchar(100) NOT NULL,
-  `contraseña` varchar(255) NOT NULL,
   `id_tipo` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -989,9 +990,9 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `nombre_usuario`, `mail`, `contraseña`, `id_tipo`) VALUES
-(2, 'jazmin', 'cardona', 'jaz707', 'jazcar2003@gmail.com', '639088b67cd61a65e89880992a1ab362', 1),
-(3, 'maria', 'quinto', 'juajua5', 'fgh@gmail.com', '926e27eecdbc7a18858b3798ba99bddd', 2);
+INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `mail`, `id_tipo`) VALUES
+(2, 'jazmin', 'cardona', 'jazcar2003@gmail.com', 1),
+(3, 'maria', 'quinto', 'fgh@gmail.com', 2);
 
 -- --------------------------------------------------------
 
@@ -1022,7 +1023,6 @@ ALTER TABLE `actor`
 --
 ALTER TABLE `cuenta_usuario`
   ADD PRIMARY KEY (`id_cuenta`),
-  ADD KEY `notificacion_id_notificacion_cuenta_usuario` (`id_notificacion`),
   ADD KEY `usuarios_id_usuario_cuenta_usuario` (`id_usuario`),
   ADD KEY `img_perfil_id_img_cuenta_usuario` (`id_img`);
 
@@ -1069,7 +1069,8 @@ ALTER TABLE `mas_tarde`
 -- Indices de la tabla `notificacion`
 --
 ALTER TABLE `notificacion`
-  ADD PRIMARY KEY (`id_notificacion`);
+  ADD KEY `cuenta_usuario_usuario_envia_notificacion` (`usuario_envia`),
+  ADD KEY `cuenta_usuario_usuario_recibe_notificacion` (`usuario_recibe`);
 
 --
 -- Indices de la tabla `peliculas`
@@ -1167,12 +1168,6 @@ ALTER TABLE `img_perfil`
   MODIFY `id_img` int(1) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `notificacion`
---
-ALTER TABLE `notificacion`
-  MODIFY `id_notificacion` int(10) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `peliculas`
 --
 ALTER TABLE `peliculas`
@@ -1205,7 +1200,6 @@ ALTER TABLE `valoracion_peliculas`
 --
 ALTER TABLE `cuenta_usuario`
   ADD CONSTRAINT `img_perfil_id_img_cuenta_usuario` FOREIGN KEY (`id_img`) REFERENCES `img_perfil` (`id_img`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `notificacion_id_notificacion_cuenta_usuario` FOREIGN KEY (`id_notificacion`) REFERENCES `notificacion` (`id_notificacion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `usuarios_id_usuario_cuenta_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -1228,6 +1222,13 @@ ALTER TABLE `lista_amigos`
 ALTER TABLE `mas_tarde`
   ADD CONSTRAINT `cuenta_usuario_id_cuenta_mas_tarde` FOREIGN KEY (`id_cuenta`) REFERENCES `cuenta_usuario` (`id_cuenta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `peliculas_id_peli_peliculas` FOREIGN KEY (`id_peli`) REFERENCES `peliculas` (`id_peli`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `notificacion`
+--
+ALTER TABLE `notificacion`
+  ADD CONSTRAINT `cuenta_usuario_usuario_envia_notificacion` FOREIGN KEY (`usuario_envia`) REFERENCES `cuenta_usuario` (`id_cuenta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `cuenta_usuario_usuario_recibe_notificacion` FOREIGN KEY (`usuario_recibe`) REFERENCES `cuenta_usuario` (`id_cuenta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `peli_actor`
@@ -1263,6 +1264,12 @@ ALTER TABLE `peli_genero`
 ALTER TABLE `peli_like`
   ADD CONSTRAINT `cuenta_usuario_id_cuenta_peli_like` FOREIGN KEY (`id_cuenta`) REFERENCES `cuenta_usuario` (`id_cuenta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `peliculas_id_peli_peli_like` FOREIGN KEY (`id_peli`) REFERENCES `peliculas` (`id_peli`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `tipo_usuario_id_tipo_usuarios` FOREIGN KEY (`id_tipo`) REFERENCES `tipo_usuario` (`id_tipo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `valoracion_peliculas`
