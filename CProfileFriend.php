@@ -1,8 +1,9 @@
 <?php
-class CProfile
+class CProfileFriend
 {
     private $conexion;
     private $id_cuenta;
+    private $id_profile;
 
     // GETTERS Y SETTERS
     public function setConexion(object $conexion)
@@ -13,6 +14,9 @@ class CProfile
     public function setIDUsuario($id_cuenta)
     {
         $this->id_cuenta = $id_cuenta;
+    }
+    public function setIdProfile($id_profile){
+        $this->id_profile = $id_profile;
     }
 
     public function getConexion()
@@ -25,12 +29,19 @@ class CProfile
         return $this->id_cuenta;
     }
 
+    public function getIdProfile(){
+        return $this->id_profile;
+    }
+    
+    
+
     // CONSTRUCTOR
-    function __construct(object $conexion)
+    function __construct(object $conexion, $id_profile)
     {
         $this->conexion = $conexion;
         if (isset($_SESSION['id_cuenta'])) {
             $this->id_cuenta = $_SESSION['id_cuenta'];
+            $this->id_profile = $id_profile;
         }
     }
 
@@ -42,6 +53,8 @@ class CProfile
             return;
         }
 
+        $conexion = $this->getConexion();
+        $id_profile = $this->getIdProfile();
         $id_cuenta = $_SESSION['id_cuenta'];
 
         // Verificar si el id_cuenta es válido
@@ -61,23 +74,10 @@ class CProfile
     ON 
         cu.id_img = ip.id_img 
     WHERE 
-        cu.id_cuenta = ?
+        cu.id_cuenta = $id_profile
     ";
 
-        $stmt = $this->conexion->prepare($q);
-        if (!$stmt) {
-            echo "Error de preparación de consulta: " . $this->conexion->error;
-            return;
-        }
-
-        $stmt->bind_param('i', $id_cuenta);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result === false) {
-            echo "Error en la ejecución de la consulta: " . $stmt->error;
-            return;
-        }
+        $result = mysqli_query($conexion,$q);
 
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
@@ -88,19 +88,11 @@ class CProfile
                     "SELECT g.nombre_genero 
             FROM genero_favorito gf 
             JOIN genero g ON gf.id_genero = g.id_genero 
-            WHERE gf.id_cuenta = ?
+            WHERE gf.id_cuenta = $id_profile
             ";
 
-                $stmt_genres = $this->conexion->prepare($q_genres);
-                if (!$stmt_genres) {
-                    echo "Error de preparación de consulta para géneros: " . $this->conexion->error;
-                    return;
-                }
-
-                $stmt_genres->bind_param('i', $id_cuenta);
-                $stmt_genres->execute();
-                $result_genres = $stmt_genres->get_result();
-
+                
+                $result_genres = mysqli_query($conexion,$q_genres);
                 $genres_html = '';
                 if ($result_genres->num_rows > 0) {
                     while ($genre_row = $result_genres->fetch_assoc()) {
@@ -110,12 +102,15 @@ class CProfile
                     $genres_html = "<div class='genres-favorites'>No hay géneros favoritos</div>";
                 }
 
-                $stmt_genres->close();
+                
+                $query = "SELECT COUNT(*) as count FROM lista_amigos WHERE id_cuenta = '$id_cuenta' AND amigo = '$id_profile'";
+                $result = mysqli_query($conexion, $query);
+                $isFriend = mysqli_fetch_assoc($result)['count'] > 0;
 
                 // Generar el HTML con los datos del usuario, incluyendo la imagen de perfil, el campo about_me y los géneros favoritos
                 echo "
                 <section class='userinfo-data'>
-                    <h1 class='title-profile'> MI PERFIL </h1>
+                    <h1 class='title-profile'> PERFIL DE USUARIO </h1>
                     <article class='data-user'>                    
                         <aside class='user-container'>
                             <div class='user-avatar'>
@@ -125,16 +120,18 @@ class CProfile
                                 <h2 class='info-name'> @" . htmlspecialchars($row['nombre_usuario'], ENT_QUOTES, 'UTF-8') . "</h2>
                             </div>
                         </aside>
-                        <aside class='user-button'>
-                            <div class='col-auto mt-5 animate-from-bottom'>
-                                <a href='#' class='btn btn-color fs-5' data-bs-toggle='modal' data-bs-target='#editaModal' data-bs-id='" . htmlspecialchars($id_cuenta, ENT_QUOTES, 'UTF-8') . "'>
-                                    Editar Perfil
-                                </a>
+                        <aside class='user-button' data-is-friend='" . ($isFriend ? "true" : "false") . "' data-amigo-id='$id_profile'>
+                            <div class='col-auto mt-5 animate-from-bottom add-friend' style='display: none;'>
+                                <form action='agregarAmigo.php' method='post'>
+                                    <input type='hidden' name='discover_id' value='$id_profile'>
+                                    <button type='submit' class='button-add-discover'>Agregar amigo</button>
+                                </form>
                             </div>
-                            <div class='col-auto mt-5 animate-from-bottom'>
-                                <a href='logout.php'>
-                                    <button class='btn btn-color fs-5 button-logout'>Logout</button>
-                                </a>
+                            <div class='col-auto mt-5 animate-from-bottom remove-friend' style='display: none;'>
+                                <form action='eliminarAmigo.php' method='post'>
+                                    <input type='hidden' name='friend_id' value='$id_profile'>
+                                    <button type='submit' class='button-add-discover'>Eliminar Amigo</button>
+                                </form>
                             </div>
                         </aside>
                     </article>
@@ -151,11 +148,8 @@ class CProfile
                     <form id='modificaAboutMe' class='modifAboutMe' method='POST' action='editarSobreMi.php'>
                         <label class='description-tittle'>
                             Sobre Mí
-                            <label style='font-size: 1rem;'> ------->Modificar: <input type='checkbox' id='modifAboutMeCheckbox' name='modifAboutMeCheckbox'/></label>
-                            <input type='submit' name='submit-modificacion' value='Registrar Modificación'>
                             <textarea readonly class='description-aboutme' name='aboutMeRead' id='aboutMeRead' cols='30' rows='10' required>" . htmlspecialchars($row['about_me'], ENT_QUOTES, 'UTF-8') . "</textarea>
-                            <textarea class='description-aboutme d-none' name='about_me' id='aboutMeMod' cols='30' rows='10' placeholder='Escriba aquí...'></textarea>
-                            <input type='hidden' name='id_cuenta' value='" . htmlspecialchars($id_cuenta, ENT_QUOTES, 'UTF-8') . "'>
+                            <textarea class='description-aboutme d-none' name='about_me' id='aboutMeMod' cols='30' rows='10'></textarea>
                         </label>
                     </form>
                 </section>
@@ -167,11 +161,12 @@ class CProfile
             echo "No se encontraron datos del usuario.";
         }
 
-        $stmt->close();
+        mysqli_close($conexion);
     }
 
     public function friendsList($conexion)
     {
+        $id_profile = $this->getIdProfile();
         $id_cuenta = $_SESSION['id_cuenta'];
 
         $q =
@@ -184,20 +179,12 @@ class CProfile
         INNER JOIN 
             cuenta_usuario AS facc ON flist.amigo = facc.id_cuenta
         WHERE 
-            usuario.id_cuenta = ?
+            usuario.id_cuenta = $id_profile
         ORDER BY 
             facc.nombre_usuario ASC
         ";
 
-        $stmt = $conexion->prepare($q);
-        if (!$stmt) {
-            echo "Error de preparación de consulta: " . $conexion->error;
-            exit();
-        }
-
-        $stmt->bind_param('i', $id_cuenta);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        $result = mysqli_query($conexion,$q);
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -211,12 +198,8 @@ class CProfile
                             <p class="friend-username">' . $row["nombre_usuario"] . '</p>
                         </div>
                     </div>
-                    <div class="friend-button">
+                    <div class="friend-button" data-id-cuenta="' . $id_cuenta . '" data-id-profile="' . $row['id_cuenta'] . '">
                         <a href="perfilAmigo.php?id_profile=' . $row["id_cuenta"] . '"><button class="view-profile">Ver perfil</button></a>
-                        <form action="eliminarAmigo.php" method="post">
-                            <input type="hidden" name="friend_id" value="' . $row["id_cuenta"] . '">
-                            <button type="submit" class="button-add-discover">Eliminar Amigo</button>
-                        </form>
                     </div>
                 </div>
                 ';
@@ -225,44 +208,7 @@ class CProfile
             echo "No hay amigos para mostrar.";
         }
 
-        $stmt->close();
-    }
-
-    public function discoverFriends($conexion)
-    {
-
-        $id_cuenta = $_SESSION['id_cuenta'];
-
-        $q = "SELECT * FROM cuenta_usuario WHERE id_cuenta != $id_cuenta";
-
-        $result = mysqli_query($conexion,$q);
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo '
-                <div class="data-discover" id="discover-' . $row["id_cuenta"] . '">
-                    <div class="discover-container">
-                        <div class="discover-avatar">
-                            <img class="profile-img" src="' . $row["id_img"] . '" alt="Discover Avatar"/>
-                        </div>
-                        <div class="discover-info">
-                            <p class="discover-username">' . $row["nombre_usuario"] . '</p>
-                        </div>
-                    </div>
-                    <div class="discover-button">
-                        <a href="perfilAmigo.php?id_profile=' . $row["id_cuenta"] . '"><button class="view-profile">Ver perfil</button></a>
-                        <form action="agregarAmigo.php" method="post">
-                            <input type="hidden" name="discover_id" value="' . $row["id_cuenta"] . '">
-                            <button type="submit" class="button-add-discover">Agregar amigo</button>
-                        </form>
-                    </div>
-                </div>
-                ';
-            }
-        } else {
-            echo "No hay amigos para mostrar.";
-        }
-        
         mysqli_close($conexion);
     }
+
 }

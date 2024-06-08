@@ -6,7 +6,7 @@ $(document).ready(function() {
         var friendElement = $('#friend-' + amigoId);
 
         $.ajax({
-            url: 'eliminar_amigo.php',
+            url: 'eliminarAmigo.php',
             type: 'POST',
             data: { amigo_id: amigoId },
             success: function(response) {

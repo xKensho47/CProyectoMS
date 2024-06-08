@@ -1,4 +1,11 @@
-<?php session_start(); ?>
+<?php session_start();
+    include("CProfileFriend.php");
+    include("conexion.php");
+    $id_profile = $_GET['id_profile'];
+
+    $profile = new CProfileFriend($conexion,$id_profile);
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,14 +22,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
     <link rel="manifest" href="./images/favicon/site.webmanifest">
-    <title>Mi Perfil</title>
+    <title>Perfil</title>
 </head>
 <body>
     <div class="container">
         <?php
-        include("conexion.php");
         include("header.php");
-        include("CProfile.php");
         include("CCarousel.php");
         ?>
         <main class="main-profile">
@@ -30,9 +35,7 @@
                 <aside class="profile-userinfo">
                     <?php
                     /* PRIMER ASIDE */
-                    $profile = new CProfile($conexion);
-
-
+                
                     $profile->generateProfileData();
 
                     ?>                    
@@ -44,7 +47,6 @@
                                 <ul class="userinfo2-menu-list checkbox-container" name="userinfo2-menu-list">
                                     <li class="userinfo2-menu-item"><input class="radio-profile" type="radio" id="movies" name="option-menu" value="movies" checked><label for="movies">Resumen del perfil</label></li>
                                     <li class="userinfo2-menu-item"><input class="radio-profile" type="radio" id="friends" name="option-menu" value="friends"><label for="friends">Lista de Amigos</label></li>
-                                    <li class="userinfo2-menu-item"><input class="radio-profile" type="radio" id="discover" name="option-menu" value="discover"><label for="discover">Descubrir Amigos</label></li>
                                 </ul>
                             </nav>
                         </article>
@@ -52,8 +54,6 @@
                             <section class="userinfo2-movies option" id="userinfo2-movies">
                                 <?php
                                 $carouseles = new CCarousel($conexion);
-                                $carouseles->generateMovieSection($conexion, 'Continuar viendo');
-                                $carouseles->generateMovieSection($conexion, 'Ver más tarde');
                                 $carouseles->generateMovieSection($conexion, 'Favoritas');
                                 ?>
                             </section>
@@ -63,15 +63,6 @@
                                         <?php
                                         $profile->FriendsList($conexion);
                                         ?>
-                                    </article>
-                                </section>
-                            </section>
-                            <section class="userinfo2-discover option" id="userinfo2-discover">
-                                <section class="discover-container">
-                                    <article class="discover-grid-container">
-                                        <?php
-                                        $profile->discoverFriends($conexion);
-                                        ?> 
                                     </article>
                                 </section>
                             </section>
@@ -93,11 +84,11 @@
     <script src="script/agregarAmigos.js"></script>
     <script src="script/profileEdit.js"></script>
     <script src="script/editarSobreMi.js"></script>
+    <script src="script/redirect.js"></script>
+    <script src="script/toggleFriendButtons.js"></script>
     
     <footer class="footer">
         <p>&copy; CineFlow 2024</p>
     </footer>
 </body>
 </html>
-
-<?php include("editarPerfil_modal.php") ?>
