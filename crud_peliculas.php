@@ -105,13 +105,13 @@
                             echo '<div class="alert alert-success alert-dismissible fade show fs-5" role="alert"> Cambios Guardados.
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>';
-                        }elseif ($_GET['status'] === 'danger'){
+                        } elseif ($_GET['status'] === 'danger') {
                             echo '<div class="alert alert-danger alert-dismissible fade show fs-5" role="alert"> no pueden realizarse dos acciones a la vez, ni tener ambos campos vacios.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>';
                         }
                     } ?>
-                    
+
                     <!-- ENCABEZADO DE LA TABLA-->
                     <table class="table table-xl table-striped table-hover mt-3 ">
                         <thead class="table-dark fs-4">
@@ -149,10 +149,10 @@
                                 $titulo = $row->titulo;
                                 $descripcion = $row->descripcion;
                                 $estreno = $row->estreno;
-                                $duracion = $row->duracion; 
-                                $path_poster = $row->path_poster;    
-                            ?> 
-                                
+                                $duracion = $row->duracion;
+                                $path_poster = $row->path_poster;
+                            ?>
+
                                 <tr>
                                     <td><?= $id_peli; ?></td>
                                     <td><?= $titulo; ?></td>
@@ -170,8 +170,8 @@
                                                                     '<?= $estreno ?>',
                                                                     '<?= $duracion ?>',
                                                                     '<?= $duracion ?>',
-                                                                    '<?= $path_poster?>')">
-                                         <i class="fa-solid fa-pen-to-square"></i> Editar </a>
+                                                                    '<?= $path_poster ?>')">
+                                            <i class="fa-solid fa-pen-to-square"></i> Editar </a>
                                         <a href="#" class="btn btn-sm btn-danger mt-4 fs-6" data-bs-toggle="modal" data-bs-target="#eliminaModal" data-bs-id="<?= $row->id_peli; ?>"><i class="fa-solid fa-trash"></i> Eliminar</a>
                                     </td>
                                 </tr>
@@ -183,28 +183,32 @@
                 </div>
 
                 <!--MODALES-->
+                <?php include 'nuevo_modal.php'; ?>
+                <?php include 'editar_modal.php'; ?>
                 <?php include 'nuevo_modal_genero.php'; ?>
                 <?php include 'nuevo_modal_actor.php'; ?>
                 <?php include 'nuevo_modal_director.php'; ?>
-                <?php include 'editar_modal.php'; ?>
                 <?php include 'elimina_modal.php'; ?>
 
-                <script> 
+
+                <script>
                     function IdPeliculaEditarEnModal(id_peli, titulo, descripcion, estreno, duracion, path_poster) {
-                        console.log(id_peli, titulo,descripcion,estreno,duracion);
-                    let inputIdEncontrado = document.getElementById("id_peli");
-                    let inputTituloEncontrado = document.getElementById("nombre_pelicula"); 
-                    let inputDescripcionEncontrada = document.getElementById("descripcion");
-                    let inputEstrenoEncontrado = document.getElementById("estreno");
-                    let inputDuracionEncontrado = document.getElementById("duracion");
-                    let inputPosterEncontrado = document.getElementById("path_poster");
-                    inputIdEncontrado.value = id_peli;
-                    inputTituloEncontrado.value = titulo; //modifica el valor del input con el id recibido
-                    inputDescripcionEncontrada.value = descripcion;
-                    inputEstrenoEncontrado.value = estreno;
-                    inputDuracionEncontrado.value = duracion;
-                    inputPosterEncontrado.value = path_poster;
-                }
+                        console.log(id_peli, titulo, descripcion, estreno, duracion, path_poster);
+
+                        let inputIdEncontrado = document.getElementById("id_peli");
+                        let inputTituloEncontrado = document.getElementById("nombre_pelicula");
+                        let inputDescripcionEncontrada = document.getElementById("descripcion_pelicula");
+                        let inputEstrenoEncontrado = document.getElementById("estreno_pelicula");
+                        let inputDuracionEncontrado = document.getElementById("duracion_pelicula");
+                        let inputPosterEncontrado = document.getElementById("path_poster_pelicula");
+
+                        inputIdEncontrado.value = id_peli;
+                        inputTituloEncontrado.value = titulo;
+                        inputDescripcionEncontrada.value = descripcion;
+                        inputEstrenoEncontrado.value = estreno;
+                        inputDuracionEncontrado.value = duracion;
+                        inputPosterEncontrado.value = path_poster;
+                    }
                 </script>
 
                 <script src="script/jquery.js"></script>

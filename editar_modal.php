@@ -15,11 +15,11 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-3" id="editaModalLabel">Agregar registro</h1>
+                <h1 class="modal-title fs-3" id="editaModalLabel">Modificar registro</h1>
                 <button type="button" class="btn-close btn-color" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body fs-5">
-                <form action="guardar_pelicula.php" method="post" enctype="multipart/form-data">
+                <form action="" method="post" enctype="multipart/form-data">
 
                     <input type="hidden" id="id_peli" name="id_peli">
                     
@@ -30,22 +30,22 @@
 
                     <div class="mb-3">
                         <label for="descripcion" class="form-label">Descripción:</label>
-                        <textarea name="descripcion" id="descripcion" class="form-control" rows="3" required></textarea>
+                        <textarea name="descripcion" id="descripcion_pelicula" class="form-control" rows="3" required></textarea>
                     </div>
 
                     <div class="mb-3">
                         <label for="estreno" class="form-label">Estreno:</label>
-                        <input type="date" name="estreno" id="estreno" class="form-control" required>
+                        <input type="date" name="estreno" id="estreno_pelicula" class="form-control" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="duracion" class="form-label">Duracion:</label>
-                        <input type="number" name="duracion" id="duracion" class="form-control" required>
+                        <input type="number" name="duracion" id="duracion_pelicula" class="form-control" required>
                     </div>
 
-                    <div class="mb-3">
+                       <div class="mb-3">
                         <label for="Path_poster" class="form-label">Path_poster:</label>
-                        <input type="text" name="Path_poster" id="path_poster" class="form-control" required>
+                        <input type="file" name="Path_poster" id="Path_poster" class="form-control" required>
                     </div>
                     <!-- TRAE TODOS LOS GENEROS -->
                     <div class="row mb-3">
