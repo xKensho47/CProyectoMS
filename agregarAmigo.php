@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Obtiene el id de la cuenta del amigo desde la solicitud POST
-    $friendId = $_POST['friend_id'];
+    $friendId = $_POST['discover_id'];
     $userId = $_SESSION['id_cuenta']; // Id de la cuenta del usuario actual
 
     // Verifica que friendId no sea el mismo que userId para evitar que el usuario se agregue a sí mismo como amigo
@@ -19,8 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    // Elimina al amigo en la lista de amigos
-    $q = "DELETE FROM lista_amigos WHERE amigo = $friendId AND id_cuenta = $userId";
+    // Inserta al amigo en la lista de amigos
+    $q = "INSERT INTO lista_amigos VALUES ($userId, $friendId)";
     $result = mysqli_query($conexion, $q);
 
 } else {

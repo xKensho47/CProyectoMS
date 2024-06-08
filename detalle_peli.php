@@ -26,7 +26,7 @@ $anoEstreno = date("Y", strtotime($fechaEstreno));
 $cant_estrellas = mysqli_query($conexion,"SELECT SUM(estrellas) AS cant_estrellas FROM peli_estrellas WHERE id_peli = $id");
 $cant_registros = mysqli_query($conexion,"SELECT COUNT(*) AS cant_registros FROM peli_estrellas WHERE id_peli = $id");
 
-    mysqli_close($conexion);
+mysqli_close($conexion);
 ?>
 <!doctype html>
 <html lang="es">
@@ -148,6 +148,7 @@ $cant_registros = mysqli_query($conexion,"SELECT COUNT(*) AS cant_registros FROM
                                                                             echo 'existe';
                                                                         } ?>"><i class="fa-solid fa-thumbs-up"></i></button>
                             </form>
+                            <button class="info-boton"><i class="fa-solid fa-users"></i></button>
                         </div>
                     </div>
                     <div class="info-descripcion">
