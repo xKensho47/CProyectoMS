@@ -3,12 +3,14 @@
  $sqlGenero = "SELECT id_genero, nombre_genero FROM genero";
  $generos = $conexion->query($sqlGenero);
  /*LLAMA A LA TABLA ACTORES*/
- $actores = $conexion->query("SELECT id_actor, nombre, apellido FROM actor");
+ $actores = $conexion->query("SELECT id_actor, CONCAT(nombre, ' ', apellido) AS nom_ape_actor FROM actor");
+
  /*LLAMA A LA TABLA DIRECTORES*/
- $directores = $conexion->query("SELECT id_director, nombre, apellido FROM director");
+ $directores = $conexion->query("SELECT id_director, CONCAT(nombre, ' ', apellido) AS nom_ape_director FROM director");
 
  $pelicula = "SELECT id_peli, titulo, descripcion, estreno, duracion FROM peliculas";
  $queryPelicula = $conexion->query($pelicula);
+
 ?>
 <!-- Modal -->
 <div class="modal fade" id="editaModal" tabindex="-1" aria-labelledby="editaModalLabel" aria-hidden="true">
@@ -19,7 +21,7 @@
                 <button type="button" class="btn-close btn-color" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body fs-5">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="" method="post" id="formulario_peliculas" enctype="multipart/form-data">
 
                     <input type="hidden" id="id_peli" name="id_peli">
                     
@@ -45,7 +47,7 @@
 
                        <div class="mb-3">
                         <label for="Path_poster" class="form-label">Path_poster:</label>
-                        <input type="file" name="Path_poster" id="Path_poster" class="form-control" required>
+                        <input type="file" name="Path_poster" id="Path_poster" class="form-control" >
                     </div>
                     <!-- TRAE TODOS LOS GENEROS -->
                     <div class="row mb-3">
@@ -53,7 +55,7 @@
                         <?php while ($row_genero = $generos->fetch_assoc()) { ?>
                             <div class="col-md-3">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="generoSeleccionado[]" value="<?php echo $row_genero["id_genero"]; ?>" id="check<?php echo $row_genero["id_genero"]; ?>">
+                                    <input class="form-check-input" type="checkbox" name="generoSeleccionado[]" value="<?php echo $row_genero["id_genero"]; ?>" id="<?php echo $row_genero["nombre_genero"]; ?>">
                                     <label class="form-check-label" for="check<?php echo $row_genero["id_genero"]; ?>">
                                         <?php echo $row_genero["nombre_genero"]; ?>
                                     </label>
@@ -68,9 +70,9 @@
                         <?php while ($row_actor = $actores->fetch_assoc()) { ?>
                             <div class="col-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="actorSeleccionados[]" value="<?php echo $row_actor["id_actor"]; ?>" id="check<?php echo $row_actor["id_actor"]; ?>">
+                                    <input class="form-check-input" type="checkbox" name="actorSeleccionados[]" value="<?php echo $row_actor["id_actor"]; ?>" id="<?php echo $row_actor["nom_ape_actor"]; ?>">
                                     <label class="form-check-label" for="check<?php echo $row_actor["id_actor"]; ?>">
-                                        <?php echo $row_actor["nombre"] . " " . $row_actor["apellido"]; ?>
+                                        <?php echo $row_actor["nom_ape_actor"]; ?>
                                     </label>
                                 </div>
                             </div>
@@ -83,9 +85,9 @@
                         <?php while ($row_director = $directores->fetch_assoc()) { ?>
                             <div class="col-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="directoresSeleccionados[]" value="<?php echo $row_director["id_director"]; ?>" id="check<?php echo $row_director["id_director"]; ?>">
+                                    <input class="form-check-input" type="checkbox" name="directoresSeleccionados[]" value="<?php echo $row_director["id_director"]; ?>" id="<?php echo $row_director["nom_ape_director"]; ?>">
                                     <label class="form-check-label" for="check<?php echo $row_director["id_director"]; ?>">
-                                        <?php echo $row_director["nombre"] . " " . $row_director["apellido"]; ?>
+                                        <?php echo $row_director["nom_ape_director"]; ?>
                                     </label>
                                 </div>
                             </div>

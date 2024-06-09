@@ -41,7 +41,8 @@
             LEFT JOIN (SELECT pa.id_peli, GROUP_CONCAT(CONCAT(a.nombre, ' ', a.apellido) 
             SEPARATOR ', ') AS nom_ape_actor FROM peli_actor pa INNER JOIN actor a ON a.id_actor = pa.id_actor GROUP BY 
             pa.id_peli) AS act ON p.id_peli = act.id_peli 
-            LEFT JOIN (SELECT pd.id_peli, GROUP_CONCAT(CONCAT(d.nombre, ' ', d.apellido) SEPARATOR ', ') AS nom_ape_director FROM peli_director pd INNER JOIN 
+            LEFT JOIN (SELECT pd.id_peli, GROUP_CONCAT(CONCAT(d.nombre, ' ', d.apellido) SEPARATOR ', ') AS nom_ape_director 
+            FROM peli_director pd INNER JOIN 
             director d ON d.id_director = pd.id_director GROUP BY pd.id_peli) AS dir ON p.id_peli = dir.id_peli
             GROUP BY p.id_peli";
 
@@ -63,6 +64,7 @@
             /*LLAMA A LA TABLA DIRECTORES*/
             $directores = $conexion->query("SELECT id_director, nombre, apellido FROM director");
             ?>
+
             <div class="crud  ">
                 <div class="animate-from-bottom">
                     <!-- BOTONES DE REGISTRO Y MODIFICACIONES-->
@@ -144,13 +146,15 @@
                             $actores = $conexion->query($sqlActor);
                             ?>
                             <?php while ($row = $peliculas->fetch_object()) {
-
-                                $id_peli = $row->id_peli;
-                                $titulo = $row->titulo;
-                                $descripcion = $row->descripcion;
-                                $estreno = $row->estreno;
-                                $duracion = $row->duracion;
-                                $path_poster = $row->path_poster;
+                                    $id_peli = $row->id_peli;
+                                    $titulo = $row->titulo;
+                                    $descripcion = $row->descripcion;
+                                    $estreno = $row->estreno;
+                                    $duracion = $row->duracion;
+                                    $path_poster = $row->path_poster;
+                                    $nombre_genero = $row->nombres_generos;
+                                    $nombre_actor = $row->nom_ape_actor;
+                                    $nombre_director = $row->nom_ape_director;
                             ?>
 
                                 <tr>
@@ -160,17 +164,19 @@
                                     <td><?= $estreno; ?></td>
                                     <td><img src="<?= $row->path_poster; ?>" width="80"></td>
                                     <td><?= $duracion; ?></td>
-                                    <td><?= $row->nombres_generos; ?></td>
-                                    <td><?= $row->nom_ape_actor; ?></td>
-                                    <td><?= $row->nom_ape_director; ?></td>
+                                    <td><?= $nombre_genero; ?></td>
+                                    <td><?= $nombre_actor; ?></td>
+                                    <td><?= $nombre_director; ?></td>
                                     <td>
                                         <a href="#" class="btn btn-sm btn-warning mt-5 fs-6" data-bs-toggle="modal" data-bs-target="#editaModal" data-bs-id="<?= $id_peli; ?>" onclick="IdPeliculaEditarEnModal('<?= $id_peli ?>',
                                                                     '<?= $titulo ?>',
                                                                     '<?= $descripcion ?>',
                                                                     '<?= $estreno ?>',
                                                                     '<?= $duracion ?>',
-                                                                    '<?= $duracion ?>',
-                                                                    '<?= $path_poster ?>')">
+                                                                    '<?= $path_poster ?>',
+                                                                    '<?= $nombre_genero ?>',
+                                                                    '<?= $nombre_actor ?>',
+                                                                    '<?= $nombre_director ?>')">
                                             <i class="fa-solid fa-pen-to-square"></i> Editar </a>
                                         <a href="#" class="btn btn-sm btn-danger mt-4 fs-6" data-bs-toggle="modal" data-bs-target="#eliminaModal" data-bs-id="<?= $row->id_peli; ?>"><i class="fa-solid fa-trash"></i> Eliminar</a>
                                     </td>
@@ -192,22 +198,44 @@
 
 
                 <script>
-                    function IdPeliculaEditarEnModal(id_peli, titulo, descripcion, estreno, duracion, path_poster) {
-                        console.log(id_peli, titulo, descripcion, estreno, duracion, path_poster);
+                    function IdPeliculaEditarEnModal(id_peli, titulo, descripcion, estreno, duracion, path_poster,nombre_genero, nombre_actor, nombre_director) {
 
+                        //busca dentro del formulario los checkbox para limpiarlos
+                        document.querySelectorAll('#formulario_peliculas input[type="checkbox"]').forEach(
+                            function(checkElement) {
+                              checkElement.checked = false;
+                        });
+
+                        //conversion de string a array
+                        let arrayGeneros = nombre_genero.split(", "); //se divide con la , manera de separar genero x genero
+                        let arrayActores = nombre_actor.split(", ");
+
+                        //busca los input del form 
                         let inputIdEncontrado = document.getElementById("id_peli");
                         let inputTituloEncontrado = document.getElementById("nombre_pelicula");
                         let inputDescripcionEncontrada = document.getElementById("descripcion_pelicula");
                         let inputEstrenoEncontrado = document.getElementById("estreno_pelicula");
                         let inputDuracionEncontrado = document.getElementById("duracion_pelicula");
                         let inputPosterEncontrado = document.getElementById("path_poster_pelicula");
+                        let inputDirectorEncontrado = document.getElementById(nombre_director);                       
+                        inputDirectorEncontrado.checked = true; //marco el check ya que es 1 solo dato
+                        
+                        arrayGeneros.forEach(function(genero) { //recorro todos los generos y los marco
+                            let inputGeneroEncontrado = document.getElementById(genero);
+                            inputGeneroEncontrado.checked = true; 
+                        });
 
+                        arrayActores.forEach(function(actor) {
+                            let inputActoresEncontrado = document.getElementById(actor); 
+                            inputActoresEncontrado.checked = true;
+                        });  
+                                              
                         inputIdEncontrado.value = id_peli;
                         inputTituloEncontrado.value = titulo;
                         inputDescripcionEncontrada.value = descripcion;
                         inputEstrenoEncontrado.value = estreno;
                         inputDuracionEncontrado.value = duracion;
-                        inputPosterEncontrado.value = path_poster;
+                        inputPosterEncontrado.value = path_poster;     
                     }
                 </script>
 
