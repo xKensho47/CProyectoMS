@@ -21,7 +21,7 @@
                 <button type="button" class="btn-close btn-color" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body fs-5">
-                <form action="" method="post" id="formulario_peliculas" enctype="multipart/form-data">
+                <form action="editar_crud_registro.php" method="post" id="formulario_peliculas" enctype="multipart/form-data">
 
                     <input type="hidden" id="id_peli" name="id_peli">
                     
