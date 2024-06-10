@@ -536,6 +536,11 @@ hr {
 .userinfo-data aside {
     max-height: 16vh;
 }
+.my-profile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .title-profile {
     background-color: var(--color-transparent);
@@ -699,13 +704,27 @@ hr {
     overflow-wrap: break-word;
 
     width: calc(33% - 1vw);
-    max-width: 100%;
     height: 5vh;
 
+}
+.genres-favorites-empty{
+    background-color: var(--color-principal);
+    color: var(--color-text);
+    border-radius: 5px;
+    font-size: 1.4rem;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow-wrap: break-word;
+
+    width: 50%;
+    height: 5vh;
 }
 
 /* SOBRE MI */
 .userinfo-description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
     top: 2vh;
     padding: 1.5%;
@@ -728,7 +747,7 @@ textarea {
     color: var(--blanco);
     resize: none;
 
-    width: 95%;
+    width: 100%;
 }
 
 input[type="submit"] {

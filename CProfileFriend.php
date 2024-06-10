@@ -99,7 +99,7 @@ class CProfileFriend
                         $genres_html .= "<div class='genres-favorites'>" . htmlspecialchars($genre_row['nombre_genero'], ENT_QUOTES, 'UTF-8') . "</div>";
                     }
                 } else {
-                    $genres_html = "<div class='genres-favorites'>No hay géneros favoritos</div>";
+                    $genres_html = "<div class='genres-favorites-empty'>No hay géneros favoritos</div>";
                 }
 
                 
@@ -110,7 +110,9 @@ class CProfileFriend
                 // Generar el HTML con los datos del usuario, incluyendo la imagen de perfil, el campo about_me y los géneros favoritos
                 echo "
                 <section class='userinfo-data'>
-                    <a href='profile.php' class='btn btn-color fs-5'>Ir a mi perfil</a>
+                    <div class='my-profile'>
+                        <a href='profile.php' class='btn btn-color fs-5'>Ir a mi perfil</a>
+                    </div>
                     <h1 class='title-profile'> PERFIL DE USUARIO </h1>
                     <article class='data-user'>                    
                         <aside class='user-container'>
