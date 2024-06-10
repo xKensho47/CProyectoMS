@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <a href="perfilAmigo.php?id_profile=${friend.id_cuenta}"><button class="btn btn-color fs-5 view-profile">Ver perfil</button></a>
                                 <form class="form-add-friend" action="agregarAmigo.php" method="post">
                                     <input type="hidden" name="discover_id" value="${friend.id_cuenta}">
-                                    <button type="submit" class="btn btn-color fs-5 button-add-discover">Agregar amigo</button>
+                                    <button type="submit" class="btn btn-color fs-5">Agregar amigo</button>
                                 </form>
                             </div>
                         `;

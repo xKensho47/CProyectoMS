@@ -1033,6 +1033,7 @@ input[type="submit"]{
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    gap: 25px;
     width: 100%;
     margin-top: 10px;
 }
@@ -1164,12 +1165,12 @@ input[type="submit"]{
     width: 100%;
 }
 
-/* Boton Logout */
 .discover-button {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    gap: 25px;
     width: 100%;
     margin-top: 10px;
 }

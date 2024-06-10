@@ -215,7 +215,7 @@ class CProfile
                         <a href="perfilAmigo.php?id_profile=' . $row["id_cuenta"] . '"><button class="btn btn-color fs-5 view-profile">Ver perfil</button></a>
                         <form action="eliminarAmigo.php" method="post">
                             <input type="hidden" name="friend_id" value="' . $row["id_cuenta"] . '">
-                            <button type="submit" class="btn btn-color fs-5 button-delete-friend">Eliminar Amigo</button>
+                            <button type="submit" class="btn btn-color fs-5">Eliminar Amigo</button>
                         </form>
                     </div>
                 </div>
