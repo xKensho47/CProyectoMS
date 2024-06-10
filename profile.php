@@ -72,8 +72,10 @@
                             <section class="userinfo2-discover option" id="userinfo2-discover">
                                 <section class="discovers-container">
                                     <article id="discover-grid-container" class="discover-grid-container">
-                                        <button id="load-more" class="btn btn-color fs-5">Cargar más</button>
                                     </article>
+                                    <div class="cargar-mas-button">
+                                        <button id="load-more" class="btn btn-color fs-5 cargar-mas">Cargar más</button>
+                                    </div>
                                 </section>
                             </section>
                         </article>

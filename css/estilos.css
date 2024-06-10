@@ -1181,6 +1181,12 @@ input[type="submit"]{
     background-color: var(--color-hover);
 }
 
+.cargar-mas-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* --------------------------------------------------------------------------------- */
 
 /* BOTON GO TOP */
