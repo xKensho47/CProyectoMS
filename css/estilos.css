@@ -495,9 +495,17 @@ hr {
     color: var(--color-principal);
     text-align: center;
 }
+.tittle-profile:hover{
+    cursor: default;
+    user-select: none;
+}
 .tittle{
     color: var(--color-principal);
     padding-left: 2.5%;
+}
+.tittle:hover{
+    cursor: default;
+    user-select: none;
 }
 .profile-userinfo section,
 .profile-userinfo2 section{
@@ -526,6 +534,10 @@ hr {
 .title-profile{
     background-color: var(--color-transparent);
     max-height: 3vh;
+}
+.title-profile:hover{
+    cursor: default;
+    user-select: none;
 }
 .data-user{
     display: flex;
@@ -605,13 +617,18 @@ hr {
 .user-button {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-direction: column;
     width: 50%;
+    height: 20vh;
 }
 .user-button div{
-    position: relative;
-    top: -4vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 100%;
+    height: 10vh;
 }
 /* .button-logout {
     background-color: var(--color-principal);
@@ -630,8 +647,7 @@ hr {
 }
 
 /* GENEROS DEL PERFIL */
-.userinfo-genres {
-    
+.userinfo-genres {    
     text-align: center;
     line-height: 6vh;
 }
@@ -658,8 +674,8 @@ hr {
     max-width: 100%;
 }
 .genres-favorites {
-    background-color: #d24ce4;
-    color: white;
+    background-color: var(--color-principal);
+    color: var(--color-text);
     border-radius: 5px;
     font-size: 1.4rem;
     word-wrap: break-word;
@@ -736,6 +752,10 @@ input[type="submit"]{
     width: 100%;
     height: 3vh;
 }
+.userinfo2-menu:hover{
+    cursor: default;
+    user-select: none;
+}
 .userinfo2-menu-list{    
     font-size: 1rem;
     border-radius: 5px;
@@ -750,6 +770,10 @@ input[type="submit"]{
 
     width: 100%;
 }
+.userinfo2-menu-list:hover{
+    cursor: default;
+    user-select: none;
+}
 .userinfo2-menu-item {
     text-align: center;
     list-style-type: none;
@@ -760,6 +784,10 @@ input[type="submit"]{
     width: 100%;
 
     color: var(--color-text);
+}
+.userinfo2-menu-item:hover{
+    cursor: default;
+    user-select: none;
 }
 .userinfo2-menu-item:hover {
     /* background-color: var(--color-text); */
@@ -864,8 +892,12 @@ input[type="submit"]{
     justify-content: space-evenly;
 }
 /* Carouseles del perfil */ 
-.x-carousel-tittle{    
+.x-carousel-tittle{
     font-size: 1.2rem;
+}
+.x-carousel-tittle:hover{
+    cursor: default;
+    user-select: none;
 }
 .movies-dinamic-tittle{
     flex-direction: column;
@@ -878,7 +910,11 @@ input[type="submit"]{
     padding-right: 2.5%;
     
     width: 100%;
-} 
+}
+.x-carousel-tittle .x-tittle:hover{
+    cursor: default;
+    user-select: none;
+}
 .x-carousel-container{
     display: flex;
     justify-content: center;
@@ -1179,6 +1215,12 @@ input[type="submit"]{
 
 .button-add-discover:hover {
     background-color: var(--color-hover);
+}
+
+.cargar-mas-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* --------------------------------------------------------------------------------- */
@@ -1578,8 +1620,33 @@ tbody{
 }
 
 /* detalle_peli.php */
+
+.container-header-peli {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container-header-peli header {
+    background-color:#000000; 
+  /* background-color: transparent;*/
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding-left: 1.8%;
+
+   width: 100%;
+   height: 12vh !important;
+
+   z-index: 999;
+   margin-bottom: 3vh;
+
+}
+
 .main-detallepeli{
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -1629,9 +1696,10 @@ tbody{
     margin: 0;
 }
 
-.info-titulo_titulo > p{
+.info-titulo_titulo > h3{
     font-size: 2.8rem;
-    margin-left: 10px;
+    margin: 0;
+    margin-left: 10px !important;
 }
 
 .info-detalles {
@@ -1753,6 +1821,58 @@ tbody{
 .estrella{
     color: #f2b600;
 }
+
+.modal-body-amigos{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contenedor-amigo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 100px;
+    border: 1px solid #000;
+    margin: 5px;
+
+}
+
+.amigo-imagen{
+    width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.amigo-imagen img{
+    width: 70px;
+}
+
+.amigo-nombre{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.amigo-nombre > button{
+    background-color: #A105B6;
+    color: #fff;
+    border: none;
+    padding: 5px;
+    font-size: 20px;
+    cursor:pointer;
+}
+
+.recomendar-peli-content{
+    background-color: var(--color-background) !important;
+}
+
 
 
 @media screen and (max-width: 840px){
