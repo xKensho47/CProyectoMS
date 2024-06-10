@@ -19,13 +19,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    // Inserta al amigo en la lista de amigos
-    $q = "INSERT INTO lista_amigos VALUES ($userId, $friendId)";
-    $result = mysqli_query($conexion, $q);
+    // Insertar la notificación
+    $mensaje = TRUE;
+    $query = "INSERT INTO notificacion (usuario_envia, usuario_recibe, mensaje) VALUES ($userId, $friendId, '$mensaje')";
+    $result = mysqli_query($conexion, $query);
 
+    if (!$result) {
+        echo "Error al enviar la notificación.";
+        exit();
+    }
+
+    header('Location: profile.php');
 } else {
     echo "Método de solicitud no válido.";
 }
 
-header("Location: profile.php");
+// No redirigir a profile.php para fines de depuración
+// header("Location: profile.php");
 ?>
