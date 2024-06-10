@@ -33,11 +33,15 @@ class CCarousel
         return $this->id_cuenta;
     }
     //CONSTRUCTOR
-    function __construct(object $conexion)
-    {
+    public function __construct($conexion) {
         $this->conexion = $conexion;
+
+        // Asignar id_cuenta desde la sesión si está configurada
         if (isset($_SESSION['id_cuenta'])) {
-            $this->id_cuenta = $_SESSION['id_cuenta'];
+            $this->id_cuenta = (int)$_SESSION['id_cuenta'];
+        } else {
+            // Manejar el caso donde no hay id_cuenta en la sesión
+            $this->id_cuenta = null;
         }
     }
 
@@ -46,8 +50,9 @@ class CCarousel
     private function obtenerTipoUsuario($id_cuenta)
     {
         $tipo_usuario = "";
+
         // Preparar la consulta SQL para obtener el tipo de usuario
-        $query =
+        $query = 
         "SELECT 
             t.tipo_usuario 
         FROM 
@@ -57,7 +62,8 @@ class CCarousel
         INNER JOIN 
             tipo_usuario t ON u.id_tipo = t.id_tipo 
         WHERE 
-            cu.id_cuenta = ?";
+            cu.id_cuenta = ?
+        ";
 
         // Preparar y ejecutar la declaración
         $stmt = $this->conexion->prepare($query);
@@ -71,6 +77,8 @@ class CCarousel
         // Obtener el tipo de usuario
         if ($stmt->num_rows > 0) {
             $stmt->fetch();
+        } else {
+            echo "No se encontró el tipo de usuario para id_cuenta: $id_cuenta<br>";
         }
 
         // Cerrar la declaración y devolver el tipo de usuario
@@ -79,17 +87,20 @@ class CCarousel
         return $tipo_usuario;
     }
 
+
     public function resultCarousel($conexion, $title)
     {
         $q = "";
 
-        if (isset($_SESSION['id_cuenta']) 
-        && ($this->obtenerTipoUsuario($this->id_cuenta) == "Normal" 
-        || $this->obtenerTipoUsuario($this->id_cuenta) == "Administrador")) {
+        if (
+            isset($_SESSION['id_cuenta'])
+            && ($this->obtenerTipoUsuario($this->id_cuenta) == "Normal"
+                || $this->obtenerTipoUsuario($this->id_cuenta) == "Administrador")
+        ) {
             switch ($title) {
                 case 'Continuar viendo':
                     $q =
-                    "SELECT 
+                        "SELECT 
                         p.id_peli AS id, 
                         p.path_poster AS poster, 
                         p.titulo AS titulo
@@ -111,7 +122,7 @@ class CCarousel
 
                 case 'Ver más tarde':
                     $q =
-                    "SELECT 
+                        "SELECT 
                         p.id_peli AS id, 
                         p.path_poster AS poster, 
                         p.titulo AS titulo
@@ -132,7 +143,7 @@ class CCarousel
 
                 case 'Favoritas':
                     $q =
-                    "SELECT 
+                        "SELECT 
                         p.id_peli AS id, 
                         p.path_poster AS poster, 
                         p.titulo AS titulo
@@ -160,7 +171,7 @@ class CCarousel
             switch ($title) {
                 case 'Películas más valoradas':
                     $q =
-                    "SELECT 
+                        "SELECT 
                         val.id_peli AS id,
                         val.calificacion AS calificacion,
                         peli.path_poster AS poster,
@@ -181,7 +192,7 @@ class CCarousel
 
                 case 'Recientes':
                     $q =
-                    "SELECT 
+                        "SELECT 
                         peli.id_peli AS id,
                         peli.path_poster AS poster,
                         peli.titulo AS titulo,
@@ -201,9 +212,11 @@ class CCarousel
         }
 
         $stmt = $conexion->prepare($q);
-        if (isset($_SESSION['id_cuenta']) 
-        && ($this->obtenerTipoUsuario($this->id_cuenta) == "Normal" 
-        || $this->obtenerTipoUsuario($this->id_cuenta) == "Administrador")) {
+        if (
+            isset($_SESSION['id_cuenta'])
+            && ($this->obtenerTipoUsuario($this->id_cuenta) == "Normal"
+                || $this->obtenerTipoUsuario($this->id_cuenta) == "Administrador")
+        ) {
             $stmt->bind_param('i', $this->id_cuenta);
         }
         $stmt->execute();
