@@ -240,9 +240,13 @@ class CProfile
         $id_cuenta = $_SESSION['id_cuenta'];
         $offset = ($page - 1) * $itemsPerPage;
 
-        $q = "SELECT * FROM cuenta_usuario WHERE id_cuenta != ? LIMIT ?, ?";
+        $q = "SELECT u.id_cuenta,u.nombre_usuario,u.id_img
+            FROM cuenta_usuario u
+            LEFT JOIN lista_amigos la
+            ON (u.id_cuenta = la.amigo AND la.id_cuenta = ?)
+            WHERE u.id_cuenta != ? AND la.amigo IS NULL LIMIT ?, ?";
         $stmt = $this->conexion->prepare($q);
-        $stmt->bind_param('iii', $id_cuenta, $offset, $itemsPerPage);
+        $stmt->bind_param('iiii', $id_cuenta, $id_cuenta, $offset, $itemsPerPage);
         $stmt->execute();
         $result = $stmt->get_result();
 
