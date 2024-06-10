@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php session_start(); 
+include("conexion.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,10 +22,9 @@
 <body>
     <div class="container">
         <?php
-        include("conexion.php");
         include("header.php");
-        include("CProfile.php");
-        include("CCarousel.php");
+        include_once("CProfile.php");
+        include_once("CCarousel.php");
         ?>
         <main class="main-profile">
             <section class="userinfo-container">
@@ -52,6 +53,7 @@
                             <section class="userinfo2-movies option" id="userinfo2-movies">
                                 <?php
                                 $carouseles = new CCarousel($conexion);
+                                
                                 $carouseles->generateMovieSection($conexion, 'Continuar viendo');
                                 $carouseles->generateMovieSection($conexion, 'Ver más tarde');
                                 $carouseles->generateMovieSection($conexion, 'Favoritas');
