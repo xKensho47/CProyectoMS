@@ -13,10 +13,9 @@
 
             <div class="modal-footer">
                 <form action="elimina.php" method="post" >
-                    <input type="hidden" name="id" id="id">
+                    <input type="hidden" name="pelicula_eliminar" id="id_pelicula_eliminar">
                     <button type="button" class="btn guardar" data-bs-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn salir"> Eliminar</button>
-
                 </form>
             </div>
         </div>

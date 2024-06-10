@@ -178,7 +178,7 @@
                                                                     '<?= $nombre_actor ?>',
                                                                     '<?= $nombre_director ?>')">
                                             <i class="fa-solid fa-pen-to-square"></i> Editar </a>
-                                        <a href="#" class="btn btn-sm btn-danger mt-4 fs-6" data-bs-toggle="modal" data-bs-target="#eliminaModal" data-bs-id="<?= $row->id_peli; ?>"><i class="fa-solid fa-trash"></i> Eliminar</a>
+                                        <a href="#" class="btn btn-sm btn-danger mt-4 fs-6" data-bs-toggle="modal" data-bs-target="#eliminaModal" data-bs-id="<?= $id_peli; ?>" onclick="IdPeliculaEliminarEnModal('<?= $id_peli ?>')"><i class="fa-solid fa-trash"></i> Eliminar</a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -248,6 +248,11 @@
                         inputEstrenoEncontrado.value = estreno;
                         inputDuracionEncontrado.value = duracion;
                         inputPosterEncontrado.value = path_poster;
+                    }
+
+                    function IdPeliculaEliminarEnModal(id_peli){
+                        let inputIdPeliEncontrado = document.getElementById("id_pelicula_eliminar");
+                        inputIdPeliEncontrado.value = id_peli;  
                     }
                 </script>
 

@@ -1,7 +1,7 @@
 <?php session_start();
 
 include("conexion.php");
-
+include("modalRecomendarPeli.php");
 $id_cuenta = $_SESSION['id_cuenta'];
 $id = $_GET['id_peli'];
 $peli = mysqli_query($conexion, "SELECT * FROM peliculas WHERE id_peli = $id");
@@ -35,6 +35,7 @@ mysqli_close($conexion);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" type="text/css" href="slick/slick.css" />
@@ -47,11 +48,12 @@ mysqli_close($conexion);
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-header-peli">
         <?php
         require_once("loginVerification.php");
         include("header.php");
         ?>
+    </div>
         <main class="main-detallepeli">
     
             <div class="volver-atras" style="float: left;">
@@ -61,12 +63,13 @@ mysqli_close($conexion);
             <div class="contenedor-detalle_peli animate-from-bottom">
                 <div class="detallepeli-poster ">
                     <img src="<?php echo $row['path_poster'] ?>" alt="<?php echo $row['titulo'] ?>" class="imagen-deslizar ">
-                </div>      
+                </div> 
+                
             <div class="detallepeli-info">
                 <div class="info-titulo">
                     <div class="info-titulo_titulo">
                         <h1><?php echo $row['titulo'] ?></h1>
-                        <p>(<?php echo $anoEstreno ?>)</p>
+                        <h3>(<?php echo $anoEstreno ?>)</h3>
                     </div>
                     <div class="contenedor-estrellas">
                         <form class="star-rating" action="estrellas.php" method="post">
@@ -111,14 +114,13 @@ mysqli_close($conexion);
 
                         if ($generos->num_rows > 0) {
                             while ($r_generos = $generos->fetch_assoc()) {
-                                echo '' . $r_generos['nombre_genero'] . ' ';
+                                echo '<p>'. $r_generos["nombre_genero"] .'</p>';
                             }
                         } else {
                             echo '';
                         }
 
                         ?>
-                        <p> </p>
                         <p>-</p>
                         <p><?php echo $row['duracion'] ?> Mins</p>
                     </div>
@@ -148,7 +150,7 @@ mysqli_close($conexion);
                                                                             echo 'existe';
                                                                         } ?>"><i class="fa-solid fa-thumbs-up"></i></button>
                             </form>
-                            <button class="info-boton"><i class="fa-solid fa-users"></i></button>
+                            <button class="info-boton" data-bs-toggle="modal" data-bs-target="#modalRecomendarPeli"><i class="fa-solid fa-users"></i></button>
                         </div>
                     </div>
                     <div class="info-descripcion">
@@ -193,10 +195,8 @@ mysqli_close($conexion);
                     </div>
                 </div>
             </div>
-
-
         </main>
-    </div>
+
     <footer>
         <p>&copy; CineFlow 2024</p>
     </footer>
@@ -205,6 +205,7 @@ mysqli_close($conexion);
     <script src="script/script.js"></script>
     <script src="script/botonTop.js"></script>
     <script src="https://kit.fontawesome.com/81c8161a36.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>

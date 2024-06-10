@@ -126,12 +126,12 @@ class CProfile
                             </div>
                         </aside>
                         <aside class='user-button'>
-                            <div class='col-auto mt-5 animate-from-bottom'>
+                            <div class=''>
                                 <a href='#' class='btn btn-color fs-5' data-bs-toggle='modal' data-bs-target='#editaModal' data-bs-id='" . htmlspecialchars($id_cuenta, ENT_QUOTES, 'UTF-8') . "'>
                                     Editar Perfil
                                 </a>
                             </div>
-                            <div class='col-auto mt-5 animate-from-bottom'>
+                            <div class=''>
                                 <a href='logout.php'>
                                     <button class='btn btn-color fs-5 button-logout'>Logout</button>
                                 </a>
@@ -139,7 +139,7 @@ class CProfile
                         </aside>
                     </article>
                 </section>
-                <section class='userinfo-genres' onlyread>
+                <section class='userinfo-genres'>
                     <article class='user-genres'>
                         <h2>Géneros Favoritos</h2>
                         <div class='genres-prof'>
