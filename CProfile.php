@@ -126,12 +126,12 @@ class CProfile
                             </div>
                         </aside>
                         <aside class='user-button'>
-                            <div class='col-auto mt-5 animate-from-bottom'>
+                            <div class=''>
                                 <a href='#' class='btn btn-color fs-5' data-bs-toggle='modal' data-bs-target='#editaModal' data-bs-id='" . htmlspecialchars($id_cuenta, ENT_QUOTES, 'UTF-8') . "'>
                                     Editar Perfil
                                 </a>
                             </div>
-                            <div class='col-auto mt-5 animate-from-bottom'>
+                            <div class=''>
                                 <a href='logout.php'>
                                     <button class='btn btn-color fs-5 button-logout'>Logout</button>
                                 </a>
@@ -139,7 +139,7 @@ class CProfile
                         </aside>
                     </article>
                 </section>
-                <section class='userinfo-genres' onlyread>
+                <section class='userinfo-genres'>
                     <article class='user-genres'>
                         <h2>Géneros Favoritos</h2>
                         <div class='genres-prof'>
@@ -212,10 +212,10 @@ class CProfile
                         </div>
                     </div>
                     <div class="friend-button">
-                        <a href="perfilAmigo.php?id_profile=' . $row["id_cuenta"] . '"><button class="view-profile">Ver perfil</button></a>
+                        <a href="perfilAmigo.php?id_profile=' . $row["id_cuenta"] . '"><button class="btn btn-color fs-5 view-profile">Ver perfil</button></a>
                         <form action="eliminarAmigo.php" method="post">
                             <input type="hidden" name="friend_id" value="' . $row["id_cuenta"] . '">
-                            <button type="submit" class="button-add-discover">Eliminar Amigo</button>
+                            <button type="submit" class="btn btn-color fs-5">Eliminar Amigo</button>
                         </form>
                     </div>
                 </div>
@@ -228,41 +228,35 @@ class CProfile
         $stmt->close();
     }
 
-    public function discoverFriends($conexion)
+    public function discoverFriends($page, $itemsPerPage)
     {
-
         $id_cuenta = $_SESSION['id_cuenta'];
+        $offset = ($page - 1) * $itemsPerPage;
 
-        $q = "SELECT * FROM cuenta_usuario WHERE id_cuenta != $id_cuenta";
+        $q = "SELECT * FROM cuenta_usuario WHERE id_cuenta != ? LIMIT ?, ?";
+        $stmt = $this->conexion->prepare($q);
+        $stmt->bind_param('iii', $id_cuenta, $offset, $itemsPerPage);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        $result = mysqli_query($conexion,$q);
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo '
-                <div class="data-discover" id="discover-' . $row["id_cuenta"] . '">
-                    <div class="discover-container">
-                        <div class="discover-avatar">
-                            <img class="profile-img" src="' . $row["id_img"] . '" alt="Discover Avatar"/>
-                        </div>
-                        <div class="discover-info">
-                            <p class="discover-username">' . $row["nombre_usuario"] . '</p>
-                        </div>
-                    </div>
-                    <div class="discover-button">
-                        <a href="perfilAmigo.php?id_profile=' . $row["id_cuenta"] . '"><button class="view-profile">Ver perfil</button></a>
-                        <form action="agregarAmigo.php" method="post">
-                            <input type="hidden" name="discover_id" value="' . $row["id_cuenta"] . '">
-                            <button type="submit" class="button-add-discover">Agregar amigo</button>
-                        </form>
-                    </div>
-                </div>
-                ';
-            }
-        } else {
-            echo "No hay amigos para mostrar.";
+        $friends = [];
+        while ($row = $result->fetch_assoc()) {
+            $friends[] = $row;
         }
-        
-        mysqli_close($conexion);
+
+        $qTotal = "SELECT COUNT(*) as total FROM cuenta_usuario WHERE id_cuenta != ?";
+        $stmtTotal = $this->conexion->prepare($qTotal);
+        $stmtTotal->bind_param('i', $id_cuenta);
+        $stmtTotal->execute();
+        $resultTotal = $stmtTotal->get_result();
+        $totalFriends = $resultTotal->fetch_assoc()['total'];
+
+        $response = [
+            'success' => true,
+            'friends' => $friends,
+            'hasMore' => ($page * $itemsPerPage) < $totalFriends
+        ];
+
+        echo json_encode($response);
     }
 }

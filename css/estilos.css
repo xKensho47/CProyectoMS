@@ -495,9 +495,17 @@ hr {
     color: var(--color-principal);
     text-align: center;
 }
+.tittle-profile:hover{
+    cursor: default;
+    user-select: none;
+}
 .tittle{
     color: var(--color-principal);
     padding-left: 2.5%;
+}
+.tittle:hover{
+    cursor: default;
+    user-select: none;
 }
 .profile-userinfo section,
 .profile-userinfo2 section{
@@ -526,6 +534,10 @@ hr {
 .title-profile{
     background-color: var(--color-transparent);
     max-height: 3vh;
+}
+.title-profile:hover{
+    cursor: default;
+    user-select: none;
 }
 .data-user{
     display: flex;
@@ -605,13 +617,18 @@ hr {
 .user-button {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-direction: column;
     width: 50%;
+    height: 20vh;
 }
 .user-button div{
-    position: relative;
-    top: -4vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 100%;
+    height: 10vh;
 }
 /* .button-logout {
     background-color: var(--color-principal);
@@ -630,8 +647,7 @@ hr {
 }
 
 /* GENEROS DEL PERFIL */
-.userinfo-genres {
-    
+.userinfo-genres {    
     text-align: center;
     line-height: 6vh;
 }
@@ -658,8 +674,8 @@ hr {
     max-width: 100%;
 }
 .genres-favorites {
-    background-color: #d24ce4;
-    color: white;
+    background-color: var(--color-principal);
+    color: var(--color-text);
     border-radius: 5px;
     font-size: 1.4rem;
     word-wrap: break-word;
@@ -736,6 +752,10 @@ input[type="submit"]{
     width: 100%;
     height: 3vh;
 }
+.userinfo2-menu:hover{
+    cursor: default;
+    user-select: none;
+}
 .userinfo2-menu-list{    
     font-size: 1rem;
     border-radius: 5px;
@@ -750,6 +770,10 @@ input[type="submit"]{
 
     width: 100%;
 }
+.userinfo2-menu-list:hover{
+    cursor: default;
+    user-select: none;
+}
 .userinfo2-menu-item {
     text-align: center;
     list-style-type: none;
@@ -760,6 +784,10 @@ input[type="submit"]{
     width: 100%;
 
     color: var(--color-text);
+}
+.userinfo2-menu-item:hover{
+    cursor: default;
+    user-select: none;
 }
 .userinfo2-menu-item:hover {
     /* background-color: var(--color-text); */
@@ -823,13 +851,13 @@ input[type="submit"]{
 .option > section[class="friends-container"]{
     min-height: inherit;
 }
-.option > section[class="discover-container"]{
+.option > section[class="discovers-container"]{
     min-height: inherit;
 }
 /* Contenedores */
 .movies-container,
 .friends-container,
-.discover-container{
+.discovers-container{
     font-size: 1.0rem;
 
     position: relative;
@@ -864,8 +892,12 @@ input[type="submit"]{
     justify-content: space-evenly;
 }
 /* Carouseles del perfil */ 
-.x-carousel-tittle{    
+.x-carousel-tittle{
     font-size: 1.2rem;
+}
+.x-carousel-tittle:hover{
+    cursor: default;
+    user-select: none;
 }
 .movies-dinamic-tittle{
     flex-direction: column;
@@ -878,7 +910,11 @@ input[type="submit"]{
     padding-right: 2.5%;
     
     width: 100%;
-} 
+}
+.x-carousel-tittle .x-tittle:hover{
+    cursor: default;
+    user-select: none;
+}
 .x-carousel-container{
     display: flex;
     justify-content: center;
@@ -942,56 +978,37 @@ input[type="submit"]{
 /* --------------------------------------------------------------------------------- */
 /* PANTALLA DE LISTA DE AMIGOS */
 /* Grid de Lista de Amigos */
-.userinfo2-friends{
+.userinfo2-friends {
 
 }
-.friends-container{
+
+.friends-grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Ajuste para asegurar 3 columnas */
+    gap: 2vw; /* Espacio entre los elementos de la grilla */
+    padding: 10px;
+    width: 100%;
+}
+
+/* Información de amigo */
+.data-friend {
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    padding: 2%;
-
-    height: 71vh;
-}
-.friends-grid-container{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 5px;
+    flex-direction: row;
     padding: 10px;
-
-    width: 100%;
-    max-width: calc((100% / 3) - (5px * 3));
-    height: auto;
-    min-height: calc(75vh / 4 - 5px * 4);
-    border: solid yellow;
+    background-color: var(--color-background);
+    width: calc(100vw / 5);
 }
-/* Información de amigo */
-.data-friend{
-    flex-direction: column;
 
-    min-width: 25vw;
-    max-height: 85vh;
-
-    border: solid blue;
-}
-.data-friend{
-    display: flex;
-    align-items: center;
-    flex-direction:row;
-
-    width: 100%;
-    min-height: inherit;
-}
-.friend-container{
+.friend-container {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-direction: column;
-
-    width: 50%;
-    min-height: inherit;
+    width: 100%;
 }
+
 /* Avatar de usuario */
 .friend-avatar {
     text-align: center;
@@ -999,12 +1016,11 @@ input[type="submit"]{
     border: 1px solid var(--color-popupborder);
     border-radius: 50%;
     padding: 1.4%;
-
     width: 12.5vh;
     height: 12.5vh;
-
     overflow: hidden;
 }
+
 .friend-avatar img {
     position: relative;
     top: 50%;
@@ -1026,6 +1042,7 @@ input[type="submit"]{
     flex-direction: column;
     justify-content: center;
 }
+
 .friend-username {
     color: var(--color-text);
     font-size: 1.1rem;
@@ -1034,9 +1051,7 @@ input[type="submit"]{
     align-items: center;
     justify-content: center;
     margin: 0;
-
     width: 100%;
-    min-height: 50%;
 }
 
 /* Boton Logout */
@@ -1045,8 +1060,9 @@ input[type="submit"]{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 50%;
-    min-height: 25vh;
+    gap: 25px;
+    width: 100%;
+    margin-top: 10px;
 }
 
 .button-delete-friend {
@@ -1056,29 +1072,157 @@ input[type="submit"]{
     border: none;
     cursor: pointer;
     font-size: 1.6rem;
-    border-radius: 19%;
+    border-radius: 15px;
     margin: 0 auto;
+    transform: scale(0.75);
 }
 
 .button-delete-friend:hover {
-    background-color: rgb(116, 0, 139);
-    transform: scale(1.1);
+    background-color: var(--color-hover);
 }
 
+/* Paginación */
+.pagination {
+    text-align: center;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    left: 0;
+    top: 95%;
+
+    height: 4vh;
+    width: 100%;
+}
+
+.pagination a {
+    background-color: var(--color-principal);
+    color: var(--color-text);
+    text-decoration: none;
+    border-radius: 15px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 4vh;
+    width: 4vh;
+
+}
+
+.pagination a:hover {
+    background-color: var(--color-hover);
+}
 /* --------------------------------------------------------------------------------- */
 
 /* --------------------------------------------------------------------------------- */
 /* PANTALLA DE DESCUBRIR AMIGOS */
 /* Grid de Lista de Descubrir Amigos */
-.userinfo2-discover{
+.discover-grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Ajuste para asegurar 3 columnas */
+    gap: 2vw; /* Espacio entre los elementos de la grilla */
+    padding: 10px;
+    width: 100%;
+}
 
+/* Información de amigo */
+.data-discover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    padding: 10px;
+    background-color: var(--color-background);
+    width: calc(100vw / 5);
 }
-.discover-container{
+
+.discover-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: 100%;
 }
-.discover-grid-item{
-    
+
+/* Avatar de usuario */
+.discover-avatar {
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid var(--color-popupborder);
+    border-radius: 50%;
+    padding: 1.4%;
+    width: 12.5vh;
+    height: 12.5vh;
+    overflow: hidden;
 }
+
+.discover-avatar img {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: 25vh;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Nombre y Username */
+.discover-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.discover-username {
+    color: var(--color-text);
+    font-size: 1.1rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    width: 100%;
+}
+
+.discover-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.button-add-discover {
+    background-color: var(--color-principal);
+    color: var(--color-link);
+    border: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    border-radius: 15px;
+    margin: 0 auto;
+    transform: scale(0.75);
+}
+
+.button-add-discover:hover {
+    background-color: var(--color-hover);
+}
+
+.cargar-mas-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* --------------------------------------------------------------------------------- */
 
 /* BOTON GO TOP */

@@ -121,16 +121,16 @@ class CProfileFriend
                             </div>
                         </aside>
                         <aside class='user-button' data-is-friend='" . ($isFriend ? "true" : "false") . "' data-amigo-id='$id_profile'>
-                            <div class='col-auto mt-5 animate-from-bottom add-friend' style='display: none;'>
+                            <div class='add-friend' style='display: none;'>
                                 <form action='agregarAmigo.php' method='post'>
                                     <input type='hidden' name='discover_id' value='$id_profile'>
-                                    <button type='submit' class='button-add-discover'>Agregar amigo</button>
+                                    <button type='submit' class='btn btn-color fs-5'>Agregar amigo</button>
                                 </form>
                             </div>
-                            <div class='col-auto mt-5 animate-from-bottom remove-friend' style='display: none;'>
+                            <div class='remove-friend' style='display: none;'>
                                 <form action='eliminarAmigo.php' method='post'>
                                     <input type='hidden' name='friend_id' value='$id_profile'>
-                                    <button type='submit' class='button-add-discover'>Eliminar Amigo</button>
+                                    <button type='submit' class='btn btn-color fs-5'>Eliminar Amigo</button>
                                 </form>
                             </div>
                         </aside>
@@ -199,7 +199,7 @@ class CProfileFriend
                         </div>
                     </div>
                     <div class="friend-button" data-id-cuenta="' . $id_cuenta . '" data-id-profile="' . $row['id_cuenta'] . '">
-                        <a href="perfilAmigo.php?id_profile=' . $row["id_cuenta"] . '"><button class="view-profile">Ver perfil</button></a>
+                        <a href="perfilAmigo.php?id_profile=' . $row["id_cuenta"] . '"><button class="btn btn-color fs-5 view-profile">Ver perfil</button></a>
                     </div>
                 </div>
                 ';
