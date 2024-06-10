@@ -1476,8 +1476,33 @@ tbody{
 }
 
 /* detalle_peli.php */
+
+.container-header-peli {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container-header-peli header {
+    background-color:#000000; 
+  /* background-color: transparent;*/
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding-left: 1.8%;
+
+   width: 100%;
+   height: 12vh !important;
+
+   z-index: 999;
+   margin-bottom: 3vh;
+
+}
+
 .main-detallepeli{
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -1527,9 +1552,10 @@ tbody{
     margin: 0;
 }
 
-.info-titulo_titulo > p{
+.info-titulo_titulo > h3{
     font-size: 2.8rem;
-    margin-left: 10px;
+    margin: 0;
+    margin-left: 10px !important;
 }
 
 .info-detalles {
@@ -1651,6 +1677,58 @@ tbody{
 .estrella{
     color: #f2b600;
 }
+
+.modal-body-amigos{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contenedor-amigo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 100px;
+    border: 1px solid #000;
+    margin: 5px;
+
+}
+
+.amigo-imagen{
+    width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.amigo-imagen img{
+    width: 70px;
+}
+
+.amigo-nombre{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.amigo-nombre > button{
+    background-color: #A105B6;
+    color: #fff;
+    border: none;
+    padding: 5px;
+    font-size: 20px;
+    cursor:pointer;
+}
+
+.recomendar-peli-content{
+    background-color: var(--color-background) !important;
+}
+
 
 
 @media screen and (max-width: 840px){
