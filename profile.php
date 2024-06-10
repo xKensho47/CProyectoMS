@@ -61,17 +61,18 @@
                                 <section class="friends-container">
                                     <article class="friends-grid-container">
                                         <?php
-                                        $profile->FriendsList($conexion);
+                                        // Obtener el número de página actual
+                                        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                                        // Llamar a la función con paginación
+                                        $profile->friendsList($conexion, $page);
                                         ?>
                                     </article>
                                 </section>
                             </section>
                             <section class="userinfo2-discover option" id="userinfo2-discover">
-                                <section class="discover-container">
-                                    <article class="discover-grid-container">
-                                        <?php
-                                        $profile->discoverFriends($conexion);
-                                        ?> 
+                                <section class="discovers-container">
+                                    <article id="discover-grid-container" class="discover-grid-container">
+                                        <button id="load-more" class="btn btn-color fs-5">Cargar más</button>
                                     </article>
                                 </section>
                             </section>
@@ -93,6 +94,7 @@
     <script src="script/agregarAmigos.js"></script>
     <script src="script/profileEdit.js"></script>
     <script src="script/editarSobreMi.js"></script>
+    <script src="script/discoverFriends.js"></script>
     
     <footer class="footer">
         <p>&copy; CineFlow 2024</p>
