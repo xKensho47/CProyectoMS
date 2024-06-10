@@ -110,6 +110,7 @@ class CProfileFriend
                 // Generar el HTML con los datos del usuario, incluyendo la imagen de perfil, el campo about_me y los géneros favoritos
                 echo "
                 <section class='userinfo-data'>
+                    <a href='profile.php' class='btn btn-color fs-5'>Ir a mi perfil</a>
                     <h1 class='title-profile'> PERFIL DE USUARIO </h1>
                     <article class='data-user'>                    
                         <aside class='user-container'>
@@ -132,7 +133,7 @@ class CProfileFriend
                                     <input type='hidden' name='friend_id' value='$id_profile'>
                                     <button type='submit' class='btn btn-color fs-5'>Eliminar Amigo</button>
                                 </form>
-                            </div>
+                            </div>                          
                         </aside>
                     </article>
                 </section>
