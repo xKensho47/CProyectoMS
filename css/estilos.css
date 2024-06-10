@@ -2197,13 +2197,19 @@ tbody {
 }
 .botones-solicitud button {
     margin-left: 2vh;
-    color: var(--color-text);
+    color:#bebebe;
     font-size: 1.3rem;
     border: none;
-    background-color: rgb(140, 51, 167);
+    background-color:transparent;
     border-radius: 3%;
     max-width: 10vh; /* Establece un ancho máximo para los botones */
     flex-grow: 1; /* Permite que los botones se ajusten automáticamente */
+    cursor: pointer;
 }
+
+.botones-solicitud button:hover {
+    color: var(--color-principal);
+}
+
 
 

@@ -56,17 +56,8 @@
         <h2 class="h2-animate">Notificaciones</h2>
         <div class="notificaciones">
             <?php
-            if ($consulta_peli_nueva->num_rows > 0) {
-                while ($fila = $consulta_peli_nueva->fetch_assoc()) {
-                    echo '<div class="notificacion">';
-                    echo '<p class="mensaje">¡Nueva película: "' . $fila["titulo"] . '" añadida a la categoría de ' . $fila["nombres_generos"] . '!</p>';
-                    echo '<span class="fecha">' . $fila["fecha_subida"] . '</span>';
-                    echo '<button class="cerrar-notificacion">x</button>';
-                    echo '</div>';
-                }
-            }
 
-
+            
             // Verificar si la consulta devolvió resultados
             if ($result_solicitud->num_rows > 0) {
                 while ($notificacion = $result_solicitud->fetch_assoc()) {
@@ -80,6 +71,16 @@
                     echo'<button type="submit" name="aceptar[]" value="' . $usuario_envia_id . '">Aceptar</button>';
                     echo'<button type="submit" name="rechazar[]" value="' . $usuario_envia_id . '">Rechazar</button>';
                     echo '</form>';
+                    echo '</div>';
+                }
+            }
+            
+            if ($consulta_peli_nueva->num_rows > 0) {
+                while ($fila = $consulta_peli_nueva->fetch_assoc()) {
+                    echo '<div class="notificacion">';
+                    echo '<p class="mensaje">¡Nueva película: "' . $fila["titulo"] . '" añadida a la categoría de ' . $fila["nombres_generos"] . '!</p>';
+                    echo '<span class="fecha">' . $fila["fecha_subida"] . '</span>';
+                    echo '<button class="cerrar-notificacion">x</button>';
                     echo '</div>';
                 }
             }
