@@ -26,7 +26,7 @@
 
         /*VERIFICA SI SE SUBIERON PELICULAS NUEVAS ESE MISMO DIA*/
 
-        $consulta_noti = $conexion->query("SELECT p.titulo, p.fecha_subida, gen.nombres_generos
+        $consulta_peli_nueva = $conexion->query("SELECT p.titulo, p.fecha_subida, gen.nombres_generos
                                             FROM peliculas p
                                             LEFT JOIN (
                                             SELECT pg.id_peli, GROUP_CONCAT(g.nombre_genero SEPARATOR ', ') AS nombres_generos
@@ -36,15 +36,28 @@
                                             ) AS gen ON p.id_peli = gen.id_peli
                                             WHERE p.fecha_subida= curdate()
                                             GROUP BY p.id_peli, p.titulo, p.fecha_subida;
-                                        ")
+                                        ");
+
+
+
+
+        $userId = $_SESSION['id_cuenta'];
+
+        // Consulta SQL para obtener las notificaciones
+        $query_solicitud = "SELECT cu.id_cuenta,cu.nombre_usuario AS nombre_envia, n.mensaje 
+                        FROM notificacion n 
+                        JOIN cuenta_usuario cu ON n.usuario_envia = cu.id_cuenta 
+                        WHERE n.usuario_recibe = $userId";
+
+        $result_solicitud = $conexion->query($query_solicitud);
         ?>
     </div>
     <main class="notificaciones-main animate-from-bottom">
         <h2 class="h2-animate">Notificaciones</h2>
         <div class="notificaciones">
             <?php
-            if ($consulta_noti->num_rows > 0) {
-                while ($fila = $consulta_noti->fetch_assoc()) {
+            if ($consulta_peli_nueva->num_rows > 0) {
+                while ($fila = $consulta_peli_nueva->fetch_assoc()) {
                     echo '<div class="notificacion">';
                     echo '<p class="mensaje">¡Nueva película: "' . $fila["titulo"] . '" añadida a la categoría de ' . $fila["nombres_generos"] . '!</p>';
                     echo '<span class="fecha">' . $fila["fecha_subida"] . '</span>';
@@ -52,13 +65,26 @@
                     echo '</div>';
                 }
             }
+
+
+            // Verificar si la consulta devolvió resultados
+            if ($result_solicitud->num_rows > 0) {
+                while ($notificacion = $result_solicitud->fetch_assoc()) {
+                    $nombre_envia = $notificacion['nombre_envia'];
+                    $mensaje = $notificacion['mensaje'];
+                    $usuario_envia_id = $notificacion['id_cuenta'];
+                    echo '<div class="notificacion not">';
+                    echo '<p class="mensaje">' . htmlspecialchars($nombre_envia) . ' te añadió como amigo.</p>';
+                    echo '<form method="post" action="procesar_solicitud.php" class="botones-solicitud">';
+                    echo '<input type="hidden" name="usuario_envia_id" value="' . $usuario_envia_id . '">';
+                    echo'<button type="submit" name="aceptar[]" value="' . $usuario_envia_id . '">Aceptar</button>';
+                    echo'<button type="submit" name="rechazar[]" value="' . $usuario_envia_id . '">Rechazar</button>';
+                    echo '</form>';
+                    echo '</div>';
+                }
+            }
             ?>
 
-            <div class="notificacion">
-                <p class="mensaje">Pepe te añadió como amigo.</p>
-                <span class="fecha">02/06/2024</span>
-            </div>
-     
 
         </div>
         <div class="contacto">

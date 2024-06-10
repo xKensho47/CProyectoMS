@@ -2183,3 +2183,27 @@ tbody {
     color: var(--color-principal);
     /* Cambiar color al pasar el cursor */
 }
+.not {
+    display: flex;
+}
+
+.contenido-notificacion {
+    display: flex;
+    align-items: center;
+    
+}
+.botones-solicitud{
+  
+}
+.botones-solicitud button {
+    margin-left: 2vh;
+    color: var(--color-text);
+    font-size: 1.3rem;
+    border: none;
+    background-color: rgb(140, 51, 167);
+    border-radius: 3%;
+    max-width: 10vh; /* Establece un ancho máximo para los botones */
+    flex-grow: 1; /* Permite que los botones se ajusten automáticamente */
+}
+
+
