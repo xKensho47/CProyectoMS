@@ -943,16 +943,7 @@ input[type="submit"]{
 /* PANTALLA DE LISTA DE AMIGOS */
 /* Grid de Lista de Amigos */
 .userinfo2-friends {
-    width: 100%;
-    overflow-y: hidden;
-}
 
-.friends-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2%;
-    height: 71vh;
 }
 
 .friends-grid-container {
