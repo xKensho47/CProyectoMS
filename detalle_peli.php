@@ -36,7 +36,6 @@ mysqli_close($conexion);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" type="text/css" href="slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
@@ -134,7 +133,7 @@ mysqli_close($conexion);
                                 <input type="hidden" name="usuario_id" value="<?php echo $_SESSION['id_cuenta']; ?>">
                                 <button type="submit" class="info-boton <?php if ($existe_mastarde->num_rows > 0) {
                                                                             echo 'existe';
-                                                                        } ?>"><i class="fa-solid fa-clock"></i></i></button>
+                                                                        } ?>"><i class="fa-solid fa-list"></i></button>
                             </form>
                             <form action="favoritos.php" method="post">
                                 <input type="hidden" name="pelicula_id" value="<?php echo $id ?>">
