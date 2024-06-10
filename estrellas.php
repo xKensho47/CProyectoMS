@@ -36,6 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if($existe_registro->num_rows > 0){
         mysqli_query($conexion,"UPDATE valoracion_peliculas SET cant_estrellas = $totalEstrellas, calificacion = $promedio WHERE id_peli = $pelicula_id");
+
+        $q = "SELECT * FROM valoracion_peliculas WHERE id_peli = $pelicula_id AND cant_estrellas = 0 AND calificacion = 0 AND cant_like = 0";
+        $resultado = mysqli_query($conexion, $q);
+
+        if(mysqli_num_rows($resultado) > 0){
+            mysqli_query($conexion,"DELETE FROM valoracion_peliculas WHERE id_peli = $pelicula_id");
+        }
+
     } 
     else{
         mysqli_query($conexion,"INSERT INTO valoracion_peliculas (id_peli,cant_estrellas,calificacion) VALUES($pelicula_id,$totalEstrellas,$promedio)");
