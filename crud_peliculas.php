@@ -41,7 +41,8 @@
             LEFT JOIN (SELECT pa.id_peli, GROUP_CONCAT(CONCAT(a.nombre, ' ', a.apellido) 
             SEPARATOR ', ') AS nom_ape_actor FROM peli_actor pa INNER JOIN actor a ON a.id_actor = pa.id_actor GROUP BY 
             pa.id_peli) AS act ON p.id_peli = act.id_peli 
-            LEFT JOIN (SELECT pd.id_peli, GROUP_CONCAT(CONCAT(d.nombre, ' ', d.apellido) SEPARATOR ', ') AS nom_ape_director FROM peli_director pd INNER JOIN 
+            LEFT JOIN (SELECT pd.id_peli, GROUP_CONCAT(CONCAT(d.nombre, ' ', d.apellido) SEPARATOR ', ') AS nom_ape_director 
+            FROM peli_director pd INNER JOIN 
             director d ON d.id_director = pd.id_director GROUP BY pd.id_peli) AS dir ON p.id_peli = dir.id_peli
             GROUP BY p.id_peli";
 
@@ -63,6 +64,7 @@
             /*LLAMA A LA TABLA DIRECTORES*/
             $directores = $conexion->query("SELECT id_director, nombre, apellido FROM director");
             ?>
+
             <div class="crud  ">
                 <div class="animate-from-bottom">
                     <!-- BOTONES DE REGISTRO Y MODIFICACIONES-->
@@ -105,13 +107,13 @@
                             echo '<div class="alert alert-success alert-dismissible fade show fs-5" role="alert"> Cambios Guardados.
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>';
-                        }elseif ($_GET['status'] === 'danger'){
+                        } elseif ($_GET['status'] === 'danger') {
                             echo '<div class="alert alert-danger alert-dismissible fade show fs-5" role="alert"> no pueden realizarse dos acciones a la vez, ni tener ambos campos vacios.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>';
                         }
                     } ?>
-                    
+
                     <!-- ENCABEZADO DE LA TABLA-->
                     <table class="table table-xl table-striped table-hover mt-3 ">
                         <thead class="table-dark fs-4">
@@ -143,20 +145,40 @@
                             $sqlActor = "SELECT id_actor, nombre, apellido FROM actor";
                             $actores = $conexion->query($sqlActor);
                             ?>
-                            <?php while ($row = $peliculas->fetch_object()) { ?>
+                            <?php while ($row = $peliculas->fetch_object()) {
+                                $id_peli = $row->id_peli;
+                                $titulo = $row->titulo;
+                                $descripcion = $row->descripcion;
+                                $estreno = $row->estreno;
+                                $duracion = $row->duracion;
+                                $path_poster = $row->path_poster;
+                                $nombre_genero = $row->nombres_generos;
+                                $nombre_actor = $row->nom_ape_actor;
+                                $nombre_director = $row->nom_ape_director;
+                            ?>
+
                                 <tr>
-                                    <td><?= $row->id_peli; ?></td>
-                                    <td><?= $row->titulo; ?></td>
-                                    <td><?= $row->descripcion; ?></td>
-                                    <td><?= $row->estreno; ?></td>
+                                    <td><?= $id_peli; ?></td>
+                                    <td><?= $titulo; ?></td>
+                                    <td><?= $descripcion; ?></td>
+                                    <td><?= $estreno; ?></td>
                                     <td><img src="<?= $row->path_poster; ?>" width="80"></td>
-                                    <td><?= $row->duracion; ?></td>
-                                    <td><?= $row->nombres_generos; ?></td>
-                                    <td><?= $row->nom_ape_actor; ?></td>
-                                    <td><?= $row->nom_ape_director; ?></td>
+                                    <td><?= $duracion; ?></td>
+                                    <td><?= $nombre_genero; ?></td>
+                                    <td><?= $nombre_actor; ?></td>
+                                    <td><?= $nombre_director; ?></td>
                                     <td>
-                                        <a href="#" class="btn btn-sm btn-warning mt-5 fs-6" data-bs-toggle="modal" data-bs-target="#editaModal" data-bs-id="<?= $row->id_peli; ?>"><i class="fa-solid fa-pen-to-square"></i> Editar</a>
-                                        <a href="#" class="btn btn-sm btn-danger mt-4 fs-6" data-bs-toggle="modal" data-bs-target="#eliminaModal" data-bs-id="<?= $row->id_peli; ?>"><i class="fa-solid fa-trash"></i> Eliminar</a>
+                                        <a href="#" class="btn btn-sm btn-warning mt-5 fs-6" data-bs-toggle="modal" data-bs-target="#editaModal" data-bs-id="<?= $id_peli; ?>" onclick="IdPeliculaEditarEnModal('<?= $id_peli ?>',
+                                                                    '<?= $titulo ?>',
+                                                                    '<?= $descripcion ?>',
+                                                                    '<?= $estreno ?>',
+                                                                    '<?= $duracion ?>',
+                                                                    '<?= $path_poster ?>',
+                                                                    '<?= $nombre_genero ?>',
+                                                                    '<?= $nombre_actor ?>',
+                                                                    '<?= $nombre_director ?>')">
+                                            <i class="fa-solid fa-pen-to-square"></i> Editar </a>
+                                        <a href="#" class="btn btn-sm btn-danger mt-4 fs-6" data-bs-toggle="modal" data-bs-target="#eliminaModal" data-bs-id="<?= $id_peli; ?>" onclick="IdPeliculaEliminarEnModal('<?= $id_peli ?>')"><i class="fa-solid fa-trash"></i> Eliminar</a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -168,68 +190,71 @@
 
                 <!--MODALES-->
                 <?php include 'nuevo_modal.php'; ?>
+                <?php include 'editar_modal.php'; ?>
                 <?php include 'nuevo_modal_genero.php'; ?>
                 <?php include 'nuevo_modal_actor.php'; ?>
                 <?php include 'nuevo_modal_director.php'; ?>
-                <?php include 'editar_modal.php'; ?>
                 <?php include 'elimina_modal.php'; ?>
 
 
                 <script>
-                    let editaModal = document.getElementById('editaModal')
-                    let eliminaModal = document.getElementById('eliminaModal')
+                    function IdPeliculaEditarEnModal(id_peli, titulo, descripcion, estreno, duracion, path_poster, nombre_genero, nombre_actor, nombre_director) {
+                        // Busca dentro del formulario los checkbox para limpiarlos
+                        document.querySelectorAll('#formulario_peliculas input[type="checkbox"]').forEach(function(checkElement) {
+                            checkElement.checked = false;
+                        });
 
-                    editaModal.addEventListener('shown.bs.modal', event => {
+                        // Conversión de string a array
+                        let arrayGeneros = nombre_genero.split(", "); // Se divide con la , manera de separar género por género
+                        let arrayActores = nombre_actor.split(", ");
+                        let arrayDirectores = nombre_director.split(", "); // Se ajusta para múltiples directores
 
-                        let button = event.relatedTarget
-                        let id = button.getAttribute('data-bs-id')
+                        // Busca los input del form
+                        let inputIdEncontrado = document.getElementById("id_peli");
+                        let inputTituloEncontrado = document.getElementById("nombre_pelicula");
+                        let inputDescripcionEncontrada = document.getElementById("descripcion_pelicula");
+                        let inputEstrenoEncontrado = document.getElementById("estreno_pelicula");
+                        let inputDuracionEncontrado = document.getElementById("duracion_pelicula");
+                        let inputPosterEncontrado = document.getElementById("path_poster_pelicula");
 
-                        let inputId = editaModal.querySelector('.modal-body #id')
-                        let inputNombre = editaModal.querySelector('.modal-body #nombre')
-                        let inputDescripcion = editaModal.querySelector('.modal-body #descripcion')
-                        let inputEstreno = editaModal.querySelector('.modal-body #estreno')
-                        let inputDuracion = editaModal.querySelector('.modal-body #duracion')
-                        let inputPath_poster = editaModal.querySelector('.modal-body #Path_poster')
-                        let inputGenero = editaModal.querySelector('.modal-body #genero')
-                        let inputActores = editaModal.querySelector('.modal-body #actores')
-                        let inputDirectores = editaModal.querySelector('.modal-body #directores')
-                        let inputVideo_mp4 = editaModal.querySelector('.modal-body #video_mp4')
-                        let inputVideo_iframe = editaModal.querySelector('.modal-body #video_iframe')
+                        // Marca los checkbox de géneros
+                        arrayGeneros.forEach(function(genero) {
+                            let inputGeneroEncontrado = document.getElementById("genero_" + genero);
+                            if (inputGeneroEncontrado) {
+                                inputGeneroEncontrado.checked = true;
+                            }
+                        });
 
-                        let url = "get_pelicula.php"
-                        let formData = new FormData()
-                        formData.append('id', id)
+                        // Marca los checkbox de actores
+                        arrayActores.forEach(function(actor) {
+                            let inputActoresEncontrado = document.getElementById("actor_" + actor);
+                            if (inputActoresEncontrado) {
+                                inputActoresEncontrado.checked = true;
+                            }
+                        });
 
-                        fetch(url, {
-                                method: "POST",
-                                body: formData
-                            }).then(response => response.json())
-                            .then(data => {
+                        // Marca los checkbox de directores
+                        arrayDirectores.forEach(function(director) {
+                            let inputDirectoresEncontrado = document.getElementById("director_" + director);
+                            if (inputDirectoresEncontrado) {
+                                inputDirectoresEncontrado.checked = true;
+                            }
+                        });
 
-                                inputId.value = data.id
-                                inputNombre.value = data.nombre
-                                inputDescripcion.value = data.descripcion
-                                inputEstreno.value = data.estreno
-                                inputDuracion.value = data.duracion
-                                inputPath_poster.value = data.Path_poster
-                                inputGenero.value = data.id_genero
-                                inputActores.value = data.actores
-                                inputDirectores.value = data.directores
-                                inputVideo_mp4.value = data.video_mp4
-                                inputVideo_iframe.value = data.video_iframe
+                        // Asignación de valores a los inputs del modal
+                        inputIdEncontrado.value = id_peli;
+                        inputTituloEncontrado.value = titulo;
+                        inputDescripcionEncontrada.value = descripcion;
+                        inputEstrenoEncontrado.value = estreno;
+                        inputDuracionEncontrado.value = duracion;
+                        inputPosterEncontrado.value = path_poster;
+                    }
 
-
-                            }).catch(err => console.log(err))
-
-                    })
-
-                    eliminaModal.addEventListener('shown.bs.modal', event => {
-                        let button = event.relatedTarget
-                        let id = button.getAttribute('data-bs-id')
-                        eliminaModal.querySelector('.modal-footer #id').value = id
-                    })
+                    function IdPeliculaEliminarEnModal(id_peli){
+                        let inputIdPeliEncontrado = document.getElementById("id_pelicula_eliminar");
+                        inputIdPeliEncontrado.value = id_peli;  
+                    }
                 </script>
-
 
                 <script src="script/jquery.js"></script>
                 <script src="slick/slick.min.js"></script>

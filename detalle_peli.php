@@ -1,7 +1,7 @@
 <?php session_start();
 
 include("conexion.php");
-
+include("modalRecomendarPeli.php");
 $id_cuenta = $_SESSION['id_cuenta'];
 $id = $_GET['id_peli'];
 $peli = mysqli_query($conexion, "SELECT * FROM peliculas WHERE id_peli = $id");
@@ -26,7 +26,7 @@ $anoEstreno = date("Y", strtotime($fechaEstreno));
 $cant_estrellas = mysqli_query($conexion,"SELECT SUM(estrellas) AS cant_estrellas FROM peli_estrellas WHERE id_peli = $id");
 $cant_registros = mysqli_query($conexion,"SELECT COUNT(*) AS cant_registros FROM peli_estrellas WHERE id_peli = $id");
 
-    mysqli_close($conexion);
+mysqli_close($conexion);
 ?>
 <!doctype html>
 <html lang="es">
@@ -35,7 +35,7 @@ $cant_registros = mysqli_query($conexion,"SELECT COUNT(*) AS cant_registros FROM
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" type="text/css" href="slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
@@ -47,11 +47,12 @@ $cant_registros = mysqli_query($conexion,"SELECT COUNT(*) AS cant_registros FROM
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-header-peli">
         <?php
         require_once("loginVerification.php");
         include("header.php");
         ?>
+    </div>
         <main class="main-detallepeli">
     
             <div class="volver-atras" style="float: left;">
@@ -61,43 +62,48 @@ $cant_registros = mysqli_query($conexion,"SELECT COUNT(*) AS cant_registros FROM
             <div class="contenedor-detalle_peli animate-from-bottom">
                 <div class="detallepeli-poster ">
                     <img src="<?php echo $row['path_poster'] ?>" alt="<?php echo $row['titulo'] ?>" class="imagen-deslizar ">
-                </div>      
+                </div> 
+                
             <div class="detallepeli-info">
                 <div class="info-titulo">
                     <div class="info-titulo_titulo">
                         <h1><?php echo $row['titulo'] ?></h1>
-                        <p>(<?php echo $anoEstreno ?>)</p>
+                        <h3>(<?php echo $anoEstreno ?>)</h3>
                     </div>
                     <div class="contenedor-estrellas">
                         <form class="star-rating" action="estrellas.php" method="post">
                             <button type="submit" class="botonEstrellas"><i class="fa-solid fa-share"></i></button>
-                            <input id="star-5" type="radio" name="rating" value="5">
-                            <label for="star-5" title="5 estrellas">★</label>
-                            <input id="star-4" type="radio" name="rating" value="4">
-                            <label for="star-4" title="4 estrellas">★</label>
-                            <input id="star-3" type="radio" name="rating" value="3">
-                            <label for="star-3" title="3 estrellas">★</label>
-                            <input id="star-2" type="radio" name="rating" value="2">
-                            <label for="star-2" title="2 estrellas">★</label>
-                            <input id="star-1" type="radio" name="rating" value="1">
-                            <label for="star-1" title="1 estrella">★</label>
+
+                            <?php
+                                // obtengo cuantas estrellas dio un usuario
+                                $query = "SELECT estrellas FROM peli_estrellas WHERE id_cuenta = $id_cuenta AND id_peli = $id LIMIT 1";
+                                $result = mysqli_query($conexion, $query);
+                                $user_rating = mysqli_fetch_assoc($result)['estrellas'] ?? 0;
+                                
+                            ?>
+                            
+                            <?php for ($i = 5; $i >= 1; $i--): ?>
+                                <input id="star-<?php echo $i; ?>" type="radio" name="rating" value="<?php echo $i; ?>" <?php if ($user_rating == $i) echo 'checked'; ?>>
+                                <label for="star-<?php echo $i; ?>" title="<?php echo $i; ?> estrellas">★</label>
+                            <?php endfor; ?>
+                            
                             <input type="hidden" name="usuario_id" value="<?php echo $_SESSION['id_cuenta']; ?>">  
                             <input type="hidden" name="pelicula_id" value="<?php echo $id ?>">
                         </form>
+                        
                         <div>
                             <p>
                                 <?php
                                 $estrellas = mysqli_fetch_assoc($cant_estrellas);
                                 $registros = mysqli_fetch_assoc($cant_registros);
                                 
-                                if($registros['cant_registros'] != 0){
+                                if ($registros['cant_registros'] != 0) {
                                     $promedio = $estrellas['cant_estrellas'] / $registros['cant_registros'];
-                                } 
-                                else{
+                                } else {
                                     $promedio = 0;
                                 }
                                 
-                                echo $promedio;
+                                echo round($promedio, 1);
                                 ?> / 5 <span class="estrella">★</span>
                             </p>
                         </div>
@@ -111,14 +117,13 @@ $cant_registros = mysqli_query($conexion,"SELECT COUNT(*) AS cant_registros FROM
 
                         if ($generos->num_rows > 0) {
                             while ($r_generos = $generos->fetch_assoc()) {
-                                echo '' . $r_generos['nombre_genero'] . ' ';
+                                echo '<p>'. $r_generos["nombre_genero"] .'</p>';
                             }
                         } else {
                             echo '';
                         }
 
                         ?>
-                        <p> </p>
                         <p>-</p>
                         <p><?php echo $row['duracion'] ?> Mins</p>
                     </div>
@@ -132,7 +137,7 @@ $cant_registros = mysqli_query($conexion,"SELECT COUNT(*) AS cant_registros FROM
                                 <input type="hidden" name="usuario_id" value="<?php echo $_SESSION['id_cuenta']; ?>">
                                 <button type="submit" class="info-boton <?php if ($existe_mastarde->num_rows > 0) {
                                                                             echo 'existe';
-                                                                        } ?>"><i class="fa-solid fa-clock"></i></i></button>
+                                                                        } ?>"><i class="fa-solid fa-list"></i></button>
                             </form>
                             <form action="favoritos.php" method="post">
                                 <input type="hidden" name="pelicula_id" value="<?php echo $id ?>">
@@ -148,6 +153,7 @@ $cant_registros = mysqli_query($conexion,"SELECT COUNT(*) AS cant_registros FROM
                                                                             echo 'existe';
                                                                         } ?>"><i class="fa-solid fa-thumbs-up"></i></button>
                             </form>
+                            <button class="info-boton" data-bs-toggle="modal" data-bs-target="#modalRecomendarPeli"><i class="fa-solid fa-users"></i></button>
                         </div>
                     </div>
                     <div class="info-descripcion">
@@ -192,10 +198,8 @@ $cant_registros = mysqli_query($conexion,"SELECT COUNT(*) AS cant_registros FROM
                     </div>
                 </div>
             </div>
-
-
         </main>
-    </div>
+
     <footer>
         <p>&copy; CineFlow 2024</p>
     </footer>
@@ -204,6 +208,7 @@ $cant_registros = mysqli_query($conexion,"SELECT COUNT(*) AS cant_registros FROM
     <script src="script/script.js"></script>
     <script src="script/botonTop.js"></script>
     <script src="https://kit.fontawesome.com/81c8161a36.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>
