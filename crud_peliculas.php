@@ -146,15 +146,15 @@
                             $actores = $conexion->query($sqlActor);
                             ?>
                             <?php while ($row = $peliculas->fetch_object()) {
-                                    $id_peli = $row->id_peli;
-                                    $titulo = $row->titulo;
-                                    $descripcion = $row->descripcion;
-                                    $estreno = $row->estreno;
-                                    $duracion = $row->duracion;
-                                    $path_poster = $row->path_poster;
-                                    $nombre_genero = $row->nombres_generos;
-                                    $nombre_actor = $row->nom_ape_actor;
-                                    $nombre_director = $row->nom_ape_director;
+                                $id_peli = $row->id_peli;
+                                $titulo = $row->titulo;
+                                $descripcion = $row->descripcion;
+                                $estreno = $row->estreno;
+                                $duracion = $row->duracion;
+                                $path_poster = $row->path_poster;
+                                $nombre_genero = $row->nombres_generos;
+                                $nombre_actor = $row->nom_ape_actor;
+                                $nombre_director = $row->nom_ape_director;
                             ?>
 
                                 <tr>
@@ -198,44 +198,56 @@
 
 
                 <script>
-                    function IdPeliculaEditarEnModal(id_peli, titulo, descripcion, estreno, duracion, path_poster,nombre_genero, nombre_actor, nombre_director) {
-
-                        //busca dentro del formulario los checkbox para limpiarlos
-                        document.querySelectorAll('#formulario_peliculas input[type="checkbox"]').forEach(
-                            function(checkElement) {
-                              checkElement.checked = false;
+                    function IdPeliculaEditarEnModal(id_peli, titulo, descripcion, estreno, duracion, path_poster, nombre_genero, nombre_actor, nombre_director) {
+                        // Busca dentro del formulario los checkbox para limpiarlos
+                        document.querySelectorAll('#formulario_peliculas input[type="checkbox"]').forEach(function(checkElement) {
+                            checkElement.checked = false;
                         });
 
-                        //conversion de string a array
-                        let arrayGeneros = nombre_genero.split(", "); //se divide con la , manera de separar genero x genero
+                        // Conversión de string a array
+                        let arrayGeneros = nombre_genero.split(", "); // Se divide con la , manera de separar género por género
                         let arrayActores = nombre_actor.split(", ");
+                        let arrayDirectores = nombre_director.split(", "); // Se ajusta para múltiples directores
 
-                        //busca los input del form 
+                        // Busca los input del form
                         let inputIdEncontrado = document.getElementById("id_peli");
                         let inputTituloEncontrado = document.getElementById("nombre_pelicula");
                         let inputDescripcionEncontrada = document.getElementById("descripcion_pelicula");
                         let inputEstrenoEncontrado = document.getElementById("estreno_pelicula");
                         let inputDuracionEncontrado = document.getElementById("duracion_pelicula");
                         let inputPosterEncontrado = document.getElementById("path_poster_pelicula");
-                        let inputDirectorEncontrado = document.getElementById(nombre_director);                       
-                        inputDirectorEncontrado.checked = true; //marco el check ya que es 1 solo dato
-                        
-                        arrayGeneros.forEach(function(genero) { //recorro todos los generos y los marco
-                            let inputGeneroEncontrado = document.getElementById(genero);
-                            inputGeneroEncontrado.checked = true; 
+
+                        // Marca los checkbox de géneros
+                        arrayGeneros.forEach(function(genero) {
+                            let inputGeneroEncontrado = document.getElementById("genero_" + genero);
+                            if (inputGeneroEncontrado) {
+                                inputGeneroEncontrado.checked = true;
+                            }
                         });
 
+                        // Marca los checkbox de actores
                         arrayActores.forEach(function(actor) {
-                            let inputActoresEncontrado = document.getElementById(actor); 
-                            inputActoresEncontrado.checked = true;
-                        });  
-                                              
+                            let inputActoresEncontrado = document.getElementById("actor_" + actor);
+                            if (inputActoresEncontrado) {
+                                inputActoresEncontrado.checked = true;
+                            }
+                        });
+
+                        // Marca los checkbox de directores
+                        arrayDirectores.forEach(function(director) {
+                            let inputDirectoresEncontrado = document.getElementById("director_" + director);
+                            if (inputDirectoresEncontrado) {
+                                inputDirectoresEncontrado.checked = true;
+                            }
+                        });
+
+                        // Asignación de valores a los inputs del modal
                         inputIdEncontrado.value = id_peli;
                         inputTituloEncontrado.value = titulo;
                         inputDescripcionEncontrada.value = descripcion;
                         inputEstrenoEncontrado.value = estreno;
                         inputDuracionEncontrado.value = duracion;
-                        inputPosterEncontrado.value = path_poster;     
+                        inputPosterEncontrado.value = path_poster;
                     }
                 </script>
 
