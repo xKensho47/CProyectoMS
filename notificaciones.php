@@ -58,10 +58,7 @@
                 <p class="mensaje">Pepe te añadió como amigo.</p>
                 <span class="fecha">02/06/2024</span>
             </div>
-            <div class="notificacion">
-                <p class="mensaje">¡No te pierdas el estreno de la semana!</p>
-                <span class="fecha">01/06/2024</span>
-            </div>
+     
 
         </div>
         <div class="contacto">

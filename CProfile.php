@@ -35,7 +35,8 @@ class CProfile
     }
 
     // MÉTODOS
-    public function generateProfileData(){
+    public function generateProfileData()
+    {
         // Asegurarse de que la sesión esté iniciada y el id_cuenta esté establecido
         if (!isset($_SESSION['id_cuenta'])) {
             echo "No se ha iniciado sesión.";
@@ -52,17 +53,17 @@ class CProfile
 
         // Consulta para obtener los datos del usuario, incluyendo el campo about_me y la imagen de perfil
         $q =
-            "SELECT 
-        cu.nombre_usuario, cu.about_me, ip.img 
-    FROM
-        cuenta_usuario cu 
-    LEFT JOIN 
-        img_perfil ip 
-    ON 
-        cu.id_img = ip.id_img 
-    WHERE 
-        cu.id_cuenta = ?
-    ";
+        "SELECT 
+            cu.nombre_usuario, cu.about_me, ip.img 
+        FROM
+            cuenta_usuario cu 
+        LEFT JOIN 
+            img_perfil ip 
+        ON 
+            cu.id_img = ip.id_img 
+        WHERE 
+            cu.id_cuenta = ?
+        ";
 
         $stmt = $this->conexion->prepare($q);
         if (!$stmt) {
@@ -85,11 +86,17 @@ class CProfile
             if ($row) {
                 // Consulta para obtener los géneros favoritos del usuario
                 $q_genres =
-                    "SELECT g.nombre_genero 
-            FROM genero_favorito gf 
-            JOIN genero g ON gf.id_genero = g.id_genero 
-            WHERE gf.id_cuenta = ?
-            ";
+                "SELECT 
+                    g.nombre_genero 
+                FROM 
+                    genero_favorito gf 
+                JOIN 
+                    genero g 
+                ON 
+                    gf.id_genero = g.id_genero 
+                WHERE 
+                    gf.id_cuenta = ?
+                ";
 
                 $stmt_genres = $this->conexion->prepare($q_genres);
                 if (!$stmt_genres) {
@@ -175,7 +182,7 @@ class CProfile
         $id_cuenta = $_SESSION['id_cuenta'];
 
         $q =
-            "SELECT 
+        "SELECT 
             facc.id_cuenta, facc.nombre_usuario, facc.id_img
         FROM 
             cuenta_usuario AS usuario

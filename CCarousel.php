@@ -1,42 +1,56 @@
 <?php
-class CCarousel {
+class CCarousel
+{
     private $conexion;
     private string $titulo;
     private $id_cuenta;
 
     //GETTERS Y SETTERS
     //Getters
-    public function setConexion(object $conexion) {
+    public function setConexion(object $conexion)
+    {
         $this->conexion = $conexion;
     }
-    public function setTitulo(string $titulo): void {
+    public function setTitulo(string $titulo): void
+    {
         $this->titulo = $titulo;
     }
-    public function setIDCuenta($id_cuenta) {
+    public function setIDCuenta($id_cuenta)
+    {
         $this->id_cuenta = $id_cuenta;
     }
     //Setters
-    public function getConexion() {
+    public function getConexion()
+    {
         return $this->conexion;
     }
-    public function getTitulo(): string {
+    public function getTitulo(): string
+    {
         return $this->titulo;
     }
-    public function getIDCuenta() {
+    public function getIDCuenta()
+    {
         return $this->id_cuenta;
     }
     //CONSTRUCTOR
-    function __construct(object $conexion) {
+    public function __construct($conexion) {
         $this->conexion = $conexion;
+
+        // Asignar id_cuenta desde la sesión si está configurada
         if (isset($_SESSION['id_cuenta'])) {
-            $this->id_cuenta = $_SESSION['id_cuenta'];
+            $this->id_cuenta = (int)$_SESSION['id_cuenta'];
+        } else {
+            // Manejar el caso donde no hay id_cuenta en la sesión
+            $this->id_cuenta = null;
         }
     }
 
     //METODOS
     // Método para obtener el tipo de usuario
-    private function obtenerTipoUsuario($id_cuenta) {
+    private function obtenerTipoUsuario($id_cuenta)
+    {
         $tipo_usuario = "";
+
         // Preparar la consulta SQL para obtener el tipo de usuario
         $query = 
         "SELECT 
@@ -48,7 +62,8 @@ class CCarousel {
         INNER JOIN 
             tipo_usuario t ON u.id_tipo = t.id_tipo 
         WHERE 
-            cu.id_cuenta = ?";
+            cu.id_cuenta = ?
+        ";
 
         // Preparar y ejecutar la declaración
         $stmt = $this->conexion->prepare($query);
@@ -62,60 +77,90 @@ class CCarousel {
         // Obtener el tipo de usuario
         if ($stmt->num_rows > 0) {
             $stmt->fetch();
+        } else {
+            echo "No se encontró el tipo de usuario para id_cuenta: $id_cuenta<br>";
         }
 
         // Cerrar la declaración y devolver el tipo de usuario
         $stmt->close();
+
         return $tipo_usuario;
     }
 
-    public function resultCarousel($conexion, $title) {
+
+    public function resultCarousel($conexion, $title)
+    {
         $q = "";
-        if ($this->obtenerTipoUsuario($this->id_cuenta) == "Normal") {
+
+        if (
+            isset($_SESSION['id_cuenta'])
+            && ($this->obtenerTipoUsuario($this->id_cuenta) == "Normal"
+                || $this->obtenerTipoUsuario($this->id_cuenta) == "Administrador")
+        ) {
             switch ($title) {
                 case 'Continuar viendo':
-                    $q = "
-                    SELECT 
-                        peli.id_peli AS id,
-                        peli.path_poster AS poster,
-                        peli.titulo AS titulo
+                    $q =
+                        "SELECT 
+                        p.id_peli AS id, 
+                        p.path_poster AS poster, 
+                        p.titulo AS titulo
                     FROM 
-                        peliculas_continuar_viendo cv
-                    INNER JOIN 
-                        peliculas peli ON cv.id_peli = peli.id_peli
+                        peliculas p
+                    JOIN 
+                        continuar_viendo cv 
+                    ON 
+                        p.id_peli = pf.id_peli
+                    JOIN 
+                        cuenta_usuario cu 
+                    ON 
+                        cv.id_cuenta = cu.id_cuenta
                     WHERE 
-                        cv.id_cuenta = ?
+                        cu.id_cuenta = $this->id_cuenta
                     ";
+
                     break;
 
                 case 'Ver más tarde':
-                    $q = "
-                    SELECT 
-                        peli.id_peli AS id,
-                        peli.path_poster AS poster,
-                        peli.titulo AS titulo
+                    $q =
+                        "SELECT 
+                        p.id_peli AS id, 
+                        p.path_poster AS poster, 
+                        p.titulo AS titulo
                     FROM 
+                        peliculas p
+                    JOIN 
                         mas_tarde mt
-                    INNER JOIN 
-                        peliculas peli ON mt.id_peli = peli.id_peli
+                    ON 
+                        p.id_peli = mt.id_peli
+                    JOIN 
+                        cuenta_usuario cu 
+                    ON 
+                        mt.id_cuenta = cu.id_cuenta
                     WHERE 
-                        mt.id_cuenta = ?
+                        cu.id_cuenta = $this->id_cuenta
                     ";
                     break;
 
                 case 'Favoritas':
-                    $q = "
-                    SELECT 
-                        peli.id_peli AS id,
-                        peli.path_poster AS poster,
-                        peli.titulo AS titulo
+                    $q =
+                        "SELECT 
+                        p.id_peli AS id, 
+                        p.path_poster AS poster, 
+                        p.titulo AS titulo
                     FROM 
-                        peli_favorita pf
-                    INNER JOIN 
-                        peliculas peli ON pf.id_peli = peli.id_peli
+                        peliculas p
+                    LEFT JOIN 
+                        peli_favorita pf 
+                    ON 
+                        p.id_peli = pf.id_peli
+                    RIGHT JOIN 
+                        cuenta_usuario cu 
+                    ON 
+                        pf.id_cuenta = cu.id_cuenta
                     WHERE 
-                        pf.id_cuenta = ?
+                        cu.id_cuenta = $this->id_cuenta
                     ";
+
                     break;
 
                 default:
@@ -125,8 +170,8 @@ class CCarousel {
         } else {
             switch ($title) {
                 case 'Películas más valoradas':
-                    $q = "
-                    SELECT 
+                    $q =
+                        "SELECT 
                         val.id_peli AS id,
                         val.calificacion AS calificacion,
                         peli.path_poster AS poster,
@@ -146,8 +191,8 @@ class CCarousel {
                     break;
 
                 case 'Recientes':
-                    $q = "
-                    SELECT 
+                    $q =
+                        "SELECT 
                         peli.id_peli AS id,
                         peli.path_poster AS poster,
                         peli.titulo AS titulo,
@@ -167,7 +212,11 @@ class CCarousel {
         }
 
         $stmt = $conexion->prepare($q);
-        if ($this->obtenerTipoUsuario($this->id_cuenta) == "Normal") {
+        if (
+            isset($_SESSION['id_cuenta'])
+            && ($this->obtenerTipoUsuario($this->id_cuenta) == "Normal"
+                || $this->obtenerTipoUsuario($this->id_cuenta) == "Administrador")
+        ) {
             $stmt->bind_param('i', $this->id_cuenta);
         }
         $stmt->execute();
@@ -181,40 +230,42 @@ class CCarousel {
         return $result;
     }
 
-    public function generateMovieSection($conexion, $title) {
+    public function generateMovieSection($conexion, $title)
+    {
         echo "
         <section class='movies-container x-carousel' id='movies-container-$title'>
-          <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
-            <div class='movies-dinamic-tittle' id='movies-dinamic-tittle-$title'>
-              <h2 class='x-tittle' id='x-tittle-$title'> - $title - </h2>
-              <hr>
-            </div>
-            <div class='x-carousel-container'>
-              <button class='carousel-prev'>&#60</button>
-              <div class='carousel-slide'>";
-                /* Query result */
-                $result = $this->resultCarousel($conexion, $title);
-                /* Ordenar por puesto */
-                $puesto = 1;
-                if ($result && $result->num_rows > 0) {
-                  while ($row = $result->fetch_assoc()) {
-                      $imagePath = $row["poster"];
-                      echo "
-                      <div class='x-carousel-movie'>
-                        <a href='detalle_peli.php?id_peli=" . $row['id'] . "'>
-                          <img src=' " . $imagePath . " ' alt='Movie Posters'>
-                          <div class='x-carousel-rank'>
-                            <p># " .$puesto. " </p>
-                          </div>
-                        </a>
-                      </div>
-                      ";
-                      $puesto++;
-                  }
-                } else {
-                  echo '<p>No movies found.</p>';
-                }
-                echo"
+            <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
+                <div class='movies-dinamic-tittle' id='movies-dinamic-tittle-$title'>
+                    <h2 class='x-tittle' id='x-tittle-$title'> - $title - </h2>
+                    <hr>
+                </div>
+                <div class='x-carousel-container'>
+                    <button class='carousel-prev'>&#60</button>
+                    <div class='carousel-slide'>";
+        /* Query result */
+        $result = $this->resultCarousel($conexion, $title);
+        /* Ordenar por puesto */
+        $puesto = 1;
+
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $imagePath = $row["poster"];
+                echo "
+                    <div class='x-carousel-movie'>
+                    <a href='detalle_peli.php?id_peli=" . $row['id'] . "'>
+                        <img src=' " . $imagePath . " ' alt='Movie Posters'>
+                        <div class='x-carousel-rank'>
+                        <p># " . $puesto . " </p>
+                        </div>
+                    </a>
+                    </div>
+                    ";
+                $puesto++;
+            }
+        } else {
+            echo '<p>No movies found.</p>';
+        }
+        echo "
               </div>
               <button class='carousel-next'>&#62</button>
             </div>
@@ -223,4 +274,3 @@ class CCarousel {
         ";
     }
 }
-?>
