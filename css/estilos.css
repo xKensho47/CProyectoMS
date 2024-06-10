@@ -1813,3 +1813,31 @@ tbody{
     transform: translateY(-10px); /* Desliza la imagen hacia arriba 10px */
 }
 
+/*visualizar pelicula*/
+
+.video-container {
+    width: 100%;
+    height: 75vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.video-container video {
+    height: 90%;
+    width: 80%;
+    object-fit: fill;
+    border-radius: 8px;
+}
+
+.volverAdetalles {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+.volverAdetalles a{
+    font-size: 2.5rem;
+    padding: 1%;
+    text-decoration: none;
+    
+}
