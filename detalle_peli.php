@@ -73,33 +73,37 @@ mysqli_close($conexion);
                     <div class="contenedor-estrellas">
                         <form class="star-rating" action="estrellas.php" method="post">
                             <button type="submit" class="botonEstrellas"><i class="fa-solid fa-share"></i></button>
-                            <input id="star-5" type="radio" name="rating" value="5">
-                            <label for="star-5" title="5 estrellas">★</label>
-                            <input id="star-4" type="radio" name="rating" value="4">
-                            <label for="star-4" title="4 estrellas">★</label>
-                            <input id="star-3" type="radio" name="rating" value="3">
-                            <label for="star-3" title="3 estrellas">★</label>
-                            <input id="star-2" type="radio" name="rating" value="2">
-                            <label for="star-2" title="2 estrellas">★</label>
-                            <input id="star-1" type="radio" name="rating" value="1">
-                            <label for="star-1" title="1 estrella">★</label>
+
+                            <?php
+                                // obtengo cuantas estrellas dio un usuario
+                                $query = "SELECT estrellas FROM peli_estrellas WHERE id_cuenta = $id_cuenta AND id_peli = $id LIMIT 1";
+                                $result = mysqli_query($conexion, $query);
+                                $user_rating = mysqli_fetch_assoc($result)['estrellas'] ?? 0;
+                                
+                            ?>
+                            
+                            <?php for ($i = 5; $i >= 1; $i--): ?>
+                                <input id="star-<?php echo $i; ?>" type="radio" name="rating" value="<?php echo $i; ?>" <?php if ($user_rating == $i) echo 'checked'; ?>>
+                                <label for="star-<?php echo $i; ?>" title="<?php echo $i; ?> estrellas">★</label>
+                            <?php endfor; ?>
+                            
                             <input type="hidden" name="usuario_id" value="<?php echo $_SESSION['id_cuenta']; ?>">  
                             <input type="hidden" name="pelicula_id" value="<?php echo $id ?>">
                         </form>
+                        
                         <div>
                             <p>
                                 <?php
                                 $estrellas = mysqli_fetch_assoc($cant_estrellas);
                                 $registros = mysqli_fetch_assoc($cant_registros);
                                 
-                                if($registros['cant_registros'] != 0){
+                                if ($registros['cant_registros'] != 0) {
                                     $promedio = $estrellas['cant_estrellas'] / $registros['cant_registros'];
-                                } 
-                                else{
+                                } else {
                                     $promedio = 0;
                                 }
                                 
-                                echo $promedio;
+                                echo round($promedio, 1);
                                 ?> / 5 <span class="estrella">★</span>
                             </p>
                         </div>
