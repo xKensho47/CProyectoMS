@@ -1,5 +1,9 @@
 <?php
 include("conexion.php");
+if(!isset($_SESSION['id_cuenta'])){
+  header("Location: index.php");
+}
+
 $id_cuenta = $_SESSION['id_cuenta'];
 $id_peli = $_GET['id_peli'];
 
