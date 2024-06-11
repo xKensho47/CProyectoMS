@@ -129,7 +129,7 @@ mysqli_close($conexion);
                     </div>
                     <div class="info-botones">
                         <div>
-                            <a href="" class="info-boton boton-play"><i class="fa-solid fa-play"></i></a>
+                        <a href="visualizarpelicula.php?id_peli=<?= $id;?>" class="info-boton boton-play"><i class="fa-solid fa-play"></i></a>
                         </div>
                         <div>
                             <form action="mas_tarde.php" method="post">
