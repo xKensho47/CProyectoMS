@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class='descripcion_accion'><p>Ups! este nombre de usuario o mail ya están ocupados 🙁 <br> Prueba con otro!</p></div>
                 </div>
                 <div class='popup-buttons'>
-                    <button id='boton-usuario-repe' class='boton-cancelo'>Intentar denuevo</button>
+                    <a href='registro.php' id='boton-usuario-repe' class='boton-cancelo'>Intentar denuevo</a>
                 </div>
             </div>
         </div>

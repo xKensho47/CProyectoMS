@@ -107,9 +107,9 @@ class CCarousel
                     FROM 
                         peliculas p
                     JOIN 
-                        continuar_viendo cv 
+                        seguir_viendo cv 
                     ON 
-                        p.id_peli = pf.id_peli
+                        p.id_peli = cv.id_peli
                     JOIN 
                         cuenta_usuario cu 
                     ON 
