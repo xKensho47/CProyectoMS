@@ -13,14 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $friendId = $_POST['friend_id'];
     $userId = $_SESSION['id_cuenta']; // Id de la cuenta del usuario actual
 
-    // Verifica que friendId no sea el mismo que userId para evitar que el usuario se agregue a sí mismo como amigo
-    if ($friendId == $userId) {
-        echo "No puedes agregarte a ti mismo como amigo.";
-        exit();
-    }
 
     // Elimina al amigo en la lista de amigos
     $q = "DELETE FROM lista_amigos WHERE amigo = $friendId AND id_cuenta = $userId";
+    $result = mysqli_query($conexion, $q);
+    //borro los 2 registros
+    $q = "DELETE FROM lista_amigos WHERE id_cuenta = $friendId AND amigo = $userId";
     $result = mysqli_query($conexion, $q);
 
 } else {
