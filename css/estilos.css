@@ -2186,31 +2186,39 @@ tbody {
 .cerrar-notificacion {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%); /* Centrar verticalmente respecto al 50% de la altura de la notificación */
-    right: 1vh; /* Alinear a la derecha */
+    transform: translateY(-50%);
+    right: 2vh; /* Ajusta la alineación a la derecha */
     background-color: transparent;
     border: none;
-    color: #707070;
+    color:#bebebe;
     cursor: pointer;
     padding: 5px;
     font-size: 3rem;
     font-family: 'Arial', sans-serif;
 }
 
-/* Agregar margen derecho al primer botón */
-.cerrar-notificacion:first-of-type {
-    margin-right: 10vh; /* Ajusta el valor según necesites */
-}
-
 .cerrar-notificacion:hover {
     color: var(--color-principal);
-    /* Cambiar color al pasar el cursor */
 }
-.ver{
+
+.ver {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.7rem;
-    top: 55%;
+    position: absolute;
+    top: 57%;
+    transform: translateY(-50%);
+    right: 12vh; /* Alinea a la derecha, ajusta según necesites */
+    background-color: transparent;
+    border: none;
+    color:#bebebe;
+    cursor: pointer;
+    padding: 5px;
 }
+
+.ver:hover {
+    color: var(--color-principal);
+}
+
 .not {
     display: flex;
 }

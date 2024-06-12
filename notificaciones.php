@@ -84,13 +84,13 @@ session_start(); ?>
                         echo '<div class="notificacion">';
                         echo '<p class="mensaje">' . htmlspecialchars($nombre_envia) . ' te recomendó ver: "' . htmlspecialchars($titulo_pelicula) . '"</p>';
                         echo '<span class="fecha">' . $fecha . '</span>';
+                        echo '<button type="submit" class="cerrar-notificacion ver" data-id-peli="' . $peli . '">Ver</button>';
                         echo '<form method="post" action="eliminar_notificacion.php" class="eliminar-form">';
                         echo '<input type="hidden" name="usuario_envia" value="' . $usuario_envia_id . '">';
                         echo '<input type="hidden" name="usuario_recibe" value="' . $_SESSION['id_cuenta'] . '">';
                         echo '<input type="hidden" name="tipo_mensaje" value="' . $mensaje . '">';
                         echo '<input type="hidden" name="id_peli" value="' . $peli . '">';
                         echo '<input type="hidden" name="fecha" value="' . $fecha . '">';
-                        echo '<button type="submit" class="cerrar-notificacion ver" data-id-peli="' . $peli . '">Ver</button>';
                         echo'<input type="hidden" name="accion" value="eliminar">';
                         echo '<button type="submit" class="cerrar-notificacion eliminar">x</button>';
                         echo '</form>';
@@ -107,7 +107,6 @@ session_start(); ?>
                     echo '<div class="notificacion">';
                     echo '<p class="mensaje">¡Nueva película: "' . $fila["titulo"] . '" añadida a la categoría de ' . $fila["nombres_generos"] . '!</p>';
                     echo '<span class="fecha">' . $fila["fecha_subida"] . '</span>';
-                    echo '<button class="cerrar-notificacion">x</button>';
                     echo '</div>';
                 }
             }
