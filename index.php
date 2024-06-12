@@ -50,6 +50,7 @@ include('conexion.php');
             include_once("profileFunctions.php");
 
             //continueCarousel($conexion);
+            favoritesCarousel($conexion);
           
         echo '
             </section>
