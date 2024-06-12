@@ -55,9 +55,9 @@ mysqli_close($conexion);
     </div>
         <main class="main-detallepeli">
     
-            <div class="volver-atras" style="float: left;">
-                <a href="generos.php" class="h2-animate"><i class="fas fa-arrow-left"></i></a>
-            </div>
+        <div class="volver-atras" style="float: left;">
+            <a href="#" id="back-link" class="h2-animate"><i class="fas fa-arrow-left"></i></a>
+        </div>
 
             <div class="contenedor-detalle_peli animate-from-bottom">
                 <div class="detallepeli-poster ">
@@ -204,6 +204,7 @@ mysqli_close($conexion);
         <p>&copy; CineFlow 2024</p>
     </footer>
     <script src="script/jquery.js"></script>
+    <script src="script/volverAtras.js"></script>
     <script src="slick/slick.min.js"></script>
     <script src="script/script.js"></script>
     <script src="script/botonTop.js"></script>
