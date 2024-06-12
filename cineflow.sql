@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-06-2024 a las 22:46:22
+-- Tiempo de generación: 12-06-2024 a las 23:58:50
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -229,7 +229,9 @@ INSERT INTO `cuenta_usuario` (`id_cuenta`, `about_me`, `cant_amigos`, `id_usuari
 (5, '', 0, 8, 4, 'yaz606', '$2y$10$T4zdNCHO9OPK7iYS/Sp3q.y8PLnmgYd8FU109vP4F9bNCSEd5ZGSW'),
 (7, '', 0, 10, NULL, 'mari', '$2y$10$JvmBaMyhZdrvj9b2rmSW9O7/FSA2IcdNNeP0eUVlzE/6u912K.fCq'),
 (8, '', 0, 11, NULL, 'emi', '$2y$10$UsR9LW.dUo39hrBkEDqKmOl7TLtyy.lGZc9Np5XlSGOCOKOBIQAju'),
-(9, '', 0, 12, NULL, 'kensho', '$2y$10$i7Uvd36pUuZnXjtqEWiNBulT5EbkCvzvEXVULpp2H12xtv72VUHVu');
+(9, '', 0, 12, NULL, 'kensho', '$2y$10$i7Uvd36pUuZnXjtqEWiNBulT5EbkCvzvEXVULpp2H12xtv72VUHVu'),
+(10, '', 0, 13, NULL, 'vivi18', '$2y$10$V.hCiHFBGhzVjlu5pHivr.YzCgINkLO8gTEkIEWuUlmk8rYz2P4xq'),
+(11, '', 0, 14, NULL, 'agus', '$2y$10$HhVnHKuIfEdsaRRg.tNBKeKW5S.TdqUO2fSDhU6gz3RxRgj0rp6Xq');
 
 -- --------------------------------------------------------
 
@@ -798,6 +800,13 @@ CREATE TABLE `peli_estrellas` (
   `estrellas` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `peli_estrellas`
+--
+
+INSERT INTO `peli_estrellas` (`id_cuenta`, `id_peli`, `estrellas`) VALUES
+(1, 113, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -814,7 +823,8 @@ CREATE TABLE `peli_favorita` (
 --
 
 INSERT INTO `peli_favorita` (`id_cuenta`, `id_peli`) VALUES
-(5, 48);
+(5, 48),
+(1, 99);
 
 -- --------------------------------------------------------
 
@@ -1052,8 +1062,10 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `mail`, `id_tipo`) V
 (7, 'jazmin', 'cardona', 'fhf@hd.com', 2),
 (8, 'yaz', 'cardona', 'yaz606@gmail.com', 2),
 (10, 'maria', 'quinto', 'miri@gmail.com', 2),
-(11, 'emiliano', 'apellido', 'emi@gmail.com', 2),
-(12, 'kensho', 'seta', 'kensho@mail.com', 2);
+(11, 'emiliano', 'apellido', 'emi@gmail.com', 1),
+(12, 'kensho', 'seta', 'kensho@mail.com', 1),
+(13, 'vivi', 'apellido', 'viviana@gmail.com', 1),
+(14, 'agustina', 'apellido', 'agus@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -1076,7 +1088,8 @@ CREATE TABLE `valoracion_peliculas` (
 INSERT INTO `valoracion_peliculas` (`id_valores`, `id_peli`, `cant_estrellas`, `calificacion`, `cant_like`) VALUES
 (2, 79, 0, 0.0, 1),
 (3, 49, 0, 0.0, 1),
-(4, 48, 0, 0.0, 1);
+(4, 48, 0, 0.0, 1),
+(6, 113, 3, 3.0, 0);
 
 --
 -- Índices para tablas volcadas
@@ -1232,7 +1245,7 @@ ALTER TABLE `actor`
 -- AUTO_INCREMENT de la tabla `cuenta_usuario`
 --
 ALTER TABLE `cuenta_usuario`
-  MODIFY `id_cuenta` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_cuenta` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `director`
@@ -1244,7 +1257,7 @@ ALTER TABLE `director`
 -- AUTO_INCREMENT de la tabla `genero`
 --
 ALTER TABLE `genero`
-  MODIFY `id_genero` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id_genero` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT de la tabla `img_perfil`
@@ -1256,7 +1269,7 @@ ALTER TABLE `img_perfil`
 -- AUTO_INCREMENT de la tabla `peliculas`
 --
 ALTER TABLE `peliculas`
-  MODIFY `id_peli` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
+  MODIFY `id_peli` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
@@ -1268,13 +1281,13 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_usuario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `valoracion_peliculas`
 --
 ALTER TABLE `valoracion_peliculas`
-  MODIFY `id_valores` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_valores` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
