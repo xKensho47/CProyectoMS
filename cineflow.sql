@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-06-2024 a las 14:59:21
+-- Tiempo de generación: 12-06-2024 a las 22:46:22
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -194,6 +194,17 @@ INSERT INTO `actor` (`id_actor`, `nombre`, `apellido`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `contacto`
+--
+
+CREATE TABLE `contacto` (
+  `id_cuenta` int(11) NOT NULL,
+  `mensaje` varchar(120) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `cuenta_usuario`
 --
 
@@ -206,6 +217,19 @@ CREATE TABLE `cuenta_usuario` (
   `nombre_usuario` varchar(25) NOT NULL,
   `contraseña` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `cuenta_usuario`
+--
+
+INSERT INTO `cuenta_usuario` (`id_cuenta`, `about_me`, `cant_amigos`, `id_usuario`, `id_img`, `nombre_usuario`, `contraseña`) VALUES
+(1, '', 0, 4, 3, 'jaz707', '$2y$10$.aJWgs53H1P8IrUwYdhg/eHh.od0lMy8XwGNmHP/JzbPsP1AjCuce'),
+(3, '', 0, 6, NULL, 'pepe', '$2y$10$44vuDnm7HRGEk2eS1DRT7.VsnIgiUxt9zbcJAQ69K8VOJE1ISEOZm'),
+(4, '', 0, 7, NULL, 'asda', '$2y$10$.aJWgs53H1P8IrUwYdhg/eHh.od0lMy8XwGNmHP/JzbPsP1AjCuce'),
+(5, '', 0, 8, 4, 'yaz606', '$2y$10$T4zdNCHO9OPK7iYS/Sp3q.y8PLnmgYd8FU109vP4F9bNCSEd5ZGSW'),
+(7, '', 0, 10, NULL, 'mari', '$2y$10$JvmBaMyhZdrvj9b2rmSW9O7/FSA2IcdNNeP0eUVlzE/6u912K.fCq'),
+(8, '', 0, 11, NULL, 'emi', '$2y$10$UsR9LW.dUo39hrBkEDqKmOl7TLtyy.lGZc9Np5XlSGOCOKOBIQAju'),
+(9, '', 0, 12, NULL, 'kensho', '$2y$10$i7Uvd36pUuZnXjtqEWiNBulT5EbkCvzvEXVULpp2H12xtv72VUHVu');
 
 -- --------------------------------------------------------
 
@@ -331,6 +355,16 @@ CREATE TABLE `genero_favorito` (
   `id_cuenta` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `genero_favorito`
+--
+
+INSERT INTO `genero_favorito` (`id_genero`, `id_cuenta`) VALUES
+(8, 1),
+(22, 1),
+(13, 1),
+(37, 7);
+
 -- --------------------------------------------------------
 
 --
@@ -339,8 +373,18 @@ CREATE TABLE `genero_favorito` (
 
 CREATE TABLE `img_perfil` (
   `id_img` int(1) NOT NULL,
-  `img` blob NOT NULL
+  `img` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `img_perfil`
+--
+
+INSERT INTO `img_perfil` (`id_img`, `img`) VALUES
+(1, 'img_perfil\\Avatar_01.png'),
+(2, 'img_perfil\\Avatar_02.png'),
+(3, 'img_perfil\\Avatar_03.png'),
+(4, 'img_perfil\\Avatar_04.png');
 
 -- --------------------------------------------------------
 
@@ -353,6 +397,14 @@ CREATE TABLE `lista_amigos` (
   `amigo` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `lista_amigos`
+--
+
+INSERT INTO `lista_amigos` (`id_cuenta`, `amigo`) VALUES
+(3, 5),
+(5, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -364,6 +416,13 @@ CREATE TABLE `mas_tarde` (
   `id_peli` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `mas_tarde`
+--
+
+INSERT INTO `mas_tarde` (`id_cuenta`, `id_peli`) VALUES
+(5, 48);
+
 -- --------------------------------------------------------
 
 --
@@ -373,7 +432,9 @@ CREATE TABLE `mas_tarde` (
 CREATE TABLE `notificacion` (
   `usuario_envia` int(8) NOT NULL,
   `usuario_recibe` int(8) NOT NULL,
-  `mensaje` varchar(255) NOT NULL
+  `mensaje` tinyint(1) NOT NULL,
+  `id_peli` int(8) NOT NULL,
+  `fecha` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -451,24 +512,7 @@ INSERT INTO `peliculas` (`id_peli`, `titulo`, `descripcion`, `estreno`, `path_po
 (127, 'El Gran Hotel Budapest', 'El Sr. Gustave H., un legendario conserje de un famoso hotel europeo de entreguerras, entabla amistad con Zero Moustafa, un joven empleado al que convierte en su protegido. La historia trata sobre el robo y la recuperación de una pintura renacentista de v', '2014-03-07', 'posters/20231101142944bu.jpg', 99, NULL, NULL, NULL),
 (128, 'El lobo de Wall Street', 'A mediados de los años 80, Jordan  Belfort era un joven honrado que perseguía el sueño americano, pero pronto en la agencia de valores aprendió que lo más importante no era hacer ganar a sus clientes, sino ser ambicioso y ganar una buena comisión. Su enor', '2013-12-25', 'posters/20231101143259lo.jpg', 180, NULL, NULL, NULL),
 (129, 'Pulp Fiction', 'Jules y Vincent, dos asesinos a sueldo con muy pocas luces, trabajan para Marsellus Wallace. Vincent le confiesa a Jules que Marsellus le ha pedido que cuide de Mia, su mujer. Jules le recomienda prudencia porque es muy peligroso sobrepasarse con la novia', '1995-02-16', 'posters/20231101143527pf.jpg', 154, NULL, NULL, NULL),
-(130, 'El Padrino', 'Don Vito Corleone, conocido dentro de los círculos del hampa como \'El Padrino\', es el patriarca de una de las cinco familias que ejercen el mando de la Cosa Nostra en Nueva York en los años cuarenta. Don Corleone tiene cuatro hijos: una chica, Connie, y t', '2011-11-24', 'posters/20231101143827ep.jpg', 175, NULL, NULL, NULL),
-(133, 'erte', 'ertert', '2024-05-11', 'erte', 5, '', '', '2024-05-21'),
-(134, 'gedg', 'dgeg', '2024-05-07', 'ere', 8, '', '', '2024-05-21'),
-(135, 'edge', 'dgeg', '2024-05-10', 'drgre', 5, '', '', '2024-05-21'),
-(136, 'ascsad', 'sdfs', '2024-05-01', 'sdfs', 45, '', '', '2024-05-21'),
-(137, 'ascsad', 'sdfs', '2024-05-01', 'sdfs', 45, '', '', '2024-05-21'),
-(138, 'hfh', 'fhrfh', '2024-05-02', 'rfhrh', 5, '', '', '2024-05-21'),
-(139, 'pepito', '', '0000-00-00', '', 0, '', '', '2024-05-28'),
-(140, 'jaz', 'yo', '2024-05-14', 'dgdrd', 5, '', '', '2024-05-29'),
-(141, 'prueba', 'hola soy una prueba', '2024-05-13', 'hola', 1, '', '', '2024-05-29'),
-(142, 'prueba 2', 'sali mal', '2024-05-01', 'ada', 5, '', '', '2024-05-29'),
-(143, 'maria', 'sgdg', '2024-05-02', 'dfhfh', 5, '', '', '2024-05-29'),
-(144, 'maria', 'f', '2024-05-15', 'fhf', 5, '', '', '2024-05-29'),
-(145, 'fdhfd', 'ghf', '2024-05-08', 'fhf', 4, '', '', '2024-05-29'),
-(146, 'maria', 'fhfh', '2024-05-09', 'dwwqrw', 5, '', '', '2024-05-29'),
-(147, 'jaz', 'fhf', '2024-04-30', 'erte', 1, '', '', '2024-05-29'),
-(148, 'hfh', 'fftrf', '2024-04-30', 'fhf', 5, '', '', '2024-05-30'),
-(149, 'prueba', 'espero que salga', '2024-05-07', 'erte', 5, '', '', '2024-05-30');
+(130, 'El Padrino', 'Don Vito Corleone, conocido dentro de los círculos del hampa como \'El Padrino\', es el patriarca de una de las cinco familias que ejercen el mando de la Cosa Nostra en Nueva York en los años cuarenta. Don Corleone tiene cuatro hijos: una chica, Connie, y t', '2011-11-24', 'posters/20231101143827ep.jpg', 175, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -665,13 +709,7 @@ INSERT INTO `peli_actor` (`id_peli`, `id_actor`) VALUES
 (129, 155),
 (130, 156),
 (130, 157),
-(130, 158),
-(148, 15),
-(148, 23),
-(149, 16),
-(149, 23),
-(149, 24),
-(149, 29);
+(130, 158);
 
 -- --------------------------------------------------------
 
@@ -746,12 +784,19 @@ INSERT INTO `peli_director` (`id_peli`, `id_director`) VALUES
 (127, 70),
 (128, 59),
 (129, 18),
-(130, 71),
-(148, 27),
-(149, 38),
-(149, 43),
-(149, 44),
-(149, 47);
+(130, 71);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `peli_estrellas`
+--
+
+CREATE TABLE `peli_estrellas` (
+  `id_cuenta` int(8) NOT NULL,
+  `id_peli` int(8) NOT NULL,
+  `estrellas` int(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -763,6 +808,13 @@ CREATE TABLE `peli_favorita` (
   `id_cuenta` int(8) NOT NULL,
   `id_peli` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `peli_favorita`
+--
+
+INSERT INTO `peli_favorita` (`id_cuenta`, `id_peli`) VALUES
+(5, 48);
 
 -- --------------------------------------------------------
 
@@ -922,25 +974,7 @@ INSERT INTO `peli_genero` (`id_peli`, `id_genero`) VALUES
 (129, 15),
 (129, 14),
 (130, 15),
-(130, 5),
-(140, 4),
-(140, 7),
-(140, 14),
-(141, 9),
-(141, 15),
-(141, 17),
-(141, 26),
-(142, 25),
-(144, 16),
-(144, 17),
-(145, 29),
-(146, 6),
-(146, 7),
-(147, 3),
-(148, 25),
-(148, 26),
-(149, 17),
-(149, 25);
+(130, 5);
 
 -- --------------------------------------------------------
 
@@ -951,6 +985,28 @@ INSERT INTO `peli_genero` (`id_peli`, `id_genero`) VALUES
 CREATE TABLE `peli_like` (
   `id_cuenta` int(8) NOT NULL,
   `id_peli` int(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `peli_like`
+--
+
+INSERT INTO `peli_like` (`id_cuenta`, `id_peli`) VALUES
+(7, 79),
+(1, 49),
+(5, 48);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `seguir_viendo`
+--
+
+CREATE TABLE `seguir_viendo` (
+  `id_cuenta` int(11) NOT NULL,
+  `id_peli` int(11) NOT NULL,
+  `tiempo_visto` float NOT NULL,
+  `duracion_total` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -991,8 +1047,13 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `mail`, `id_tipo`) VALUES
-(2, 'jazmin', 'cardona', 'jazcar2003@gmail.com', 1),
-(3, 'maria', 'quinto', 'fgh@gmail.com', 2);
+(4, 'jazmin', 'cardona', 'jazcar2003@gmail.com', 1),
+(6, 'maria', 'quinto', 'fgh@gmail.com', 2),
+(7, 'jazmin', 'cardona', 'fhf@hd.com', 2),
+(8, 'yaz', 'cardona', 'yaz606@gmail.com', 2),
+(10, 'maria', 'quinto', 'miri@gmail.com', 2),
+(11, 'emiliano', 'apellido', 'emi@gmail.com', 2),
+(12, 'kensho', 'seta', 'kensho@mail.com', 2);
 
 -- --------------------------------------------------------
 
@@ -1003,10 +1064,19 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `mail`, `id_tipo`) V
 CREATE TABLE `valoracion_peliculas` (
   `id_valores` int(8) NOT NULL,
   `id_peli` int(8) NOT NULL,
-  `cant_estrellas` decimal(1,1) NOT NULL,
-  `calificacion` decimal(1,1) NOT NULL,
+  `cant_estrellas` int(8) NOT NULL,
+  `calificacion` decimal(2,1) NOT NULL,
   `cant_like` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `valoracion_peliculas`
+--
+
+INSERT INTO `valoracion_peliculas` (`id_valores`, `id_peli`, `cant_estrellas`, `calificacion`, `cant_like`) VALUES
+(2, 79, 0, 0.0, 1),
+(3, 49, 0, 0.0, 1),
+(4, 48, 0, 0.0, 1);
 
 --
 -- Índices para tablas volcadas
@@ -1070,7 +1140,8 @@ ALTER TABLE `mas_tarde`
 --
 ALTER TABLE `notificacion`
   ADD KEY `cuenta_usuario_usuario_envia_notificacion` (`usuario_envia`),
-  ADD KEY `cuenta_usuario_usuario_recibe_notificacion` (`usuario_recibe`);
+  ADD KEY `cuenta_usuario_usuario_recibe_notificacion` (`usuario_recibe`),
+  ADD KEY `peliculas_id_peli_notificacion` (`id_peli`);
 
 --
 -- Indices de la tabla `peliculas`
@@ -1091,6 +1162,13 @@ ALTER TABLE `peli_actor`
 ALTER TABLE `peli_director`
   ADD KEY `id_peli` (`id_peli`),
   ADD KEY `id_director` (`id_director`);
+
+--
+-- Indices de la tabla `peli_estrellas`
+--
+ALTER TABLE `peli_estrellas`
+  ADD KEY `id_peli` (`id_peli`),
+  ADD KEY `id_cuenta` (`id_cuenta`);
 
 --
 -- Indices de la tabla `peli_favorita`
@@ -1114,6 +1192,13 @@ ALTER TABLE `peli_like`
   ADD KEY `peliculas_id_peli_peli_like` (`id_peli`);
 
 --
+-- Indices de la tabla `seguir_viendo`
+--
+ALTER TABLE `seguir_viendo`
+  ADD PRIMARY KEY (`id_cuenta`,`id_peli`),
+  ADD KEY `id_peli` (`id_peli`);
+
+--
 -- Indices de la tabla `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
@@ -1131,7 +1216,7 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `valoracion_peliculas`
   ADD PRIMARY KEY (`id_valores`),
-  ADD KEY `peliculas_id_peli_valoracion_peliculas` (`id_peli`);
+  ADD KEY `id_peli` (`id_peli`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -1141,37 +1226,37 @@ ALTER TABLE `valoracion_peliculas`
 -- AUTO_INCREMENT de la tabla `actor`
 --
 ALTER TABLE `actor`
-  MODIFY `id_actor` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
+  MODIFY `id_actor` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
 
 --
 -- AUTO_INCREMENT de la tabla `cuenta_usuario`
 --
 ALTER TABLE `cuenta_usuario`
-  MODIFY `id_cuenta` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cuenta` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `director`
 --
 ALTER TABLE `director`
-  MODIFY `id_director` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id_director` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT de la tabla `genero`
 --
 ALTER TABLE `genero`
-  MODIFY `id_genero` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id_genero` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT de la tabla `img_perfil`
 --
 ALTER TABLE `img_perfil`
-  MODIFY `id_img` int(1) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_img` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `peliculas`
 --
 ALTER TABLE `peliculas`
-  MODIFY `id_peli` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
+  MODIFY `id_peli` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
@@ -1183,13 +1268,13 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_usuario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `valoracion_peliculas`
 --
 ALTER TABLE `valoracion_peliculas`
-  MODIFY `id_valores` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_valores` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
@@ -1228,7 +1313,8 @@ ALTER TABLE `mas_tarde`
 --
 ALTER TABLE `notificacion`
   ADD CONSTRAINT `cuenta_usuario_usuario_envia_notificacion` FOREIGN KEY (`usuario_envia`) REFERENCES `cuenta_usuario` (`id_cuenta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `cuenta_usuario_usuario_recibe_notificacion` FOREIGN KEY (`usuario_recibe`) REFERENCES `cuenta_usuario` (`id_cuenta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `cuenta_usuario_usuario_recibe_notificacion` FOREIGN KEY (`usuario_recibe`) REFERENCES `cuenta_usuario` (`id_cuenta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `peliculas_id_peli_notificacion` FOREIGN KEY (`id_peli`) REFERENCES `peliculas` (`id_peli`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `peli_actor`
@@ -1243,6 +1329,13 @@ ALTER TABLE `peli_actor`
 ALTER TABLE `peli_director`
   ADD CONSTRAINT `id_director_peli_director` FOREIGN KEY (`id_director`) REFERENCES `director` (`id_director`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `id_peli_peli_director` FOREIGN KEY (`id_peli`) REFERENCES `peliculas` (`id_peli`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `peli_estrellas`
+--
+ALTER TABLE `peli_estrellas`
+  ADD CONSTRAINT `peli_estrellas_ibfk_1` FOREIGN KEY (`id_peli`) REFERENCES `peliculas` (`id_peli`),
+  ADD CONSTRAINT `peli_estrellas_ibfk_2` FOREIGN KEY (`id_cuenta`) REFERENCES `cuenta_usuario` (`id_cuenta`);
 
 --
 -- Filtros para la tabla `peli_favorita`
@@ -1266,6 +1359,13 @@ ALTER TABLE `peli_like`
   ADD CONSTRAINT `peliculas_id_peli_peli_like` FOREIGN KEY (`id_peli`) REFERENCES `peliculas` (`id_peli`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Filtros para la tabla `seguir_viendo`
+--
+ALTER TABLE `seguir_viendo`
+  ADD CONSTRAINT `seguir_viendo_ibfk_1` FOREIGN KEY (`id_cuenta`) REFERENCES `cuenta_usuario` (`id_cuenta`),
+  ADD CONSTRAINT `seguir_viendo_ibfk_2` FOREIGN KEY (`id_peli`) REFERENCES `peliculas` (`id_peli`);
+
+--
 -- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -1275,7 +1375,7 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `valoracion_peliculas`
 --
 ALTER TABLE `valoracion_peliculas`
-  ADD CONSTRAINT `peliculas_id_peli_valoracion_peliculas` FOREIGN KEY (`id_peli`) REFERENCES `peliculas` (`id_peli`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `valoracion_peliculas_ibfk_1` FOREIGN KEY (`id_peli`) REFERENCES `peliculas` (`id_peli`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

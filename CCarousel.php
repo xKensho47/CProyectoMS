@@ -92,123 +92,47 @@ class CCarousel
     {
         $q = "";
 
-        if (
-            isset($_SESSION['id_cuenta'])
-            && ($this->obtenerTipoUsuario($this->id_cuenta) == "Normal"
-                || $this->obtenerTipoUsuario($this->id_cuenta) == "Administrador")
-        ) {
-            switch ($title) {
-                case 'Continuar viendo':
-                    $q =
-                        "SELECT 
-                        p.id_peli AS id, 
-                        p.path_poster AS poster, 
-                        p.titulo AS titulo
-                    FROM 
-                        peliculas p
-                    JOIN 
-                        seguir_viendo cv 
-                    ON 
-                        p.id_peli = cv.id_peli
-                    JOIN 
-                        cuenta_usuario cu 
-                    ON 
-                        cv.id_cuenta = cu.id_cuenta
-                    WHERE 
-                        cu.id_cuenta = $this->id_cuenta
-                    ";
+        switch ($title) {
+            case 'Películas más valoradas':
+                $q =
+                    "SELECT 
+                    val.id_peli AS id,
+                    val.calificacion AS calificacion,
+                    peli.path_poster AS poster,
+                    peli.titulo AS titulo
+                FROM 
+                    peliculas peli
+                INNER JOIN
+                    valoracion_peliculas val 
+                ON 
+                    val.id_peli = peli.id_peli
+                GROUP BY 
+                    titulo
+                ORDER BY 
+                    val.calificacion DESC
+                LIMIT 10;
+                ";
+                break;
 
-                    break;
+            case 'Recientes':
+                $q =
+                    "SELECT 
+                    peli.id_peli AS id,
+                    peli.path_poster AS poster,
+                    peli.titulo AS titulo,
+                    peli.fecha_subida AS recientes
+                FROM 
+                    peliculas peli
+                ORDER BY 
+                    peli.fecha_subida DESC
+                LIMIT 10;
+                ";
+                break;
 
-                case 'Ver más tarde':
-                    $q =
-                        "SELECT 
-                        p.id_peli AS id, 
-                        p.path_poster AS poster, 
-                        p.titulo AS titulo
-                    FROM 
-                        peliculas p
-                    JOIN 
-                        mas_tarde mt
-                    ON 
-                        p.id_peli = mt.id_peli
-                    JOIN 
-                        cuenta_usuario cu 
-                    ON 
-                        mt.id_cuenta = cu.id_cuenta
-                    WHERE 
-                        cu.id_cuenta = $this->id_cuenta
-                    ";
-                    break;
-
-                case 'Favoritas':
-                    $q =
-                        "SELECT 
-                        p.id_peli AS id, 
-                        p.path_poster AS poster, 
-                        p.titulo AS titulo
-                    FROM 
-                        peliculas p
-                    LEFT JOIN 
-                        peli_favorita pf 
-                    ON 
-                        p.id_peli = pf.id_peli
-                    RIGHT JOIN 
-                        cuenta_usuario cu 
-                    ON 
-                        pf.id_cuenta = cu.id_cuenta
-                    WHERE 
-                        cu.id_cuenta = $this->id_cuenta
-                    ";
-
-                    break;
-
-                default:
-                    echo 'Datos no encontrados';
-                    return false;
-            }
-        } else {
-            switch ($title) {
-                case 'Películas más valoradas':
-                    $q =
-                        "SELECT 
-                        val.id_peli AS id,
-                        val.calificacion AS calificacion,
-                        peli.path_poster AS poster,
-                        peli.titulo AS titulo
-                    FROM 
-                        peliculas peli
-                    INNER JOIN
-                        valoracion_peliculas val 
-                    ON 
-                        val.id_peli = peli.id_peli
-                    GROUP BY 
-                        titulo
-                    ORDER BY 
-                        val.calificacion DESC
-                    LIMIT 10;
-                    ";
-                    break;
-
-                case 'Recientes':
-                    $q =
-                        "SELECT 
-                        peli.id_peli AS id,
-                        peli.path_poster AS poster,
-                        peli.titulo AS titulo,
-                        peli.fecha_subida AS recientes
-                    FROM 
-                        peliculas peli
-                    ORDER BY 
-                        peli.fecha_subida DESC
-                    LIMIT 10;
-                    ";
-                    break;
-
-                default:
-                    echo 'Datos no encontrados';
-                    return false;
-            }
+            default:
+                echo 'Datos no encontrados';
+                return false;
+            
         }
 
         $stmt = $conexion->prepare($q);

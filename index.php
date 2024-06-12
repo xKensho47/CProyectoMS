@@ -31,20 +31,19 @@ include('conexion.php');
         <main class="main-principal">
             <section class="movies-containerp movies" id="movies-container movies">';
 
-            $titles = array("Películas más valoradas", "Recientes", "Ver más tarde", "Ver de nuevo");
+            $titles = array("Películas más valoradas", "Recientes");
 
             $carouseles = new CCarousel($conexion);
             
-            if (!verification()) {
-                for ($i = 0; $i < count($titles); $i++) {
-                    if ($i < count($titles) - 2) {
-                        $carouseles->generateMovieSection($conexion, $titles[$i]);
-                    }
-                }
-            } else {
-                foreach ($titles as $title) {
-                    $carouseles->generateMovieSection($conexion, $title);
-                }
+            for ($i = 0; $i < count($titles); $i++) {
+                $carouseles->generateMovieSection($conexion, $titles[$i]);
+                
+            }
+
+            if(verification()){
+                include_once("profileFunctions.php");
+                //continueCarousel($conexion);
+                favoritesCarousel($conexion);
             }
           
         echo '
