@@ -40,10 +40,11 @@ include('conexion.php');
                 
             }
 
-            include_once("profileFunctions.php");
-
-            //continueCarousel($conexion);
-            favoritesCarousel($conexion);
+            if(verification()){
+                include_once("profileFunctions.php");
+                //continueCarousel($conexion);
+                favoritesCarousel($conexion);
+            }
           
         echo '
             </section>
