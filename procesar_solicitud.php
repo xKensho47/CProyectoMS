@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
 
             // Elimina la notificación de la tabla notificacion
-            $delete_query = "DELETE FROM notificacion WHERE usuario_envia = $idAmigo AND usuario_recibe = $idCuenta";
+            $delete_query = "DELETE FROM notificacion WHERE usuario_envia = $idAmigo AND usuario_recibe = $idCuenta AND mensaje=1";
             $result_delete = mysqli_query($conexion, $delete_query);
 
             if (!$result_delete) {
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Itera sobre cada solicitud rechazada
         foreach ($_POST['rechazar'] as $idAmigo) {
             // Elimina la notificación de la tabla notificacion
-            $delete_query = "DELETE FROM notificacion WHERE usuario_envia = $idAmigo AND usuario_recibe = $idCuenta";
+            $delete_query = "DELETE FROM notificacion WHERE usuario_envia = $idAmigo AND usuario_recibe = $idCuenta AND mensaje=1";
             $result_delete = mysqli_query($conexion, $delete_query);
 
             if (!$result_delete) {
