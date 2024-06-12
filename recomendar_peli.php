@@ -5,6 +5,7 @@ include("conexion.php");
 $id_peli = $_POST['pelicula_id'];
 $id_usuario = $_POST['usuario_id'];
 $id_amigo = $_POST['amigo_id'];
+$fecha=date("Y-m-d");
 
 $q = "SELECT 
     la1.id_cuenta AS usuario1,
@@ -30,16 +31,16 @@ if(mysqli_num_rows($son_amigos) > 1){
     $datos_pelicula = mysqli_query($conexion,"SELECT titulo FROM peliculas WHERE id_peli = $id_peli");
     $pelicula = mysqli_fetch_assoc($datos_pelicula);
 
-    $mensaje = $usuario['nombre_usuario'] . " te recomendó la película " . $pelicula['titulo'];
+    $mensaje = FALSE;
 
-    $q_noti = "INSERT INTO notificacion (usuario_envia, usuario_recibe, mensaje) VALUES (?, ?, ?)";
+    $q_noti = "INSERT INTO notificacion (usuario_envia, usuario_recibe, mensaje,id_peli,fecha) VALUES (?, ?, ?, ?, ?)";
 
     $stmt = $conexion->prepare($q_noti);
     if ($stmt === false) {
         die("Error en la preparación de la consulta: " . $conexion->error);
     }
 
-    $stmt->bind_param("iis", $id_usuario, $id_amigo, $mensaje);
+    $stmt->bind_param("iiiss", $id_usuario, $id_amigo, $mensaje, $id_peli, $fecha);
 
     $stmt->execute();
         

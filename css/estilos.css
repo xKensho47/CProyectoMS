@@ -2190,17 +2190,26 @@ tbody {
     right: 1vh; /* Alinear a la derecha */
     background-color: transparent;
     border: none;
-    color:#707070;
-    font-size: 20px;
+    color: #707070;
     cursor: pointer;
     padding: 5px;
     font-size: 3rem;
     font-family: 'Arial', sans-serif;
 }
 
+/* Agregar margen derecho al primer botón */
+.cerrar-notificacion:first-of-type {
+    margin-right: 10vh; /* Ajusta el valor según necesites */
+}
+
 .cerrar-notificacion:hover {
     color: var(--color-principal);
     /* Cambiar color al pasar el cursor */
+}
+.ver{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.7rem;
+    top: 55%;
 }
 .not {
     display: flex;
