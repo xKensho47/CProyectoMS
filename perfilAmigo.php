@@ -53,8 +53,16 @@
                         <article class="userinfo2-screen">
                             <section class="userinfo2-movies option" id="userinfo2-movies">
                                 <?php
+                                /*
                                 $carouseles = new CCarousel($conexion);
                                 $carouseles->generateMovieSection($conexion, 'Favoritas');
+                                */
+
+                                include_once("profileFunctions.php");
+
+                                continueCarousel2($conexion, $id_profile);
+                                favoritesCarousel2($conexion, $id_profile);
+
                                 ?>
                             </section>
                             <section class="userinfo2-friends option" id="userinfo2-friends">

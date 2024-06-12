@@ -46,6 +46,10 @@ include('conexion.php');
                     $carouseles->generateMovieSection($conexion, $title);
                 }
             }
+
+            include_once("profileFunctions.php");
+
+            //continueCarousel($conexion);
           
         echo '
             </section>
