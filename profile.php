@@ -70,9 +70,10 @@ $id_cuenta = $_SESSION['id_cuenta'];
 
                                     include_once("profileFunctions.php");
 
-                                    //continueCarousel($conexion);
+                                    continueCarousel($conexion);
                                     laterCarousel($conexion);
                                     favoritesCarousel($conexion);
+                                    
                                 ?>
                             </section>
                             <section class="userinfo2-friends option" id="userinfo2-friends">
