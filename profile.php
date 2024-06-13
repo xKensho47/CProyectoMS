@@ -26,15 +26,15 @@ $id_cuenta = $_SESSION['id_cuenta'];
 </head>
 
 <body>
-    <div class="container-crud py-3">
+    <div class="container py-3">
         <?php
         include("header.php");
         include_once("CProfile.php");
         include_once("CCarousel.php");
         ?>
-        <main class="main-profile">
-            <section class="userinfo-container">
-                <aside class="profile-userinfo">
+        <main class="main-profile ">
+            <section class="userinfo-container ">
+                <aside class="profile-userinfo ">
                     <?php
                     /* PRIMER ASIDE */
                     $profile = new CProfile($conexion);
@@ -55,7 +55,7 @@ $id_cuenta = $_SESSION['id_cuenta'];
                                 </ul>
                             </nav>
                         </article>
-                        <article class="userinfo2-screen">
+                        <article class="userinfo2-screen ">
                             <section class="userinfo2-movies option" id="userinfo2-movies">
                                 <?php
                                     /*
@@ -76,9 +76,9 @@ $id_cuenta = $_SESSION['id_cuenta'];
                                     
                                 ?>
                             </section>
-                            <section class="userinfo2-friends option" id="userinfo2-friends">
-                                <section class="friends-container">
-                                    <article class="friends-grid-container">
+                            <section class="userinfo2-friends option " id="userinfo2-friends">
+                                <section class="friends-container ">
+                                    <article class="friends-grid-container animate-from-bottom">
                                         <?php
                                         // Obtener el número de página actual
                                         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -88,7 +88,7 @@ $id_cuenta = $_SESSION['id_cuenta'];
                                     </article>
                                 </section>
                             </section>
-                            <section class="userinfo2-discover option" id="userinfo2-discover">
+                            <section class="userinfo2-discover option animate-from-bottom" id="userinfo2-discover">
                                 <section class="discovers-container">
                                     <article id="discover-grid-container" class="discover-grid-container">
                                     </article>

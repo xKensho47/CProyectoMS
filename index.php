@@ -5,12 +5,11 @@ include ('conexion.php');
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" type="text/css" href="slick/slick.css" />
@@ -38,7 +37,7 @@ include ('conexion.php');
         </div>
         <?php
         echo '
-        <main class="main-principal">
+        <main class="main-principal animate-from-bottom">
             <section class="movies-containerp movies" id="movies-container movies">';
 
         $titles = array("Películas más valoradas", "Recientes");
@@ -83,7 +82,7 @@ include ('conexion.php');
                                         <section class='movies-container x-carousel' id='movies-container-$title'>
                                             <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
                                                 <div class='movies-dinamic-tittle' id='movies-dinamic-tittle-$title'>
-                                                    <h2 class='x-tittle' id='x-tittle-$title'> - $title - </h2>
+                                                    <h2 class='x-tittle h2-animate' id='x-tittle-$title'>  $title  </h2>
                                                     <hr>
                                                 </div>
                                                 <div class='x-carousel-container'>
@@ -91,7 +90,7 @@ include ('conexion.php');
                                                     <div class='carousel-slide'>";
 
             /* Ordenar por puesto */
-            $puesto = 1;
+            /*$puesto = 1;*/
 
             if ($result && $result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
@@ -100,13 +99,11 @@ include ('conexion.php');
                                                     <div class='x-carousel-movie'>
                                                     <a href='detalle_peli.php?id_peli=" . $row['id'] . "'>
                                                         <img src=' " . $imagePath . " ' alt='Movie Posters'>
-                                                        <div class='x-carousel-rank'>
-                                                        <p># " . $puesto . " </p>
-                                                        </div>
+                                                    
                                                     </a>
                                                     </div>
                                                     ";
-                    $puesto++;
+                    /*$puesto++;*/
                 }
             } else {
                 echo '<p>No movies found.</p>';
@@ -144,7 +141,7 @@ include ('conexion.php');
                                                 <section class='movies-container x-carousel' id='movies-container-$title'>
                                                     <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
                                                         <div class='movies-dinamic-tittle' id='movies-dinamic-tittle-$title'>
-                                                            <h2 class='x-tittle' id='x-tittle-$title'> - $title - </h2>
+                                                            <h2 class='x-tittle h2-animate' id='x-tittle-$title'>  $title  </h2>
                                                             <hr>
                                                         </div>
                                                         <div class='x-carousel-container'>
@@ -152,8 +149,8 @@ include ('conexion.php');
                                                             <div class='carousel-slide'>";
 
                     /* Ordenar por puesto */
-                    $puesto = 1;
-
+                    /*$puesto = 1;*/
+        
                     if ($result && $result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             $imagePath = $row["poster"];
@@ -161,13 +158,11 @@ include ('conexion.php');
                                                             <div class='x-carousel-movie'>
                                                             <a href='detalle_peli.php?id_peli=" . $row['id'] . "'>
                                                                 <img src=' " . $imagePath . " ' alt='Movie Posters'>
-                                                                <div class='x-carousel-rank'>
-                                                                <p># " . $puesto . " </p>
-                                                                </div>
+                                                           
                                                             </a>
                                                             </div>
                                                             ";
-                            $puesto++;
+                            /*$puesto++;*/
                         }
                     } else {
                         echo '<p>No movies found.</p>';
