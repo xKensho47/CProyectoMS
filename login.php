@@ -29,9 +29,9 @@
                     if (isset($_GET['status'])) {
                         // Verificar si el parámetro 'status' tiene el valor 'success'
                         if ($_GET['status'] === 'usuario_contra') {
-                            echo '<div class="mensaje-exito">LA CONTRASEÑA O EL NOMBRE DE USUARIO ES INCORRECTO.</div>';
+                            echo '<div class="mensaje-exito ">LA CONTRASEÑA O EL NOMBRE DE USUARIO ES INCORRECTO.</div>';
                         }elseif ($_GET['status'] === 'no_existe'){
-                            echo '<div class="mensaje-exito">NO EXISTE ESTA CUENTA.</div>';
+                            echo '<div class="mensaje-exito ">CUENTA NO REGISTRADA.</div>';
                         }
                     }
                     echo' <input class="input-login" name="nombre_usuario" type="text" maxlength="12" placeholder="Ingrese su nombre de usuario" required>

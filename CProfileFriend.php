@@ -113,13 +113,13 @@ class CProfileFriend
                     <div class='my-profile'>
                         <a href='profile.php' class='btn btn-color fs-5'>Ir a mi perfil</a>
                     </div>
-                    <h1 class='title-profile'> PERFIL DE USUARIO </h1>
+                    <h1 class='title-profile animate-from-bottom'> PERFIL DE USUARIO </h1>
                     <article class='data-user'>                    
                         <aside class='user-container'>
                             <div class='user-avatar'>
                                 <img class='profile-img' src='" . htmlspecialchars($row['img'], ENT_QUOTES, 'UTF-8') . "' alt='User Avatar'/>
                             </div>
-                            <div class='user-info'>
+                            <div class='user-info animate-from-bottom'>
                                 <h2 class='info-name'> @" . htmlspecialchars($row['nombre_usuario'], ENT_QUOTES, 'UTF-8') . "</h2>
                             </div>
                         </aside>
@@ -141,7 +141,7 @@ class CProfileFriend
                 </section>
                 <section class='userinfo-genres' onlyread>
                     <article class='user-genres'>
-                        <h2>Géneros Favoritos</h2>
+                        <h2 class='h2-animate'>Géneros Favoritos</h2>
                         <div class='genres-prof'>
                             $genres_html
                         </div>
@@ -192,7 +192,7 @@ class CProfileFriend
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo '
-                <div class="data-friend" id="friend-' . $row["id_cuenta"] . '">
+                <div class="data-friend animate-from-bottom" id="friend-' . $row["id_cuenta"] . '">
                     <div class="friend-container">
                         <div class="friend-avatar">
                             <img class="profile-img" src="' . $row["id_img"] . '" alt="Friend Avatar"/>
