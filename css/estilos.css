@@ -355,7 +355,7 @@ header form input {
 hr {
     position: relative;
     left: -25%;
-    border: 1px solid rgb(116, 5, 131);
+    border: 2px solid rgb(116, 5, 131);
     margin-bottom: 4rem;
 
     width: 50%;
@@ -1018,7 +1018,7 @@ input[type="submit"] {
 }
 .movies-dinamic-tittle{
     flex-direction: column;
-    max-height: calc((80vh / 3) / 3 - 4vh);
+    max-height: calc((100vh / 3) / 3 - 3vh);
 }
 
 .x-carousel-tittle .x-tittle {
@@ -2066,6 +2066,48 @@ tbody {
 
 .recomendar-peli-header h1{
     font-size: 2.2rem !important;
+}
+
+
+.info-boton {
+    /* Tus estilos existentes */
+    position: relative; /* Añadir para que el tooltip se posicione correctamente */
+}
+
+/* Estilo del texto del tooltip */
+.tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%; /* Posicionar arriba del botón */
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Flecha del tooltip */
+.tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* En la parte inferior del tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Mostrar el tooltip al hacer hover */
+.info-boton:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }
 
 

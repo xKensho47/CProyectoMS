@@ -129,7 +129,10 @@ mysqli_close($conexion);
                     </div>
                     <div class="info-botones">
                         <div>
-                        <a href="visualizarpelicula.php?id_peli=<?= $id;?>" class="info-boton boton-play"><i class="fa-solid fa-play"></i></a>
+                        <a href="visualizarpelicula.php?id_peli=<?= $id;?>" class="info-boton boton-play">
+                            <i class="fa-solid fa-play"></i>
+                            <span class="tooltiptext">Reproducir</span>  
+                        </a>
                         </div>
                         <div>
                             <form id="form-mas-tarde" action="mas_tarde.php?form_submitted=true" method="post">
@@ -137,23 +140,32 @@ mysqli_close($conexion);
                                 <input type="hidden" name="usuario_id" value="<?php echo $_SESSION['id_cuenta']; ?>">
                                 <button type="submit" class="info-boton <?php if ($existe_mastarde->num_rows > 0) {
                                                                             echo 'existe';
-                                                                        } ?>"><i class="fa-solid fa-list"></i></button>
+                                                                        } ?>"><i class="fa-solid fa-list"></i>
+                                                                        <span class="tooltiptext">Ver más tarde</span>
+                                                                    </button>
                             </form>
                             <form action="favoritos.php?form_submitted=true" method="post">
                                 <input type="hidden" name="pelicula_id" value="<?php echo $id ?>">
                                 <input type="hidden" name="usuario_id" value="<?php echo $_SESSION['id_cuenta']; ?>">
                                 <button type="submit" class="info-boton <?php if ($existe_favorito->num_rows > 0) {
                                                                             echo 'existe';
-                                                                        } ?>"><i class="fa-solid fa-star"></i></button>
+                                                                        } ?>"><i class="fa-solid fa-star"></i>
+                                                                        <span class="tooltiptext">Favoritos</span>
+                                                                        </button>
                             </form>
                             <form action="like.php?form_submitted=true" method="post">
                                 <input type="hidden" name="pelicula_id" value="<?php echo $id ?>">
                                 <input type="hidden" name="usuario_id" value="<?php echo $_SESSION['id_cuenta']; ?>">
                                 <button type="submit" class="info-boton <?php if ($existe_like->num_rows > 0) {
                                                                             echo 'existe';
-                                                                        } ?>"><i class="fa-solid fa-thumbs-up"></i></button>
+                                                                        } ?>"><i class="fa-solid fa-thumbs-up"></i>
+                                                                    <span class="tooltiptext">Me gusta</span>    
+                                                                    </button>
                             </form>
-                            <button class="info-boton" data-bs-toggle="modal" data-bs-target="#modalRecomendarPeli"><i class="fa-solid fa-users"></i></button>
+                            <button class="info-boton" data-bs-toggle="modal" data-bs-target="#modalRecomendarPeli">
+                                <i class="fa-solid fa-users"></i>
+                                <span class="tooltiptext">Recomendar a amigo</span>  
+                            </button>
                         </div>
                     </div>
                     <div class="info-descripcion">
