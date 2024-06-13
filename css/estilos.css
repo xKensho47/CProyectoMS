@@ -231,7 +231,9 @@ header form input {
 }
 
 /* MAIN PRINCIPAL */
-.main-principal {}
+.main-principal {
+
+}
 
 .movies-containerp {
     display: flex;
@@ -241,7 +243,7 @@ header form input {
     padding-left: 3%;
     padding-right: 3%;
 
-    height: 80vh;
+    max-height: 80vh;
     width: 100%;
 
     overflow-y: scroll;
@@ -529,8 +531,10 @@ hr {
 .profile-userinfo {
     flex-direction: column;
 
+    margin-bottom: 10vh;
+
     min-width: 25vw;
-    max-height: 85vh;
+    height: 80vh;
 }
 
 .userinfo-data aside {
@@ -540,6 +544,8 @@ hr {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    top: 2vh;
 }
 
 .title-profile {
@@ -1322,7 +1328,7 @@ footer {
     bottom: 0;
 
     width: 100%;
-    height: 3vh;
+    height: 6vh;
 
     z-index: 890;
 }
