@@ -122,13 +122,13 @@ class CProfile
                 // Generar el HTML con los datos del usuario, incluyendo la imagen de perfil, el campo about_me y los géneros favoritos
                 echo "
                 <section class='userinfo-data'>
-                    <h1 class='title-profile'> MI PERFIL </h1>
+                    <h1 class='title-profile animate-from-bottom'> MI PERFIL </h1>
                     <article class='data-user'>                    
                         <aside class='user-container'>
                             <div class='user-avatar'>
                                 <img class='profile-img' src='" . htmlspecialchars($row['img'], ENT_QUOTES, 'UTF-8') . "' alt='User Avatar'/>
                             </div>
-                            <div class='user-info'>
+                            <div class='user-info animate-from-bottom'>
                                 <h2 class='info-name'> @" . htmlspecialchars($row['nombre_usuario'], ENT_QUOTES, 'UTF-8') . "</h2>
                             </div>
                         </aside>
@@ -149,7 +149,7 @@ class CProfile
                 <section class='userinfo-genres'>
                     <article class='user-genres'>
                         <h2>Géneros Favoritos</h2>
-                        <div class='genres-prof'>
+                        <div class='genres-prof animate-from-bottom'>
                             $genres_html
                         </div>
                     </article>
