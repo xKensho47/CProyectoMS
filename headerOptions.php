@@ -18,6 +18,7 @@ if (!function_exists('mostrarHeader')) {
                             <li class="menu__item"><a href="generos.php">Generos</a></li>
                             <li class="menu__item"><a href="crud_peliculas.php">CRUD</a></li>
                             <li class="menu__item"><a href="admin_usuarios.php">Usuarios</a></li>
+                            <li class="menu__item"><a href="notificaciones.php">Notificaciones</a></li>
                             <li class="menu__item"><a href="profile.php">Perfil</a></li>
                         </ul>
                     </nav>

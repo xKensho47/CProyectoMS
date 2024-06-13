@@ -1,4 +1,5 @@
-<?php session_start(); ?>
+<?php
+session_start(); ?>
 <!doctype html>
 <html lang="es">
 
@@ -24,30 +25,30 @@
         include("header.php");
         require_once("loginVerification.php");
 
-        /*VERIFICA SI SE SUBIERON PELICULAS NUEVAS ESE MISMO DIA*/
+
+        $notificacion = isset($_GET['notificacion']) && $_GET['notificacion'] == 1;
+
+        /* VERIFICA SI SE SUBIERON PELICULAS NUEVAS ESE MISMO DIA */
 
         $consulta_peli_nueva = $conexion->query("SELECT p.titulo, p.fecha_subida, gen.nombres_generos
-                                            FROM peliculas p
-                                            LEFT JOIN (
-                                            SELECT pg.id_peli, GROUP_CONCAT(g.nombre_genero SEPARATOR ', ') AS nombres_generos
-                                            FROM peli_genero pg
-                                            INNER JOIN genero g ON g.id_genero = pg.id_genero
-                                            GROUP BY pg.id_peli
-                                            ) AS gen ON p.id_peli = gen.id_peli
-                                            WHERE p.fecha_subida= curdate()
-                                            GROUP BY p.id_peli, p.titulo, p.fecha_subida;
-                                        ");
-
-
-
+                                                FROM peliculas p
+                                                LEFT JOIN (
+                                                SELECT pg.id_peli, GROUP_CONCAT(g.nombre_genero SEPARATOR ', ') AS nombres_generos
+                                                FROM peli_genero pg
+                                                INNER JOIN genero g ON g.id_genero = pg.id_genero
+                                                GROUP BY pg.id_peli
+                                                ) AS gen ON p.id_peli = gen.id_peli
+                                                WHERE p.fecha_subida= curdate()
+                                                GROUP BY p.id_peli, p.titulo, p.fecha_subida;
+                                            ");
 
         $userId = $_SESSION['id_cuenta'];
 
         // Consulta SQL para obtener las notificaciones
-        $query_solicitud = "SELECT cu.id_cuenta,cu.nombre_usuario AS nombre_envia, n.mensaje 
-                        FROM notificacion n 
-                        JOIN cuenta_usuario cu ON n.usuario_envia = cu.id_cuenta 
-                        WHERE n.usuario_recibe = $userId";
+        $query_solicitud = "SELECT cu.id_cuenta, cu.nombre_usuario AS nombre_envia, n.mensaje, n.id_peli, n.fecha
+                            FROM notificacion n 
+                            JOIN cuenta_usuario cu ON n.usuario_envia = cu.id_cuenta 
+                            WHERE n.usuario_recibe = $userId";
 
         $result_solicitud = $conexion->query($query_solicitud);
         ?>
@@ -56,37 +57,67 @@
         <h2 class="h2-animate">Notificaciones</h2>
         <div class="notificaciones">
             <?php
-
-            
+            // Variable bandera para verificar si hay resultados
+            $hayResultados = false;
             // Verificar si la consulta devolvió resultados
             if ($result_solicitud->num_rows > 0) {
+                $hayResultados = true; // Se encontraron resultados
                 while ($notificacion = $result_solicitud->fetch_assoc()) {
                     $nombre_envia = $notificacion['nombre_envia'];
                     $mensaje = $notificacion['mensaje'];
                     $usuario_envia_id = $notificacion['id_cuenta'];
-                    echo '<div class="notificacion not">';
-                    echo '<p class="mensaje">' . htmlspecialchars($nombre_envia) . ' te añadió como amigo.</p>';
-                    echo '<form method="post" action="procesar_solicitud.php" class="botones-solicitud">';
-                    echo '<input type="hidden" name="usuario_envia_id" value="' . $usuario_envia_id . '">';
-                    echo'<button type="submit" name="aceptar[]" value="' . $usuario_envia_id . '">Aceptar</button>';
-                    echo'<button type="submit" name="rechazar[]" value="' . $usuario_envia_id . '">Rechazar</button>';
-                    echo '</form>';
-                    echo '</div>';
+                    $fecha = $notificacion['fecha'];
+                    $peli = $notificacion['id_peli'];
+                    if ($mensaje) {
+                        echo '<div class="notificacion not">';
+                        echo '<p class="mensaje">' . htmlspecialchars($nombre_envia) . ' te añadió como amigo.</p>';
+                        echo '<form method="post" action="procesar_solicitud.php" class="botones-solicitud">';
+                        echo '<input type="hidden" name="usuario_envia_id" value="' . $usuario_envia_id . '">';
+                        echo '<button type="submit" name="aceptar[]" value="' . $usuario_envia_id . '">Aceptar</button>';
+                        echo '<button type="submit" name="rechazar[]" value="' . $usuario_envia_id . '">Rechazar</button>';
+                        echo '</form>';
+                        echo '</div>';
+                    } else {
+                        $result_peli = $conexion->query("SELECT titulo FROM peliculas WHERE id_peli=$peli");
+                        $pelicula = $result_peli->fetch_assoc();
+                        $titulo_pelicula = $pelicula['titulo'];
+                        echo '<div class="notificacion">';
+                        echo '<p class="mensaje">' . htmlspecialchars($nombre_envia) . ' te recomendó ver: "' . htmlspecialchars($titulo_pelicula) . '"</p>';
+                        echo '<span class="fecha">' . $fecha . '</span>';
+                        echo '<button type="submit" class="cerrar-notificacion ver" data-id-peli="' . $peli . '">Ver</button>';
+                        echo '<form method="post" action="eliminar_notificacion.php" class="eliminar-form">';
+                        echo '<input type="hidden" name="usuario_envia" value="' . $usuario_envia_id . '">';
+                        echo '<input type="hidden" name="usuario_recibe" value="' . $_SESSION['id_cuenta'] . '">';
+                        echo '<input type="hidden" name="tipo_mensaje" value="' . $mensaje . '">';
+                        echo '<input type="hidden" name="id_peli" value="' . $peli . '">';
+                        echo '<input type="hidden" name="fecha" value="' . $fecha . '">';
+                        echo'<input type="hidden" name="accion" value="eliminar">';
+                        echo '<button type="submit" class="cerrar-notificacion eliminar">x</button>';
+                        echo '</form>';
+                        echo '</div>';
+                    }
+                    
+                    
                 }
             }
-            
+
             if ($consulta_peli_nueva->num_rows > 0) {
+                $hayResultados = true; // Se encontraron resultados
                 while ($fila = $consulta_peli_nueva->fetch_assoc()) {
                     echo '<div class="notificacion">';
                     echo '<p class="mensaje">¡Nueva película: "' . $fila["titulo"] . '" añadida a la categoría de ' . $fila["nombres_generos"] . '!</p>';
                     echo '<span class="fecha">' . $fila["fecha_subida"] . '</span>';
-                    echo '<button class="cerrar-notificacion">x</button>';
                     echo '</div>';
                 }
             }
+
+            // Mostrar mensaje si no hay resultados
+            if (!$hayResultados) {
+                echo '<div class="notificacion">';
+                echo '<p class="mensaje">No hay nuevas notificaciones.</p>';
+                echo '</div>';
+            }
             ?>
-
-
         </div>
         <div class="contacto">
             <h2>¿Tenés alguna duda o consulta?,</h2>
@@ -95,27 +126,27 @@
         </div>
     </main>
 
-
-
     <script src="script/jquery.js"></script>
     <script src="slick/slick.min.js"></script>
     <script src="script/script.js"></script>
     <script src="script/botonTop.js"></script>
 
     <script>
-        // Seleccionar todos los botones de cerrar notificación
-        var botonesCerrar = document.querySelectorAll('.cerrar-notificacion');
-
-        // Agregar un event listener a cada botón
-        botonesCerrar.forEach(function(boton) {
-            boton.addEventListener('click', function() {
-                // Obtener el elemento padre (la notificación)
-                var notificacion = this.parentNode;
-                // Ocultar la notificación agregando la clase "oculto"
-                notificacion.classList.add('oculto');
+        // Captura el clic en el botón "Ver"
+        document.querySelectorAll('.ver').forEach(function(el) {
+            el.addEventListener('click', function() {
+                // Obtiene el ID de la película desde el atributo data
+                var idPeli = this.getAttribute('data-id-peli');
+                // Redirige a detalle_peli.php con el ID de la película
+                window.location.href = 'detalle_peli.php?id_peli=' + idPeli;
             });
         });
+
+
+
+
     </script>
+
 
     <footer>
         <p>&copy; CineFlow 2024</p>

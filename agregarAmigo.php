@@ -19,9 +19,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    // Insertar la notificación
+    // Selecciona un id_peli existente de la tabla de peliculas
+    $peliculaQuery = "SELECT id_peli FROM peliculas ORDER BY RAND() LIMIT 1"; // Selecciona un id_peli aleatorio
+    $peliculaResult = mysqli_query($conexion, $peliculaQuery);
+
+    if ($peliculaResult && mysqli_num_rows($peliculaResult) > 0) {
+        $peliculaRow = mysqli_fetch_assoc($peliculaResult);
+        $idPeli = $peliculaRow['id_peli'];
+    } else {
+        echo "No se encontraron películas.";
+        exit();
+    }
+
+    // Insertar la notificación con el id_peli seleccionado
     $mensaje = TRUE;
-    $query = "INSERT INTO notificacion (usuario_envia, usuario_recibe, mensaje) VALUES ($userId, $friendId, '$mensaje')";
+    $query = "INSERT INTO notificacion (usuario_envia, usuario_recibe, mensaje, id_peli, fecha) VALUES ($userId, $friendId, '$mensaje', '$idPeli', NOW())";
     $result = mysqli_query($conexion, $query);
 
     if (!$result) {
@@ -29,11 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
+    // Redirigir a profile.php después de enviar la notificación
     header('Location: profile.php');
 } else {
     echo "Método de solicitud no válido.";
 }
-
-// No redirigir a profile.php para fines de depuración
-// header("Location: profile.php");
 ?>
+

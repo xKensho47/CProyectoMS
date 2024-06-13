@@ -45,19 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stmt->num_rows > 0) {
         // El email o el nombre de usuario ya están en uso
-        echo "
-        <div class='overlay show' id='overlay-usuario-repe'>
-            <div class='popup'>
-                <span class='popup-close' id='pop-usuario-repe'>&times;</span>
-                <div class='popup-content'>
-                    <div class='descripcion_accion'><p>Ups! este nombre de usuario o mail ya están ocupados 🙁 <br> Prueba con otro!</p></div>
-                </div>
-                <div class='popup-buttons'>
-                    <a href='registro.php' id='boton-usuario-repe' class='boton-cancelo'>Intentar denuevo</a>
-                </div>
-            </div>
-        </div>
-        ";
+        header('Location: registro.php?status=ocupado');
+        exit();
         $stmt->close(); // Cerrar aquí después de la verificación
     } else {
         // Insertar el nuevo usuario en la base de datos

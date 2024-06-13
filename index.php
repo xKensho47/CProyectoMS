@@ -34,12 +34,13 @@ include ('conexion.php');
         <main class="main-principal">
             <section class="movies-containerp movies" id="movies-container movies">';
 
-        $titles = array("Películas más valoradas", "Recientes", "Ver más tarde", "Ver de nuevo");
+            $titles = array("Películas más valoradas", "Recientes");
 
         $carouseles = new CCarousel($conexion);
 
-        $carouseles->generateMovieSection($conexion, $titles[0]);
-        $carouseles->generateMovieSection($conexion, $titles[1]);
+        for ($i = 0; $i < count($titles); $i++) {
+            $carouseles->generateMovieSection($conexion, $titles[$i]);
+            
 
         ?>
 
@@ -187,10 +188,6 @@ include ('conexion.php');
 
 
         }
-
-
-
-
 
 
 

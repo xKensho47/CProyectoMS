@@ -68,37 +68,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header('Location: index.php');
             exit();
         } else {
-            echo '
-            <div class="overlay show" id="overlay-incorrecto">
-                <div class="popup">
-                    <span class="popup-close" id="pop-incorrecto">&times;</span>
-                    <div class="popup-content">
-                        <div class="descripcion_accion"><p>Error de ingreso! No coinciden los datos 😱 <br>Revise el usuario o contraseña</p></div>
-                    </div>
-                    <div class="popup-buttons">
-                        <button id="boton-incorrecto">Intentar denuevo</button>
-                    </div>
-                </div>
-            </div>
-            ';
+            header('Location: login.php?status=usuario_contra');
+            exit();
         }
     } else {
-        echo '
-        <div class="overlay show" id="overlay-mail-nuevo">
-            <div class="popup">
-                <span class="popup-close" id="pop-mail-nuevo">&times;</span>
-                <div class="popup-content">
-                    <div class="descripcion_accion"><p>Parece que no existe este Usuario! :o <br>No tiene cuenta?</p></div>
-                </div>
-                <div class="popup-buttons">
-                    <form method="POST" action="registro.php">
-                        <button >Crear Cuenta</button>
-                    </form>
-                    <button id="boton-mail-nuevo">Intentar denuevo con otro Usuario</button>
-                </div>
-            </div>
-        </div>
-        ';
+        header('Location: login.php?status=no_existe');
+        exit();
     }
 
     $stmt->close();

@@ -25,8 +25,16 @@
         <main>
             <div class="div-form">
                 <form class="formulario-login log" action="login_process.php" method="post">
-                    <h1>Iniciar sesión</h1>
-                    <input class="input-login" name="nombre_usuario" type="text" maxlength="12" placeholder="Ingrese su nombre de usuario" required>
+                    <h1>Iniciar sesión</h1>';
+                    if (isset($_GET['status'])) {
+                        // Verificar si el parámetro 'status' tiene el valor 'success'
+                        if ($_GET['status'] === 'usuario_contra') {
+                            echo '<div class="mensaje-exito">LA CONTRASEÑA O EL NOMBRE DE USUARIO ES INCORRECTO.</div>';
+                        }elseif ($_GET['status'] === 'no_existe'){
+                            echo '<div class="mensaje-exito">NO EXISTE ESTA CUENTA.</div>';
+                        }
+                    }
+                    echo' <input class="input-login" name="nombre_usuario" type="text" maxlength="12" placeholder="Ingrese su nombre de usuario" required>
                     <input class="input-login" type="password" name="contraseña" maxlength="12" placeholder="Ingrese su contraseña" required>
                     <input class="boton-login" type="submit" value="Login" name="login">
                     <a class="link-registro" href="registro.php">¿Todavia no sos usuario? Registrate.</a>
