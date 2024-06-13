@@ -25,29 +25,35 @@ include ('conexion.php');
 <body>
     <div class="container showcase">
         <?php
-
         include ("header.php");
         require_once ("loginVerification.php");
-        require_once ("CCarousel.php");
+        require_once ("CCarousel.php")
+            ?>
 
+        <div class="contenedor-hero-img" id="hero">
+            <div class="hero-texto">
+                <h1>Bienvenidos a <span class="titulo-hero">CineFlow</span></h1>
+                <h2>La mejor plataforma gratuita</h2>
+            </div>
+        </div>
+        <?php
         echo '
         <main class="main-principal">
             <section class="movies-containerp movies" id="movies-container movies">';
 
-            $titles = array("Películas más valoradas", "Recientes");
+        $titles = array("Películas más valoradas", "Recientes");
 
         $carouseles = new CCarousel($conexion);
 
         for ($i = 0; $i < count($titles); $i++) {
             $carouseles->generateMovieSection($conexion, $titles[$i]);
         }
-            
 
         ?>
 
         <?php
 
-        if (isset($_SESSION["id_cuenta"]) ) {
+        if (isset($_SESSION["id_cuenta"])) {
 
             $id_cuenta = $_SESSION["id_cuenta"];
 
@@ -112,15 +118,15 @@ include ('conexion.php');
                                         </article>
                                         </section>
                                         ";
-            
-            
-            //carrusel de los generos favoritos
 
-            $hayGeneros = mysqli_query($conexion,"SELECT gf.id_genero, gf.id_cuenta, ge.nombre_genero 
+
+            //carrusel de los generos favoritos
+        
+            $hayGeneros = mysqli_query($conexion, "SELECT gf.id_genero, gf.id_cuenta, ge.nombre_genero 
                                                     FROM genero_favorito gf JOIN genero ge ON gf.id_genero = ge.id_genero 
                                                     WHERE gf.id_cuenta = $id_cuenta");
 
-            if($hayGeneros && $hayGeneros->num_rows > 0){
+            if ($hayGeneros && $hayGeneros->num_rows > 0) {
                 while ($row = $hayGeneros->fetch_assoc()) {
                     $id_genero = $row["id_genero"];
                     $q = "SELECT 
@@ -129,11 +135,11 @@ include ('conexion.php');
                                 p.titulo AS titulo 
                                 FROM peliculas p
                                 JOIN peli_genero pg ON p.id_peli = pg.id_peli AND pg.id_genero = $id_genero"
-                                ;
+                    ;
 
-                    $title = "Según tu genero favorito - ". $row['nombre_genero'] . " ";
+                    $title = "Según tu genero favorito - " . $row['nombre_genero'] . " ";
                     $result = mysqli_query($conexion, $q);
-        
+
                     echo "
                                                 <section class='movies-container x-carousel' id='movies-container-$title'>
                                                     <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
@@ -144,10 +150,10 @@ include ('conexion.php');
                                                         <div class='x-carousel-container'>
                                                             <button class='carousel-prev'>&#60</button>
                                                             <div class='carousel-slide'>";
-        
+
                     /* Ordenar por puesto */
                     $puesto = 1;
-        
+
                     if ($result && $result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             $imagePath = $row["poster"];
@@ -178,7 +184,7 @@ include ('conexion.php');
                 }
 
             }
-        } else{
+        } else {
             echo "";
         }
         echo '
@@ -191,6 +197,21 @@ include ('conexion.php');
         <script src="slick/slick.min.js"></script>
         <script src="script/script.js"></script>
         <script src="script/botonTop.js"></script>
+        <script>
+            window.addEventListener('scroll', function() {
+                const hero = document.getElementById('hero');
+                const scrollPosition = window.scrollY;
+                const heroHeight = hero.offsetHeight;
+
+                if (scrollPosition <= heroHeight) {
+                    hero.style.opacity = 1 - scrollPosition / heroHeight;
+                } else {
+                    hero.style.opacity = 0;
+                }
+            });
+        </script>
+
+
     </div>
     <footer>
         <p>&copy; CineFlow 2024</p>

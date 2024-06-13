@@ -230,8 +230,68 @@ header form input {
     z-index: 1;
 }
 
-/* MAIN PRINCIPAL */
-.main-principal {}
+/* HERO */
+.contenedor-hero-img {
+    background-image: linear-gradient(180deg, rgba(20, 0, 24, 0.7) 0%, #300345 100%), url(../images/hero.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: opacity 0.5s ease-out;
+    opacity: 1;
+    z-index: 10;
+}
+
+.hero-texto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-texto > h1 {
+    font-size: 5rem;
+    margin-bottom: 10px;
+    user-select: none;
+    cursor: default;
+}
+
+
+.hero-texto > h2 {
+    font-size: 3rem;
+    user-select: none;
+    cursor: default;
+}
+
+.titulo-hero {
+    color: var(--color-principal);
+}
+
+
+/* TRANSITION EFFECT */
+.transition-container {
+    width: 100%;
+    height: 10vh;
+    background: linear-gradient(180deg, #300345 0%, #1a001f 100%);
+    opacity: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* MAIN CONTENT */
+.main-principal {
+    position: relative;
+    z-index: 1;
+    margin-top: 90vh; /* Asegura que el contenido principal comience después del hero */
+}
+
 
 .movies-containerp {
     display: flex;
@@ -244,7 +304,7 @@ header form input {
     height: 80vh;
     width: 100%;
 
-    overflow-y: scroll;
+    /*overflow-y: scroll;*/
 }
 
 .movies-containerp::-webkit-scrollbar,
