@@ -78,7 +78,7 @@ class CCarousel
         if ($stmt->num_rows > 0) {
             $stmt->fetch();
         } else {
-            echo "No se encontró el tipo de usuario para id_cuenta: $id_cuenta<br>";
+            echo "";
         }
 
         // Cerrar la declaración y devolver el tipo de usuario

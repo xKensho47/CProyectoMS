@@ -47,8 +47,7 @@ include ('conexion.php');
 
         <?php
 
-        if (isset($_SESSION["id_cuenta"])) {
-
+        if (isset($_SESSION["id_cuenta"]) ) {
 
             $id_cuenta = $_SESSION["id_cuenta"];
 
@@ -178,21 +177,10 @@ include ('conexion.php');
 
                 }
 
-
-
             }
-
-
-
-
-
-
-
+        } else{
+            echo "";
         }
-
-
-
-
         echo '
             </section>
         </main>

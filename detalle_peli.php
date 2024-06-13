@@ -71,7 +71,7 @@ mysqli_close($conexion);
                         <h3>(<?php echo $anoEstreno ?>)</h3>
                     </div>
                     <div class="contenedor-estrellas">
-                        <form class="star-rating" action="estrellas.php" method="post">
+                        <form class="star-rating" action="estrellas.php?form_submitted=true" method="post">
                             <button type="submit" class="botonEstrellas"><i class="fa-solid fa-share"></i></button>
 
                             <?php
@@ -132,21 +132,21 @@ mysqli_close($conexion);
                         <a href="visualizarpelicula.php?id_peli=<?= $id;?>" class="info-boton boton-play"><i class="fa-solid fa-play"></i></a>
                         </div>
                         <div>
-                            <form action="mas_tarde.php" method="post">
+                            <form id="form-mas-tarde" action="mas_tarde.php?form_submitted=true" method="post">
                                 <input type="hidden" name="pelicula_id" value="<?php echo $id ?>">
                                 <input type="hidden" name="usuario_id" value="<?php echo $_SESSION['id_cuenta']; ?>">
                                 <button type="submit" class="info-boton <?php if ($existe_mastarde->num_rows > 0) {
                                                                             echo 'existe';
                                                                         } ?>"><i class="fa-solid fa-list"></i></button>
                             </form>
-                            <form action="favoritos.php" method="post">
+                            <form action="favoritos.php?form_submitted=true" method="post">
                                 <input type="hidden" name="pelicula_id" value="<?php echo $id ?>">
                                 <input type="hidden" name="usuario_id" value="<?php echo $_SESSION['id_cuenta']; ?>">
                                 <button type="submit" class="info-boton <?php if ($existe_favorito->num_rows > 0) {
                                                                             echo 'existe';
                                                                         } ?>"><i class="fa-solid fa-star"></i></button>
                             </form>
-                            <form action="like.php" method="post">
+                            <form action="like.php?form_submitted=true" method="post">
                                 <input type="hidden" name="pelicula_id" value="<?php echo $id ?>">
                                 <input type="hidden" name="usuario_id" value="<?php echo $_SESSION['id_cuenta']; ?>">
                                 <button type="submit" class="info-boton <?php if ($existe_like->num_rows > 0) {
@@ -205,6 +205,26 @@ mysqli_close($conexion);
     </footer>
     <script src="script/jquery.js"></script>
     <script src="script/volverAtras.js"></script>
+    <script>
+            document.addEventListener('DOMContentLoaded', function() {
+        const urlAnterior = document.referrer;
+
+        // Guardar la URL anterior solo si no proviene de una redirección de formulario
+        if (!urlAnterior.includes('?id_peli')) {
+            sessionStorage.setItem('previousUrl', document.referrer);
+        }
+
+        document.getElementById('back-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            const previousUrl = sessionStorage.getItem('previousUrl');
+            if (previousUrl) {
+                window.location.href = previousUrl;
+            } else {
+                window.history.back();
+            }
+        });
+    });
+    </script>
     <script src="slick/slick.min.js"></script>
     <script src="script/script.js"></script>
     <script src="script/botonTop.js"></script>

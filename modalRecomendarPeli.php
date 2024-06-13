@@ -38,7 +38,7 @@ $resultado = mysqli_query($conexion,$q);
             if ($resultado->num_rows > 0) {
                 while ($listado_amigos = $resultado->fetch_assoc()) {
                   echo '
-                  <form action="recomendar_peli.php" method="post" class="contenedor-amigo">
+                  <form action="recomendar_peli.php?form_submitted=true" method="post" class="contenedor-amigo">
                     <input type="hidden" name="pelicula_id" value="' . $id_peli . '">
                     <input type="hidden" name="usuario_id" value="' . $id_cuenta . '">
                     <input type="hidden" name="amigo_id" value="' . $listado_amigos["id_cuenta_amigo"] . '">
