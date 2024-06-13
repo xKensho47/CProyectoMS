@@ -40,6 +40,7 @@ include ('conexion.php');
 
         for ($i = 0; $i < count($titles); $i++) {
             $carouseles->generateMovieSection($conexion, $titles[$i]);
+        }
             
 
         ?>
