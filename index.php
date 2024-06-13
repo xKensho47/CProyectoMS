@@ -71,7 +71,7 @@ include ('conexion.php');
                                         WHERE 
                                             cu.id_cuenta = $id_cuenta
                                         ";
-            $title = $titles[2];
+            $title = 'Ver más tarde';
             $result = mysqli_query($conexion, $q);
 
             echo "
