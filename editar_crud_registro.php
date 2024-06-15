@@ -11,31 +11,63 @@ include("conexion.php");
             $duracion_pelicula = $conexion->real_escape_string($_POST['duracion']); 
             $path_poster = $conexion->real_escape_string($_FILES['Path_poster']['name']);
 
-            if(!empty($path_poster)){
-                $poster = "posters/" . $_FILES['Path_poster']['name'];
-                    $consulta = ("UPDATE peliculas
-                        SET titulo = '$titulo_pelicula',
-                            descripcion = '$descripcion_pelicula',
-                                estreno = '$estreno_pelicula',
-                                    duracion = '$duracion_pelicula',
-                                        path_poster = '$poster'
-                                            WHERE id_peli= '$id_pelicula'");      
+            if (!empty($_FILES['Path_poster']['name'])) {
+                $consulta_imagen_antigua = "SELECT path_poster FROM peliculas WHERE id_peli = '$id_pelicula'";
+                $resultado = $conexion->query($consulta_imagen_antigua);
+                $fila = $resultado->fetch_assoc();
+                $imagen_antigua = $fila['path_poster'];
+        
+                if (!empty($imagen_antigua) && file_exists($imagen_antigua)) {
+                    unlink($imagen_antigua);
+                }
+        
+                $path_poster = "posters/" . basename($_FILES['Path_poster']['name']);
+                move_uploaded_file($_FILES['Path_poster']['tmp_name'], $path_poster);
+        
+                $consulta = ("UPDATE peliculas
+                              SET titulo = '$titulo_pelicula',
+                                  descripcion = '$descripcion_pelicula',
+                                  estreno = '$estreno_pelicula',
+                                  duracion = '$duracion_pelicula',
+                                  path_poster = '$path_poster'
+                              WHERE id_peli = '$id_pelicula'");
             } else {
                 $consulta = ("UPDATE peliculas
-                                SET titulo = '$titulo_pelicula',
-                                    descripcion = '$descripcion_pelicula',
-                                        estreno = '$estreno_pelicula',
-                                            duracion = '$duracion_pelicula'
-                                                WHERE id_peli= '$id_pelicula'");
-            }  
+                              SET titulo = '$titulo_pelicula',
+                                  descripcion = '$descripcion_pelicula',
+                                  estreno = '$estreno_pelicula',
+                                  duracion = '$duracion_pelicula'
+                              WHERE id_peli = '$id_pelicula'");
+            }
+        
 
             $conexion->query($consulta); 
+
+            if (!empty($_FILES['video_mp4']['name'])) {
+                $consulta_video_antiguo = "SELECT video_mp4 FROM peliculas WHERE id_peli = '$id_pelicula'";
+                $resultado = $conexion->query($consulta_video_antiguo);
+                $fila = $resultado->fetch_assoc();
+                $video_antiguo = $fila['video_mp4'];
+        
+                if (!empty($video_antiguo) && file_exists($video_antiguo)) {
+                    unlink($video_antiguo);
+                }
+        
+                $path_video = "videos/" . basename($_FILES['video_mp4']['name']);
+                move_uploaded_file($_FILES['video_mp4']['tmp_name'], $path_video);
+                
+                $cambiar_video= ("UPDATE peliculas 
+                                  SET video_mp4 = '$path_video'
+                                  WHERE id_peli = '$id_pelicula'");
+                
+                $conexion->query($cambiar_video);
+
+            }
         }
         
         if (!empty($_POST['generoSeleccionado'])) {
             $array_generos = $_POST['generoSeleccionado'];
 
-            //Recorro array Generos
             foreach ($array_generos as $genero_seleccionado) {
                 $buscar_genero = "SELECT id_genero
                                     FROM peli_genero
@@ -44,7 +76,6 @@ include("conexion.php");
                 
                 $existe_genero = $conexion->query($buscar_genero);
 
-                //De no existir lo agrego 
                 if(mysqli_num_rows($existe_genero) == 0){
                     $agregar_genero = "INSERT INTO peli_genero (id_peli, id_genero)
                                         VALUES($id_pelicula, $genero_seleccionado)";
@@ -53,7 +84,6 @@ include("conexion.php");
                 } 
             }
 
-            //Conversion de array en string
             $generos_string = implode(', ', $array_generos);
 
             //Elimino aquellos generos que no estan seleccionados pero que si figuran en la tabla
@@ -68,7 +98,6 @@ include("conexion.php");
         if (!empty($_POST['actorSeleccionados'])) {
             $array_actores = $_POST['actorSeleccionados'];
 
-            //Recorro array Actores
             foreach ($array_actores as $actor_seleccionado) {
                 $buscar_actor = "SELECT id_actor
                                     FROM peli_actor
@@ -86,7 +115,6 @@ include("conexion.php");
                 } 
             }
 
-            //Conversion de array en string
             $actores_string = implode(', ', $array_actores);
 
             //Elimino aquellos actores que no estan seleccionados pero que si figuran en la tabla
@@ -101,7 +129,6 @@ include("conexion.php");
         if (!empty($_POST['directoresSeleccionados'])) {
             $array_directores = $_POST['directoresSeleccionados'];
 
-            //Recorro array Directores
             foreach ($array_directores as $director_seleccionado) {
                 $buscar_director = "SELECT id_director
                                         FROM peli_director
@@ -110,7 +137,6 @@ include("conexion.php");
                 
                 $existe_director = $conexion->query($buscar_director);
 
-                //De no existir lo agrego 
                 if(mysqli_num_rows($existe_director) == 0){
                     $agregar_director = "INSERT INTO peli_director (id_peli, id_director)
                                             VALUES($id_pelicula, $director_seleccionado)";
@@ -119,7 +145,6 @@ include("conexion.php");
                 } 
             }
 
-            //Conversion de array en string
             $directores_string = implode(', ', $array_directores);
 
             //Elimino aquellos directores que no estan seleccionados pero que si figuran en la tabla
