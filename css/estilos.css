@@ -293,7 +293,6 @@ header form input {
     margin-top: 90vh; /* Asegura que el contenido principal comience después del hero */
 }
 
-
 .movies-containerp {
     display: flex;
     flex-direction: column;
