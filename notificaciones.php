@@ -103,6 +103,7 @@ session_start(); ?>
 
             if ($consulta_peli_nueva->num_rows > 0) {
                 $hayResultados = true; // Se encontraron resultados
+                $hayNotificacion= false;
                 while ($fila = $consulta_peli_nueva->fetch_assoc()) {
                     echo '<div class="notificacion">';
                     echo '<p class="mensaje">¡Nueva película: "' . $fila["titulo"] . '" añadida a la categoría de ' . $fila["nombres_generos"] . '!</p>';
@@ -117,6 +118,7 @@ session_start(); ?>
                 echo '<p class="mensaje">No hay nuevas notificaciones.</p>';
                 echo '</div>';
             }
+          
             ?>
         </div>
         <div class="contacto">

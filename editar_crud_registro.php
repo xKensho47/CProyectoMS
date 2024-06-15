@@ -1,25 +1,37 @@
 <?php
 include("conexion.php");
 
-    if(!empty($_POST['id_peli'])){
+    if(!empty($_POST['id_peli'])){    
 
-        if (!empty($_POST['nombre']) || !empty($_POST['descripcion']) || !empty($_POST['estreno']) || !empty($_POST['duracion'])) {  
-        $id_pelicula = $conexion->real_escape_string($_POST['id_peli']);
-        $titulo_pelicula = $conexion->real_escape_string($_POST['nombre']);
-        $descripcion_pelicula = $conexion->real_escape_string($_POST['descripcion']);
-        $estreno_pelicula = $conexion->real_escape_string($_POST['estreno']);
-        $duracion_pelicula = $conexion->real_escape_string($_POST['duracion']); 
+        if (!empty($_POST['nombre']) || !empty($_POST['descripcion']) || !empty($_POST['estreno']) || !empty($_POST['duracion']) || !empty($_FILES['Path_poster'])) { 
+            $id_pelicula = $conexion->real_escape_string($_POST['id_peli']);
+            $titulo_pelicula = $conexion->real_escape_string($_POST['nombre']);
+            $descripcion_pelicula = $conexion->real_escape_string($_POST['descripcion']);
+            $estreno_pelicula = $conexion->real_escape_string($_POST['estreno']);
+            $duracion_pelicula = $conexion->real_escape_string($_POST['duracion']); 
+            $path_poster = $conexion->real_escape_string($_FILES['Path_poster']['name']);
 
-        $consulta = ("UPDATE peliculas
+            if(!empty($path_poster)){
+                $poster = "posters/" . $_FILES['Path_poster']['name'];
+                    $consulta = ("UPDATE peliculas
                         SET titulo = '$titulo_pelicula',
                             descripcion = '$descripcion_pelicula',
                                 estreno = '$estreno_pelicula',
-                                    duracion = '$duracion_pelicula'
-                                        WHERE id_peli= '$id_pelicula'");               
-            
-        $conexion->query($consulta);
-        }
+                                    duracion = '$duracion_pelicula',
+                                        path_poster = '$poster'
+                                            WHERE id_peli= '$id_pelicula'");      
+            } else {
+                $consulta = ("UPDATE peliculas
+                                SET titulo = '$titulo_pelicula',
+                                    descripcion = '$descripcion_pelicula',
+                                        estreno = '$estreno_pelicula',
+                                            duracion = '$duracion_pelicula'
+                                                WHERE id_peli= '$id_pelicula'");
+            }  
 
+            $conexion->query($consulta); 
+        }
+        
         if (!empty($_POST['generoSeleccionado'])) {
             $array_generos = $_POST['generoSeleccionado'];
 
@@ -120,6 +132,6 @@ include("conexion.php");
         }
     }
 
-    header('Location: crud_peliculas.php?status=success');
-    exit();   
+header('Location: crud_peliculas.php?status=success');
+exit();   
 ?>

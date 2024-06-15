@@ -148,8 +148,8 @@ class CProfile
                 </section>
                 <section class='userinfo-genres'>
                     <article class='user-genres'>
-                        <h2>Géneros Favoritos</h2>
-                        <div class='genres-prof animate-from-bottom'>
+                        <h2 class='h2-animate'>Géneros Favoritos</h2>
+                        <div class='genres-prof '>
                             $genres_html
                         </div>
                     </article>
@@ -229,7 +229,7 @@ class CProfile
                 ';
             }
         } else {
-            echo "No hay amigos para mostrar.";
+            echo'No hay amigos para mostrar.';
         }
 
         $stmt->close();
