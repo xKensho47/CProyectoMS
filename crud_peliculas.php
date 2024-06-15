@@ -162,7 +162,7 @@
                                     <td><?= $titulo; ?></td>
                                     <td><?= $descripcion; ?></td>
                                     <td><?= $estreno; ?></td>
-                                    <td><img src="<?= $row->path_poster; ?>" width="80"></td>
+                                    <td><img src="<?= $path_poster; ?>" width="80"></td>
                                     <td><?= $duracion; ?></td>
                                     <td><?= $nombre_genero; ?></td>
                                     <td><?= $nombre_actor; ?></td>
@@ -173,7 +173,6 @@
                                                                     '<?= $descripcion ?>',
                                                                     '<?= $estreno ?>',
                                                                     '<?= $duracion ?>',
-                                                                    '<?= $path_poster ?>',
                                                                     '<?= $nombre_genero ?>',
                                                                     '<?= $nombre_actor ?>',
                                                                     '<?= $nombre_director ?>')">
@@ -198,7 +197,7 @@
 
 
                 <script>
-                    function IdPeliculaEditarEnModal(id_peli, titulo, descripcion, estreno, duracion, path_poster, nombre_genero, nombre_actor, nombre_director) {
+                    function IdPeliculaEditarEnModal(id_peli, titulo, descripcion, estreno, duracion, nombre_genero, nombre_actor, nombre_director) {
                         // Busca dentro del formulario los checkbox para limpiarlos
                         document.querySelectorAll('#formulario_peliculas input[type="checkbox"]').forEach(function(checkElement) {
                             checkElement.checked = false;
@@ -215,7 +214,6 @@
                         let inputDescripcionEncontrada = document.getElementById("descripcion_pelicula");
                         let inputEstrenoEncontrado = document.getElementById("estreno_pelicula");
                         let inputDuracionEncontrado = document.getElementById("duracion_pelicula");
-                        let inputPosterEncontrado = document.getElementById("path_poster_pelicula");
 
                         // Marca los checkbox de géneros
                         arrayGeneros.forEach(function(genero) {
@@ -247,7 +245,6 @@
                         inputDescripcionEncontrada.value = descripcion;
                         inputEstrenoEncontrado.value = estreno;
                         inputDuracionEncontrado.value = duracion;
-                        inputPosterEncontrado.value = path_poster;
                     }
 
                     function IdPeliculaEliminarEnModal(id_peli){
