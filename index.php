@@ -27,9 +27,9 @@ include ('conexion.php');
         include ("header.php");
         require_once ("loginVerification.php");
         require_once ("CCarousel.php")
-            ?>
+        ?>
 
-        <div class="contenedor-hero-img" id="hero">
+        <div class="contenedor-hero-img <?php if(isset($_SESSION["id_cuenta"])){echo "hero-logeado";} ?>" id="hero">
             <div class="hero-texto">
                 <h1>Bienvenidos a <span class="titulo-hero">CineFlow</span></h1>
                 <h2>La mejor plataforma gratuita</h2>

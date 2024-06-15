@@ -249,6 +249,7 @@ header form input {
     z-index: 10;
 }
 
+
 .hero-texto {
     display: flex;
     flex-direction: column;
@@ -2390,6 +2391,35 @@ tbody {
     margin-bottom: 2vh;
 }
 
+/*Resumen perfil*/
+
+
+/*verMasTardePerfil*/
+
+.contenedor-principal-main{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.contenedor-principal-main h2{
+    margin-bottom:50px;
+    font-size: 3.4rem;
+}
+
+.contenedor-peliculas{
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+} 
+
+.contenedor-peliculas a img{
+    width: 200px;
+}
 
 
 

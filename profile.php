@@ -58,21 +58,13 @@ $id_cuenta = $_SESSION['id_cuenta'];
                         <article class="userinfo2-screen ">
                             <section class="userinfo2-movies option" id="userinfo2-movies">
                                 <?php
-                                    /*
-                                    $carouseles = new CCarousel($conexion);
-                                    
-                                    $carouseles->generateMovieSection($conexion, 'Continuar viendo');
-                                    $carouseles->generateMovieSection($conexion, 'Ver más tarde');
-                                    $carouseles->generateMovieSection($conexion, 'Favoritas');
-                                    */
-
-                                    // CARRUSEL 'SEGUIR VIENDO'
 
                                     include_once("profileFunctions.php");
 
                                     continueCarousel($conexion);
-                                    laterCarousel($conexion);
+                                    
                                     favoritesCarousel($conexion);
+                                    laterCarousel($conexion);
                                     
                                 ?>
                             </section>
