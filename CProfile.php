@@ -114,7 +114,7 @@ class CProfile
                         $genres_html .= "<div class='genres-favorites'>" . htmlspecialchars($genre_row['nombre_genero'], ENT_QUOTES, 'UTF-8') . "</div>";
                     }
                 } else {
-                    $genres_html = "<div class='genres-favorites'>No hay géneros favoritos</div>";
+                    $genres_html = "<div class='genres-favorites-empty'>No hay géneros favoritos</div>";
                 }
 
                 $stmt_genres->close();
