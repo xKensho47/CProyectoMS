@@ -67,15 +67,15 @@ class CProfileFriend
         $q =
             "SELECT 
         cu.nombre_usuario, cu.about_me, ip.img 
-    FROM
-        cuenta_usuario cu 
-    LEFT JOIN 
-        img_perfil ip 
-    ON 
-        cu.id_img = ip.id_img 
-    WHERE 
-        cu.id_cuenta = $id_profile
-    ";
+        FROM
+            cuenta_usuario cu 
+        LEFT JOIN 
+            img_perfil ip 
+        ON 
+            cu.id_img = ip.id_img 
+        WHERE 
+            cu.id_cuenta = $id_profile
+        ";
 
         $result = mysqli_query($conexion,$q);
 

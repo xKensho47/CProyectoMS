@@ -60,7 +60,6 @@
 
                                 include_once("profileFunctions.php");
 
-                                continueCarousel2($conexion, $id_profile);
                                 favoritesCarousel2($conexion, $id_profile);
 
                                 ?>

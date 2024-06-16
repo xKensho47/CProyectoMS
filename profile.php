@@ -26,7 +26,7 @@ $id_cuenta = $_SESSION['id_cuenta'];
 </head>
 
 <body>
-    <div class="container py-3">
+    <div class="container">
         <?php
         include("header.php");
         include_once("CProfile.php");
