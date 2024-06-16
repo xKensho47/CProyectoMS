@@ -32,8 +32,8 @@
             require_once("loginVerification.php");
 
             /*DEVUELVE TODA LA INFORMACION DE UNA PELICULA*/
-            $sqlBase = "SELECT p.id_peli, p.titulo, p.descripcion, p.estreno, p.path_poster, p.duracion, 
-            p.video_iframe, p.video_mp4, gen.nombres_generos, act.nom_ape_actor, dir.nom_ape_director 
+            $sqlBase = "SELECT p.id_peli, p.titulo, p.descripcion, p.estreno, p.path_poster, p.duracion,
+             p.video_mp4, gen.nombres_generos, act.nom_ape_actor, dir.nom_ape_director 
             FROM peliculas AS p 
             LEFT JOIN (SELECT pg.id_peli, GROUP_CONCAT(g.nombre_genero SEPARATOR ', ') AS nombres_generos
             FROM peli_genero pg INNER JOIN genero g ON g.id_genero = pg.id_genero GROUP BY pg.id_peli) AS gen 
