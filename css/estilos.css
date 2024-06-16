@@ -290,7 +290,10 @@ header form input {
 .main-principal {
     position: relative;
     z-index: 1;
-    margin-top: 90vh; /* Asegura que el contenido principal comience después del hero */
+}
+
+body:not(.logeado) .main-principal {
+    margin-top: 90vh; /* Asegura que el contenido principal comience después del hero solo si el usuario no ha iniciado sesión */
 }
 
 .movies-containerp {
