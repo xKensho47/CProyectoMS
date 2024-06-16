@@ -87,7 +87,7 @@ class CCarousel
         return $tipo_usuario;
     }
 
-
+    // Método para obtener los resultados del carrusel basado en el título
     public function resultCarousel($conexion, $title)
     {
         $q = "";
@@ -132,7 +132,6 @@ class CCarousel
             default:
                 echo 'Datos no encontrados';
                 return false;
-            
         }
 
         $stmt = $conexion->prepare($q);
@@ -154,6 +153,7 @@ class CCarousel
         return $result;
     }
 
+    // Método para generar la sección del carrusel
     public function generateMovieSection($conexion, $title)
     {
         echo "
@@ -166,9 +166,10 @@ class CCarousel
                 <div class='x-carousel-container'>
                     <button class='carousel-prev'>&#60</button>
                     <div class='carousel-slide'>";
-        /* Query result */
+        
+        // Obtener los resultados de la consulta
         $result = $this->resultCarousel($conexion, $title);
-        /* Ordenar por puesto */
+        // Ordenar por puesto
         $puesto = 1;
 
         if ($result && $result->num_rows > 0) {
@@ -177,10 +178,18 @@ class CCarousel
                 echo "
                     <div class='x-carousel-movie'>
                     <a href='detalle_peli.php?id_peli=" . $row['id'] . "'>
-                        <img src=' " . $imagePath . " ' alt='Movie Posters'>
+                        <img src=' " . $imagePath . " ' alt='Movie Posters'>";
+
+                // Mostrar el puesto solo si el título es "Películas más valoradas"
+                if ($title == 'Películas más valoradas') {
+                    echo "
                         <div class='x-carousel-rank'>
                         <p> " . $puesto . " °</p>
                         </div>
+                    ";
+                }
+
+                echo "
                     </a>
                     </div>
                     ";
@@ -198,3 +207,4 @@ class CCarousel
         ";
     }
 }
+?>

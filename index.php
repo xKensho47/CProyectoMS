@@ -21,21 +21,24 @@ include ('conexion.php');
     <title>Home</title>
 </head>
 
-<body>
+<body class="<?php if (isset($_SESSION["id_cuenta"])) { echo 'logeado'; } ?>">
     <div class="container showcase">
         <?php
         include ("header.php");
         require_once ("loginVerification.php");
-        require_once ("CCarousel.php")
-        ?>
+        require_once ("CCarousel.php");
 
-        <div class="contenedor-hero-img <?php if(isset($_SESSION["id_cuenta"])){echo "hero-logeado";} ?>" id="hero">
-            <div class="hero-texto">
-                <h1>Bienvenidos a <span class="titulo-hero">CineFlow</span></h1>
-                <h2>La mejor plataforma gratuita</h2>
+        if (!isset($_SESSION["id_cuenta"])) { 
+        ?>
+            <div class="contenedor-hero-img" id="hero">
+                <div class="hero-texto">
+                    <h1>Bienvenidos a <span class="titulo-hero">CineFlow</span></h1>
+                    <h2>La mejor plataforma gratuita</h2>
+                </div>
             </div>
-        </div>
-        <?php
+        <?php 
+        } 
+
         echo '
         <main class="main-principal animate-from-bottom">
             <section class="movies-containerp movies" id="movies-container movies">';

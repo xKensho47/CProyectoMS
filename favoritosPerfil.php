@@ -62,7 +62,7 @@ if(isset($_SESSION['id_cuenta'])){
             <div class="volver-atras" style="float: left; margin-left: 20px;">
                 <a href="profile.php" id="back-link" class="h2-animate"><i class="fas fa-arrow-left"></i>Perfil</a>
             </div>
-        <main class="contenedor-principal-main">
+        <main class="contenedor-principal-main animate-from-bottom">
             <h2 class="h2-animate">Favoritos</h2>
             <div class="contenedor-peliculas">
                 <?php
@@ -71,7 +71,7 @@ if(isset($_SESSION['id_cuenta'])){
                             $imagePath = $row["poster"];
                             echo "
                                 <a href='detalle_peli.php?id_peli=" . $row['id'] . "'>
-                                    <img src=' " . $imagePath . " ' alt='Movie Posters'>
+                                    <img src=' " . $imagePath . " ' alt='Movie Posters' class='imagen-deslizar'>
                                 </a>
                                 ";
                         }
