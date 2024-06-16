@@ -59,35 +59,35 @@ include ('conexion.php');
             // carrusel 'ver mas tarde'
             $q =
                 "SELECT 
-                                        p.id_peli AS id, 
-                                        p.path_poster AS poster, 
-                                        p.titulo AS titulo
-                                        FROM 
-                                            peliculas p
-                                        JOIN 
-                                            mas_tarde mt
-                                        ON 
-                                            p.id_peli = mt.id_peli
-                                        JOIN 
-                                            cuenta_usuario cu 
-                                        ON 
-                                            mt.id_cuenta = cu.id_cuenta
-                                        WHERE 
-                                            cu.id_cuenta = $id_cuenta
-                                        ";
+                p.id_peli AS id, 
+                p.path_poster AS poster, 
+                p.titulo AS titulo
+                FROM 
+                    peliculas p
+                JOIN 
+                    mas_tarde mt
+                ON 
+                    p.id_peli = mt.id_peli
+                JOIN 
+                    cuenta_usuario cu 
+                ON 
+                    mt.id_cuenta = cu.id_cuenta
+                WHERE 
+                    cu.id_cuenta = $id_cuenta
+                ";
             $title = 'Ver más tarde';
             $result = mysqli_query($conexion, $q);
 
             echo "
-                                        <section class='movies-container x-carousel' id='movies-container-$title'>
-                                            <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
-                                                <div class='movies-dinamic-tittle' id='movies-dinamic-tittle-$title'>
-                                                    <h2 class='x-tittle h2-animate' id='x-tittle-$title'>  $title  </h2>
-                                                    <hr>
-                                                </div>
-                                                <div class='x-carousel-container'>
-                                                    <button class='carousel-prev'>&#60</button>
-                                                    <div class='carousel-slide'>";
+                <section class='movies-container x-carousel' id='movies-container-$title'>
+                    <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
+                        <div class='movies-dinamic-tittle' id='movies-dinamic-tittle-$title'>
+                            <h2 class='x-tittle h2-animate' id='x-tittle-$title'>  $title  </h2>
+                            <hr>
+                        </div>
+                        <div class='x-carousel-container'>
+                            <button class='carousel-prev'>&#60</button>
+                            <div class='carousel-slide'>";
 
             /* Ordenar por puesto */
             /*$puesto = 1;*/
@@ -96,25 +96,25 @@ include ('conexion.php');
                 while ($row = $result->fetch_assoc()) {
                     $imagePath = $row["poster"];
                     echo "
-                                                    <div class='x-carousel-movie'>
-                                                    <a href='detalle_peli.php?id_peli=" . $row['id'] . "'>
-                                                        <img src=' " . $imagePath . " ' alt='Movie Posters'>
-                                                    
-                                                    </a>
-                                                    </div>
-                                                    ";
+                        <div class='x-carousel-movie'>
+                        <a href='detalle_peli.php?id_peli=" . $row['id'] . "'>
+                            <img src=' " . $imagePath . " ' alt='Movie Posters'>
+                        
+                        </a>
+                        </div>
+                        ";
                     /*$puesto++;*/
                 }
             } else {
                 echo '<p>No movies found.</p>';
             }
             echo "
-                                            </div>
-                                            <button class='carousel-next'>&#62</button>
-                                            </div>
-                                        </article>
-                                        </section>
-                                        ";
+                </div>
+                <button class='carousel-next'>&#62</button>
+                </div>
+            </article>
+            </section>
+            ";
 
 
             //carrusel de los generos favoritos
@@ -127,26 +127,26 @@ include ('conexion.php');
                 while ($row = $hayGeneros->fetch_assoc()) {
                     $id_genero = $row["id_genero"];
                     $q = "SELECT 
-                                p.id_peli AS id, 
-                                p.path_poster AS poster, 
-                                p.titulo AS titulo 
-                                FROM peliculas p
-                                JOIN peli_genero pg ON p.id_peli = pg.id_peli AND pg.id_genero = $id_genero"
+                        p.id_peli AS id, 
+                        p.path_poster AS poster, 
+                        p.titulo AS titulo 
+                        FROM peliculas p
+                        JOIN peli_genero pg ON p.id_peli = pg.id_peli AND pg.id_genero = $id_genero"
                     ;
 
                     $title = "Según tu genero favorito - " . $row['nombre_genero'] . " ";
                     $result = mysqli_query($conexion, $q);
 
                     echo "
-                                                <section class='movies-container x-carousel' id='movies-container-$title'>
-                                                    <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
-                                                        <div class='movies-dinamic-tittle' id='movies-dinamic-tittle-$title'>
-                                                            <h2 class='x-tittle h2-animate' id='x-tittle-$title'>  $title  </h2>
-                                                            <hr>
-                                                        </div>
-                                                        <div class='x-carousel-container'>
-                                                            <button class='carousel-prev'>&#60</button>
-                                                            <div class='carousel-slide'>";
+                        <section class='movies-container x-carousel' id='movies-container-$title'>
+                            <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
+                                <div class='movies-dinamic-tittle' id='movies-dinamic-tittle-$title'>
+                                    <h2 class='x-tittle h2-animate' id='x-tittle-$title'>  $title  </h2>
+                                    <hr>
+                                </div>
+                                <div class='x-carousel-container'>
+                                    <button class='carousel-prev'>&#60</button>
+                                    <div class='carousel-slide'>";
 
                     /* Ordenar por puesto */
                     /*$puesto = 1;*/
@@ -155,25 +155,25 @@ include ('conexion.php');
                         while ($row = $result->fetch_assoc()) {
                             $imagePath = $row["poster"];
                             echo "
-                                                            <div class='x-carousel-movie'>
-                                                            <a href='detalle_peli.php?id_peli=" . $row['id'] . "'>
-                                                                <img src=' " . $imagePath . " ' alt='Movie Posters'>
-                                                           
-                                                            </a>
-                                                            </div>
-                                                            ";
+                                <div class='x-carousel-movie'>
+                                <a href='detalle_peli.php?id_peli=" . $row['id'] . "'>
+                                    <img src=' " . $imagePath . " ' alt='Movie Posters'>
+                                
+                                </a>
+                                </div>
+                                ";
                             /*$puesto++;*/
                         }
                     } else {
                         echo '<p>No movies found.</p>';
                     }
                     echo "
-                                                    </div>
-                                                    <button class='carousel-next'>&#62</button>
-                                                    </div>
-                                                </article>
-                                                </section>
-                                                ";
+                        </div>
+                        <button class='carousel-next'>&#62</button>
+                        </div>
+                    </article>
+                    </section>
+                    ";
 
 
                 }
