@@ -30,17 +30,22 @@
 html {
     margin: 0 auto;
 }
+/* SCROLL HTML */
 
 html::-webkit-scrollbar,
 .custom-scroll::-webkit-scrollbar {
     width: 10px;
     background-color: var(--color-background);
+
+    display: none;
 }
 
 html::-webkit-scrollbar-track,
 .custom-scroll::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
+
+    display: none;
 }
 
 html::-webkit-scrollbar-thumb,
@@ -48,6 +53,8 @@ html::-webkit-scrollbar-thumb,
     border-radius: 3px;
     height: 30px;
     background-color: var(--color-principal);
+
+    display: none;
 }
 
 
@@ -60,7 +67,6 @@ body {
     height: 100vh;
     width: 100%;
     border: none;
-    overflow-x: hidden;
     background-size: cover;
 }
 
@@ -82,7 +88,6 @@ body a:hover {
 /* HEADER */
 .container header {
     background-color: #000000;
-    /* background-color: transparent;*/
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -92,8 +97,6 @@ body a:hover {
     height: 12vh;
 
     z-index: 999;
-    /* margin-bottom: 3vh; */
-
 }
 
 .link-logo {
@@ -141,7 +144,6 @@ header form input {
 
 
     border: 2px solid rgb(161, 5, 182);
-    ;
 }
 
 .header-user .menu {
@@ -226,6 +228,8 @@ header form input {
 
     width: 100%;
     height: 88vh;
+
+    transition: padding-bottom 0.5s; /* Transición suave para el padding */
 
     z-index: 1;
     
@@ -1447,11 +1451,20 @@ input[type="submit"] {
 
 /* FOOTER */
 footer {
-    background-color: #080808;
+    background-color: #000000;
+    color: var(--color-text);
+    text-align: center;
+
+    position: fixed;
     bottom: 0;
+    left: 0;
+    display: none; /* Inicialmente oculto */
+
     width: 100%;
-    margin-top: 5%;
-    margin-bottom: 0;
+    
+    transition: all 0.15s ease; /* Transición suave de 0.3 segundos */
+
+    z-index: 999;
 }
 
 .elementos_footer{

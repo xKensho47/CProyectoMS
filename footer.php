@@ -40,6 +40,4 @@ if (isset($_SESSION['id_cuenta'])) {
     mostrarfooter("invitado");
 }
 ?>
-<script>
-    // history.replaceState(null, null, location.pathname);
-</script>
+<script src="./script/footerControl.js"></script>

@@ -194,11 +194,8 @@ include ('conexion.php');
         <script src="slick/slick.min.js"></script>
         <script src="script/script.js"></script>
         <script src="script/botonTop.js"></script>
-        
     </div>
+    <?php include('footer.php'); ?>
 </body>
-<?php 
-    include('footer.php');
-    ?>
 </html>
 
