@@ -21,26 +21,28 @@
         include("header.php");
         ?>
         <main>
-            <div class="div-form">
-                <form class="formulario-login" action="registro_process.php" method="post">
-                    <h1>Registrate</h1>
-                        <?php if (isset($_GET['status'])) {
-                            // Verificar si el parámetro 'status' tiene el valor 'success'
-                            if ($_GET['status'] === 'ocupado') {
-                                echo '<div class="mensaje-exito"> EL NOMBRE DE USUARIO O CORREO YA ESTA REGISTRADO.</div>';
+            <article class="article">
+                <div class="div-form">
+                    <form class="formulario-login" action="registro_process.php" method="post">
+                        <h1>Registrate</h1>
+                            <?php if (isset($_GET['status'])) {
+                                // Verificar si el parámetro 'status' tiene el valor 'success'
+                                if ($_GET['status'] === 'ocupado') {
+                                    echo '<div class="mensaje-exito"> EL NOMBRE DE USUARIO O CORREO YA ESTA REGISTRADO.</div>';
+                                }
                             }
-                        }
-                    ?>
-                    <input class="input-login" type="text" name="nombre" required placeholder="Ingrese su nombre" />
-                    <input class="input-login" type="text" name="apellido" required placeholder="Ingrese su apellido" />
-                    <input class="input-login" type="email" name="mail" required placeholder="Ingrese su email" />
-                    <input class="input-login" type="text" name="nombre_usuario" maxlength="12" placeholder="Ingrese su nombre de usuario" />
-                    <input class="input-login" type="password" name="contraseña" maxlength="12" placeholder="Ingrese su contraseña" />
-                    <br>
-                    <input class="boton-login" type="submit" value="Registrarse" name="registro" />
-                    <a class="link-registro" href="login.php">¿Ya tenes usuario? Inicia sesion.</a>
-                </form>
-            </div>
+                        ?>
+                        <input class="input-login" type="text" name="nombre" required placeholder="Ingrese su nombre" />
+                        <input class="input-login" type="text" name="apellido" required placeholder="Ingrese su apellido" />
+                        <input class="input-login" type="email" name="mail" required placeholder="Ingrese su email" />
+                        <input class="input-login" type="text" name="nombre_usuario" maxlength="12" placeholder="Ingrese su nombre de usuario" />
+                        <input class="input-login" type="password" name="contraseña" maxlength="12" placeholder="Ingrese su contraseña" />
+                        <br>
+                        <input class="boton-login" type="submit" value="Registrarse" name="registro" />
+                        <a class="link-registro" href="login.php">¿Ya tenes usuario? Inicia sesion.</a>
+                    </form>
+                </div>
+            </article>
         </main>
 
     </div>
