@@ -1,7 +1,7 @@
 <?php
 include("conexion.php");
 if(!isset($_SESSION['id_cuenta'])){
-  header("Location: index.php");
+  header("Location: login.php");
 }
 
 $id_cuenta = $_SESSION['id_cuenta'];
