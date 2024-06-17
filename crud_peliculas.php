@@ -105,7 +105,7 @@
                     if (isset($_GET['status'])) {
                         // Verificar si el parámetro 'status' tiene el valor 'success'
                         if ($_GET['status'] === 'success') {
-                            echo '<div class="alert alert-success alert-dismissible fade show fs-5" role="alert"> Cambios Guardados.
+                            echo '<div class="alert alert-success alert-dismissible fade show fs-5 " role="alert"> Cambios Guardados.
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>';
                         } elseif ($_GET['status'] === 'danger') {

@@ -40,7 +40,7 @@ $id_cuenta = $_SESSION['id_cuenta'];
                     $profile = new CProfile($conexion);
 
 
-                    $profile->generateProfileData();
+                    $profile->generateProfileData($conexion);
 
                     ?>
                 </aside>

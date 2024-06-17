@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($result_check_user->num_rows > 0) {
         // Si el nombre de usuario ya existe, mostrar una alerta y redireccionar
-        echo "<script>alert('Ya existe otro usuario con ese nombre.'); window.location.href = 'profile.php';</script>";
+        header("Location: profile.php?status=danger");
         exit();
     } else {
         if (!empty($contraseña)) {
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         if ($stmt->execute()) {
-            header("Location: profile.php");
+            header("Location: profile.php?status=success");
             exit();
         } else {
             echo "Error: " . $sql . "<br>" . $conexion->error;
