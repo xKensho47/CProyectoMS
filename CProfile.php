@@ -53,7 +53,7 @@ class CProfile
 
         // Consulta para obtener los datos del usuario, incluyendo el campo about_me y la imagen de perfil
         $q =
-        "SELECT 
+            "SELECT 
             cu.nombre_usuario, cu.about_me, ip.img 
         FROM
             cuenta_usuario cu 
@@ -93,7 +93,7 @@ class CProfile
             if ($row) {
                 // Consulta para obtener los géneros favoritos del usuario
                 $q_genres =
-                "SELECT 
+                    "SELECT 
                     g.nombre_genero 
                 FROM 
                     genero_favorito gf 
@@ -126,6 +126,9 @@ class CProfile
 
                 $stmt_genres->close();
 
+                //$defaultImg es una imagen negra de 1x1 píxel codificada en base64.
+                $defaultImg = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAwAB/mazYAAAAABJRU5ErkJggg==';
+
                 // Generar el HTML con los datos del usuario, incluyendo la imagen de perfil, el campo about_me y los géneros favoritos
                 echo "
                     <section class='userinfo-data'>
@@ -133,13 +136,10 @@ class CProfile
                         <article class='data-user'>                    
                             <aside class='user-container'>
                                 <div class='user-avatar'>
-                                    <img class='profile-img' src='" . htmlspecialchars($row['img'], ENT_QUOTES, 'UTF-8') . "' alt='User Avatar'/>
+                                    <img class='profile-img' src='" . (!empty($row['img']) ? htmlspecialchars($row['img'], ENT_QUOTES, 'UTF-8') : $defaultImg) . "' alt='User Avatar'/>
                                 </div>
                                 <div class='user-info animate-from-bottom'>
-                                    <h2 class='info-name'> 
-                                    " . ($id_tipo == 1 ? "<span style='font-size:25px;'>&#128081;</span>" : "") . " 
-                                    @" . htmlspecialchars($row['nombre_usuario'], ENT_QUOTES, 'UTF-8') . " 
-                                    </h2>
+                                    <h2 class='info-name'> @" . htmlspecialchars($row['nombre_usuario'], ENT_QUOTES, 'UTF-8') . "</h2>
                                 </div>
                             </aside>
                             <aside class='user-button'>
@@ -158,8 +158,25 @@ class CProfile
                     </section>
                     <section class='userinfo-genres'>
                         <article class='user-genres'>
+                ";
+
+                                // Aquí verificamos si existe un parámetro 'status' en la URL
+                                if (isset($_GET['status'])) {
+                                    // Verificar si el parámetro 'status' tiene el valor 'success'
+                                    if ($_GET['status'] === 'success') {
+                                        echo '<div class="alert alert-success alert-dismissible fade show fs-5" role="alert"> Cambios Guardados.
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>';
+                                    } elseif ($_GET['status'] === 'danger') {
+                                        echo '<div class="alert alert-danger alert-dismissible fade show fs-5" role="alert">Ya existe otro usuario con ese nombre.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>';
+                                    }
+                                }
+
+                                echo "
                             <h2 class='h2-animate'>Géneros Favoritos</h2>
-                            <div class='genres-prof '>
+                            <div class='genres-prof'>
                                 $genres_html
                             </div>
                         </article>
@@ -176,8 +193,7 @@ class CProfile
                             </label>
                         </form>
                     </section>
-                    ";
-
+                ";
             } else {
                 echo "Error al obtener los datos del usuario.";
             }
@@ -217,13 +233,16 @@ class CProfile
         $stmt->execute();
         $result = $stmt->get_result();
 
+        //$defaultImg es una imagen negra de 1x1 píxel codificada en base64.
+        $defaultImg = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAwAB/mazYAAAAABJRU5ErkJggg==';
+
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo '
                 <div class="data-friend" id="friend-' . $row["id_cuenta"] . '">
                     <div class="friend-container">
                         <div class="friend-avatar">
-                            <img class="profile-img" src="' . $row["id_img"] . '" alt="Friend Avatar"/>
+                            <img class="profile-img" src="' . (!empty($row["id_img"]) ? htmlspecialchars($row["id_img"], ENT_QUOTES, 'UTF-8') : $defaultImg) . '" alt="Friend Avatar"/>
                         </div>
                         <div class="friend-info">
                             <p class="friend-username">' . $row["nombre_usuario"] . '</p>
@@ -240,7 +259,7 @@ class CProfile
                 ';
             }
         } else {
-            echo'No hay amigos para mostrar.';
+            echo 'No hay amigos para mostrar.';
         }
 
         $stmt->close();
