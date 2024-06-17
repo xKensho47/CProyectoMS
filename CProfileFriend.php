@@ -112,6 +112,11 @@ class CProfileFriend
                 $result = mysqli_query($conexion, $query);
                 $isFriend = mysqli_fetch_assoc($result)['count'] > 0;
 
+
+
+                //$defaultImg es una imagen negra de 1x1 píxel codificada en base64.
+                $defaultImg = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAwAB/mazYAAAAABJRU5ErkJggg==';
+
                 // Generar el HTML con los datos del usuario, incluyendo la imagen de perfil, el campo about_me y los géneros favoritos
                 echo "
                 <section class='userinfo-data'>
@@ -122,7 +127,7 @@ class CProfileFriend
                     <article class='data-user'>                    
                         <aside class='user-container'>
                             <div class='user-avatar'>
-                                <img class='profile-img' src='" . htmlspecialchars($row['img'], ENT_QUOTES, 'UTF-8') . "' alt='User Avatar'/>
+                                <img class='profile-img' src='" . (!empty($row['img']) ? htmlspecialchars($row['img'], ENT_QUOTES, 'UTF-8') : $defaultImg) . "' alt='User Avatar'/>
                             </div>
                             <div class='user-info animate-from-bottom'>
                                 <h2 class='info-name'> 
@@ -197,13 +202,16 @@ class CProfileFriend
 
         $result = mysqli_query($conexion,$q);
 
+        //$defaultImg es una imagen negra de 1x1 píxel codificada en base64.
+        $defaultImg = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAwAB/mazYAAAAABJRU5ErkJggg==';
+        
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo '
                 <div class="data-friend animate-from-bottom" id="friend-' . $row["id_cuenta"] . '">
                     <div class="friend-container">
                         <div class="friend-avatar">
-                            <img class="profile-img" src="' . $row["id_img"] . '" alt="Friend Avatar"/>
+                            <img class="profile-img" src="' . (!empty($row["id_img"]) ? htmlspecialchars($row["id_img"], ENT_QUOTES, 'UTF-8') : $defaultImg) . '" alt="Friend Avatar"/>
                         </div>
                         <div class="friend-info">
                             <p class="friend-username">' . $row["nombre_usuario"] . '</p>
