@@ -24,167 +24,168 @@ include ('conexion.php');
 <body class="<?php if (isset($_SESSION["id_cuenta"])) { echo 'logeado'; } ?>">
     <div class="container showcase">
         <?php
-        include ("header.php");
-        require_once ("loginVerification.php");
-        require_once ("CCarousel.php");
+            include ("header.php");
+            require_once ("loginVerification.php");
+            require_once ("CCarousel.php");
 
-        if (!isset($_SESSION["id_cuenta"])) { 
-        ?>
-            <div class="contenedor-hero-img" id="hero">
-                <div class="hero-texto">
-                    <h1>Bienvenidos a <span class="titulo-hero">CineFlow</span></h1>
-                    <h2>La mejor plataforma gratuita</h2>
+            if (!isset($_SESSION["id_cuenta"])) { 
+                echo'
+                <script src="script/heroControl.js"></script>
+                <div class="hero" id="hero">
+                    <div class="hero-texto">
+                        <h1>Bienvenidos a <span class="titulo-hero">CineFlow</span></h1>
+                        <h2>La mejor plataforma gratuita</h2>
+                    </div>
                 </div>
-            </div>
-        <?php 
-        } 
+                ';
+            }
 
-        echo '
-        <main class="main-principal animate-from-bottom">
-            <section class="movies-containerp movies" id="movies-container movies">';
+            echo '
+            <main class="main-principal '; if (isset($_SESSION["id_cuenta"])) echo "show"; echo' " id="mainContent">
+                <section class="movies-containerp movies" id="movies-container movies">';
 
-        $titles = array("Películas más valoradas", "Recientes");
+                $titles = array("Películas más valoradas", "Recientes");
 
-        $carouseles = new CCarousel($conexion);
+                $carouseles = new CCarousel($conexion);
 
-        for ($i = 0; $i < count($titles); $i++) {
-            $carouseles->generateMovieSection($conexion, $titles[$i]);
-        }
+                for ($i = 0; $i < count($titles); $i++) {
+                    $carouseles->generateMovieSection($conexion, $titles[$i]);
+                }
 
         ?>
 
         <?php
 
-        if (isset($_SESSION["id_cuenta"])) {
+            if (isset($_SESSION["id_cuenta"])) {
 
-            $id_cuenta = $_SESSION["id_cuenta"];
+                $id_cuenta = $_SESSION["id_cuenta"];
 
-            // carrusel 'ver mas tarde'
-            $q =
-                "SELECT 
-                p.id_peli AS id, 
-                p.path_poster AS poster, 
-                p.titulo AS titulo
-                FROM 
-                    peliculas p
-                JOIN 
-                    mas_tarde mt
-                ON 
-                    p.id_peli = mt.id_peli
-                JOIN 
-                    cuenta_usuario cu 
-                ON 
-                    mt.id_cuenta = cu.id_cuenta
-                WHERE 
-                    cu.id_cuenta = $id_cuenta
+                // carrusel 'ver mas tarde'
+                $q =
+                    "SELECT 
+                    p.id_peli AS id, 
+                    p.path_poster AS poster, 
+                    p.titulo AS titulo
+                    FROM 
+                        peliculas p
+                    JOIN 
+                        mas_tarde mt
+                    ON 
+                        p.id_peli = mt.id_peli
+                    JOIN 
+                        cuenta_usuario cu 
+                    ON 
+                        mt.id_cuenta = cu.id_cuenta
+                    WHERE 
+                        cu.id_cuenta = $id_cuenta
+                    ";
+                $title = 'Ver más tarde';
+                $result = mysqli_query($conexion, $q);
+
+                echo "
+                    <section class='movies-container x-carousel' id='movies-container-$title'>
+                        <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
+                            <div class='movies-dinamic-tittle' id='movies-dinamic-tittle-$title'>
+                                <h2 class='x-tittle h2-animate' id='x-tittle-$title'>  $title  </h2>
+                                <hr>
+                            </div>
+                            <div class='x-carousel-container'>
+                                <button class='carousel-prev'>&#60</button>
+                                <div class='carousel-slide'>";
+
+                /* Ordenar por puesto */
+                /*$puesto = 1;*/
+
+                if ($result && $result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $imagePath = $row["poster"];
+                        echo "
+                            <div class='x-carousel-movie'>
+                            <a href='detalle_peli.php?id_peli=" . $row['id'] . "'>
+                                <img src=' " . $imagePath . " ' alt='Movie Posters'>
+                            
+                            </a>
+                            </div>
+                            ";
+                        /*$puesto++;*/
+                    }
+                } else {
+                    echo '<p>No movies found.</p>';
+                }
+                echo "
+                    </div>
+                    <button class='carousel-next'>&#62</button>
+                    </div>
+                </article>
+                </section>
                 ";
-            $title = 'Ver más tarde';
-            $result = mysqli_query($conexion, $q);
 
-            echo "
-                <section class='movies-container x-carousel' id='movies-container-$title'>
-                    <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
-                        <div class='movies-dinamic-tittle' id='movies-dinamic-tittle-$title'>
-                            <h2 class='x-tittle h2-animate' id='x-tittle-$title'>  $title  </h2>
-                            <hr>
-                        </div>
-                        <div class='x-carousel-container'>
-                            <button class='carousel-prev'>&#60</button>
-                            <div class='carousel-slide'>";
 
-            /* Ordenar por puesto */
-            /*$puesto = 1;*/
+                //carrusel de los generos favoritos
+            
+                $hayGeneros = mysqli_query($conexion, "SELECT gf.id_genero, gf.id_cuenta, ge.nombre_genero 
+                                                        FROM genero_favorito gf JOIN genero ge ON gf.id_genero = ge.id_genero 
+                                                        WHERE gf.id_cuenta = $id_cuenta");
 
-            if ($result && $result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    $imagePath = $row["poster"];
-                    echo "
-                        <div class='x-carousel-movie'>
-                        <a href='detalle_peli.php?id_peli=" . $row['id'] . "'>
-                            <img src=' " . $imagePath . " ' alt='Movie Posters'>
-                        
-                        </a>
-                        </div>
+                if ($hayGeneros && $hayGeneros->num_rows > 0) {
+                    while ($row = $hayGeneros->fetch_assoc()) {
+                        $id_genero = $row["id_genero"];
+                        $q = "SELECT 
+                            p.id_peli AS id, 
+                            p.path_poster AS poster, 
+                            p.titulo AS titulo 
+                            FROM peliculas p
+                            JOIN peli_genero pg ON p.id_peli = pg.id_peli AND pg.id_genero = $id_genero"
+                        ;
+
+                        $title = "Según tu genero favorito - " . $row['nombre_genero'] . " ";
+                        $result = mysqli_query($conexion, $q);
+
+                        echo "
+                            <section class='movies-container x-carousel' id='movies-container-$title'>
+                                <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
+                                    <div class='movies-dinamic-tittle' id='movies-dinamic-tittle-$title'>
+                                        <h2 class='x-tittle h2-animate' id='x-tittle-$title'>  $title  </h2>
+                                        <hr>
+                                    </div>
+                                    <div class='x-carousel-container'>
+                                        <button class='carousel-prev'>&#60</button>
+                                        <div class='carousel-slide'>";
+
+                        /* Ordenar por puesto */
+                        /*$puesto = 1;*/
+            
+                        if ($result && $result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                $imagePath = $row["poster"];
+                                echo "
+                                    <div class='x-carousel-movie'>
+                                    <a href='detalle_peli.php?id_peli=" . $row['id'] . "'>
+                                        <img src=' " . $imagePath . " ' alt='Movie Posters'>
+                                    
+                                    </a>
+                                    </div>
+                                    ";
+                                /*$puesto++;*/
+                            }
+                        } else {
+                            echo '<p>No movies found.</p>';
+                        }
+                        echo "
+                            </div>
+                            <button class='carousel-next'>&#62</button>
+                            </div>
+                        </article>
+                        </section>
                         ";
-                    /*$puesto++;*/
+
+
+                    }
+
                 }
             } else {
-                echo '<p>No movies found.</p>';
+                echo "";
             }
-            echo "
-                </div>
-                <button class='carousel-next'>&#62</button>
-                </div>
-            </article>
-            </section>
-            ";
-
-
-            //carrusel de los generos favoritos
-        
-            $hayGeneros = mysqli_query($conexion, "SELECT gf.id_genero, gf.id_cuenta, ge.nombre_genero 
-                                                    FROM genero_favorito gf JOIN genero ge ON gf.id_genero = ge.id_genero 
-                                                    WHERE gf.id_cuenta = $id_cuenta");
-
-            if ($hayGeneros && $hayGeneros->num_rows > 0) {
-                while ($row = $hayGeneros->fetch_assoc()) {
-                    $id_genero = $row["id_genero"];
-                    $q = "SELECT 
-                        p.id_peli AS id, 
-                        p.path_poster AS poster, 
-                        p.titulo AS titulo 
-                        FROM peliculas p
-                        JOIN peli_genero pg ON p.id_peli = pg.id_peli AND pg.id_genero = $id_genero"
-                    ;
-
-                    $title = "Según tu genero favorito - " . $row['nombre_genero'] . " ";
-                    $result = mysqli_query($conexion, $q);
-
-                    echo "
-                        <section class='movies-container x-carousel' id='movies-container-$title'>
-                            <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
-                                <div class='movies-dinamic-tittle' id='movies-dinamic-tittle-$title'>
-                                    <h2 class='x-tittle h2-animate' id='x-tittle-$title'>  $title  </h2>
-                                    <hr>
-                                </div>
-                                <div class='x-carousel-container'>
-                                    <button class='carousel-prev'>&#60</button>
-                                    <div class='carousel-slide'>";
-
-                    /* Ordenar por puesto */
-                    /*$puesto = 1;*/
-        
-                    if ($result && $result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            $imagePath = $row["poster"];
-                            echo "
-                                <div class='x-carousel-movie'>
-                                <a href='detalle_peli.php?id_peli=" . $row['id'] . "'>
-                                    <img src=' " . $imagePath . " ' alt='Movie Posters'>
-                                
-                                </a>
-                                </div>
-                                ";
-                            /*$puesto++;*/
-                        }
-                    } else {
-                        echo '<p>No movies found.</p>';
-                    }
-                    echo "
-                        </div>
-                        <button class='carousel-next'>&#62</button>
-                        </div>
-                    </article>
-                    </section>
-                    ";
-
-
-                }
-
-            }
-        } else {
-            echo "";
-        }
         echo '
             </section>
         </main>
@@ -195,21 +196,7 @@ include ('conexion.php');
         <script src="slick/slick.min.js"></script>
         <script src="script/script.js"></script>
         <script src="script/botonTop.js"></script>
-        <script>
-            window.addEventListener('scroll', function() {
-                const hero = document.getElementById('hero');
-                const scrollPosition = window.scrollY;
-                const heroHeight = hero.offsetHeight;
-
-                if (scrollPosition <= heroHeight) {
-                    hero.style.opacity = 1 - scrollPosition / heroHeight;
-                } else {
-                    hero.style.opacity = 0;
-                }
-            });
-        </script>
-
-
+        
     </div>
     <footer>
         <p>&copy; CineFlow 2024</p>

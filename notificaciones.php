@@ -52,81 +52,85 @@ session_start(); ?>
 
         $result_solicitud = $conexion->query($query_solicitud);
         ?>
-    </div>
-    <main class="notificaciones-main animate-from-bottom">
-        <h2 class="h2-animate">Notificaciones</h2>
-        <div class="notificaciones">
-            <?php
-            // Variable bandera para verificar si hay resultados
-            $hayResultados = false;
-            // Verificar si la consulta devolvió resultados
-            if ($result_solicitud->num_rows > 0) {
-                $hayResultados = true; // Se encontraron resultados
-                while ($notificacion = $result_solicitud->fetch_assoc()) {
-                    $nombre_envia = $notificacion['nombre_envia'];
-                    $mensaje = $notificacion['mensaje'];
-                    $usuario_envia_id = $notificacion['id_cuenta'];
-                    $fecha = $notificacion['fecha'];
-                    $peli = $notificacion['id_peli'];
-                    if ($mensaje) {
-                        echo '<div class="notificacion not">';
-                        echo '<p class="mensaje">' . htmlspecialchars($nombre_envia) . ' te añadió como amigo.</p>';
-                        echo '<form method="post" action="procesar_solicitud.php" class="botones-solicitud">';
-                        echo '<input type="hidden" name="usuario_envia_id" value="' . $usuario_envia_id . '">';
-                        echo '<button type="submit" name="aceptar[]" value="' . $usuario_envia_id . '">Aceptar</button>';
-                        echo '<button type="submit" name="rechazar[]" value="' . $usuario_envia_id . '">Rechazar</button>';
-                        echo '</form>';
-                        echo '</div>';
-                    } else {
-                        $result_peli = $conexion->query("SELECT titulo FROM peliculas WHERE id_peli=$peli");
-                        $pelicula = $result_peli->fetch_assoc();
-                        $titulo_pelicula = $pelicula['titulo'];
+        <main class="notificaciones-main animate-from-bottom">
+            <aside class="notif">
+                <h2 class="h2-animate">Notificaciones</h2>
+                <div class="notificaciones">
+                    <?php
+                    // Variable bandera para verificar si hay resultados
+                    $hayResultados = false;
+                    // Verificar si la consulta devolvió resultados
+                    if ($result_solicitud->num_rows > 0) {
+                        $hayResultados = true; // Se encontraron resultados
+                        while ($notificacion = $result_solicitud->fetch_assoc()) {
+                            $nombre_envia = $notificacion['nombre_envia'];
+                            $mensaje = $notificacion['mensaje'];
+                            $usuario_envia_id = $notificacion['id_cuenta'];
+                            $fecha = $notificacion['fecha'];
+                            $peli = $notificacion['id_peli'];
+                            if ($mensaje) {
+                                echo '<div class="notificacion not">';
+                                echo '<p class="mensaje">' . htmlspecialchars($nombre_envia) . ' te añadió como amigo.</p>';
+                                echo '<form method="post" action="procesar_solicitud.php" class="botones-solicitud">';
+                                echo '<input type="hidden" name="usuario_envia_id" value="' . $usuario_envia_id . '">';
+                                echo '<button type="submit" name="aceptar[]" value="' . $usuario_envia_id . '">Aceptar</button>';
+                                echo '<button type="submit" name="rechazar[]" value="' . $usuario_envia_id . '">Rechazar</button>';
+                                echo '</form>';
+                                echo '</div>';
+                            } else {
+                                $result_peli = $conexion->query("SELECT titulo FROM peliculas WHERE id_peli=$peli");
+                                $pelicula = $result_peli->fetch_assoc();
+                                $titulo_pelicula = $pelicula['titulo'];
+                                echo '<div class="notificacion">';
+                                echo '<p class="mensaje">' . htmlspecialchars($nombre_envia) . ' te recomendó ver: "' . htmlspecialchars($titulo_pelicula) . '"</p>';
+                                echo '<span class="fecha">' . $fecha . '</span>';
+                                echo '<button type="submit" class="cerrar-notificacion ver" data-id-peli="' . $peli . '">Ver</button>';
+                                echo '<form method="post" action="eliminar_notificacion.php" class="eliminar-form">';
+                                echo '<input type="hidden" name="usuario_envia" value="' . $usuario_envia_id . '">';
+                                echo '<input type="hidden" name="usuario_recibe" value="' . $_SESSION['id_cuenta'] . '">';
+                                echo '<input type="hidden" name="tipo_mensaje" value="' . $mensaje . '">';
+                                echo '<input type="hidden" name="id_peli" value="' . $peli . '">';
+                                echo '<input type="hidden" name="fecha" value="' . $fecha . '">';
+                                echo'<input type="hidden" name="accion" value="eliminar">';
+                                echo '<button type="submit" class="cerrar-notificacion eliminar">x</button>';
+                                echo '</form>';
+                                echo '</div>';
+                            }
+                            
+                            
+                        }
+                    }
+
+                    if ($consulta_peli_nueva->num_rows > 0) {
+                        $hayResultados = true; // Se encontraron resultados
+                        $hayNotificacion= false;
+                        while ($fila = $consulta_peli_nueva->fetch_assoc()) {
+                            echo '<div class="notificacion">';
+                            echo '<p class="mensaje">¡Nueva película: "' . $fila["titulo"] . '" añadida a la categoría de ' . $fila["nombres_generos"] . '!</p>';
+                            echo '<span class="fecha">' . $fila["fecha_subida"] . '</span>';
+                            echo '</div>';
+                        }
+                    }
+
+                    // Mostrar mensaje si no hay resultados
+                    if (!$hayResultados) {
                         echo '<div class="notificacion">';
-                        echo '<p class="mensaje">' . htmlspecialchars($nombre_envia) . ' te recomendó ver: "' . htmlspecialchars($titulo_pelicula) . '"</p>';
-                        echo '<span class="fecha">' . $fecha . '</span>';
-                        echo '<button type="submit" class="cerrar-notificacion ver" data-id-peli="' . $peli . '">Ver</button>';
-                        echo '<form method="post" action="eliminar_notificacion.php" class="eliminar-form">';
-                        echo '<input type="hidden" name="usuario_envia" value="' . $usuario_envia_id . '">';
-                        echo '<input type="hidden" name="usuario_recibe" value="' . $_SESSION['id_cuenta'] . '">';
-                        echo '<input type="hidden" name="tipo_mensaje" value="' . $mensaje . '">';
-                        echo '<input type="hidden" name="id_peli" value="' . $peli . '">';
-                        echo '<input type="hidden" name="fecha" value="' . $fecha . '">';
-                        echo'<input type="hidden" name="accion" value="eliminar">';
-                        echo '<button type="submit" class="cerrar-notificacion eliminar">x</button>';
-                        echo '</form>';
+                        echo '<p class="mensaje">No hay nuevas notificaciones.</p>';
                         echo '</div>';
                     }
-                    
-                    
-                }
-            }
-
-            if ($consulta_peli_nueva->num_rows > 0) {
-                $hayResultados = true; // Se encontraron resultados
-                $hayNotificacion= false;
-                while ($fila = $consulta_peli_nueva->fetch_assoc()) {
-                    echo '<div class="notificacion">';
-                    echo '<p class="mensaje">¡Nueva película: "' . $fila["titulo"] . '" añadida a la categoría de ' . $fila["nombres_generos"] . '!</p>';
-                    echo '<span class="fecha">' . $fila["fecha_subida"] . '</span>';
-                    echo '</div>';
-                }
-            }
-
-            // Mostrar mensaje si no hay resultados
-            if (!$hayResultados) {
-                echo '<div class="notificacion">';
-                echo '<p class="mensaje">No hay nuevas notificaciones.</p>';
-                echo '</div>';
-            }
-          
-            ?>
-        </div>
-        <div class="contacto">
-            <h2>¿Tenés alguna duda o consulta?,</h2>
-            <h2> ¡Contactanos!</h2>
-            <a href="contacto.php">Contacto</a>
-        </div>
-    </main>
+                
+                    ?>
+                </div>
+            </aside>
+            <aside class="contact">
+                <div class="contacto">
+                    <h2>¿Tenés alguna duda o consulta?,</h2>
+                    <h3> ¡Contactanos!</h3>
+                    <a href="contacto.php">Contacto</a>
+                </div>
+            </aside>
+        </main>
+    </div>
 
     <script src="script/jquery.js"></script>
     <script src="slick/slick.min.js"></script>
