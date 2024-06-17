@@ -79,6 +79,11 @@ class CProfileFriend
 
         $result = mysqli_query($conexion,$q);
 
+        $query = "SELECT us.id_tipo FROM Usuarios us JOIN cuenta_usuario cu ON cu.id_cuenta = $id_cuenta WHERE cu.id_usuario = us.id_usuario";
+        $tipo = mysqli_query($conexion,$query);
+        $arrayassoc = mysqli_fetch_assoc($tipo);
+        $id_tipo = $arrayassoc['id_tipo'];
+
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
 
@@ -120,7 +125,10 @@ class CProfileFriend
                                 <img class='profile-img' src='" . htmlspecialchars($row['img'], ENT_QUOTES, 'UTF-8') . "' alt='User Avatar'/>
                             </div>
                             <div class='user-info animate-from-bottom'>
-                                <h2 class='info-name'> @" . htmlspecialchars($row['nombre_usuario'], ENT_QUOTES, 'UTF-8') . "</h2>
+                                <h2 class='info-name'> 
+                                    " . ($id_tipo == 1 ? "<span style='font-size:25px;'>&#128081;</span>" : "") . " 
+                                    @" . htmlspecialchars($row['nombre_usuario'], ENT_QUOTES, 'UTF-8') . " 
+                                </h2>
                             </div>
                         </aside>
                         <aside class='user-button' data-is-friend='" . ($isFriend ? "true" : "false") . "' data-amigo-id='$id_profile'>
