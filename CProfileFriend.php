@@ -186,17 +186,19 @@ class CProfileFriend
         $id_cuenta = $_SESSION['id_cuenta'];
 
         $q =
-            "SELECT 
-            facc.id_cuenta, facc.nombre_usuario, facc.id_img
-        FROM 
+        "SELECT
+            facc.id_cuenta, facc.nombre_usuario, img.img as id_img
+        FROM
             cuenta_usuario AS usuario
-        RIGHT JOIN 
+        RIGHT JOIN
             lista_amigos AS flist ON usuario.id_cuenta = flist.id_cuenta
-        INNER JOIN 
+        INNER JOIN
             cuenta_usuario AS facc ON flist.amigo = facc.id_cuenta
-        WHERE 
+        LEFT JOIN
+            img_perfil AS img ON facc.id_img = img.id_img
+        WHERE
             usuario.id_cuenta = $id_profile
-        ORDER BY 
+        ORDER BY
             facc.nombre_usuario ASC
         ";
 
