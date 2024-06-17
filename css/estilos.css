@@ -892,6 +892,8 @@ input[type="submit"] {
     justify-content: space-evenly;
     flex-direction: row;
     max-height: 3vh;
+
+    z-index: 30;
 }
 
 .userinfo2-menu {
@@ -899,6 +901,8 @@ input[type="submit"] {
     flex-direction: row;
     width: 100%;
     height: 3vh;
+
+    z-index: 30;
 }
 .userinfo2-menu:hover{
     cursor: default;
