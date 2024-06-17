@@ -35,7 +35,7 @@ class CProfile
     }
 
     // MÉTODOS
-    public function generateProfileData()
+    public function generateProfileData($conexion)
     {
         // Asegurarse de que la sesión esté iniciada y el id_cuenta esté establecido
         if (!isset($_SESSION['id_cuenta'])) {
@@ -79,6 +79,13 @@ class CProfile
             echo "Error en la ejecución de la consulta: " . $stmt->error;
             return;
         }
+
+        //verificar que tipo de usuario es 
+
+        $query = "SELECT us.id_tipo FROM Usuarios us JOIN cuenta_usuario cu ON cu.id_cuenta = $id_cuenta WHERE cu.id_usuario = us.id_usuario";
+        $tipo = mysqli_query($conexion,$query);
+        $arrayassoc = mysqli_fetch_assoc($tipo);
+        $id_tipo = $arrayassoc['id_tipo'];
 
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
@@ -129,16 +136,19 @@ class CProfile
                                     <img class='profile-img' src='" . htmlspecialchars($row['img'], ENT_QUOTES, 'UTF-8') . "' alt='User Avatar'/>
                                 </div>
                                 <div class='user-info animate-from-bottom'>
-                                    <h2 class='info-name'> @" . htmlspecialchars($row['nombre_usuario'], ENT_QUOTES, 'UTF-8') . "</h2>
+                                    <h2 class='info-name'> 
+                                    " . ($id_tipo == 1 ? "<span style='font-size:25px;'>&#128081;</span>" : "") . " 
+                                    @" . htmlspecialchars($row['nombre_usuario'], ENT_QUOTES, 'UTF-8') . " 
+                                    </h2>
                                 </div>
                             </aside>
                             <aside class='user-button'>
-                                <div>
+                                <div class=''>
                                     <a href='#' class='btn btn-color fs-5' data-bs-toggle='modal' data-bs-target='#editaModal' data-bs-id='" . htmlspecialchars($id_cuenta, ENT_QUOTES, 'UTF-8') . "'>
                                         Editar Perfil
                                     </a>
                                 </div>
-                                <div>
+                                <div class=''>
                                     <a href='logout.php'>
                                         <button class='btn btn-color fs-5 button-logout'>Logout</button>
                                     </a>
@@ -255,15 +265,19 @@ class CProfile
     public function discoverFriends($page, $itemsPerPage)
     {
         $id_cuenta = $_SESSION['id_cuenta'];
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $itemsPerPage = isset($_GET['itemsPerPage']) ? (int)$_GET['itemsPerPage'] : 9;
+        $search = isset($_GET['search']) ? $_GET['search'] : '';
+
         $offset = ($page - 1) * $itemsPerPage;
 
         $q = "SELECT u.id_cuenta,u.nombre_usuario,u.id_img
             FROM cuenta_usuario u
-            LEFT JOIN lista_amigos la
-            ON (u.id_cuenta = la.amigo AND la.id_cuenta = ?)
-            WHERE u.id_cuenta != ? AND la.amigo IS NULL LIMIT ?, ?";
+            LEFT JOIN lista_amigos la ON (u.id_cuenta = la.amigo AND la.id_cuenta = ?)
+            WHERE u.id_cuenta != ? AND la.amigo IS NULL AND u.nombre_usuario LIKE ? LIMIT ?, ?";
         $stmt = $this->conexion->prepare($q);
-        $stmt->bind_param('iiii', $id_cuenta, $id_cuenta, $offset, $itemsPerPage);
+        $searchTerm = '%' . $search . '%';
+        $stmt->bind_param('iisii', $id_cuenta, $id_cuenta, $searchTerm, $offset, $itemsPerPage);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -272,9 +286,9 @@ class CProfile
             $friends[] = $row;
         }
 
-        $qTotal = "SELECT COUNT(*) as total FROM cuenta_usuario WHERE id_cuenta != ?";
+        $qTotal = "SELECT COUNT(*) as total FROM cuenta_usuario WHERE id_cuenta != ? AND nombre_usuario LIKE ?";
         $stmtTotal = $this->conexion->prepare($qTotal);
-        $stmtTotal->bind_param('i', $id_cuenta);
+        $stmtTotal->bind_param('is', $id_cuenta, $searchTerm);
         $stmtTotal->execute();
         $resultTotal = $stmtTotal->get_result();
         $totalFriends = $resultTotal->fetch_assoc()['total'];

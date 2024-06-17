@@ -2,13 +2,17 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentPage = 1;
     const itemsPerPage = 9;
     const loadMoreButton = document.getElementById('load-more');
+    const searchInput = document.getElementById('search-input');
 
-    function loadDiscoverFriends(page) {
-        fetch(`discoverFriends.php?page=${page}&itemsPerPage=${itemsPerPage}`)
+    function loadDiscoverFriends(page, searchTerm = '') {
+        fetch(`discoverFriends.php?page=${page}&itemsPerPage=${itemsPerPage}&search=${encodeURIComponent(searchTerm)}`)
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
                     const container = document.getElementById('discover-grid-container');
+                    if (page === 1) {
+                        container.innerHTML = ''; // Clear existing friends only if loading the first page
+                    }
                     data.friends.forEach(friend => {
                         const friendDiv = document.createElement('div');
                         friendDiv.classList.add('data-discover');
@@ -35,6 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     if (!data.hasMore) {
                         loadMoreButton.style.display = 'none';
+                    } else {
+                        loadMoreButton.style.display = 'block';
                     }
                 } else {
                     alert('Error al cargar amigos.');
@@ -45,7 +51,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     loadMoreButton.addEventListener('click', function() {
         currentPage++;
-        loadDiscoverFriends(currentPage);
+        loadDiscoverFriends(currentPage, searchInput.value);
+    });
+
+    searchInput.addEventListener('input', function() {
+        currentPage = 1; // Reset to first page
+        loadDiscoverFriends(currentPage, searchInput.value);
     });
 
     loadDiscoverFriends(currentPage);

@@ -40,7 +40,7 @@ $id_cuenta = $_SESSION['id_cuenta'];
                     $profile = new CProfile($conexion);
 
 
-                    $profile->generateProfileData();
+                    $profile->generateProfileData($conexion);
 
                     ?>
                 </aside>
@@ -62,7 +62,6 @@ $id_cuenta = $_SESSION['id_cuenta'];
                                     include_once("profileFunctions.php");
 
                                     continueCarousel($conexion);
-                                    
                                     favoritesCarousel($conexion);
                                     laterCarousel($conexion);
                                     
@@ -81,6 +80,9 @@ $id_cuenta = $_SESSION['id_cuenta'];
                                 </section>
                             </section>
                             <section class="userinfo2-discover option animate-from-bottom" id="userinfo2-discover">
+                                <section class="input-buscar-amigos">
+                                    <input type="text" id="search-input" placeholder="Buscar amigos...">
+                                </section>
                                 <section class="discovers-container">
                                     <article id="discover-grid-container" class="discover-grid-container">
                                     </article>

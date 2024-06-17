@@ -23,13 +23,14 @@
 
 
 <body class="body-crud">
-    <main>
-
-        <div class="  container-crud py-3">
+    <div class="crud-container container showcase">
+    <?php
+    include("conexion.php");
+    include("header.php");
+    require_once("loginVerification.php");
+    ?>
+        <main class="main-crud">
             <?php
-            include("conexion.php");
-            include("header.php");
-            require_once("loginVerification.php");
 
             /*DEVUELVE TODA LA INFORMACION DE UNA PELICULA*/
             $sqlBase = "SELECT p.id_peli, p.titulo, p.descripcion, p.estreno, p.path_poster, p.duracion,
@@ -66,10 +67,10 @@
             ?>
 
             <div class="crud  ">
-                <div class="animate-from-bottom">
+                <div class="animate-from-bottom ajuste-crud">
                     <!-- BOTONES DE REGISTRO Y MODIFICACIONES-->
 
-                    <div class="row justify-content-end mt-5 ">
+                    <div class="row justify-content-end mt-0 ">
 
                         <div class="col-auto me-auto mt-5">
                             <h2 class="text-left pi h2-animate">Peliculas</h2>
@@ -259,8 +260,15 @@
                 <script src="script/botonTop.js"></script>
                 <script src="script/bootstrap.bundle.min.js"></script>
             </div>
-        </div>
-    </main>
+        
+            <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+        </main>
+    </div>
+
+    <script src="./script/jquery.js"></script>
+    <script src="./slick/slick.min.js"></script>
+    <script src="./script/script.js"></script>
+    <script src="./script/botonTop.js"></script>
 
     <footer>
         <p class="p">&copy; CineFlow 2024</p>

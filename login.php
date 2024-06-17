@@ -22,8 +22,8 @@
         <?php
         include("header.php");
         echo '
-        <main>
-            <article class="article">
+        <main class="main-form">
+            <article class="article-form">
                 <div class="div-form">
                     <form class="formulario-login log" action="login_process.php" method="post">
                         <h1>Iniciar sesión</h1>';
