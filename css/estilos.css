@@ -402,9 +402,23 @@ hr {
     overflow-y: hidden;
 }
 
-.article-form {
+.article-form-login {
+    position: relative;
+    top: -7vh;
     display: flex;
-    align-items: start;
+    align-items: center;
+    justify-content: center;
+
+    width: 85%;
+    height: 85%;    
+}
+
+.article-form {
+    position: relative;
+    top: -1.5vh;
+
+    display: flex;
+    align-items: center;
     justify-content: center;
 
     width: 85%;
