@@ -2283,17 +2283,10 @@ tbody {
 
 /*arreglo notificaciones*/
 .container .notificaciones-main {
-    background-color: var(--color-transparent);
-    color: var(--color-text);
-    font-size: 1.5rem;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: row;
 
     width: 100%;
-    min-height: 88vh;
+    height: 88vh;
 
     z-index: 1;
 }
@@ -2304,7 +2297,7 @@ tbody {
     padding-left: 6vw;
 }
 .contact{
-    font-size: 2.2rem;
+    font-size: 1.6rem;
     display: flex;
     align-items: start;
     justify-content: center;
