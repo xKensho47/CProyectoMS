@@ -1346,6 +1346,18 @@ input[type="submit"] {
     object-position: center;
 }
 
+.input-buscar-amigos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2vh;
+}
+
+#search-input{
+    margin-bottom: 3vh;
+}
+
 /* Nombre y Username */
 .discover-info {
     display: flex;
@@ -2481,6 +2493,10 @@ tbody {
 .contenedor-peliculas a img{
     width: 200px;
 }
+
+
+
+
 
 
 

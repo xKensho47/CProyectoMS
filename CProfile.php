@@ -238,15 +238,19 @@ class CProfile
     public function discoverFriends($page, $itemsPerPage)
     {
         $id_cuenta = $_SESSION['id_cuenta'];
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $itemsPerPage = isset($_GET['itemsPerPage']) ? (int)$_GET['itemsPerPage'] : 9;
+        $search = isset($_GET['search']) ? $_GET['search'] : '';
+
         $offset = ($page - 1) * $itemsPerPage;
 
         $q = "SELECT u.id_cuenta,u.nombre_usuario,u.id_img
             FROM cuenta_usuario u
-            LEFT JOIN lista_amigos la
-            ON (u.id_cuenta = la.amigo AND la.id_cuenta = ?)
-            WHERE u.id_cuenta != ? AND la.amigo IS NULL LIMIT ?, ?";
+            LEFT JOIN lista_amigos la ON (u.id_cuenta = la.amigo AND la.id_cuenta = ?)
+            WHERE u.id_cuenta != ? AND la.amigo IS NULL AND u.nombre_usuario LIKE ? LIMIT ?, ?";
         $stmt = $this->conexion->prepare($q);
-        $stmt->bind_param('iiii', $id_cuenta, $id_cuenta, $offset, $itemsPerPage);
+        $searchTerm = '%' . $search . '%';
+        $stmt->bind_param('iisii', $id_cuenta, $id_cuenta, $searchTerm, $offset, $itemsPerPage);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -255,9 +259,9 @@ class CProfile
             $friends[] = $row;
         }
 
-        $qTotal = "SELECT COUNT(*) as total FROM cuenta_usuario WHERE id_cuenta != ?";
+        $qTotal = "SELECT COUNT(*) as total FROM cuenta_usuario WHERE id_cuenta != ? AND nombre_usuario LIKE ?";
         $stmtTotal = $this->conexion->prepare($qTotal);
-        $stmtTotal->bind_param('i', $id_cuenta);
+        $stmtTotal->bind_param('is', $id_cuenta, $searchTerm);
         $stmtTotal->execute();
         $resultTotal = $stmtTotal->get_result();
         $totalFriends = $resultTotal->fetch_assoc()['total'];
