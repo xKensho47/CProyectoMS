@@ -1470,12 +1470,11 @@ footer {
 
 .copyright{
     width: 100%;
-    justify-content: right;
+    padding-left: 1%;
 }
 
 .footer p {
     margin-bottom: 0;
-    padding-left: 1%;
 }
 
 .redes_sociales{

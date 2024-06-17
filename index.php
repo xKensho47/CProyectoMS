@@ -196,9 +196,9 @@ include ('conexion.php');
         <script src="script/botonTop.js"></script>
         
     </div>
-    <?php 
+</body>
+<?php 
     include('footer.php');
     ?>
-</body>
 </html>
 
