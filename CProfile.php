@@ -209,17 +209,19 @@ class CProfile
         $id_cuenta = $_SESSION['id_cuenta'];
 
         $q =
-        "SELECT 
-            facc.id_cuenta, facc.nombre_usuario, facc.id_img
-        FROM 
+        "SELECT
+            facc.id_cuenta, facc.nombre_usuario, img.img as id_img
+        FROM
             cuenta_usuario AS usuario
-        RIGHT JOIN 
+        RIGHT JOIN
             lista_amigos AS flist ON usuario.id_cuenta = flist.id_cuenta
-        INNER JOIN 
+        INNER JOIN
             cuenta_usuario AS facc ON flist.amigo = facc.id_cuenta
-        WHERE 
+        LEFT JOIN
+            img_perfil AS img ON facc.id_img = img.id_img
+        WHERE
             usuario.id_cuenta = ?
-        ORDER BY 
+        ORDER BY
             facc.nombre_usuario ASC
         ";
 
@@ -274,10 +276,30 @@ class CProfile
 
         $offset = ($page - 1) * $itemsPerPage;
 
-        $q = "SELECT u.id_cuenta,u.nombre_usuario,u.id_img
-            FROM cuenta_usuario u
-            LEFT JOIN lista_amigos la ON (u.id_cuenta = la.amigo AND la.id_cuenta = ?)
-            WHERE u.id_cuenta != ? AND la.amigo IS NULL AND u.nombre_usuario LIKE ? LIMIT ?, ?";
+        $q = 
+        "SELECT 
+            u.id_cuenta, u.nombre_usuario, img.img AS id_img
+        FROM 
+            cuenta_usuario u
+        LEFT JOIN 
+            lista_amigos la 
+        ON 
+            (u.id_cuenta = la.amigo 
+        AND 
+            la.id_cuenta = ?)
+        LEFT JOIN 
+            img_perfil img 
+        ON 
+            u.id_img = img.id_img
+        WHERE 
+            u.id_cuenta != ? 
+        AND 
+            la.amigo 
+        IS NULL AND 
+            u.nombre_usuario 
+        LIKE ? 
+        LIMIT ?, ?        
+        ";
         $stmt = $this->conexion->prepare($q);
         $searchTerm = '%' . $search . '%';
         $stmt->bind_param('iisii', $id_cuenta, $id_cuenta, $searchTerm, $offset, $itemsPerPage);
