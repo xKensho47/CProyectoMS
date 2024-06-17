@@ -2571,6 +2571,12 @@ tbody {
     width: 200px;
 }
 
+/*arreglo contacto*/
+.contacto-flecha a{
+    
+    margin-left: -65vh;
+    
+}
 
 
 

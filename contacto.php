@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" type="text/css" href="slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./images/favicon/site.webmanifest">
     <title>Formulario de Contacto</title>
 </head>
 
@@ -24,7 +28,9 @@
 
             echo '
                 <main>
-
+                    <div class="volver-atras contacto-flecha ">
+                        <a href="#" id="back-link" class="h2-animate"><i class="fas fa-arrow-left"></i></a>
+                    </div>
                     <div class="div-form">
                         <form class="formulario-login log" action="guardar_form_contacto.php" method="post">
                             <h1>Contáctate con Nosotros</h1>
@@ -45,7 +51,7 @@
     <footer>
         <p>&copy; CineFlow 2024</p>
     </footer>
-    
+    <script src="script/volverAtras.js"></script>
 </body>
 
 </html>
