@@ -79,7 +79,7 @@ class CProfileFriend
 
         $result = mysqli_query($conexion,$q);
 
-        $query = "SELECT us.id_tipo FROM Usuarios us JOIN cuenta_usuario cu ON cu.id_cuenta = $id_cuenta WHERE cu.id_usuario = us.id_usuario";
+        $query = "SELECT us.id_tipo FROM Usuarios us JOIN cuenta_usuario cu ON cu.id_cuenta = $id_profile WHERE cu.id_usuario = us.id_usuario";
         $tipo = mysqli_query($conexion,$query);
         $arrayassoc = mysqli_fetch_assoc($tipo);
         $id_tipo = $arrayassoc['id_tipo'];
@@ -112,6 +112,11 @@ class CProfileFriend
                 $result = mysqli_query($conexion, $query);
                 $isFriend = mysqli_fetch_assoc($result)['count'] > 0;
 
+
+
+                //$defaultImg es una imagen negra de 1x1 píxel codificada en base64.
+                $defaultImg = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAwAB/mazYAAAAABJRU5ErkJggg==';
+
                 // Generar el HTML con los datos del usuario, incluyendo la imagen de perfil, el campo about_me y los géneros favoritos
                 echo "
                 <section class='userinfo-data'>
@@ -122,13 +127,13 @@ class CProfileFriend
                     <article class='data-user'>                    
                         <aside class='user-container'>
                             <div class='user-avatar'>
-                                <img class='profile-img' src='" . htmlspecialchars($row['img'], ENT_QUOTES, 'UTF-8') . "' alt='User Avatar'/>
+                                <img class='profile-img' src='" . (!empty($row['img']) ? htmlspecialchars($row['img'], ENT_QUOTES, 'UTF-8') : $defaultImg) . "' alt='User Avatar'/>
                             </div>
                             <div class='user-info animate-from-bottom'>
-                                <h2 class='info-name'> 
+                               <h2 class='info-name'> 
                                     " . ($id_tipo == 1 ? "<span style='font-size:25px;'>&#128081;</span>" : "") . " 
                                     @" . htmlspecialchars($row['nombre_usuario'], ENT_QUOTES, 'UTF-8') . " 
-                                </h2>
+                                    </h2>
                             </div>
                         </aside>
                         <aside class='user-button' data-is-friend='" . ($isFriend ? "true" : "false") . "' data-amigo-id='$id_profile'>
@@ -197,13 +202,16 @@ class CProfileFriend
 
         $result = mysqli_query($conexion,$q);
 
+        //$defaultImg es una imagen negra de 1x1 píxel codificada en base64.
+        $defaultImg = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAwAB/mazYAAAAABJRU5ErkJggg==';
+        
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo '
                 <div class="data-friend animate-from-bottom" id="friend-' . $row["id_cuenta"] . '">
                     <div class="friend-container">
                         <div class="friend-avatar">
-                            <img class="profile-img" src="' . $row["id_img"] . '" alt="Friend Avatar"/>
+                            <img class="profile-img" src="' . (!empty($row["id_img"]) ? htmlspecialchars($row["id_img"], ENT_QUOTES, 'UTF-8') : $defaultImg) . '" alt="Friend Avatar"/>
                         </div>
                         <div class="friend-info">
                             <p class="friend-username">' . $row["nombre_usuario"] . '</p>

@@ -68,6 +68,7 @@ $id_cuenta = $_SESSION['id_cuenta'];
                                 ?>
                             </section>
                             <section class="userinfo2-friends option " id="userinfo2-friends">
+                                
                                 <section class="friends-container ">
                                     <article class="friends-grid-container animate-from-bottom">
                                         <?php
@@ -79,9 +80,10 @@ $id_cuenta = $_SESSION['id_cuenta'];
                                     </article>
                                 </section>
                             </section>
+                        
                             <section class="userinfo2-discover option animate-from-bottom" id="userinfo2-discover">
                                 <section class="input-buscar-amigos">
-                                    <input type="text" id="search-input" placeholder="Buscar amigos...">
+                                    <input type="text" id="search-input" placeholder="Buscar amigos..." class="form-control mt-1 fs-5">
                                 </section>
                                 <section class="discovers-container">
                                     <article id="discover-grid-container" class="discover-grid-container">

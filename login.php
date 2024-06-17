@@ -23,7 +23,7 @@
         include("header.php");
         echo '
         <main class="main-form">
-            <article class="article-form">
+            <article class="article-form-login">
                 <div class="div-form">
                     <form class="formulario-login log" action="login_process.php" method="post">
                         <h1>Iniciar sesión</h1>';

@@ -316,11 +316,11 @@ function favoritesCarousel2($conexion, $id_profile){
         p.titulo AS titulo
     FROM 
         peliculas p
-    LEFT JOIN 
+    JOIN 
         peli_favorita pf 
     ON 
         p.id_peli = pf.id_peli
-    RIGHT JOIN 
+    JOIN 
         cuenta_usuario cu 
     ON 
         pf.id_cuenta = cu.id_cuenta
