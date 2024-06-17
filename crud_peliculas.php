@@ -23,9 +23,9 @@
 
 
 <body class="body-crud">
-    <main>
+    <main class="crud-cont">
 
-        <div class="  container-crud py-3">
+        <div class="container-crud py-3 crud-cont">
             <?php
             include("conexion.php");
             include("header.php");
@@ -260,7 +260,13 @@
                 <script src="script/bootstrap.bundle.min.js"></script>
             </div>
         </div>
+        <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
     </main>
+
+    <script src="./script/jquery.js"></script>
+    <script src="./slick/slick.min.js"></script>
+    <script src="./script/script.js"></script>
+    <script src="./script/botonTop.js"></script>
 
     <footer>
         <p class="p">&copy; CineFlow 2024</p>
