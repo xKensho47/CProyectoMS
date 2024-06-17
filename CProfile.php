@@ -53,7 +53,7 @@ class CProfile
 
         // Consulta para obtener los datos del usuario, incluyendo el campo about_me y la imagen de perfil
         $q =
-        "SELECT 
+            "SELECT 
             cu.nombre_usuario, cu.about_me, ip.img 
         FROM
             cuenta_usuario cu 
@@ -86,7 +86,7 @@ class CProfile
             if ($row) {
                 // Consulta para obtener los géneros favoritos del usuario
                 $q_genres =
-                "SELECT 
+                    "SELECT 
                     g.nombre_genero 
                 FROM 
                     genero_favorito gf 
@@ -121,52 +121,69 @@ class CProfile
 
                 // Generar el HTML con los datos del usuario, incluyendo la imagen de perfil, el campo about_me y los géneros favoritos
                 echo "
-                <section class='userinfo-data'>
-                    <h1 class='title-profile animate-from-bottom'> MI PERFIL </h1>
-                    <article class='data-user'>                    
-                        <aside class='user-container'>
-                            <div class='user-avatar'>
-                                <img class='profile-img' src='" . htmlspecialchars($row['img'], ENT_QUOTES, 'UTF-8') . "' alt='User Avatar'/>
+                    <section class='userinfo-data'>
+                        <h1 class='title-profile animate-from-bottom'> MI PERFIL </h1>
+                        <article class='data-user'>                    
+                            <aside class='user-container'>
+                                <div class='user-avatar'>
+                                    <img class='profile-img' src='" . htmlspecialchars($row['img'], ENT_QUOTES, 'UTF-8') . "' alt='User Avatar'/>
+                                </div>
+                                <div class='user-info animate-from-bottom'>
+                                    <h2 class='info-name'> @" . htmlspecialchars($row['nombre_usuario'], ENT_QUOTES, 'UTF-8') . "</h2>
+                                </div>
+                            </aside>
+                            <aside class='user-button'>
+                                <div>
+                                    <a href='#' class='btn btn-color fs-5' data-bs-toggle='modal' data-bs-target='#editaModal' data-bs-id='" . htmlspecialchars($id_cuenta, ENT_QUOTES, 'UTF-8') . "'>
+                                        Editar Perfil
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href='logout.php'>
+                                        <button class='btn btn-color fs-5 button-logout'>Logout</button>
+                                    </a>
+                                </div>
+                            </aside>
+                        </article>
+                    </section>
+                    <section class='userinfo-genres'>
+                        <article class='user-genres'>
+                ";
+
+                                // Aquí verificamos si existe un parámetro 'status' en la URL
+                                if (isset($_GET['status'])) {
+                                    // Verificar si el parámetro 'status' tiene el valor 'success'
+                                    if ($_GET['status'] === 'success') {
+                                        echo '<div class="alert alert-success alert-dismissible fade show fs-5" role="alert"> Cambios Guardados.
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>';
+                                    } elseif ($_GET['status'] === 'danger') {
+                                        echo '<div class="alert alert-danger alert-dismissible fade show fs-5" role="alert">Ya existe otro usuario con ese nombre.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>';
+                                    }
+                                }
+
+                                echo "
+                            <h2 class='h2-animate'>Géneros Favoritos</h2>
+                            <div class='genres-prof'>
+                                $genres_html
                             </div>
-                            <div class='user-info animate-from-bottom'>
-                                <h2 class='info-name'> @" . htmlspecialchars($row['nombre_usuario'], ENT_QUOTES, 'UTF-8') . "</h2>
-                            </div>
-                        </aside>
-                        <aside class='user-button'>
-                            <div class=''>
-                                <a href='#' class='btn btn-color fs-5' data-bs-toggle='modal' data-bs-target='#editaModal' data-bs-id='" . htmlspecialchars($id_cuenta, ENT_QUOTES, 'UTF-8') . "'>
-                                    Editar Perfil
-                                </a>
-                            </div>
-                            <div class=''>
-                                <a href='logout.php'>
-                                    <button class='btn btn-color fs-5 button-logout'>Logout</button>
-                                </a>
-                            </div>
-                        </aside>
-                    </article>
-                </section>
-                <section class='userinfo-genres'>
-                    <article class='user-genres'>
-                        <h2 class='h2-animate'>Géneros Favoritos</h2>
-                        <div class='genres-prof '>
-                            $genres_html
-                        </div>
-                    </article>
-                </section>
-                <section class='userinfo-description'>
-                    <form id='modificaAboutMe' class='modifAboutMe' method='POST' action='editarSobreMi.php'>
-                        <label class='description-tittle'>
-                            Sobre Mí
-                            <label style='font-size: 1rem;'> ------->Modificar: <input type='checkbox' id='modifAboutMeCheckbox' name='modifAboutMeCheckbox'/></label>
-                            <input type='submit' name='submit-modificacion' value='Registrar Modificación'>
-                            <textarea readonly class='description-aboutme' name='aboutMeRead' id='aboutMeRead' cols='30' rows='10' required>" . htmlspecialchars($row['about_me'], ENT_QUOTES, 'UTF-8') . "</textarea>
-                            <textarea class='description-aboutme d-none' name='about_me' id='aboutMeMod' cols='30' rows='10' placeholder='Escriba aquí...'></textarea>
-                            <input type='hidden' name='id_cuenta' value='" . htmlspecialchars($id_cuenta, ENT_QUOTES, 'UTF-8') . "'>
-                        </label>
-                    </form>
-                </section>
-            ";
+                        </article>
+                    </section>
+                    <section class='userinfo-description'>
+                        <form id='modificaAboutMe' class='modifAboutMe' method='POST' action='editarSobreMi.php'>
+                            <label class='description-tittle'>
+                                Sobre Mí
+                                <label style='font-size: 1rem;'> ------->Modificar: <input type='checkbox' id='modifAboutMeCheckbox' name='modifAboutMeCheckbox'/></label>
+                                <input type='submit' name='submit-modificacion' value='Registrar Modificación'>
+                                <textarea readonly class='description-aboutme' name='aboutMeRead' id='aboutMeRead' cols='30' rows='10' required>" . htmlspecialchars($row['about_me'], ENT_QUOTES, 'UTF-8') . "</textarea>
+                                <textarea class='description-aboutme d-none' name='about_me' id='aboutMeMod' cols='30' rows='10' placeholder='Escriba aquí...'></textarea>
+                                <input type='hidden' name='id_cuenta' value='" . htmlspecialchars($id_cuenta, ENT_QUOTES, 'UTF-8') . "'>
+                            </label>
+                        </form>
+                    </section>
+                ";
             } else {
                 echo "Error al obtener los datos del usuario.";
             }
@@ -182,7 +199,7 @@ class CProfile
         $id_cuenta = $_SESSION['id_cuenta'];
 
         $q =
-        "SELECT 
+            "SELECT 
             facc.id_cuenta, facc.nombre_usuario, facc.id_img
         FROM 
             cuenta_usuario AS usuario
@@ -229,7 +246,7 @@ class CProfile
                 ';
             }
         } else {
-            echo'No hay amigos para mostrar.';
+            echo 'No hay amigos para mostrar.';
         }
 
         $stmt->close();
