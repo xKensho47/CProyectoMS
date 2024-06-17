@@ -47,7 +47,7 @@ html::-webkit-scrollbar-thumb,
 .custom-scroll::-webkit-scrollbar-thumb {
     border-radius: 3px;
     height: 30px;
-    background-color: var(--color-text);
+    background-color: var(--color-principal);
 }
 
 
@@ -391,6 +391,27 @@ hr {
 }
 
 /* INICIO DE SESION */
+.main-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 88vh;
+
+    overflow-y: hidden;
+}
+
+.article-form {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+
+    width: 85%;
+    height: 85%;    
+}
+
+
 .div-form {
     background: transparent;
     color: var(--color-text);
@@ -398,9 +419,7 @@ hr {
     font-size: 1.2rem;
     border: 2px transparent solid;
     border-radius: 5px;
-    margin: 0 auto;
-    padding: 3% 0%;
-    
+    margin: 0 auto;    
 
     width: 60%;
 }
@@ -416,15 +435,6 @@ hr {
     width: 65%;
 
 }
-.article{
-    display: flex;
-    align-items: center;
-  justify-content: center;
-  width: 90%;
-  height: 88vh;
-}
-
-
 
 .formulario-login h1 {
     text-align: center;
@@ -882,6 +892,8 @@ input[type="submit"] {
     justify-content: space-evenly;
     flex-direction: row;
     max-height: 3vh;
+
+    z-index: 30;
 }
 
 .userinfo2-menu {
@@ -889,6 +901,8 @@ input[type="submit"] {
     flex-direction: row;
     width: 100%;
     height: 3vh;
+
+    z-index: 30;
 }
 .userinfo2-menu:hover{
     cursor: default;
@@ -1543,15 +1557,55 @@ footer {
 }
 
 /*PELICULAS*/
+.crud-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 
-.main-peliculas {}
-
-.body-peli {}
-
-.crud {
-    padding: 1%;
+    height: 100vh;
 }
 
+.main-crud{
+    padding: 0;
+    margin: 0;
+
+}
+.ajuste-crud{
+    padding-left: .75%;
+    padding-right: .75%;
+}
+
+.crud {
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+    flex-direction: column;
+
+    height: 88vh;
+    width: 100%;
+
+    overflow-y: scroll;
+}
+
+.crud::-webkit-scrollbar,
+.custom-scroll::-webkit-scrollbar {
+    width: 10px;
+    background-color: var(--color-background);
+}
+
+.crud::-webkit-scrollbar-track,
+.custom-scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.crud::-webkit-scrollbar-thumb,
+.custom-scroll::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    height: 30px;
+    background-color: var(--color-principal);
+}
 .peliculas-container {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -1615,30 +1669,6 @@ footer {
         1px -1px 0 #000,
         -1px 1px 0 #000,
         1px 1px 0 #000;
-}
-
-/*ARREGLOS PARA EL HEADER DEL CRUD*/
-.container-crud header {
-    background-color: #000;
-    /*background-color: transparent;*/
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-left: 1.0%;
-
-    width: 100%;
-    height: 12vh;
-    margin-top: -1.4vh;
-
-    z-index: 999;
-
-}
-
-
-.container-crud header .menu__item {
-   margin-top: -1vh;
-    margin-left: -1%;
-
 }
 
 /* ARREGLOS DEL MODAL*/
