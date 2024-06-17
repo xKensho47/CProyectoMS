@@ -22,12 +22,14 @@
 
 
 <body class="body-crud">
-    <main>
-
-        <div class="container-crud py-3">
+    <div class="crud-container container showcase">
+        <?php
+        include("conexion.php");
+        include("header.php");
+        require_once("loginVerification.php");
+        ?>
+        <main class="main-crud">
             <?php
-            include("conexion.php");
-            include("header.php");
 
             //si la variable busqueda no esta vacia
             if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
@@ -47,8 +49,8 @@
             $infoUsuarios = $conexion->query($sqlBusqueda);
 
             ?>
-            <div class="crud animate-from-bottom">
-                <div class="col-auto me-auto mt-5">
+            <div class="crud animate-from-bottom ajuste-crud">
+                <div class="col-auto me-auto mt-1">
                     <h2 class="text-left pi h2-animate">Administrar Usuarios</h2>
                 </div>
 
@@ -153,9 +155,9 @@
                 }
             </script>
 
-        </div>
-        </div>
-    </main>
+            </div>
+        </main>
+    </div>
 
     <footer>
         <p>&copy; CineFlow 2024</p>
