@@ -48,9 +48,7 @@
         ?>
     </div>  
 
-    <footer>
-        <p>&copy; CineFlow 2024</p>
-    </footer>
+    <?php include('footer.php'); ?>
     <script src="script/volverAtras.js"></script>
 </body>
 

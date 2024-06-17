@@ -52,9 +52,7 @@
     <script src="script/script.js"></script>
     <script src="script/botonTop.js"></script>
 
-    <footer>
-        <p>&copy; CineFlow 2024</p>
-    </footer>
+    <?php include('footer.php'); ?>
 </body>
 
 </html>

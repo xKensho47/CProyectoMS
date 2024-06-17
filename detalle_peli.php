@@ -264,9 +264,8 @@ mysqli_close($conexion);
         </div>
     </div>
 
-    <footer>
-        <p>&copy; CineFlow 2024</p>
-    </footer>
+    <?php include('footer.php'); ?>
+    
     <script src="script/jquery.js"></script>
     <script src="script/volverAtras.js"></script>
     <script src="slick/slick.min.js"></script>
