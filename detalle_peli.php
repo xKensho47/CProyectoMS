@@ -61,7 +61,7 @@ mysqli_close($conexion);
     <main class="main-detallepeli">
 
         <?php if ($id_cuenta) : ?>
-        <div class="volver-atras" style="float: left;">
+        <div class="volver-atras volver-flecha" style="float: left;">
             <a href="#" id="back-link" class="h2-animate"><i class="fas fa-arrow-left"></i></a>
         </div>
         <?php endif; ?>

@@ -1999,6 +1999,11 @@ tbody {
     height: 80vh;
     padding: 10px;
 }
+.volver-flecha{
+    position: absolute;
+    left: 5vw;
+    top: 15vh;
+}
 
 .contenedor-detalle_peli {
     display: flex;
@@ -2596,10 +2601,10 @@ tbody {
 }
 
 /*arreglo contacto*/
-.contacto-flecha a{
-    
-    margin-left: -65vh;
-    
+.contacto-flecha{
+    position: absolute;
+    left: 15vw;
+    top: 25vh;
 }
 /*arreglo detalle peli*/
 .no-autenticado {
