@@ -60,11 +60,14 @@ mysqli_close($conexion);
     </div>
     <main class="main-detallepeli">
 
+        <?php if ($id_cuenta) : ?>
         <div class="volver-atras" style="float: left;">
             <a href="#" id="back-link" class="h2-animate"><i class="fas fa-arrow-left"></i></a>
         </div>
+        <?php endif; ?>
 
         <?php if (!$id_cuenta) : ?>
+            <a href="index.php" class="animate-from-bottom btn btn-color fs-5" style="margin-bottom:30px;">Ir a inicio</a>
             <div class="animate-from-bottom">
                 <p class="no-autenticado">Para visualizar la película <a href="login.php">inicie sesión</a></p>
             </div>
