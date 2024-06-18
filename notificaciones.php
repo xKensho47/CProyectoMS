@@ -16,6 +16,19 @@ session_start(); ?>
     <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
     <link rel="manifest" href="./images/favicon/site.webmanifest">
     <title>Notificaciones</title>
+
+    <style>
+.border {
+    color: black;
+    text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
+}
+
+.wave {
+    color: #ae10df; /* Cambiado a violeta más oscuro */
+    animation: shift 3s ease-in-out infinite;
+}
+
+    </style>
 </head>
 
 <body>
@@ -91,19 +104,17 @@ session_start(); ?>
                                 echo '<input type="hidden" name="tipo_mensaje" value="' . $mensaje . '">';
                                 echo '<input type="hidden" name="id_peli" value="' . $peli . '">';
                                 echo '<input type="hidden" name="fecha" value="' . $fecha . '">';
-                                echo'<input type="hidden" name="accion" value="eliminar">';
+                                echo '<input type="hidden" name="accion" value="eliminar">';
                                 echo '<button type="submit" class="cerrar-notificacion eliminar">x</button>';
                                 echo '</form>';
                                 echo '</div>';
                             }
-                            
-                            
                         }
                     }
 
                     if ($consulta_peli_nueva->num_rows > 0) {
                         $hayResultados = true; // Se encontraron resultados
-                        $hayNotificacion= false;
+                        $hayNotificacion = false;
                         while ($fila = $consulta_peli_nueva->fetch_assoc()) {
                             echo '<div class="notificacion">';
                             echo '<p class="mensaje">¡Nueva película: "' . $fila["titulo"] . '" añadida a la categoría de ' . $fila["nombres_generos"] . '!</p>';
@@ -118,14 +129,20 @@ session_start(); ?>
                         echo '<p class="mensaje">No hay nuevas notificaciones.</p>';
                         echo '</div>';
                     }
-                
+
                     ?>
                 </div>
             </aside>
             <aside class="contact">
                 <div class="contacto">
-                    <h2>¿Tenés alguna duda o consulta?,</h2>
-                    <h3> ¡Contactanos!</h3>
+                    <div style="position: relative; display: inline-block;">
+                        <h2 class="border">¿Tenés alguna duda o consulta?</h2>
+                        <h2 class="wave" style="position: absolute; top: 0; left: 0;">¿Tenés alguna duda o consulta?</h2>
+                    </div>
+                    <div style="position: relative; display: inline-block;">
+                        <h3 class="border">¡Contactanos!</h3>
+                        <h3 class="wave" style="position: absolute; top: 0; left: 0;">¡Contactanos!</h3>
+                    </div>
                     <a href="contacto.php">Contacto</a>
                 </div>
             </aside>
@@ -147,14 +164,10 @@ session_start(); ?>
                 window.location.href = 'detalle_peli.php?id_peli=' + idPeli;
             });
         });
-
-
-
-
     </script>
 
 
-<?php include('footer.php'); ?>
+    <?php include('footer.php'); ?>
 </body>
 
 </html>
