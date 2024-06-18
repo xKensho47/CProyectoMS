@@ -5,62 +5,74 @@ if (!function_exists('mostrarfooter')) {
             case 'admin':
                 echo'
                 <footer>
-                    <div class="info_footer">
-                        <div class="elementos_footer">
-                            <a href="index.php">Inicio</a>
-                        </div>
-                        <div class="elementos_footer">
-                            <a href="generos.php">Generos</a>
-                        </div>
-                        <div class="elementos_footer">
-                            <a href="notificaciones.php">Notificaciones</a>
-                        </div>
-                        <div class="elementos_footer">
-                            <a href="profile.php">Perfil</a>
-                        </div>
-                        <div>
-                        <h4>Redes Sociales</h4>
-                            <div class="redes_sociales">
-                                <a><img class="red_social" src="./images/twitter.png"/></a>
-                                <a><img class="red_social" src="./images/facebook.png"/></a>
-                                <a><img class="red_social" src="./images/instagram.png"/></a>
-                            </div>
-                        </div>
+                    <div class="footer-toggle">
+                        <p class="copyright">&copy; 2024 CineFlow <span class="arrow-up">&#9650;</span></p>
                     </div>
-                    <p class="copyright">&copy; 2024 CineFlow </p>
+                    <nav class="info_footer">
+                        <ul class="footer-links">
+                            <li class="elementos_footer">
+                                <a href="index.php">Inicio</a>
+                            </li>
+                            <li class="elementos_footer">
+                                <a href="generos.php">Generos</a>
+                            </li>
+                            <li class="elementos_footer">
+                                <a href="notificaciones.php">Notificaciones</a>
+                            </li>
+                            <li class="elementos_footer">
+                                <a href="crud_peliculas.php">CRUD</a>
+                            </li>
+                            <li class="elementos_footer">
+                                <a href="admin_usuarios.php">Usuarios</a>
+                            </li>
+                            <li class="elementos_footer">
+                                <a href="profile.php">Perfil</a>
+                            </li>
+                        </ul>
+                        <section class="social-media">
+                            <h4>Redes Sociales</h4>
+                            <div class="redes_sociales">
+                                <a href="#"><img class="red_social" src="./images/twitter.png" alt="Twitter"/></a>
+                                <a href="#"><img class="red_social" src="./images/facebook.png" alt="Facebook"/></a>
+                                <a href="#"><img class="red_social" src="./images/instagram.png" alt="Instagram"/></a>
+                            </div>
+                        </section>
+                    </nav>
                 </footer>
                 ';
             break;
 
             case 'autenticado':
-                echo'
-                
+                echo'                
                 <footer>
-                    <div class="info_footer">
-                        <div class="elementos_footer">
-                            <a href="index.php">Inicio</a>
-                        </div>
-                        <div class="elementos_footer">
-                            <a href="generos.php">Generos</a>
-                        </div>
-                        <div class="elementos_footer">
-                            <a href="notificaciones.php">Notificaciones</a>
-                        </div>
-                        <div class="elementos_footer">
-                            <a href="profile.php">Perfil</a>
-                        </div>
-                        <div>
-                        <h4>Redes Sociales</h4>
-                            <div class="redes_sociales">
-                                <a><img class="red_social" src="./images/twitter.png"/></a>
-                                <a><img class="red_social" src="./images/facebook.png"/></a>
-                                <a><img class="red_social" src="./images/instagram.png"/></a>
-                            </div>
-                        </div>
+                    <div class="footer-toggle">
+                        <p class="copyright">&copy; 2024 CineFlow <span class="arrow-up">&#9650;</span></p>
                     </div>
-                    <p class="copyright">&copy; 2024 CineFlow </p>
-                </footer>
-                
+                    <nav class="info_footer">
+                        <ul class="footer-links">
+                            <li class="elementos_footer">
+                                <a href="index.php">Inicio</a>
+                            </li>
+                            <li class="elementos_footer">
+                                <a href="generos.php">Generos</a>
+                            </li>
+                            <li class="elementos_footer">
+                                <a href="notificaciones.php">Notificaciones</a>
+                            </li>
+                            <li class="elementos_footer">
+                                <a href="profile.php">Perfil</a>
+                            </li>
+                        </ul>
+                        <section class="social-media">
+                            <h4>Redes Sociales</h4>
+                            <div class="redes_sociales">
+                                <a href="#"><img class="red_social" src="./images/twitter.png" alt="Twitter"/></a>
+                                <a href="#"><img class="red_social" src="./images/facebook.png" alt="Facebook"/></a>
+                                <a href="#"><img class="red_social" src="./images/instagram.png" alt="Instagram"/></a>
+                            </div>
+                        </section>
+                    </nav>
+                </footer>                
                 ';
 
                 break;
@@ -68,23 +80,27 @@ if (!function_exists('mostrarfooter')) {
             case 'invitado':
                 echo'
                 <footer>
-                    <div class="info_footer">
-                        <div class="elementos_footer">
-                            <a href="login.php">Iniciar Sesión</a>
-                        </div>
-                    <div class="elementos_footer">
-                        <a href="registro.php">Registrarse</a>
+                    <div class="footer-toggle">
+                        <p class="copyright">&copy; 2024 CineFlow <span class="arrow-up">&#9650;</span></p>
                     </div>
-                    <div>
-                        <h4>Redes Sociales</h4>
-                        <div class="redes_sociales">
-                            <a><img class="red_social" src="./images/twitter.png"/></a>
-                            <a><img class="red_social" src="./images/facebook.png"/></a>
-                            <a><img class="red_social" src="./images/instagram.png"/></a>
-                        </div>
-                    </div>
-                    </div>
-                    <p class="copyright">&copy; 2024 CineFlow </p>
+                    <nav class="info_footer">
+                        <ul class="footer-links">
+                            <li class="elementos_footer">
+                                <a href="login.php">Iniciar Sesión</a>
+                            </li>
+                            <li class="elementos_footer">
+                                <a href="registro.php">Registrarse</a>
+                            </li>
+                        </ul>
+                        <section class="social-media">
+                            <h4>Redes Sociales</h4>
+                            <div class="redes_sociales">
+                                <a href="#"><img class="red_social" src="./images/twitter.png" alt="Twitter"/></a>
+                                <a href="#"><img class="red_social" src="./images/facebook.png" alt="Facebook"/></a>
+                                <a href="#"><img class="red_social" src="./images/instagram.png" alt="Instagram"/></a>
+                            </div>
+                        </section>
+                    </nav>
                 </footer>
                 ';
                 break;
