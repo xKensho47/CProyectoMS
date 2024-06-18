@@ -30,7 +30,7 @@ include ('conexion.php');
                 echo'
                 <script src="script/heroControl.js"></script>
                 <div class="hero" id="hero">
-                    <div class="hero-texto">
+                    <div class="hero-texto animate-from-bottom">
                         <h1>Bienvenidos a <span class="titulo-hero">CineFlow</span></h1>
                         <h2>La mejor plataforma gratuita</h2>
                     </div>

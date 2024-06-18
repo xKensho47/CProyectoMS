@@ -271,8 +271,23 @@ header form input {
 }
 
 .titulo-hero {
-    color: var(--color-principal);
-}
+ 
+    color: #d3ccda; /* Color violeta */
+    text-shadow: 0 0 10px #ae10df, 0 0 20px #ae10df, 0 0 30px #ae10df, 0 0 40px #ae10df, 0 0 70px #ae10df, 0 0 80px #ae10df, 0 0 100px #ae10df, 0 0 150px #ae10df;
+    animation: neon-glow 1.5s ease-in-out infinite alternate;
+ }
+ 
+ @keyframes neon-glow {
+    0% {
+        text-shadow: 0 0 10px #ae10df, 0 0 20px #ae10df, 0 0 30px #ae10df, 0 0 40px #ae10df, 0 0 70px #ae10df, 0 0 80px #ae10df, 0 0 100px #ae10df, 0 0 150px #ae10df;
+    }
+    100% {
+        text-shadow: 0 0 5px #ae10df, 0 0 10px #ae10df, 0 0 15px #ae10df, 0 0 20px #ae10df, 0 0 35px #ae10df, 0 0 40px #ae10df, 0 0 50px #ae10df, 0 0 75px #ae10df;
+    }
+ }
+ 
+ 
+
 
 /* MAIN CONTENT */
 .showcase {
