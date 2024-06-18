@@ -61,10 +61,10 @@ if(isset($_SESSION['id_cuenta'])){
 
         <main class="contenedor-principal-main animate-from-bottom">
             <div class="volver-atras volver-later">
-                <a href="profile.php" id="back-link" class="h2-animate"><i class="fas fa-arrow-left"></i>Perfil</a>
+                <a href="profile.php" id="back-link" class="h2-animate"><i class="fas fa-arrow-left"></i></a>
             </div>
             <article class="later-container">
-                <h2 class="h2-animate">Ver más tarde</h2>
+                <h2 class="titulo-mas-tarde">Ver más tarde</h2>
                 <div class="contenedor-peliculas ">
                     <?php
                         if ($result && $result->num_rows > 0) {

@@ -1102,6 +1102,7 @@ input[type="submit"] {
     padding-right: 2.5%;
     font-size: 2.2rem;
     width: 100%;
+   
 }
 .x-carousel-tittle .x-tittle:hover{
     cursor: default;
@@ -1532,6 +1533,7 @@ footer:hover {
     color: var(--color-text); /* Asegura que los enlaces también tengan el color del texto correcto */
     font-size: 1.7rem; /* Aumenta el tamaño de la letra de los enlaces */
     text-decoration: none; /* Quita el subrayado de los enlaces */
+   
 }
 
 .social-media {
@@ -1544,6 +1546,9 @@ footer:hover {
 
 .social-media h4 {
     color: var(--color-text); /* Asegura que el encabezado también tenga el color del texto correcto */
+    color: #d3ccda; /* Color violeta */
+    text-shadow: 0 0 10px #ae10df, 0 0 20px #ae10df, 0 0 30px #ae10df, 0 0 40px #ae10df, 0 0 70px #ae10df, 0 0 80px #ae10df, 0 0 100px #ae10df, 0 0 150px #ae10df;
+    animation: neon-glow 1.5s ease-in-out infinite alternate;
 }
 
 .redes_sociales {
@@ -2119,6 +2124,9 @@ tbody {
 .info-titulo_titulo>h1 {
     font-size: 2.6rem;
     margin: 0;
+    color: #d3ccda; /* Color violeta */
+    text-shadow: 0 0 10px #ae10df, 0 0 20px #ae10df, 0 0 30px #ae10df, 0 0 40px #ae10df, 0 0 70px #ae10df, 0 0 80px #ae10df, 0 0 100px #ae10df, 0 0 150px #ae10df;
+    animation: neon-glow 1.5s ease-in-out infinite alternate;
 }
 
 .info-titulo_titulo > h3{
@@ -2841,7 +2849,12 @@ tbody {
 
 }
 
-
+.titulo-mas-tarde{
+    margin-top: 10vh;
+    color: #d3ccda; /* Color violeta */
+    text-shadow: 0 0 10px #ae10df, 0 0 20px #ae10df, 0 0 30px #ae10df, 0 0 40px #ae10df, 0 0 70px #ae10df, 0 0 80px #ae10df, 0 0 100px #ae10df, 0 0 150px #ae10df;
+    animation: neon-glow 1.5s ease-in-out infinite alternate;
+}
 
 
 
