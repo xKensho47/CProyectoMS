@@ -220,7 +220,7 @@ header form input {
     align-items: center;
 
     width: 100%;
-    height: 88vh;
+    height: 85vh;
 
     z-index: 1;
 
@@ -392,7 +392,7 @@ hr {
     justify-content: center;
 
     width: 100%;
-    height: 88vh;
+    height: 85vh;
 
     overflow-y: hidden;
 }
@@ -1544,7 +1544,7 @@ footer:hover {
 
 /* GENERO */
 .main-genres {
-    min-height: 88vh;
+    min-height: 85vh;
 }
 
 .genres-container {
@@ -1670,7 +1670,7 @@ footer:hover {
     /* justify-content: center; */
     flex-direction: column;
 
-    height: 88vh;
+    height: 85vh;
     width: 100%;
 
     overflow-y: scroll;
@@ -2379,13 +2379,13 @@ tbody {
     flex-direction: row;
 
     width: 100%;
-    height: 88vh;
+    height: 85vh;
 
     z-index: 1;
 }
 .notif{
     width: 50%;
-    height: 88vh;
+    height: 85vh;
     padding: 5vh;
     padding-left: 4vw;
 }
@@ -2396,7 +2396,7 @@ tbody {
     justify-content: center;
     
     width: 50%;
-    height: 88vh;
+    height: 85vh;
     padding: 5vh;
     padding-top: 10vh;
 }
