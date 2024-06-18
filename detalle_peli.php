@@ -1,4 +1,3 @@
-
 <!-- ESTA BIEN-->
 <?php
 session_start();
@@ -65,6 +64,12 @@ mysqli_close($conexion);
             <a href="#" id="back-link" class="h2-animate"><i class="fas fa-arrow-left"></i></a>
         </div>
 
+        <?php if (!$id_cuenta) : ?>
+            <div class="animate-from-bottom">
+                <p class="no-autenticado">Para visualizar la película <a href="login.php">inicie sesión</a></p>
+            </div>
+        <?php endif; ?>
+
         <div class="contenedor-detalle_peli animate-from-bottom">
             <div class="detallepeli-poster">
                 <img src="<?php echo $row['path_poster'] ?>" alt="<?php echo $row['titulo'] ?>" class="imagen-deslizar">
@@ -76,6 +81,7 @@ mysqli_close($conexion);
                         <h1><?php echo $row['titulo'] ?></h1>
                         <h3>(<?php echo $anoEstreno ?>)</h3>
                     </div>
+
                     <?php if ($id_cuenta) : ?>
                         <div class="contenedor-estrellas">
                             <form class="star-rating" action="estrellas.php?form_submitted=true" method="post">
@@ -132,12 +138,12 @@ mysqli_close($conexion);
                 </div>
                 <?php if ($id_cuenta) : ?>
                     <div class="info-botones">
-                    <div>
-                        <a href="visualizarpelicula.php?id_peli=<?= $id; ?>" class="info-boton boton-play">
-                            <i class="fa-solid fa-play"></i>
-                            <span class="tooltiptext">Reproducir</span>
-                        </a>
-                    </div>
+                        <div>
+                            <a href="visualizarpelicula.php?id_peli=<?= $id; ?>" class="info-boton boton-play">
+                                <i class="fa-solid fa-play"></i>
+                                <span class="tooltiptext">Reproducir</span>
+                            </a>
+                        </div>
                         <div>
                             <form id="form-mas-tarde" action="mas_tarde.php?form_submitted=true" method="post">
                                 <input type="hidden" name="pelicula_id" value="<?php echo $id ?>">
@@ -196,22 +202,40 @@ mysqli_close($conexion);
         </div>
     </main>
 
-    <?php if (!$id_cuenta) : ?>
-   
-    <?php endif; ?>
-     <!-- Modal -->
-        <div class="modal fade" id="modalRecomendarPeli" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalRecomendarPeli" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content recomendar-peli-content">
-            <div class="modal-header recomendar-peli-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Recomendar a un amigo</h1>
-            </div>
-            <div class="modal-body">
-                <div class="modal-body-amigos">
-                <?php
-                    if ($resultado->num_rows > 0) {
-                        while ($listado_amigos = $resultado->fetch_assoc()) {
-                        echo '
+                <div class="modal-header recomendar-peli-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Recomendar a un amigo</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body-amigos">
+                        <?php
+
+
+                        $q = " SELECT 
+                        cu.id_cuenta as id_cuenta_amigo,
+                        cu.nombre_usuario,
+                        cu.id_img
+                    FROM 
+                        lista_amigos la
+                    JOIN 
+                        cuenta_usuario cu
+                    ON 
+                        la.amigo = cu.id_cuenta
+                    WHERE 
+                        la.id_cuenta = $id_cuenta";
+                        $resultado = mysqli_query($conexion, $q);
+
+
+
+                        if ($resultado->num_rows > 0) {
+                            while ($listado_amigos = $resultado->fetch_assoc()) {
+
+                                echo '
                         <form action="recomendar_peli.php?form_submitted=true" method="post" class="contenedor-amigo">
                             <input type="hidden" name="pelicula_id" value="' . $id . '">
                             <input type="hidden" name="usuario_id" value="' . $id_cuenta . '">
@@ -226,23 +250,22 @@ mysqli_close($conexion);
                         </form>
                                 
                             ';
+                            }
+                        } else {
+                            echo '';
                         }
-                    } else {
-                        echo '';
-                    }
-                ?>
+                        ?>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-            </div>
         </div>
-        </div>
+    </div>
 
-    <footer>
-        <p>&copy; CineFlow 2024</p>
-    </footer>
+    <?php include('footer.php'); ?>
+    
     <script src="script/jquery.js"></script>
     <script src="script/volverAtras.js"></script>
     <script src="slick/slick.min.js"></script>

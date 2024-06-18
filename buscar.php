@@ -130,12 +130,7 @@
                 $("#genero_seleccionado").val("<?= $genero; ?>");
 
         </script>
-    
-    <footer>
-        <p>&copy; CineFlow 2024</p>
-    </footer>
-
-
     </div>
+    <?php include('footer.php'); ?>
 </body>
 </html>

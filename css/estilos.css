@@ -2601,6 +2601,19 @@ tbody {
     margin-left: -65vh;
     
 }
+/*arreglo detalle peli*/
+.no-autenticado {
+    font-size: 2rem;
+    color: #efadf8;
+}
+.no-autenticado a{
+    text-decoration: none;
+    color: #8b1d99;
+}
+.no-autenticado a:hover{
+    color: #a637b4;
+
+}
 
 
 

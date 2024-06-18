@@ -112,9 +112,7 @@ $id_cuenta = $_SESSION['id_cuenta'];
     <script src="script/editarSobreMi.js"></script>
     <script src="script/discoverFriends.js"></script>
 
-    <footer class="footer">
-        <p>&copy; CineFlow 2024</p>
-    </footer>
+    <?php include('footer.php'); ?>
 </body>
 
 </html>
