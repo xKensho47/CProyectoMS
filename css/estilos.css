@@ -1354,9 +1354,9 @@ input[type="submit"] {
     max-width: none;
     max-height: 25vh;
     min-width: 100%;
-    min-height: 100%;
-    object-fit: cover;
-    object-position: center;
+    /* min-height: 100%; */
+    /* object-fit: cover; */
+    /* object-position: center; */
 }
 
 .input-buscar-amigos{
