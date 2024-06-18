@@ -58,28 +58,31 @@ if(isset($_SESSION['id_cuenta'])){
         <?php
         include("header.php");
         ?>
-    </div>
-            <div class="volver-atras" style="float: left; margin-left: 20px;">
+        <main class="contenedor-principal-main animate-from-bottom">
+            <div class="volver-atras volver-favoritas">
                 <a href="profile.php" id="back-link" class="h2-animate"><i class="fas fa-arrow-left"></i>Perfil</a>
             </div>
-        <main class="contenedor-principal-main animate-from-bottom">
-            <h2 class="h2-animate">Favoritos</h2>
-            <div class="contenedor-peliculas">
-                <?php
-                    if ($result && $result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            $imagePath = $row["poster"];
-                            echo "
-                                <a href='detalle_peli.php?id_peli=" . $row['id'] . "'>
-                                    <img src=' " . $imagePath . " ' alt='Movie Posters' class='imagen-deslizar'>
-                                </a>
-                                ";
+            <article class="favoritas-container">
+                <h2 class="h2-animate">Favoritas</h2>
+                <div class="contenedor-peliculas">
+                    <?php
+                        if ($result && $result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                $imagePath = $row["poster"];
+                                echo "
+                                    <a href='detalle_peli.php?id_peli=" . $row['id'] . "'>
+                                        <img src=' " . $imagePath . " ' alt='Movie Posters' class='imagen-deslizar'>
+                                    </a>
+                                    ";
+                            }
+                        } else {
+                            echo '<p>No movies found.</p>';
                         }
-                    } else {
-                        echo '<p>No movies found.</p>';
-                    }
-                ?>
-            </div>
-        </main>  
+                    ?>
+                </div>
+            </article>
+        </main>
+    </div>
+    <?php include('footer.php'); ?>
 </body>
 </html>

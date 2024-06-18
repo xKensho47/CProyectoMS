@@ -158,10 +158,7 @@
             </div>
         </main>
     </div>
-
-    <footer>
-        <p>&copy; CineFlow 2024</p>
-    </footer>
+    <?php include('footer.php'); ?>
 </body>
 
 </html>
