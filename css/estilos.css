@@ -620,8 +620,11 @@ hr {
 }
 
 .title-profile {
-    color: var(--color-principal);
+
     text-align: center;
+    color: #d3ccda; /* Color violeta */
+    text-shadow: 0 0 10px #ae10df, 0 0 20px #ae10df, 0 0 30px #ae10df, 0 0 40px #ae10df, 0 0 70px #ae10df, 0 0 80px #ae10df, 0 0 100px #ae10df, 0 0 150px #ae10df;
+    animation: neon-glow 1.5s ease-in-out infinite alternate;
 }
 .tittle-profile:hover{
     cursor: default;
@@ -2542,9 +2545,12 @@ tbody {
     text-decoration: none;
     font-weight: bold;
     font-size: 36px;
-    color: var(--color-principal);
+    /*color: var(--color-principal);*/
     width: 25%;
     margin-top: 30px;
+    color: #d3ccda; /* Color violeta */
+    text-shadow: 0 0 10px #ae10df, 0 0 20px #ae10df, 0 0 30px #ae10df, 0 0 40px #ae10df, 0 0 70px #ae10df, 0 0 80px #ae10df, 0 0 100px #ae10df, 0 0 150px #ae10df;
+    animation: neon-glow 1.5s ease-in-out infinite alternate;
 }
 .contacto h2 , .contacto h3 {
     font-size: 2.5rem;
@@ -2555,7 +2561,7 @@ tbody {
 }
 
 .contacto a:hover {
-    color: var(--color-label);
+    color:#2b0029;
     cursor: pointer;
     transition: all .5s;
 }
