@@ -17,18 +17,7 @@ session_start(); ?>
     <link rel="manifest" href="./images/favicon/site.webmanifest">
     <title>Notificaciones</title>
 
-    <style>
-.border {
-    color: black;
-    text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
-}
 
-.wave {
-    color: #ae10df; /* Cambiado a violeta más oscuro */
-    animation: shift 3s ease-in-out infinite;
-}
-
-    </style>
 </head>
 
 <body>
