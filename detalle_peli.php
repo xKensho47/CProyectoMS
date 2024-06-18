@@ -59,150 +59,152 @@ mysqli_close($conexion);
         ?>
     </div>
     <main class="main-detallepeli">
+        <article class="detalle-container">
 
-        <?php if ($id_cuenta) : ?>
-        <div class="volver-atras volver-flecha" style="float: left;">
-            <a href="#" id="back-link" class="h2-animate"><i class="fas fa-arrow-left"></i></a>
-        </div>
-        <?php endif; ?>
-
-        <?php if (!$id_cuenta) : ?>
-            <a href="index.php" class="animate-from-bottom btn btn-color fs-5" style="margin-bottom:30px;">Ir a inicio</a>
-            <div class="animate-from-bottom">
-                <p class="no-autenticado">Para visualizar la película <a href="login.php">inicie sesión</a></p>
+            <?php if ($id_cuenta) : ?>
+            <div class="volver-atras flecha-detalle" style="float: left;">
+                <a href="#" id="back-link" class="h2-animate"><i class="fas fa-arrow-left"></i></a>
             </div>
-        <?php endif; ?>
+            <?php endif; ?>
 
-        <div class="contenedor-detalle_peli animate-from-bottom">
-            <div class="detallepeli-poster">
-                <img src="<?php echo $row['path_poster'] ?>" alt="<?php echo $row['titulo'] ?>" class="imagen-deslizar">
-            </div>
+            <?php if (!$id_cuenta) : ?>
+                <a href="index.php" class="animate-from-bottom btn btn-color fs-5" style="margin-bottom:30px;">Ir a inicio</a>
+                <div class="animate-from-bottom">
+                    <p class="no-autenticado">Para visualizar la película <a href="login.php">inicie sesión</a></p>
+                </div>
+            <?php endif; ?>
 
-            <div class="detallepeli-info">
-                <div class="info-titulo">
-                    <div class="info-titulo_titulo">
-                        <h1><?php echo $row['titulo'] ?></h1>
-                        <h3>(<?php echo $anoEstreno ?>)</h3>
-                    </div>
+            <div class="contenedor-detalle_peli animate-from-bottom">
+                <div class="detallepeli-poster">
+                    <img src="<?php echo $row['path_poster'] ?>" alt="<?php echo $row['titulo'] ?>" class="imagen-deslizar">
+                </div>
 
-                    <?php if ($id_cuenta) : ?>
-                        <div class="contenedor-estrellas">
-                            <form class="star-rating" action="estrellas.php?form_submitted=true" method="post">
-                                <button type="submit" class="botonEstrellas"><i class="fa-solid fa-share"></i></button>
+                <div class="detallepeli-info">
+                    <div class="info-titulo">
+                        <div class="info-titulo_titulo">
+                            <h1><?php echo $row['titulo'] ?></h1>
+                            <h3>(<?php echo $anoEstreno ?>)</h3>
+                        </div>
 
-                                <?php
-                                // obtengo cuantas estrellas dio un usuario
-                                $query = "SELECT estrellas FROM peli_estrellas WHERE id_cuenta = $id_cuenta AND id_peli = $id LIMIT 1";
-                                $result = mysqli_query($conexion, $query);
-                                $user_rating = mysqli_fetch_assoc($result)['estrellas'] ?? 0;
+                        <?php if ($id_cuenta) : ?>
+                            <div class="contenedor-estrellas">
+                                <form class="star-rating" action="estrellas.php?form_submitted=true" method="post">
+                                    <button type="submit" class="botonEstrellas"><i class="fa-solid fa-share"></i></button>
 
-                                ?>
-
-                                <?php for ($i = 5; $i >= 1; $i--) : ?>
-                                    <input id="star-<?php echo $i; ?>" type="radio" name="rating" value="<?php echo $i; ?>" <?php if ($user_rating == $i) echo 'checked'; ?>>
-                                    <label for="star-<?php echo $i; ?>" title="<?php echo $i; ?> estrellas">★</label>
-                                <?php endfor; ?>
-
-                                <input type="hidden" name="usuario_id" value="<?php echo $_SESSION['id_cuenta']; ?>">
-                                <input type="hidden" name="pelicula_id" value="<?php echo $id ?>">
-                            </form>
-                            </form>
-                            <div>
-                                <p>
                                     <?php
-                                    $estrellas = mysqli_fetch_assoc($cant_estrellas);
-                                    $registros = mysqli_fetch_assoc($cant_registros);
+                                    // obtengo cuantas estrellas dio un usuario
+                                    $query = "SELECT estrellas FROM peli_estrellas WHERE id_cuenta = $id_cuenta AND id_peli = $id LIMIT 1";
+                                    $result = mysqli_query($conexion, $query);
+                                    $user_rating = mysqli_fetch_assoc($result)['estrellas'] ?? 0;
 
-                                    if ($registros['cant_registros'] != 0) {
-                                        $promedio = $estrellas['cant_estrellas'] / $registros['cant_registros'];
-                                    } else {
-                                        $promedio = 0;
-                                    }
+                                    ?>
 
-                                    echo round($promedio, 1);
-                                    ?> / 5 <span class="estrella">★</span>
-                                </p>
+                                    <?php for ($i = 5; $i >= 1; $i--) : ?>
+                                        <input id="star-<?php echo $i; ?>" type="radio" name="rating" value="<?php echo $i; ?>" <?php if ($user_rating == $i) echo 'checked'; ?>>
+                                        <label for="star-<?php echo $i; ?>" title="<?php echo $i; ?> estrellas">★</label>
+                                    <?php endfor; ?>
+
+                                    <input type="hidden" name="usuario_id" value="<?php echo $_SESSION['id_cuenta']; ?>">
+                                    <input type="hidden" name="pelicula_id" value="<?php echo $id ?>">
+                                </form>
+                                </form>
+                                <div>
+                                    <p>
+                                        <?php
+                                        $estrellas = mysqli_fetch_assoc($cant_estrellas);
+                                        $registros = mysqli_fetch_assoc($cant_registros);
+
+                                        if ($registros['cant_registros'] != 0) {
+                                            $promedio = $estrellas['cant_estrellas'] / $registros['cant_registros'];
+                                        } else {
+                                            $promedio = 0;
+                                        }
+
+                                        echo round($promedio, 1);
+                                        ?> / 5 <span class="estrella">★</span>
+                                    </p>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                    <div class="info-detalles">
+                        <p><?php echo $fechaEstreno ?></p>
+                        <p>-</p>
+                        <?php if ($generos->num_rows > 0) : ?>
+                            <?php while ($r_generos = $generos->fetch_assoc()) : ?>
+                                <p><?php echo $r_generos["nombre_genero"] ?></p>
+                            <?php endwhile; ?>
+                        <?php else : ?>
+                            <p>-</p>
+                        <?php endif; ?>
+                        <p>-</p>
+                        <p><?php echo $row['duracion'] ?> Mins</p>
+                    </div>
+                    <?php if ($id_cuenta) : ?>
+                        <div class="info-botones">
+                            <div>
+                                <a href="visualizarpelicula.php?id_peli=<?= $id; ?>" class="info-boton boton-play">
+                                    <i class="fa-solid fa-play"></i>
+                                    <span class="tooltiptext">Reproducir</span>
+                                </a>
+                            </div>
+                            <div>
+                                <form id="form-mas-tarde" action="mas_tarde.php?form_submitted=true" method="post">
+                                    <input type="hidden" name="pelicula_id" value="<?php echo $id ?>">
+                                    <input type="hidden" name="usuario_id" value="<?php echo $id_cuenta; ?>">
+                                    <button type="submit" class="info-boton <?php if ($existe_mastarde && $existe_mastarde->num_rows > 0) echo 'existe'; ?>">
+                                        <i class="fa-solid fa-list"></i>
+                                        <span class="tooltiptext">Ver más tarde</span>
+                                    </button>
+                                </form>
+                                <form action="favoritos.php?form_submitted=true" method="post">
+                                    <input type="hidden" name="pelicula_id" value="<?php echo $id ?>">
+                                    <input type="hidden" name="usuario_id" value="<?php echo $id_cuenta; ?>">
+                                    <button type="submit" class="info-boton <?php if ($existe_favorito && $existe_favorito->num_rows > 0) echo 'existe'; ?>">
+                                        <i class="fa-solid fa-star"></i>
+                                        <span class="tooltiptext">Favoritos</span>
+                                    </button>
+                                </form>
+                                <form action="like.php?form_submitted=true" method="post">
+                                    <input type="hidden" name="pelicula_id" value="<?php echo $id ?>">
+                                    <input type="hidden" name="usuario_id" value="<?php echo $id_cuenta; ?>">
+                                    <button type="submit" class="info-boton <?php if ($existe_like && $existe_like->num_rows > 0) echo 'existe'; ?>">
+                                        <i class="fa-solid fa-thumbs-up"></i>
+                                        <span class="tooltiptext">Me gusta</span>
+                                    </button>
+                                </form>
+                                <button class="info-boton" data-bs-toggle="modal" data-bs-target="#modalRecomendarPeli">
+                                    <i class="fa-solid fa-users"></i>
+                                    <span class="tooltiptext">Recomendar a amigo</span>
+                                </button>
                             </div>
                         </div>
                     <?php endif; ?>
-                </div>
-                <div class="info-detalles">
-                    <p><?php echo $fechaEstreno ?></p>
-                    <p>-</p>
-                    <?php if ($generos->num_rows > 0) : ?>
-                        <?php while ($r_generos = $generos->fetch_assoc()) : ?>
-                            <p><?php echo $r_generos["nombre_genero"] ?></p>
-                        <?php endwhile; ?>
-                    <?php else : ?>
-                        <p>-</p>
-                    <?php endif; ?>
-                    <p>-</p>
-                    <p><?php echo $row['duracion'] ?> Mins</p>
-                </div>
-                <?php if ($id_cuenta) : ?>
-                    <div class="info-botones">
-                        <div>
-                            <a href="visualizarpelicula.php?id_peli=<?= $id; ?>" class="info-boton boton-play">
-                                <i class="fa-solid fa-play"></i>
-                                <span class="tooltiptext">Reproducir</span>
-                            </a>
-                        </div>
-                        <div>
-                            <form id="form-mas-tarde" action="mas_tarde.php?form_submitted=true" method="post">
-                                <input type="hidden" name="pelicula_id" value="<?php echo $id ?>">
-                                <input type="hidden" name="usuario_id" value="<?php echo $id_cuenta; ?>">
-                                <button type="submit" class="info-boton <?php if ($existe_mastarde && $existe_mastarde->num_rows > 0) echo 'existe'; ?>">
-                                    <i class="fa-solid fa-list"></i>
-                                    <span class="tooltiptext">Ver más tarde</span>
-                                </button>
-                            </form>
-                            <form action="favoritos.php?form_submitted=true" method="post">
-                                <input type="hidden" name="pelicula_id" value="<?php echo $id ?>">
-                                <input type="hidden" name="usuario_id" value="<?php echo $id_cuenta; ?>">
-                                <button type="submit" class="info-boton <?php if ($existe_favorito && $existe_favorito->num_rows > 0) echo 'existe'; ?>">
-                                    <i class="fa-solid fa-star"></i>
-                                    <span class="tooltiptext">Favoritos</span>
-                                </button>
-                            </form>
-                            <form action="like.php?form_submitted=true" method="post">
-                                <input type="hidden" name="pelicula_id" value="<?php echo $id ?>">
-                                <input type="hidden" name="usuario_id" value="<?php echo $id_cuenta; ?>">
-                                <button type="submit" class="info-boton <?php if ($existe_like && $existe_like->num_rows > 0) echo 'existe'; ?>">
-                                    <i class="fa-solid fa-thumbs-up"></i>
-                                    <span class="tooltiptext">Me gusta</span>
-                                </button>
-                            </form>
-                            <button class="info-boton" data-bs-toggle="modal" data-bs-target="#modalRecomendarPeli">
-                                <i class="fa-solid fa-users"></i>
-                                <span class="tooltiptext">Recomendar a amigo</span>
-                            </button>
-                        </div>
+                    <div class="info-descripcion">
+                        <h2>Descripción</h2>
+                        <p><?php echo $row['descripcion'] ?></p>
                     </div>
-                <?php endif; ?>
-                <div class="info-descripcion">
-                    <h2>Descripción</h2>
-                    <p><?php echo $row['descripcion'] ?></p>
-                </div>
-                <div class="info-elenco">
-                    <div class="elenco-director">
-                        <h3>Director/es</h3>
-                        <?php if ($directores->num_rows > 0) : ?>
-                            <?php while ($r_directores = $directores->fetch_assoc()) : ?>
-                                <p><?php echo $r_directores['nombre'] . ' ' . $r_directores['apellido']; ?></p>
-                            <?php endwhile; ?>
-                        <?php endif; ?>
-                    </div>
-                    <div class="elenco-actores">
-                        <h3>Actores</h3>
-                        <?php if ($actores->num_rows > 0) : ?>
-                            <?php while ($r_actores = $actores->fetch_assoc()) : ?>
-                                <p><?php echo $r_actores['nombre'] . ' ' . $r_actores['apellido']; ?></p>
-                            <?php endwhile; ?>
-                        <?php endif; ?>
+                    <div class="info-elenco">
+                        <div class="elenco-director">
+                            <h3>Director/es</h3>
+                            <?php if ($directores->num_rows > 0) : ?>
+                                <?php while ($r_directores = $directores->fetch_assoc()) : ?>
+                                    <p><?php echo $r_directores['nombre'] . ' ' . $r_directores['apellido']; ?></p>
+                                <?php endwhile; ?>
+                            <?php endif; ?>
+                        </div>
+                        <div class="elenco-actores">
+                            <h3>Actores</h3>
+                            <?php if ($actores->num_rows > 0) : ?>
+                                <?php while ($r_actores = $actores->fetch_assoc()) : ?>
+                                    <p><?php echo $r_actores['nombre'] . ' ' . $r_actores['apellido']; ?></p>
+                                <?php endwhile; ?>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </article>
     </main>
 
 

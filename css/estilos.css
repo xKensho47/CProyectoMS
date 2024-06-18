@@ -1694,6 +1694,48 @@ footer:hover {
     height: 30px;
     background-color: var(--color-principal);
 }
+
+/* PELICULAS */
+.main-peliculas{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 85vh;
+}
+.peli-container{
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    padding: 0.3vh 5vw;
+    padding-top: 15vh;
+
+    width: 100%;
+    height: 85vh;
+
+    overflow-y: scroll;
+}
+.peli-container::-webkit-scrollbar,
+.custom-scroll::-webkit-scrollbar {
+    width: 10px;
+    background-color: var(--color-background);
+}
+
+.peli-container::-webkit-scrollbar-track,
+.custom-scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.peli-container::-webkit-scrollbar-thumb,
+.custom-scroll::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    height: 30px;
+    background-color: var(--color-principal);
+}
 .peliculas-container {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -1959,6 +2001,11 @@ footer:hover {
     text-decoration: none;
 
 }
+.flecha{
+    position: absolute;
+    left: 5vw;
+    top: 15vh;
+}
 
 tbody {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -1996,21 +2043,29 @@ tbody {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 80vh;
-    padding: 10px;
+    height: 85vh;
 }
-.volver-flecha{
+.detalle-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 85vh;
+}
+.flecha-detalle{
     position: absolute;
     left: 5vw;
     top: 15vh;
 }
 
 .contenedor-detalle_peli {
+    font-size: 1.6rem;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: row;
-    width: 85%;
-    height: inherit;
+    width: 95%;
 }
 
 .detallepeli-poster {
@@ -2341,7 +2396,9 @@ tbody {
 }
 
 /*arreglo generos*/
-.contenedor-horizontal {}
+.contenedor-horizontal {
+    margin-bottom: 3vh;
+}
 
 .volver-atras {
     /* margin-right: 20px; /* Espacio entre el enlace y el formulario */
@@ -2590,23 +2647,141 @@ tbody {
 
 
 
-/*Resumen perfil*/
+/* BUSCAR - RESULTADOS*/
+.main-buscar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 85vh;
+}
+.buscar-flecha{
+    position: absolute;
+    left: 5vw;
+    top: 11vh;
+}
+.buscar-container{
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    padding: 0.3vh 5vw;
+    padding-top: 15vh;
+
+    width: 100%;
+    height: 85vh;
+
+    overflow-y: scroll;
+}
+.buscar-container::-webkit-scrollbar,
+.custom-scroll::-webkit-scrollbar {
+    width: 10px;
+    background-color: var(--color-background);
+}
+
+.buscar-container::-webkit-scrollbar-track,
+.custom-scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.buscar-container::-webkit-scrollbar-thumb,
+.custom-scroll::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    height: 30px;
+    background-color: var(--color-principal);
+}
 
 
 /*verMasTardePerfil*/
-
 .contenedor-principal-main{
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: center;
     align-items: center;
-    padding: 30px;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 100%;
+    height: 85vh;
+}
+.volver-later{
+    position: absolute;
+    left: 5vw;
+    top: 0vh;
+}
+.later-container{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    padding: 0.3vh 5vw;
+
+    width: 100%;
+    height: 85vh;
+
+    overflow-y: scroll;
+}
+.later-container::-webkit-scrollbar,
+.custom-scroll::-webkit-scrollbar {
+    width: 10px;
+    background-color: var(--color-background);
+}
+
+.later-container::-webkit-scrollbar-track,
+.custom-scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.later-container::-webkit-scrollbar-thumb,
+.custom-scroll::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    height: 30px;
+    background-color: var(--color-principal);
+}
+
+.volver-favoritas {
+    position: absolute;
+    left: 5vw;
+    top: 0vh;
+}
+
+.favoritas-container{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    padding: 0.3vh 5vw;
+
+    width: 100%;
+    height: 85vh;
+
+    overflow-y: scroll;
+}
+.favoritas-container::-webkit-scrollbar,
+.custom-scroll::-webkit-scrollbar {
+    width: 10px;
+    background-color: var(--color-background);
+}
+
+.favoritas-container::-webkit-scrollbar-track,
+.custom-scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.favoritas-container::-webkit-scrollbar-thumb,
+.custom-scroll::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    height: 30px;
+    background-color: var(--color-principal);
 }
 
 .contenedor-principal-main h2{
     margin-bottom:50px;
     font-size: 3.4rem;
+    text-align: center;
 }
 
 .contenedor-peliculas{
@@ -2614,6 +2789,7 @@ tbody {
     width: 100%;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
+
 } 
 
 .contenedor-peliculas a img{

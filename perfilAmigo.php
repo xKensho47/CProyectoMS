@@ -79,23 +79,21 @@
                 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
             </section>
         </main>
+        
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+        <script src="script/jquery.js"></script>
+        <script src="slick/slick.min.js"></script>
+        <script src="script/script.js"></script>
+        <script src="script/botonTop.js"></script>
+        <script src="script/profileOptions.js"></script>
+        <script src="script/agregarAmigos.js"></script>
+        <script src="script/profileEdit.js"></script>
+        <script src="script/editarSobreMi.js"></script>
+        <script src="script/redirect.js"></script>
+        <script src="script/toggleFriendButtons.js"></script>
     </div>    
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-    <script src="script/jquery.js"></script>
-    <script src="slick/slick.min.js"></script>
-    <script src="script/script.js"></script>
-    <script src="script/botonTop.js"></script>
-    <script src="script/profileOptions.js"></script>
-    <script src="script/agregarAmigos.js"></script>
-    <script src="script/profileEdit.js"></script>
-    <script src="script/editarSobreMi.js"></script>
-    <script src="script/redirect.js"></script>
-    <script src="script/toggleFriendButtons.js"></script>
-    
-    <footer class="footer">
-        <p>&copy; CineFlow 2024</p>
-    </footer>
+    <?php include('footer.php'); ?>
 </body>
 </html>
