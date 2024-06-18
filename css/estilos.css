@@ -2526,9 +2526,12 @@ tbody {
     text-decoration: none;
     font-weight: bold;
     font-size: 36px;
-    color: var(--color-text);
+    color: var(--color-principal);
     width: 25%;
     margin-top: 30px;
+}
+.contacto h2 , .contacto h3 {
+    font-size: 2.5rem;
 }
 
 .contacto:hover {
@@ -2536,7 +2539,7 @@ tbody {
 }
 
 .contacto a:hover {
-    color: var(--color-principal);
+    color: var(--color-label);
     cursor: pointer;
     transition: all .5s;
 }
@@ -2569,7 +2572,7 @@ tbody {
     
 }
 
-.border {
+.borde {
     color: rgb(219, 213, 213);
     text-shadow: -1px -1px 0 rgb(12, 12, 12), 1px -1px 0 rgb(14, 13, 13), -1px 1px 0 rgb(19, 18, 18), 1px 1px 0 rgb(10, 10, 10);
 }

@@ -126,11 +126,11 @@ session_start(); ?>
             <aside class="contact">
                 <div class="contacto">
                     <div style="position: relative; display: inline-block;">
-                        <h2 class="border">¿Tenés alguna duda o consulta?</h2>
+                        <h2 class="borde">¿Tenés alguna duda o consulta?</h2>
                         <h2 class="wave" style="position: absolute; top: 0; left: 0;">¿Tenés alguna duda o consulta?</h2>
                     </div>
                     <div style="position: relative; display: inline-block;">
-                        <h3 class="border">¡Contactanos!</h3>
+                        <h3 class="borde">¡Contactanos!</h3>
                         <h3 class="wave" style="position: absolute; top: 0; left: 0;">¡Contactanos!</h3>
                     </div>
                     <a href="contacto.php">Contacto</a>
