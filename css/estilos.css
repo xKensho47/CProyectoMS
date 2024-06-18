@@ -31,21 +31,16 @@ html {
     margin: 0 auto;
 }
 /* SCROLL HTML */
-
 html::-webkit-scrollbar,
 .custom-scroll::-webkit-scrollbar {
     width: 10px;
     background-color: var(--color-background);
-
-    display: none;
 }
 
 html::-webkit-scrollbar-track,
 .custom-scroll::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
-
-    display: none;
 }
 
 html::-webkit-scrollbar-thumb,
@@ -53,8 +48,6 @@ html::-webkit-scrollbar-thumb,
     border-radius: 3px;
     height: 30px;
     background-color: var(--color-principal);
-
-    display: none;
 }
 
 
@@ -67,17 +60,16 @@ body {
     height: 100vh;
     width: 100%;
     border: none;
+    overflow-x: hidden;
     background-size: cover;
 }
 
 body a {
     color: var(--color-text);
 }
-
 body a:hover {
     color: var(--color-link);
 }
-
 .container {
     display: flex;
     align-items: center;
@@ -88,15 +80,17 @@ body a:hover {
 /* HEADER */
 .container header {
     background-color: #000000;
+    /* background-color: transparent;*/
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-left: 1.8%;
-
     width: 100%;
     height: 12vh;
 
     z-index: 999;
+    /* margin-bottom: 3vh; */
+
 }
 
 .link-logo {
@@ -220,7 +214,6 @@ header form input {
     background-color: var(--color-transparent);
     color: var(--color-text);
     font-size: 1.5rem;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -229,10 +222,8 @@ header form input {
     width: 100%;
     height: 88vh;
 
-    transition: padding-bottom 0.5s; /* Transición suave para el padding */
-
     z-index: 1;
-    
+
 }
 
 /* HERO */
@@ -244,7 +235,7 @@ header form input {
     position: absolute;
     top: 0;
     left: 0;
-    
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -253,7 +244,7 @@ header form input {
     height: 100vh;
     width: 100%;
 
-    z-index: 10;
+    z-index: 550;
 }
 .hero.hidden {
     opacity: 0;
@@ -1452,70 +1443,103 @@ input[type="submit"] {
 /* FOOTER */
 footer {
     background-color: #000000;
-    color: var(--color-text);
+    color: var(--color-text); /* Cambia el color del texto */
     text-align: center;
-
     position: fixed;
     bottom: 0;
     left: 0;
-    display: none; /* Inicialmente oculto */
-
     width: 100%;
-    
-    transition: all 0.15s ease; /* Transición suave de 0.3 segundos */
-
-    z-index: 999;
+    height: 18vh; /* Mantener la altura del footer */
+    transform: translateY(calc(100% - 3vh)); /* Oculto, solo muestra la parte superior con las flechas */
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    z-index: 500; /* Ajusta el z-index */
 }
 
-.elementos_footer{
+.footer-toggle {
     display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.elementos_footer a{
-    height: 100%;
-}
-
-.elementos_footer a:hover{
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    height: 3vh; /* Parte sobresaliente del footer */
+    padding: 0 10px;
+    background-color: #000000;
     cursor: pointer;
 }
 
-.copyright{
-    width: 100%;
-    padding-left: 1%;
+.footer-toggle p {
+    font-size: 1.2em; /* Aumenta el tamaño de la letra */
 }
 
-.footer p {
-    margin-bottom: 0;
+.arrow-up {
+    font-size: 1.2em; /* Aumenta el tamaño de la flecha */
 }
 
-.redes_sociales{
+.info_footer {
     display: flex;
-    flex-direction: row;
-}
-
-.redes_sociales img{
-    height: 3vw;
-    width: 3vw;
-}
-
-
-footer div, a, p{
-   margin-top: 1%;
-}
-
-footer a{
-   font-size: 3vh;
-}
-
-.info_footer{
-    display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0 25%;
-    text-align: center;
+    padding: 20px;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    opacity: 0; /* Inicialmente oculto */
+    transition: opacity 0.5s ease-out;
+    width: 100%;
+}
+
+footer:hover .info_footer {
+    opacity: 1; /* Mostrar contenido del footer al pasar el mouse */
+}
+
+footer:hover {
+    transform: translateY(0); /* Mostrar todo el footer al pasar el mouse */
+}
+
+.footer-links {
+    display: flex;
+    justify-content: flex-start; /* Alinea los elementos hacia la izquierda */
+    align-items: center;
+    flex: 0 0 30%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+}
+
+.elementos_footer {
+    margin: 0 10px;
+    flex-grow: 1; /* Permite que los elementos crezcan equitativamente */
+    text-align: left; /* Alinea el texto a la izquierda */
+}
+
+.elementos_footer a {
+    color: var(--color-text); /* Asegura que los enlaces también tengan el color del texto correcto */
+    font-size: 1.7rem; /* Aumenta el tamaño de la letra de los enlaces */
+    text-decoration: none; /* Quita el subrayado de los enlaces */
+}
+
+.social-media {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 20%;
+}
+
+.social-media h4 {
+    color: var(--color-text); /* Asegura que el encabezado también tenga el color del texto correcto */
+}
+
+.redes_sociales {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra las imágenes en su contenedor */
+}
+
+.redes_sociales a img {
+    filter: invert(1); /* Si las imágenes son oscuras, esto las hará claras. Ajusta según sea necesario */
+}
+
+.footer-padding {
+    flex: 0 0 10%;
 }
 
 /* GENERO */
