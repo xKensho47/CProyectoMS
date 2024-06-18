@@ -4,10 +4,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const loadMoreButton = document.getElementById('load-more');
     const searchInput = document.getElementById('search-input');
 
-    // Definición directa de la cadena Base64 de la imagen por defecto (PNG)
+    // Definición directa de la cadena Base64 de la imagen por defecto (blanco)
     const defaultImg = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAwAB/mazYAAAAABJRU5ErkJggg==';
 
     function isValidImageUrl(url) {
+        // Esta función verifica si la URL no está vacía y tiene un formato válido.
         return url && url.trim() !== '';
     }
 
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         friendDiv.classList.add('data-discover');
                         friendDiv.id = `discover-${friend.id_cuenta}`;
 
-                        // Verificar si friend.id_img es válido
+                        // Verificar si friend.id_img es válido, de lo contrario usar defaultImg
                         const imgSrc = isValidImageUrl(friend.id_img) ? friend.id_img : defaultImg;
 
                         friendDiv.innerHTML = `
