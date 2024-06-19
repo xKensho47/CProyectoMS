@@ -5,7 +5,12 @@
     margin: 0;
     padding: 0;
 
-    transition: all 0.75s, transform 0.5s ease-in-out;
+    transition: all 1.15s, transform 0.75s ease-in-out;
+
+    scroll-behavior: smooth;
+}
+*:hover{
+    transition: all 1.15s, transform 0.75s ease-in-out;
 }
 
 :root {
