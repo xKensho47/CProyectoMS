@@ -44,56 +44,54 @@ if (isset($_SESSION['id_cuenta'])) {
             ?>
 
         <main class="main-peliculas">
-            <article class="peli-container">
-                <div class="contenedor-horizontal">
-                    <div class="volver-atras flecha">
-                        <?php
-                        $id = $_GET['id'];
-                        $consulta = "SELECT nombre_genero FROM genero WHERE id_genero=$id";
-                        $resultado = $conexion->query($consulta);
-                        $fila = $resultado->fetch_assoc();
-                        $nombre_genero = $fila['nombre_genero'];
-                        ?>
-                        <a href="generos.php" class="h2-animate"><i class="fas fa-arrow-left"></i> <?= $nombre_genero ?></a>
-                    </div>
+            <div class="volver-atras flecha-pelis">
+                <?php
+                $id = $_GET['id'];
+                $consulta = "SELECT nombre_genero FROM genero WHERE id_genero=$id";
+                $resultado = $conexion->query($consulta);
+                $fila = $resultado->fetch_assoc();
+                $nombre_genero = $fila['nombre_genero'];
+                ?>
+                <a href="generos.php" class="h2-animate"><i class="fas fa-arrow-left"></i> <?= $nombre_genero ?></a>
+            </div>
+            <div class="contenedor-horizontal">
+                <!-- VERIFICA SI EXISTE YA LA RELACION O NO-->
+                <?php
+                $favorito = $conexion->query("SELECT * FROM genero_favorito WHERE id_genero='$id' AND id_cuenta='$user_id'");
+                $checked = $favorito->num_rows > 0 ? 'checked' : '';
+            
+                ?>
 
-                    <!-- VERIFICA SI EXISTE YA LA RELACION O NO-->
+                <form action="genero_fav.php" method="post" class="formulario animate-from-bottom" id="genero_form">
+                    <input type="hidden" name="id_genero" value="<?= $id ?>">
+                    <input type="hidden" name="user_id" value="<?= $user_id ?>">
                     <?php
-                    $favorito = $conexion->query("SELECT * FROM genero_favorito WHERE id_genero='$id' AND id_cuenta='$user_id'");
-                    $checked = $favorito->num_rows > 0 ? 'checked' : '';
-                
+                    // Verificamos si el género es favorito
+                    if ($favorito->num_rows > 0) {
+                        // Si es favorito, marcamos el checkbox
+                        echo '<input type="checkbox" id="genero_fav" name="genero_fav" value="yes" checked>';
+                    } else {
+                        // Si no es favorito, dejamos el checkbox desmarcado
+                        echo '<input type="checkbox" id="genero_fav" name="genero_fav" value="yes">';
+                    }
                     ?>
+                    <label for="genero_fav">Marcar como género favorito</label>
+                </form>
+                
+                <!-- ESCUCHA SI EL FORM SE CARGO-->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var form = document.getElementById('genero_form');
+                        var checkbox = document.getElementById('genero_fav');
 
-                    <form action="genero_fav.php" method="post" class="formulario animate-from-bottom" id="genero_form">
-                        <input type="hidden" name="id_genero" value="<?= $id ?>">
-                        <input type="hidden" name="user_id" value="<?= $user_id ?>">
-                        <?php
-                        // Verificamos si el género es favorito
-                        if ($favorito->num_rows > 0) {
-                            // Si es favorito, marcamos el checkbox
-                            echo '<input type="checkbox" id="genero_fav" name="genero_fav" value="yes" checked>';
-                        } else {
-                            // Si no es favorito, dejamos el checkbox desmarcado
-                            echo '<input type="checkbox" id="genero_fav" name="genero_fav" value="yes">';
-                        }
-                        ?>
-                        <label for="genero_fav">Marcar como género favorito</label>
-                    </form>
-                    
-                    <!-- ESCUCHA SI EL FORM SE CARGO-->
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            var form = document.getElementById('genero_form');
-                            var checkbox = document.getElementById('genero_fav');
-
-                            checkbox.addEventListener('change', function() {
-                                form.submit();
-                            });
+                        checkbox.addEventListener('change', function() {
+                            form.submit();
                         });
-                    </script>
-                </div>
+                    });
+                </script>
+            </div>
+            <article class="peli-container">                
                 <section class="peliculas-container animate-from-bottom">
-
                     <?php
                     $sql = "SELECT p.id_peli, path_poster FROM peliculas p INNER JOIN peli_genero g ON p.id_peli = g.id_peli WHERE id_genero='$id'";
                     $result = $conexion->query($sql);
