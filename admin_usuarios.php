@@ -22,7 +22,7 @@
 
 
 <body class="body-crud">
-    <div class="crud-container container showcase">
+    <div class="container showcase">
         <?php
         include("conexion.php");
         include("header.php");
@@ -136,6 +136,7 @@
             <script src="slick/slick.min.js"></script>
             <script src="script/script.js"></script>
             <script src="script/botonTop.js"></script>
+            <script src="./script/headerControl.js"></script>
             <script src="script/bootstrap.bundle.min.js"></script>
             <script>
                 function IdUsuarioEditarEnModal(idUsuario, nombre, apellido, mail) {

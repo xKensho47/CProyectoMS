@@ -17,7 +17,7 @@
     <title>CRUD Peliculas</title>
 </head>
 <body class="body-crud">
-    <div class="crud-container container showcase">
+    <div class="container showcase">
         <?php include("peliculas_data.php"); ?>
         <main class="main-crud">
             <div class="crud">
@@ -142,6 +142,7 @@
     <script src="./slick/slick.min.js"></script>
     <script src="./script/script.js"></script>
     <script src="./script/botonTop.js"></script>
+    <script src="./script/headerControl.js"></script>
     <?php include('footer.php'); ?>
 </body>
 </html>
