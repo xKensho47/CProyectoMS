@@ -1916,41 +1916,19 @@ footer:hover {
     }
 }
 
-@keyframes colorReflectFuchsiaLilac {
+@keyframes soft-neon-glow {
     0% {
-        color: #FF00FF;
-        /* Fuchsia */
-        text-shadow: 0 0 5px #FF00FF, 0 0 10px #FF69B4, 0 0 15px #EE82EE;
+        text-shadow: 0 0 5px #ae10df, 0 0 10px #ae10df, 0 0 15px #ae10df;
     }
-
-    25% {
-        color: #FF69B4;
-        /* Hot Pink */
-        text-shadow: 0 0 5px #FF69B4, 0 0 10px #EE82EE, 0 0 15px #DDA0DD;
-    }
-
-    50% {
-        color: #EE82EE;
-        /* Violet */
-        text-shadow: 0 0 5px #EE82EE, 0 0 10px #DDA0DD, 0 0 15px #DA70D6;
-    }
-
-    75% {
-        color: #d184d1;
-        /* Plum */
-        text-shadow: 0 0 5px #d184d1, 0 0 10px #DA70D6, 0 0 15px #FF00FF;
-    }
-
     100% {
-        color: #DA70D6;
-        /* Orchid */
-        text-shadow: 0 0 5px #DA70D6, 0 0 10px #e24be2, 0 0 15px #FF69B4;
+        text-shadow: 0 0 8px #ae10df, 0 0 12px #ae10df, 0 0 18px #ae10df;
     }
 }
 
 .h2-animate {
-    display: inline-block;
-    animation: slideInFromBottom 1s ease-out forwards, colorReflectFuchsiaLilac 3s infinite;
+    color: #ffffff; /* Color violeta */
+    text-shadow: 0 0 5px #ae10df, 0 0 10px #ae10df, 0 0 15px #ae10df;
+    animation: soft-neon-glow 1.5s ease-in-out infinite alternate;
 }
 
 .pi {
@@ -2859,6 +2837,11 @@ tbody {
 
 .titulo-mas-tarde{
     margin-top: 10vh;
+    color: #d3ccda; /* Color violeta */
+    text-shadow: 0 0 10px #ae10df, 0 0 20px #ae10df, 0 0 30px #ae10df, 0 0 40px #ae10df, 0 0 70px #ae10df, 0 0 80px #ae10df, 0 0 100px #ae10df, 0 0 150px #ae10df;
+    animation: neon-glow 1.5s ease-in-out infinite alternate;
+}
+.usuarios-ad{
     color: #d3ccda; /* Color violeta */
     text-shadow: 0 0 10px #ae10df, 0 0 20px #ae10df, 0 0 30px #ae10df, 0 0 40px #ae10df, 0 0 70px #ae10df, 0 0 80px #ae10df, 0 0 100px #ae10df, 0 0 150px #ae10df;
     animation: neon-glow 1.5s ease-in-out infinite alternate;

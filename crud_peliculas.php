@@ -25,7 +25,7 @@
                     <!-- BOTONES DE REGISTRO Y MODIFICACIONES-->
                     <div class="row justify-content-end mt-0">
                         <div class="col-auto me-auto mt-5">
-                            <h2 class="text-left pi h2-animate">Peliculas</h2>
+                            <h2 class="text-left pi usuarios-ad">Peliculas</h2>
                         </div>
                         <div class="col-auto mt-5 animate-from-bottom">
                             <a href="#" class="btn btn-color fs-5" data-bs-toggle="modal" data-bs-target="#nuevoModalGenero"><i class="fa-solid fa-circle-plus"></i> Administrar Genero</a>
