@@ -88,7 +88,7 @@ body a:hover {
     width: 100%;
     height: 12vh;
 
-    z-index: 999;
+    z-index: 900;
     /* margin-bottom: 3vh; */
 
 }
@@ -1535,7 +1535,10 @@ footer:hover {
     color: var(--color-text); /* Asegura que los enlaces también tengan el color del texto correcto */
     font-size: 1.7rem; /* Aumenta el tamaño de la letra de los enlaces */
     text-decoration: none; /* Quita el subrayado de los enlaces */
-   
+}
+
+.elementos_footer a:hover {
+    color: var(--color-principal); /* Asegura que los enlaces también tengan el color del texto correcto */   
 }
 
 .social-media {
@@ -2041,7 +2044,7 @@ tbody {
    width: 100%;
    height: 12vh !important;
 
-   z-index: 999;
+   z-index: 900;
    margin-bottom: 3vh;
 
 }
