@@ -57,7 +57,7 @@ session_start(); ?>
         ?>
         <main class="notificaciones-main animate-from-bottom">
             <aside class="notif">
-                <h2 class="usuarios-ad">Notificaciones</h2>
+                <h2 class="h2-animate">Notificaciones</h2>
                 <div class="notificaciones">
                     <?php
                     // Variable bandera para verificar si hay resultados
