@@ -160,7 +160,7 @@ class CCarousel
         <section class='movies-container x-carousel' id='movies-container-$title'>
             <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
                 <div class='movies-dinamic-tittle' id='movies-dinamic-tittle-$title'>
-                    <h2 class='x-tittle h2-animate' id='x-tittle-$title'>  $title  </h2>
+                    <h2 class='x-tittle h2-animate animate-from-bottom' id='x-tittle-$title'>  $title  </h2>
                     <hr>
                 </div>
                 <div class='x-carousel-container'>
