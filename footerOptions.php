@@ -6,7 +6,7 @@ if (!function_exists('mostrarfooter')) {
                 echo'
                 <footer>
                     <div class="footer-toggle">
-                        <p class="copyright">&copy; 2024 CineFlow <span class="arrow-up">&#9650;</span></p>
+                        <p class="copyright h2-animate"><span class="arrow-up h2-animate">&#9650;</span>&copy; 2024 CineFlow <span class="arrow-up h2-animate">&#9650;</span></p>
                     </div>
                     <nav class="info_footer">
                         <ul class="footer-links">
@@ -46,7 +46,7 @@ if (!function_exists('mostrarfooter')) {
                 echo'                
                 <footer>
                     <div class="footer-toggle">
-                        <p class="copyright">&copy; 2024 CineFlow <span class="arrow-up">&#9650;</span></p>
+                        <p class="copyright h2-animate"><span class="arrow-up h2-animate">&#9650;</span>&copy; 2024 CineFlow <span class="arrow-up h2-animate">&#9650;</span></p>
                     </div>
                     <nav class="info_footer">
                         <ul class="footer-links">
@@ -81,7 +81,7 @@ if (!function_exists('mostrarfooter')) {
                 echo'
                 <footer>
                     <div class="footer-toggle">
-                        <p class="copyright">&copy; 2024 CineFlow <span class="arrow-up">&#9650;</span></p>
+                        <p class="copyright h2-animate"><span class="arrow-up h2-animate">&#9650;</span>&copy; 2024 CineFlow <span class="arrow-up h2-animate">&#9650;</span></p>
                     </div>
                     <nav class="info_footer">
                         <ul class="footer-links">

@@ -1413,6 +1413,7 @@ footer {
 
 .arrow-up {
     font-size: 1.2em; /* Aumenta el tamaño de la flecha */
+    margin: 0 4vh;
 }
 
 .info_footer {
