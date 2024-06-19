@@ -51,7 +51,7 @@
             ?>
             <div class="crud animate-from-bottom ajuste-crud">
                 <div class="col-auto me-auto mt-1">
-                    <h2 class="text-left pi usuarios-ad">Administrar Usuarios</h2>
+                    <h2 class="text-left pi h2-animate">Administrar Usuarios</h2>
                 </div>
 
                 <form action="" method="get" class="mt-4 form-inline justify-content-center mb-2">
