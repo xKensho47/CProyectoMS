@@ -52,20 +52,23 @@
                     </div>
 
                     <!-- Buscador para actores -->
+                
                     <label for="actores" class="form-label">Actores:</label>
                     <input type="text" id="busquedaActor" placeholder="Buscar actor..." class="form-control mb-3 ">
-                    <div class="row mb-3">
-                        <?php while ($row_actor = $actores->fetch_assoc()) { ?>
-                            <div class="col-md-4 actorItem">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="actorSeleccionados[]" value="<?php echo $row_actor["id_actor"]; ?>" id="check<?php echo $row_actor["id_actor"]; ?>">
-                                    <label class="form-check-label" for="check<?php echo $row_actor["id_actor"]; ?>">
-                                        <?php echo $row_actor["nombre"] . " " . $row_actor["apellido"]; ?>
-                                    </label>
+                    
+                        <div class="row mb-3">
+                            <?php while ($row_actor = $actores->fetch_assoc()) { ?>
+                                <div class="col-md-4 actorItem">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="actorSeleccionados[]" value="<?php echo $row_actor["id_actor"]; ?>" id="check<?php echo $row_actor["id_actor"]; ?>">
+                                        <label class="form-check-label" for="check<?php echo $row_actor["id_actor"]; ?>">
+                                            <?php echo $row_actor["nombre"] . " " . $row_actor["apellido"]; ?>
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
-                        <?php } ?>
-                    </div>
+                            <?php } ?>
+                        </div>
+                    
 
                     <!-- Buscador para directores -->
                     <label for="directores" class="form-label">Directores:</label>

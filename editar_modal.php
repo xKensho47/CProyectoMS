@@ -66,31 +66,35 @@ $queryPelicula = $conexion->query($pelicula);
                     <!-- TRAE TODOS LOS ACTORES CON SUS NOMBRES Y APELLIDOS CONCATENADOS -->
                     <div class="row mb-3">
                         <label for="actores" class="form-label">Actores:</label>
-                        <?php while ($row_actor = $actores->fetch_assoc()) { ?>
-                            <div class="col-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="actorSeleccionados[]" value="<?php echo $row_actor["id_actor"]; ?>" id="actor_<?php echo $row_actor["nom_ape_actor"]; ?>">
-                                    <label class="form-check-label" for="actor_<?php echo $row_actor["nom_ape_actor"]; ?>">
-                                        <?php echo $row_actor["nom_ape_actor"]; ?>
-                                    </label>
+                        <div class="contenedor-buscador-editarpeli">
+                            <?php while ($row_actor = $actores->fetch_assoc()) { ?>
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="actorSeleccionados[]" value="<?php echo $row_actor["id_actor"]; ?>" id="actor_<?php echo $row_actor["nom_ape_actor"]; ?>">
+                                        <label class="form-check-label" for="actor_<?php echo $row_actor["nom_ape_actor"]; ?>">
+                                            <?php echo $row_actor["nom_ape_actor"]; ?>
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
-                        <?php } ?>
+                            <?php } ?>
+                        </div>
                     </div>
 
                     <!-- TRAE TODOS LOS DIRECTORES CON SUS NOMBRES Y APELLIDOS CONCATENADOS -->
                     <div class="row mb-3">
                         <label for="directores" class="form-label">Directores:</label>
-                        <?php while ($row_director = $directores->fetch_assoc()) { ?>
-                            <div class="col-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="directoresSeleccionados[]" value="<?php echo $row_director["id_director"]; ?>" id="director_<?php echo $row_director["nom_ape_director"]; ?>">
-                                    <label class="form-check-label" for="director_<?php echo $row_director["nom_ape_director"]; ?>">
-                                        <?php echo $row_director["nom_ape_director"]; ?>
-                                    </label>
+                        <div class="contenedor-buscador-editarpeli">
+                            <?php while ($row_director = $directores->fetch_assoc()) { ?>
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="directoresSeleccionados[]" value="<?php echo $row_director["id_director"]; ?>" id="director_<?php echo $row_director["nom_ape_director"]; ?>">
+                                        <label class="form-check-label" for="director_<?php echo $row_director["nom_ape_director"]; ?>">
+                                            <?php echo $row_director["nom_ape_director"]; ?>
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
-                        <?php } ?>
+                            <?php } ?>
+                        </div>
                     </div>
 
 

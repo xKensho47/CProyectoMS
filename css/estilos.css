@@ -2817,6 +2817,11 @@ tbody {
     animation: neon-glow 1.5s ease-in-out infinite alternate;
 }
 
+.contenedor-buscador-editarpeli{
+    height: 30vh;
+    overflow-y: scroll;
+}
+
 
 
 
