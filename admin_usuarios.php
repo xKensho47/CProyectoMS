@@ -116,7 +116,8 @@
                                         <a href="#" class="btn btn-sm btn-warning mt-2 fs-6" data-bs-toggle="modal" data-bs-target="#editaModal" data-bs-id="<?= $id_usuario; ?>" onclick="IdUsuarioEditarEnModal(<?= $id_usuario ?>,
                                                                             '<?= $nombre ?>',
                                                                             '<?= $apellido ?>',
-                                                                            '<?= $mail ?>')"> 
+                                                                            '<?= $mail ?>',
+                                                                            '<?= $id_tipo ?>')"> 
                                             <i class="fa-solid fa-pen-to-square"></i> Editar</a>
                                         <a href="#" class="btn btn-sm btn-danger mt-2 fs-6" data-bs-toggle="modal" data-bs-target="#eliminaModal" data-bs-id="<?= $id_usuario; ?>" onclick="IdUsuarioEliminarEnModal(<?= $id_usuario ?>)"><i class="fa-solid fa-trash"></i> Eliminar</a>
                                     </div>
@@ -139,15 +140,18 @@
             <script src="./script/headerControl.js"></script>
             <script src="script/bootstrap.bundle.min.js"></script>
             <script>
-                function IdUsuarioEditarEnModal(idUsuario, nombre, apellido, mail) {
+                function IdUsuarioEditarEnModal(idUsuario, nombre, apellido, mail, idTipo) {
                     let inputEncontrado = document.getElementById("id_usuario"); //busca ese nombre en el form modal
                     let inputNombreEncontrado = document.getElementById("nombre");
                     let inputApellidoEncontrado = document.getElementById("apellido");
                     let inputMailEncontrado = document.getElementById("mail");
+                    let inputidTipoEncontrado = document.getElementById("tipo_usuario");
+
                     inputEncontrado.value = idUsuario; //modifica el valor del input con el id recibido
                     inputNombreEncontrado.value = nombre;
                     inputApellidoEncontrado.value = apellido;
                     inputMailEncontrado.value = mail;
+                    inputidTipoEncontrado.value = idTipo;
                 }
 
                 function IdUsuarioEliminarEnModal(idUsuario) {
