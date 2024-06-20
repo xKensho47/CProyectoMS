@@ -790,6 +790,10 @@ hr {
     margin: 0 auto;
 }
 
+.description-tittle{
+    width: 100%;
+}
+
 .description-aboutme {
     color: var(--color-text);
     padding: 1% 5%;
