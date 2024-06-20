@@ -1,10 +1,3 @@
-<?php 
-
-//VENTANA EMERGENTE
-
-$sqlUsuario = "SELECT id_usuario, nombre, apellido, mail, id_tipo FROM usuarios";
-$usuarios = $conexion->query($sqlUsuario);
-?>
 <div class="modal fade" id="editaModal" tabindex="-1" aria-labelledby="EditaModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg ">
         <div class="modal-content">
@@ -33,8 +26,8 @@ $usuarios = $conexion->query($sqlUsuario);
                         <label for="tipo_usuario" class="form-label">Tipo Usuario:</label>
 
                         <select name="tipo_usuario" id="tipo_usuario" class="form-control fs-5">
-                            <option value = "1"> Administrador </option>
-                            <option value = "2"> Normal </option>
+                            <option value="1"> Administrador </option>
+                            <option value="2"> Normal </option>
                         </select>
 
                     </div>
