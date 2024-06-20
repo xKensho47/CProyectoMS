@@ -1420,7 +1420,7 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 1vh;
     padding-left: 5vw;
     padding-right: 5vw;
     opacity: 0; /* Inicialmente oculto */
@@ -1449,18 +1449,18 @@ footer:hover {
 
 .elementos_footer {
     margin: 0 10px;
-    flex-grow: 1; /* Permite que los elementos crezcan equitativamente */
-    text-align: left; /* Alinea el texto a la izquierda */
+    flex-grow: 1; 
+    text-align: left; 
 }
 
 .elementos_footer a {
-    color: var(--color-text); /* Asegura que los enlaces también tengan el color del texto correcto */
-    font-size: 1.7rem; /* Aumenta el tamaño de la letra de los enlaces */
-    text-decoration: none; /* Quita el subrayado de los enlaces */
+    color: var(--color-text); 
+    font-size: 1.7rem; 
+    text-decoration: none; 
 }
 
 .elementos_footer a:hover {
-    color: var(--color-principal); /* Asegura que los enlaces también tengan el color del texto correcto */   
+    color: var(--color-principal); 
 }
 
 .social-media {
@@ -1481,11 +1481,7 @@ footer:hover {
 .redes_sociales {
     display: flex;
     align-items: center;
-    justify-content: center; /* Centra las imágenes en su contenedor */
-}
-
-.redes_sociales a img {
-    filter: invert(1); /* Si las imágenes son oscuras, esto las hará claras. Ajusta según sea necesario */
+    justify-content: center; 
 }
 
 .footer-padding {
