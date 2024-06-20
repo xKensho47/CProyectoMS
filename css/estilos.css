@@ -790,6 +790,10 @@ hr {
     margin: 0 auto;
 }
 
+.description-tittle{
+    width: 100%;
+}
+
 .description-aboutme {
     color: var(--color-text);
     padding: 1% 5%;
@@ -1104,6 +1108,25 @@ input[type="submit"] {
 /* Grid de Lista de Amigos */
 .userinfo2-friends {}
 
+.userinfo2-friends::-webkit-scrollbar,
+.custom-scroll::-webkit-scrollbar {
+    width: 10px;
+    background-color: var(--color-background);
+}
+
+.userinfo2-friends::-webkit-scrollbar-track,
+.custom-scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.userinfo2-friends::-webkit-scrollbar-thumb,
+.custom-scroll::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    height: 30px;
+    background-color: var(--color-principal);
+}
+
 .friends-grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1253,6 +1276,25 @@ input[type="submit"] {
     /* Espacio entre los elementos de la grilla */
     padding: 10px;
     width: 100%;
+}
+
+.userinfo2-discover::-webkit-scrollbar,
+.custom-scroll::-webkit-scrollbar {
+    width: 10px;
+    background-color: var(--color-background);
+}
+
+.userinfo2-discover::-webkit-scrollbar-track,
+.custom-scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.userinfo2-discover::-webkit-scrollbar-thumb,
+.custom-scroll::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    height: 30px;
+    background-color: var(--color-principal);
 }
 
 /* Información de amigo */

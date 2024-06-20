@@ -161,13 +161,11 @@ class CProfileFriend
                     </article>
                 </section>
                 <section class='userinfo-description'>
-                    <form id='modificaAboutMe' class='modifAboutMe' method='POST' action='editarSobreMi.php'>
-                        <label class='description-tittle'>
-                            Sobre Mí
-                            <textarea readonly class='description-aboutme' name='aboutMeRead' id='aboutMeRead' cols='30' rows='10' required>" . htmlspecialchars($row['about_me'], ENT_QUOTES, 'UTF-8') . "</textarea>
-                            <textarea class='description-aboutme d-none' name='about_me' id='aboutMeMod' cols='30' rows='10'></textarea>
-                        </label>
-                    </form>
+                    <label class='description-tittle'>
+                        Sobre Mí
+                        <textarea readonly class='description-aboutme' name='aboutMeRead' id='aboutMeRead' cols='30' rows='10' required>" . htmlspecialchars($row['about_me'], ENT_QUOTES, 'UTF-8') . "</textarea>
+                        <textarea class='description-aboutme d-none' name='about_me' id='aboutMeMod' cols='30' rows='10'></textarea>
+                    </label>
                 </section>
             ";
             } else {
