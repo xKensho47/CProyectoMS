@@ -224,18 +224,21 @@ mysqli_close($conexion);
                         $q = " SELECT 
                         cu.id_cuenta as id_cuenta_amigo,
                         cu.nombre_usuario,
-                        cu.id_img
+                        img.img as id_img
                     FROM 
                         lista_amigos la
                     JOIN 
                         cuenta_usuario cu
                     ON 
                         la.amigo = cu.id_cuenta
+                    LEFT JOIN
+                        img_perfil AS img ON cu.id_img = img.id_img
                     WHERE 
                         la.id_cuenta = $id_cuenta";
                         $resultado = mysqli_query($conexion, $q);
 
-
+                        //$defaultImg es una imagen negra de 1x1 píxel codificada en base64.
+                        $defaultImg = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAwAB/mazYAAAAABJRU5ErkJggg==';
 
                         if ($resultado->num_rows > 0) {
                             while ($listado_amigos = $resultado->fetch_assoc()) {
@@ -246,7 +249,7 @@ mysqli_close($conexion);
                             <input type="hidden" name="usuario_id" value="' . $id_cuenta . '">
                             <input type="hidden" name="amigo_id" value="' . $listado_amigos["id_cuenta_amigo"] . '">
                             <div class="amigo-imagen">
-                                <img src="' . $listado_amigos["id_img"] . '" alt="' . $listado_amigos["nombre_usuario"] . '">
+                                <img src="'.(!empty($listado_amigos["id_img"]) ? $listado_amigos["id_img"] : $defaultImg).'" alt="' . $listado_amigos["nombre_usuario"] . '">
                             </div>
                             <div class="amigo-nombre">
                                 <h2>' . $listado_amigos["nombre_usuario"] . '</h2>

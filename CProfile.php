@@ -80,11 +80,6 @@ class CProfile
             return;
         }
 
-        $query = "SELECT us.id_tipo FROM Usuarios us JOIN cuenta_usuario cu ON cu.id_cuenta = $id_cuenta WHERE cu.id_usuario = us.id_usuario";
-        $tipo = mysqli_query($conexion,$query);
-        $arrayassoc = mysqli_fetch_assoc($tipo);
-        $id_tipo = $arrayassoc['id_tipo'];
-
         //verificar que tipo de usuario es 
 
         $query = "SELECT us.id_tipo FROM Usuarios us JOIN cuenta_usuario cu ON cu.id_cuenta = $id_cuenta WHERE cu.id_usuario = us.id_usuario";
@@ -218,7 +213,7 @@ class CProfile
 
         $q =
         "SELECT
-            facc.id_cuenta, facc.nombre_usuario, img.img as id_img
+            facc.id_cuenta, facc.nombre_usuario, img.img as id_img, us.id_tipo
         FROM
             cuenta_usuario AS usuario
         RIGHT JOIN
@@ -227,6 +222,14 @@ class CProfile
             cuenta_usuario AS facc ON flist.amigo = facc.id_cuenta
         LEFT JOIN
             img_perfil AS img ON facc.id_img = img.id_img
+        LEFT JOIN
+            Usuarios AS us
+        ON
+            us.id_usuario = facc.id_usuario
+        JOIN
+            Tipo_usuario tu
+        ON  
+            tu.id_tipo = us.id_tipo
         WHERE
             usuario.id_cuenta = ?
         ORDER BY
@@ -255,7 +258,7 @@ class CProfile
                             <img class="profile-img" src="' . (!empty($row["id_img"]) ? htmlspecialchars($row["id_img"], ENT_QUOTES, 'UTF-8') : $defaultImg) . '" alt="Friend Avatar"/>
                         </div>
                         <div class="friend-info">
-                            <p class="friend-username">' . $row["nombre_usuario"] . '</p>
+                            <p class="friend-username">' . ($row["id_tipo"] == 1 ? "<span style='font-size:15px;'>&#128081;</span>" : "")  . $row["nombre_usuario"] . '</p>
                         </div>
                     </div>
                     <div class="friend-button">
@@ -284,9 +287,10 @@ class CProfile
 
         $offset = ($page - 1) * $itemsPerPage;
 
+
         $q = 
         "SELECT 
-            u.id_cuenta, u.nombre_usuario, img.img AS id_img
+            u.id_cuenta, u.nombre_usuario, img.img AS id_img, us.id_tipo
         FROM 
             cuenta_usuario u
         LEFT JOIN 
@@ -299,6 +303,14 @@ class CProfile
             img_perfil img 
         ON 
             u.id_img = img.id_img
+        LEFT JOIN
+            Usuarios us
+        ON
+            us.id_usuario = u.id_usuario
+        JOIN
+            Tipo_usuario tu
+        ON  
+            tu.id_tipo = us.id_tipo
         WHERE 
             u.id_cuenta != ? 
         AND 

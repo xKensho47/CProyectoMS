@@ -109,7 +109,7 @@ function laterCarousel($conexion){
                         echo '<p>No movies found.</p>';
                     }
 
-                    if ($result->num_rows > 0){
+                    if ($result->num_rows > 3){
                         echo "<a href='verMasTardePerfil.php' class='btn btn-color fs-5'>Ver más</a>";
                     }
         echo "

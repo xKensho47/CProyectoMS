@@ -2191,10 +2191,13 @@ tbody {
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
 
 .amigo-imagen img{
     width: 70px;
+    border-radius: 50%;
+   
 }
 
 .amigo-nombre{

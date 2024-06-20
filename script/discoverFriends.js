@@ -12,6 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
         return url && url.trim() !== '';
     }
 
+    function isAdmin(idTipo){
+        if(idTipo == 1){
+            return true;
+        }
+        return false
+    }
+
     function loadDiscoverFriends(page, searchTerm = '') {
         fetch(`discoverFriends.php?page=${page}&itemsPerPage=${itemsPerPage}&search=${encodeURIComponent(searchTerm)}`)
             .then(response => response.json())
@@ -29,6 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         // Verificar si friend.id_img es válido, de lo contrario usar defaultImg
                         const imgSrc = isValidImageUrl(friend.id_img) ? friend.id_img : defaultImg;
+                        const admin = isAdmin(friend.id_tipo) ? "<span style='font-size:15px;'>&#128081;</span>" : "";
+
+
+                        
 
                         friendDiv.innerHTML = `
                             <div class="discover-container">
@@ -36,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <img class="profile-img" src="${imgSrc}" alt="Discover Avatar"/>
                                 </div>
                                 <div class="discover-info">
-                                    <p class="discover-username">${friend.nombre_usuario}</p>
+                                    <p class="discover-username">${admin}${friend.nombre_usuario}</p>
                                 </div>
                             </div>
                             <div class="discover-button">

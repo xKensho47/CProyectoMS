@@ -187,7 +187,7 @@ class CProfileFriend
 
         $q =
         "SELECT
-            facc.id_cuenta, facc.nombre_usuario, img.img as id_img
+            facc.id_cuenta, facc.nombre_usuario, img.img as id_img,us.id_tipo
         FROM
             cuenta_usuario AS usuario
         RIGHT JOIN
@@ -196,6 +196,14 @@ class CProfileFriend
             cuenta_usuario AS facc ON flist.amigo = facc.id_cuenta
         LEFT JOIN
             img_perfil AS img ON facc.id_img = img.id_img
+        LEFT JOIN
+            Usuarios AS us
+        ON
+            us.id_usuario = facc.id_usuario
+        JOIN
+            Tipo_usuario tu
+        ON  
+            tu.id_tipo = us.id_tipo
         WHERE
             usuario.id_cuenta = $id_profile
         ORDER BY
@@ -216,7 +224,7 @@ class CProfileFriend
                             <img class="profile-img" src="' . (!empty($row["id_img"]) ? htmlspecialchars($row["id_img"], ENT_QUOTES, 'UTF-8') : $defaultImg) . '" alt="Friend Avatar"/>
                         </div>
                         <div class="friend-info">
-                            <p class="friend-username">' . $row["nombre_usuario"] . '</p>
+                            <p class="friend-username">' . ($row["id_tipo"] == 1 ? "<span style='font-size:15px;'>&#128081;</span>" : "")  . $row["nombre_usuario"] . '</p>
                         </div>
                     </div>
                     <div class="friend-button" data-id-cuenta="' . $id_cuenta . '" data-id-profile="' . $row['id_cuenta'] . '">
