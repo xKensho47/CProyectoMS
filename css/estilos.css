@@ -2221,7 +2221,7 @@ tbody {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 200px;
+    width: 210px;
     height: 100px;
     border: 1px solid #000;
     margin: 5px;
@@ -2229,7 +2229,7 @@ tbody {
 }
 
 .amigo-imagen{
-    width: 70px;
+    width: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2237,7 +2237,7 @@ tbody {
 }
 
 .amigo-imagen img{
-    width: 70px;
+    width: 60px;
     border-radius: 50%;
    
 }
@@ -2252,7 +2252,7 @@ tbody {
 
 .amigo-nombre > h2{
     color: var(--color-text);
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     margin-bottom: 4px;
 }
 
@@ -2818,7 +2818,7 @@ tbody {
 }
 
 .contenedor-buscador-editarpeli{
-    height: 30vh;
+    height: 20vh;
     overflow-y: scroll;
 }
 
