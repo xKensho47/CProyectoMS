@@ -14,20 +14,14 @@ if (mysqli_num_rows($resultado) > 0 && $progreso != 0) {
 
     $consulta = "UPDATE seguir_viendo SET tiempo_visto = $progreso, duracion_total = $duracion_total WHERE id_cuenta = $id_cuenta AND id_peli = $id_peli";
     mysqli_query($conexion, $consulta);
+} elseif ($progreso == 0) {
 
-}
-elseif($progreso == 0){
-
-    $consulta="DELETE FROM seguir_viendo WHERE id_cuenta = $id_cuenta";
-    mysqli_query($conexion,$consulta);
-
-}
-else {
+    $consulta = "DELETE FROM seguir_viendo WHERE id_cuenta = $id_cuenta AND id_peli = $id_peli";
+    mysqli_query($conexion, $consulta);
+} else {
 
     $consulta = "INSERT INTO seguir_viendo (id_cuenta, id_peli, tiempo_visto, duracion_total) VALUES ($id_cuenta, $id_peli, $progreso, $duracion_total)";
     mysqli_query($conexion, $consulta);
-
 }
 
 mysqli_close($conexion);
-?>
