@@ -130,7 +130,7 @@ class CProfileFriend
                                 <img class='profile-img' src='" . (!empty($row['img']) ? htmlspecialchars($row['img'], ENT_QUOTES, 'UTF-8') : $defaultImg) . "' alt='User Avatar'/>
                             </div>
                             <div class='user-info animate-from-bottom'>
-                               <h2 class='info-name'> 
+                               <h2 class='info-name otheruser'> 
                                     " . ($id_tipo == 1 ? "<span style='font-size:25px;'>&#128081;</span>" : "") . " 
                                     @" . htmlspecialchars($row['nombre_usuario'], ENT_QUOTES, 'UTF-8') . " 
                                     </h2>
