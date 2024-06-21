@@ -2218,18 +2218,32 @@ tbody {
 
 }
 
-.amigo-imagen{
-    width: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
+.amigo-imagen {
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid var(--color-popupborder);
+    border-radius: 50%;
+    padding: 1.4%;
+
+    width: 9vh;
+    height: 9vh;
+
+    overflow: hidden;
 }
 
-.amigo-imagen img{
-    width: 70px;
-    border-radius: 50%;
-   
+.amigo-imagen img {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: 18vh;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .amigo-nombre{
@@ -2803,8 +2817,32 @@ tbody {
 }
 
 .contenedor-buscador-editarpeli{
-    height: 30vh;
+    border: solid var(--color-principal) 1px;
+    border-radius: 5px;
+    
+    width: 97.5%;
+    height: 17.5vh;
+
     overflow-y: scroll;
+}
+
+.contenedor-buscador-editarpeli::-webkit-scrollbar,
+.custom-scroll::-webkit-scrollbar {
+    width: 10px;
+    background-color: var(--color-transparent);
+}
+
+.contenedor-buscador-editarpeli::-webkit-scrollbar-track,
+.custom-scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.contenedor-buscador-editarpeli::-webkit-scrollbar-thumb,
+.custom-scroll::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    height: 30px;
+    background-color: var(--color-principal);
 }
 
 
