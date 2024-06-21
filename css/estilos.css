@@ -633,8 +633,8 @@ hr {
     border-radius: 50%;
     padding: 1.4%;
 
-    width: 12.5vh;
-    height: 12.5vh;
+    width: 10vh;
+    height: 10vh;
 
     overflow: hidden;
 }
@@ -647,7 +647,7 @@ hr {
     width: auto;
     height: auto;
     max-width: none;
-    max-height: 25vh;
+    max-height: 20vh;
     min-width: 100%;
     min-height: 100%;
     object-fit: cover;
@@ -675,7 +675,17 @@ hr {
 
 .info-name {
     color: var(--color-principal);
-    font-size: 2.1rem;
+    font-size: 1.05rem;
+    font-weight: bold;
+}
+.info-name.username {
+    color: var(--color-principal);
+    font-size: 1.65rem;
+    font-weight: bold;
+}
+.info-name.realname {
+    color: var(--color-text);
+    font-size: 1.05rem;
     font-weight: bold;
 }
 
