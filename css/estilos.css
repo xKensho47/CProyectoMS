@@ -1471,22 +1471,22 @@ footer {
 }
 
 footer:hover .info_footer {
-    opacity: 1; /* Mostrar contenido del footer al pasar el mouse */
+    opacity: 1; 
 }
 
 footer:hover {
-    transform: translateY(0); /* Mostrar todo el footer al pasar el mouse */
+    transform: translateY(0); 
 }
 
 .footer-links {
     display: flex;
-    justify-content: flex-start; /* Alinea los elementos hacia la izquierda */
+    justify-content: flex-start; 
     align-items: center;
     flex: 0 0 30%;
     list-style: none;
     padding: 0;
     margin: 0;
-    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    width: 100%; 
 }
 
 .elementos_footer {
@@ -1514,7 +1514,7 @@ footer:hover {
 }
 
 .social-media h4 {
-    color: var(--color-text); /* Asegura que el encabezado también tenga el color del texto correcto */
+    color: var(--color-text); 
     color: #d3ccda; /* Color violeta */
     text-shadow: 0 0 10px #ae10df, 0 0 20px #ae10df, 0 0 30px #ae10df, 0 0 40px #ae10df, 0 0 70px #ae10df, 0 0 80px #ae10df, 0 0 100px #ae10df, 0 0 150px #ae10df;
     animation: neon-glow 1.5s ease-in-out infinite alternate;
@@ -1733,26 +1733,20 @@ footer:hover {
 .pelicula-item {
     position: relative;
     overflow: hidden;
-    /* Para que la superposición no se extienda más allá de la imagen */
     padding: 10px;
     width: 100%;
     transition: transform 0.3s ease;
-    /* Transición suave para la transformación */
     margin-bottom: 20px;
-    /* Espacio entre cada fila de películas */
-
 }
 
 .pelicula-item:hover {
     transform: scale(1.1);
-    /* Escala un 10% más grande al pasar el mouse sobre el elemento */
 }
 
 .pelicula-item img {
     display: block;
     width: 100%;
     height: auto;
-    /* Mantener la proporción de la imagen */
     object-fit: cover;
 }
 
@@ -1776,7 +1770,6 @@ footer:hover {
     padding: 10px;
 }
 
-/* Mostrar el submenú al pasar el ratón sobre el item principal */
 .menu__item:hover ul {
     display: block;
 }
@@ -1792,17 +1785,14 @@ footer:hover {
 /* ARREGLOS DEL MODAL*/
 .modal-content label {
     color: var(--color-label);
-    /* Cambia el color del texto de los labels */
 }
 
 .modal-content h1 {
     color: var(--color-label);
-    /* Cambia el color del texto de los labels */
 }
 
 .modal-content h2 {
     color: var(--color-form);
-    /* Cambia el color del texto de los labels */
 }
 
 .modal-title {
@@ -2228,18 +2218,32 @@ tbody {
 
 }
 
-.amigo-imagen{
-    width: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
+.amigo-imagen {
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid var(--color-popupborder);
+    border-radius: 50%;
+    padding: 1.4%;
+
+    width: 9vh;
+    height: 9vh;
+
+    overflow: hidden;
 }
 
-.amigo-imagen img{
-    width: 60px;
-    border-radius: 50%;
-   
+.amigo-imagen img {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: 18vh;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .amigo-nombre{
@@ -2275,7 +2279,6 @@ tbody {
 
 
 .info-boton {
-    /* Tus estilos existentes */
     position: relative; /* Añadir para que el tooltip se posicione correctamente */
 }
 
@@ -2290,7 +2293,7 @@ tbody {
     padding: 5px 0;
     position: absolute;
     z-index: 1;
-    bottom: 100%; /* Posicionar arriba del botón */
+    bottom: 100%; 
     left: 50%;
     margin-left: -60px;
     opacity: 0;
@@ -2301,7 +2304,7 @@ tbody {
 .tooltiptext::after {
     content: "";
     position: absolute;
-    top: 100%; /* En la parte inferior del tooltip */
+    top: 100%; 
     left: 50%;
     margin-left: -5px;
     border-width: 5px;
@@ -2309,7 +2312,7 @@ tbody {
     border-color: #555 transparent transparent transparent;
 }
 
-/* Mostrar el tooltip al hacer hover */
+
 .info-boton:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
@@ -2396,11 +2399,8 @@ tbody {
 
 .formulario input[type="checkbox"] {
     margin-right: 5px;
-    /* Espacio entre el checkbox y el label */
     width: 1.5rem;
-    /* Ancho del checkbox */
     height: 1.5rem;
-    /* Alto del checkbox */
 }
 
 
@@ -2411,7 +2411,6 @@ tbody {
 
 .imagen-deslizar:hover {
     transform: translateY(-10px);
-    /* Desliza la imagen hacia arriba 10px */
 }
 
 /*arreglo notificaciones*/
@@ -2453,11 +2452,11 @@ tbody {
     background-color: #1e1e1e;
     color: #ffffff;
     width: 800px;
-    max-width: 100%; /* Para que se ajuste al ancho del contenedor padre */
+    max-width: 100%; 
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative; /* Mantenemos la posición relativa para los elementos hijos */
+    position: relative; 
 }
 
 .notificacion .mensaje {
@@ -2475,7 +2474,7 @@ tbody {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: 2vh; /* Ajusta la alineación a la derecha */
+    right: 2vh; 
     background-color: transparent;
     border: none;
     color:#bebebe;
@@ -2512,7 +2511,7 @@ tbody {
     /*color: var(--color-principal);*/
     width: 25%;
     margin-top: 30px;
-    color: #d3ccda; /* Color violeta */
+    color: #d3ccda; 
     text-shadow: 0 0 10px #ae10df, 0 0 20px #ae10df, 0 0 30px #ae10df, 0 0 40px #ae10df, 0 0 70px #ae10df, 0 0 80px #ae10df, 0 0 100px #ae10df, 0 0 150px #ae10df;
     animation: neon-glow 1.5s ease-in-out infinite alternate;
 }
@@ -2536,7 +2535,7 @@ tbody {
     position: absolute;
     top: 57%;
     transform: translateY(-50%);
-    right: 12vh; /* Alinea a la derecha, ajusta según necesites */
+    right: 12vh; 
     background-color: transparent;
     border: none;
     color:#bebebe;
@@ -2564,7 +2563,7 @@ tbody {
 }
 
 .wave {
-    color: #ae10df; /* Cambiado a violeta más oscuro */
+    color: #ae10df; 
     animation: shift 3s ease-in-out infinite;
 }
 
@@ -2587,8 +2586,8 @@ tbody {
     border: none;
     background-color:transparent;
     border-radius: 3%;
-    max-width: 10vh; /* Establece un ancho máximo para los botones */
-    flex-grow: 1; /* Permite que los botones se ajusten automáticamente */
+    max-width: 10vh; 
+    flex-grow: 1; 
     cursor: pointer;
 }
 
@@ -2807,19 +2806,43 @@ tbody {
 
 .titulo-mas-tarde{
     margin-top: 10vh;
-    color: #d3ccda; /* Color violeta */
+    color: #d3ccda; 
     text-shadow: 0 0 10px #ae10df, 0 0 20px #ae10df, 0 0 30px #ae10df, 0 0 40px #ae10df, 0 0 70px #ae10df, 0 0 80px #ae10df, 0 0 100px #ae10df, 0 0 150px #ae10df;
     animation: neon-glow 1.5s ease-in-out infinite alternate;
 }
 .usuarios-ad{
-    color: #d3ccda; /* Color violeta */
+    color: #d3ccda; 
     text-shadow: 0 0 10px #ae10df, 0 0 20px #ae10df, 0 0 30px #ae10df, 0 0 40px #ae10df, 0 0 70px #ae10df, 0 0 80px #ae10df, 0 0 100px #ae10df, 0 0 150px #ae10df;
     animation: neon-glow 1.5s ease-in-out infinite alternate;
 }
 
 .contenedor-buscador-editarpeli{
-    height: 20vh;
+    border: solid var(--color-principal) 1px;
+    border-radius: 5px;
+    
+    width: 97.5%;
+    height: 17.5vh;
+
     overflow-y: scroll;
+}
+
+.contenedor-buscador-editarpeli::-webkit-scrollbar,
+.custom-scroll::-webkit-scrollbar {
+    width: 10px;
+    background-color: var(--color-transparent);
+}
+
+.contenedor-buscador-editarpeli::-webkit-scrollbar-track,
+.custom-scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.contenedor-buscador-editarpeli::-webkit-scrollbar-thumb,
+.custom-scroll::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    height: 30px;
+    background-color: var(--color-principal);
 }
 
 
