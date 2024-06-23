@@ -26,7 +26,7 @@
             <article class="article-form-login">
                 <div class="div-form">
                     <form class="formulario-login log" action="login_process.php" method="post">
-                        <h1>Iniciar sesión</h1>';
+                        <h1 class="h2-animate">Iniciar sesión</h1>';
                         if (isset($_GET['status'])) {
                             // Verificar si el parámetro 'status' tiene el valor 'success'
                             if ($_GET['status'] === 'usuario_contra') {

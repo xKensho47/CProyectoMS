@@ -81,12 +81,12 @@
                 <table class="table table-xl table-striped table-hover mt-3 ">
                     <thead class="table-dark fs-4">
                         <tr class="color-titulo-tabla">
-                            <th width="1">#</th>
-                            <th width="10">Nombre</th>
-                            <th width="10">Apellido</th>
-                            <th width="40">Mail</th>
-                            <th width="10">Tipo de Usuario</th>
-                            <th width="1">Acción</th>
+                            <th width="100px">#</th>
+                            <th width="100px">Nombre</th>
+                            <th width="100px">Apellido</th>
+                            <th width="100px">Mail</th>
+                            <th width="100px">Tipo de Usuario</th>
+                            <th width="100px">Acción</th>
                         </tr>
                     </thead>
 
@@ -100,20 +100,20 @@
                             $mail = $row->mail;
                             $id_tipo = $row->id_tipo; ?>
                             <tr>
-                                <td><?= $id_usuario; ?></td>
-                                <td><?= $nombre; ?></td>
-                                <td><?= $apellido; ?></td>
-                                <td><?= $mail; ?></td>
+                                <td ><?= $id_usuario; ?></td>
+                                <td ><?= $nombre; ?></td>
+                                <td ><?= $apellido; ?></td>
+                                <td ><?= $mail; ?></td>
 
                                 <?php if ($id_tipo == 1) { ?>
-                                    <td><?= 'Administrador'; ?></td>
+                                    <td ><?= 'Administrador'; ?></td>
                                 <?php } else { ?>
-                                    <td><?= 'Normal'; ?></td>
+                                    <td ><?= 'Normal'; ?></td>
                                 <?php } ?>
 
                                 <td>
-                                    <div class="d-flex flex-column align-items-center justify-content-center">
-                                        <a href="#" class="btn btn-sm btn-warning mt-2 fs-6" data-bs-toggle="modal" data-bs-target="#editaModal" data-bs-id="<?= $id_usuario; ?>" onclick="IdUsuarioEditarEnModal(<?= $id_usuario ?>,
+                                    <div class=" flex-column align-items-center justify-content-center">
+                                        <a href="#" class="btn btn-sm btn-warning mt-2 fs-6 " data-bs-toggle="modal" data-bs-target="#editaModal" data-bs-id="<?= $id_usuario; ?>" onclick="IdUsuarioEditarEnModal(<?= $id_usuario ?>,
                                                                             '<?= $nombre ?>',
                                                                             '<?= $apellido ?>',
                                                                             '<?= $mail ?>',
