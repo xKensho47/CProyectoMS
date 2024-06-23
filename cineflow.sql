@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-06-2024 a las 00:07:22
+-- Tiempo de generación: 24-06-2024 a las 00:50:28
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -198,7 +198,7 @@ INSERT INTO `actor` (`id_actor`, `nombre`, `apellido`) VALUES
 --
 
 CREATE TABLE `contacto` (
-  `id_cuenta` int(11) NOT NULL,
+  `id_cuenta` int(8) NOT NULL,
   `mensaje` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -207,7 +207,8 @@ CREATE TABLE `contacto` (
 --
 
 INSERT INTO `contacto` (`id_cuenta`, `mensaje`) VALUES
-(1, 'hola : fhfhrfhf');
+(1, 'hola : fhfhrfhf'),
+(16, 'ghj : rhfh');
 
 -- --------------------------------------------------------
 
@@ -238,9 +239,8 @@ INSERT INTO `cuenta_usuario` (`id_cuenta`, `about_me`, `id_usuario`, `id_img`, `
 (9, '', 12, NULL, 'kensho', '$2y$10$i7Uvd36pUuZnXjtqEWiNBulT5EbkCvzvEXVULpp2H12xtv72VUHVu'),
 (10, '', 13, NULL, 'vivi18', '$2y$10$V.hCiHFBGhzVjlu5pHivr.YzCgINkLO8gTEkIEWuUlmk8rYz2P4xq'),
 (11, '', 14, NULL, 'agus', '$2y$10$HhVnHKuIfEdsaRRg.tNBKeKW5S.TdqUO2fSDhU6gz3RxRgj0rp6Xq'),
-(12, '', 15, NULL, 'fhfh', '$2y$10$peSU4zWHgf3LhxRh7wK4z.vPDmDj8I6cLxrMNXVfgL5U2r.jJzqWa'),
-(13, '', 16, NULL, 'gjgj', '$2y$10$fKSWaJJWQ3tg3YFLhI4Tjeb53tno3AocTnpeh.KPfvPOEWU3a1KpG'),
-(14, '', 17, NULL, 'ffhf', '$2y$10$L7p01h2pxfjVSpQqm3TweeNS3zMqJtUJ3mi55bPGRfAfrDorzdqsa');
+(14, '', 17, NULL, 'ffhf', '$2y$10$L7p01h2pxfjVSpQqm3TweeNS3zMqJtUJ3mi55bPGRfAfrDorzdqsa'),
+(16, '', 21, NULL, 'hola', '$2y$10$o/HyyJ2ifBJ2UcrAIRxPueATEI1KcgGYObUugx4S8TbR52qwGHhPq');
 
 -- --------------------------------------------------------
 
@@ -450,7 +450,8 @@ INSERT INTO `mas_tarde` (`id_cuenta`, `id_peli`) VALUES
 (5, 107),
 (5, 116),
 (5, 100),
-(5, 93);
+(5, 93),
+(16, 73);
 
 -- --------------------------------------------------------
 
@@ -475,7 +476,8 @@ INSERT INTO `notificacion` (`usuario_envia`, `usuario_recibe`, `mensaje`, `id_pe
 (1, 3, 1, 98, '2024-06-19'),
 (3, 5, 0, 113, '2024-06-20'),
 (3, 5, 0, 52, '2024-06-20'),
-(7, 5, 1, 122, '2024-06-20');
+(7, 5, 1, 122, '2024-06-20'),
+(16, 3, 1, 80, '2024-06-23');
 
 -- --------------------------------------------------------
 
@@ -846,7 +848,8 @@ INSERT INTO `peli_estrellas` (`id_cuenta`, `id_peli`, `estrellas`) VALUES
 (5, 97, 3),
 (3, 97, 2),
 (5, 49, 3),
-(5, 125, 5);
+(5, 125, 5),
+(16, 73, 4);
 
 -- --------------------------------------------------------
 
@@ -874,7 +877,8 @@ INSERT INTO `peli_favorita` (`id_cuenta`, `id_peli`) VALUES
 (5, 102),
 (5, 107),
 (5, 117),
-(5, 119);
+(5, 119),
+(16, 73);
 
 -- --------------------------------------------------------
 
@@ -1060,7 +1064,8 @@ INSERT INTO `peli_like` (`id_cuenta`, `id_peli`) VALUES
 (3, 97),
 (3, 79),
 (3, 73),
-(3, 74);
+(3, 74),
+(16, 73);
 
 -- --------------------------------------------------------
 
@@ -1122,9 +1127,8 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `mail`, `id_tipo`) V
 (12, 'kensho', 'seta', 'kensho@mail.com', 1),
 (13, 'vivi', 'apellido', 'viviana@gmail.com', 1),
 (14, 'agustina', 'apellido', 'agus@gmail.com', 1),
-(15, 'gjgj', 'gjgj', 'gjg@gmail.com', 2),
-(16, 'fhfhf', 'fyhfghgf', 'fghkfkf@fhfhfh', 2),
-(17, 'manuela', 'fhfhfgh', 'fghfh@g', 2);
+(17, 'manuela', 'fhfhfgh', 'fghfh@g', 2),
+(21, 'hola', 'hola', 'hola@gmail.com', 2);
 
 -- --------------------------------------------------------
 
@@ -1150,7 +1154,7 @@ INSERT INTO `valoracion_peliculas` (`id_valores`, `id_peli`, `cant_estrellas`, `
 (4, 48, 0, 0.0, 1),
 (6, 113, 3, 3.0, 0),
 (7, 97, 5, 2.5, 2),
-(8, 73, 0, 0.0, 1),
+(8, 73, 4, 4.0, 2),
 (9, 74, 0, 0.0, 1),
 (10, 125, 5, 5.0, 0);
 
@@ -1314,7 +1318,7 @@ ALTER TABLE `actor`
 -- AUTO_INCREMENT de la tabla `cuenta_usuario`
 --
 ALTER TABLE `cuenta_usuario`
-  MODIFY `id_cuenta` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_cuenta` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `director`
@@ -1350,7 +1354,7 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_usuario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `valoracion_peliculas`
