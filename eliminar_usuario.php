@@ -94,6 +94,8 @@ if (!empty($_POST['id_usuario'])) {
         $stmt->execute();
         $stmt->close();
 
+        session_destroy();
+
         //confirmo la transacción
         $conexion->commit();
 
