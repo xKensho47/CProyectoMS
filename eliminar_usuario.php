@@ -51,8 +51,14 @@ if (!empty($_POST['id_usuario'])) {
         $stmt->execute();
         $stmt->close();
 
-        //notificaciones
+        //notificaciones que envia
         $stmt = $conexion->prepare("DELETE FROM notificacion WHERE usuario_envia = ?");
+        $stmt->bind_param("s", $id_cuenta_eliminar);
+        $stmt->execute();
+        $stmt->close();
+
+        //notificaciones que recibe
+        $stmt = $conexion->prepare("DELETE FROM notificacion WHERE usuario_recibe = ?");
         $stmt->bind_param("s", $id_cuenta_eliminar);
         $stmt->execute();
         $stmt->close();
@@ -65,6 +71,12 @@ if (!empty($_POST['id_usuario'])) {
 
         //lista_amigos donde el id_cuenta es el amigo
         $stmt = $conexion->prepare("DELETE FROM lista_amigos WHERE id_cuenta = ?");
+        $stmt->bind_param("s", $id_cuenta_eliminar);
+        $stmt->execute();
+        $stmt->close();
+
+        //form contacto
+        $stmt = $conexion->prepare("DELETE FROM contacto WHERE id_cuenta = ?");
         $stmt->bind_param("s", $id_cuenta_eliminar);
         $stmt->execute();
         $stmt->close();
