@@ -698,7 +698,7 @@ hr {
 }
 .info-name.realname {
     color: var(--color-text);
-    font-size: 1.05rem;
+    font-size: 1.5rem;
     font-weight: bold;
 }
 .info-name.otheruser {

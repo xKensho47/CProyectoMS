@@ -32,7 +32,7 @@ include ('conexion.php');
                 <div class="hero" id="hero">
                     <div class="hero-texto">
                         <h1>Bienvenidos a <span class="titulo-hero">CineFlow</span></h1>
-                        <h2>La mejor plataforma gratuita</h2>
+                        <h2>Viví una experiencia única</h2>
                     </div>
                 </div>
                 ';
