@@ -1,6 +1,8 @@
 <?php
 
+session_start();
 include("conexion.php");
+include 'loginVerification.php'; 
 
     //si recibo el ID del usuario
     if(!empty($_POST['id_usuario'])) {   
@@ -38,8 +40,17 @@ include("conexion.php");
 
         $conexion->query($sql);
 
-        header('Location: admin_usuarios.php?status=success');
-        exit();  
-    } 
+        //si el usuario se elimino a el mismo
+        if ($_SESSION['id_cuenta'] == $id_cuenta_eliminar){
+           
+            header('Location: index.php');
+            exit();
+
+        } else {
+           
+            header('Location: admin_usuarios.php?status=success');
+            exit(); 
+        }    
+    }
 
 ?>
