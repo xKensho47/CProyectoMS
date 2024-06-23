@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $id_usuario = $conexion->insert_id;
 
-            $q_insertar_cuenta = "INSERT INTO cuenta_usuario (about_me, cant_amigos, id_usuario, id_img, nombre_usuario, contraseña) VALUES ('', 0, ?, ?, ?, ?)";
+            $q_insertar_cuenta = "INSERT INTO cuenta_usuario (about_me, id_usuario, id_img, nombre_usuario, contraseña) VALUES ('', ?, ?, ?, ?)";
             $stmt_insertar_cuenta = $conexion->prepare($q_insertar_cuenta);
             if (!$stmt_insertar_cuenta) {
                 throw new Exception("Error de preparación de consulta: " . $conexion->error);
