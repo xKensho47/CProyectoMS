@@ -44,7 +44,7 @@
                             echo '
                             <div class="card card2">
                                 <div class="card-body">
-                                    <a href="peliculas.php?id=' . $row["id_genero"] . '">' . $row["nombre_genero"] . '</a>
+                                    <a href="peliculas.php?id=' . $row["id_genero"] . '" >' . $row["nombre_genero"] . '</a>
                                 </div>
                             </div>';
                             $index++;

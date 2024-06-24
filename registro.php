@@ -24,7 +24,7 @@
             <article class="article-form">
                 <div class="div-form">
                     <form class="formulario-login" action="registro_process.php" method="post">
-                        <h1>Registrate</h1>
+                        <h1 class="h2-animate">Registrate</h1>
                             <?php if (isset($_GET['status'])) {
                                 // Verificar si el parámetro 'status' tiene el valor 'success'
                                 if ($_GET['status'] === 'ocupado') {
