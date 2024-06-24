@@ -35,19 +35,24 @@
             if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
                 $busqueda = $conexion->real_escape_string($_GET['busqueda']);
 
-                //busco coincidencias
-                $sqlBusqueda = ("SELECT * 
-                                    FROM usuarios
-                                     WHERE nombre LIKE '%$busqueda%' 
-                                        OR apellido LIKE '%$busqueda%'
-                                        OR mail LIKE '%$busqueda%'");
+                $sqlBusqueda = ("SELECT u.id_usuario, u.nombre, u.apellido, u.mail, u.id_tipo, cu.nombre_usuario 
+                                    FROM usuarios u
+                                        LEFT JOIN cuenta_usuario cu ON u.id_usuario = cu.id_usuario
+                                            WHERE u.nombre LIKE '%$busqueda%'
+                                                OR u.apellido LIKE '%$busqueda%'
+                                                    OR u.mail LIKE '%$busqueda%'
+                                                        OR cu.nombre_usuario LIKE '%$busqueda%'");
+
+
+
             } else { //si no hay coincidencias, muestro todo
-                $sqlBusqueda = ("SELECT *
-                    FROM usuarios");
+                $sqlBusqueda = ("SELECT u.id_usuario, u.nombre, u.apellido, u.mail, u.id_tipo, cu.nombre_usuario 
+                                    FROM usuarios u
+                                        LEFT JOIN cuenta_usuario cu ON u.id_usuario = cu.id_usuario");
             }
 
             $infoUsuarios = $conexion->query($sqlBusqueda);
-
+           
             ?>
             <div class="crud animate-from-bottom ajuste-crud">
                 <div class="col-auto me-auto mt-1">
@@ -81,12 +86,13 @@
                 <table class="table table-xl table-striped table-hover mt-3 ">
                     <thead class="table-dark fs-4">
                         <tr class="color-titulo-tabla">
-                            <th width="100px">#</th>
-                            <th width="100px">Nombre</th>
-                            <th width="100px">Apellido</th>
-                            <th width="100px">Mail</th>
-                            <th width="100px">Tipo de Usuario</th>
-                            <th width="100px">Acción</th>
+                            <th width="1">#</th>
+                            <th width="10">Nombre</th>
+                            <th width="10">Apellido</th>
+                            <th width="40">Mail</th>
+                            <th width="10">Tipo de Usuario</th>
+                            <th width="10">Nombre Usuario</th>
+                            <th width="1">Acción</th>
                         </tr>
                     </thead>
 
@@ -98,22 +104,26 @@
                             $nombre = $row->nombre;
                             $apellido = $row->apellido;
                             $mail = $row->mail;
-                            $id_tipo = $row->id_tipo; ?>
+                            $id_tipo = $row->id_tipo; 
+                            $nom_usuario = $row->nombre_usuario; ?>
+
                             <tr>
-                                <td ><?= $id_usuario; ?></td>
-                                <td ><?= $nombre; ?></td>
-                                <td ><?= $apellido; ?></td>
-                                <td ><?= $mail; ?></td>
+                                <td><?= $id_usuario; ?></td>
+                                <td><?= $nombre; ?></td>
+                                <td><?= $apellido; ?></td>
+                                <td><?= $mail; ?></td>
 
                                 <?php if ($id_tipo == 1) { ?>
-                                    <td ><?= 'Administrador'; ?></td>
+                                    <td><?= 'Administrador'; ?></td>
                                 <?php } else { ?>
-                                    <td ><?= 'Normal'; ?></td>
+                                    <td><?= 'Normal'; ?></td>
                                 <?php } ?>
 
+                                <td><?= $nom_usuario; ?></td>
+
                                 <td>
-                                    <div class=" flex-column align-items-center justify-content-center">
-                                        <a href="#" class="btn btn-sm btn-warning mt-2 fs-6 " data-bs-toggle="modal" data-bs-target="#editaModal" data-bs-id="<?= $id_usuario; ?>" onclick="IdUsuarioEditarEnModal(<?= $id_usuario ?>,
+                                    <div class="d-flex flex-column align-items-center justify-content-center">
+                                        <a href="#" class="btn btn-sm btn-warning mt-2 fs-6" data-bs-toggle="modal" data-bs-target="#editaModal" data-bs-id="<?= $id_usuario; ?>" onclick="IdUsuarioEditarEnModal(<?= $id_usuario ?>,
                                                                             '<?= $nombre ?>',
                                                                             '<?= $apellido ?>',
                                                                             '<?= $mail ?>',
@@ -124,7 +134,7 @@
                                 </td>
 
                             </tr>
-                        <?php } ?>
+                <?php   } ?>
 
                     </tbody>
                 </table>
