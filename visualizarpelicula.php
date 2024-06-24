@@ -40,11 +40,7 @@ $pelicula=mysqli_fetch_assoc($resultado);
         </div>
         <input type="hidden" id="currentTime" name="currentTime" value="0">
         <main class="video-container">
-        <?php if ($pelicula['video_iframe']){ ?>
-        <div>
-            <?php echo $pelicula['video_iframe']; ?>
-        </div>
-    <?php }elseif ($pelicula['video_mp4']){ ?>
+        <?php if (!$pelicula['video_mp4']==NULL){ ?>
         <video controls id="video">
             <source src="<?php echo htmlspecialchars($pelicula['video_mp4']); ?>" type="video/mp4">
             Tu navegador no soporta el elemento de video.
