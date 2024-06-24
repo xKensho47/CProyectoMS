@@ -30,6 +30,7 @@
     --color-popupboton: #A105B6;
     --color-popuptxt: #183A37;
     --color-label: #d547e7;
+    --color-lab2:rgb(161, 15, 230)7;
     --color-input: #e8d5eb;
 
     scroll-behavior: smooth;
@@ -476,11 +477,14 @@ hr {
     text-align:center;
     margin-bottom: 5%;
     font-size: 2.5rem;
+    letter-spacing: 0.1rem;
 }
 
 .formulario-registro h1 {
     text-align: center;
     margin-bottom: 5%;
+    font-size: 2.5rem;
+  
 }
 
 .input-login {
@@ -491,20 +495,21 @@ hr {
     border-radius: 3%;
     margin-bottom: 5%;
     padding: 3%;
-  
+
    
     outline: none;
     width: 90%;
     font-size: 1.3rem;
 }
 
+
 .input-login:hover {
-    border-color: var(--color-label) ;
+    border-color: violet ;
  
 }
 
 input::-webkit-input-placeholder {
-    color: #b19eb9;
+    color: #c1b2c7;
     opacity: 1;
     font-size: 1.099rem;
   }
@@ -542,7 +547,7 @@ input::-webkit-input-placeholder {
 }
 
 .link-registro:hover {
-    color: var(--color-label);
+    color: violet;
 }
 
 
