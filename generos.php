@@ -42,9 +42,9 @@
                         $index = 0;
                         while ($row = $result->fetch_assoc()) {
                             echo '
-                            <div class="card card2">
-                                <div class="card-body">
-                                    <a href="peliculas.php?id=' . $row["id_genero"] . '">' . $row["nombre_genero"] . '</a>
+                            <div class="card card2 ">
+                                <div class="card-body ">
+                                    <a href="peliculas.php?id=' . $row["id_genero"] . '" >' . $row["nombre_genero"] . '</a>
                                 </div>
                             </div>';
                             $index++;

@@ -21,6 +21,7 @@
     --color-text: #E1E9D8;
     --color-link: #dcf1ea;
     --color-hover: #6A0377;
+    --color-hover2: #80108f;
     --color-form: #470250;
     --color-boton: #A105B6;
     --color-popupbg: rgba(0, 0, 0, 0.7);
@@ -449,11 +450,15 @@ hr {
     color: var(--color-text);
     text-align: center;
     font-size: 1.2rem;
-    border: 2px transparent solid;
+    /*border: 2px transparent solid;*/
     border-radius: 5px;
     margin: 0 auto;    
-
     width: 60%;
+
+   
+
+
+    
 }
 
 .formulario-login {
@@ -463,14 +468,14 @@ hr {
     border-radius: 2%;
     margin: auto;
     padding: 2%;
-
     width: 65%;
 
 }
 
 .formulario-login h1 {
-    text-align: center;
+    text-align:center;
     margin-bottom: 5%;
+    font-size: 2.5rem;
 }
 
 .formulario-registro h1 {
@@ -479,34 +484,52 @@ hr {
 }
 
 .input-login {
-    background: var(--color-form);
+    background: transparent; 
     color: var(--color-text);
-    border: 1px solid var(--color-principal);
+    border: none  ;
+    border-bottom: 2px solid var(--color-principal);
     border-radius: 3%;
     margin-bottom: 5%;
     padding: 3%;
-
-    width: 100%;
+  
+   
+    outline: none;
+    width: 90%;
+    font-size: 1.3rem;
 }
 
 .input-login:hover {
-    border-color: var(--color-hover);
+    border-color: var(--color-label) ;
+ 
 }
 
+input::-webkit-input-placeholder {
+    color: #b19eb9;
+    opacity: 1;
+    font-size: 1.099rem;
+  }
+  
 .boton-login {
     color: var(--color-text);
     font-size: 2rem;
     border: none;
+    letter-spacing: 0.1rem;
     /* margin: 16px 0; */
     padding: 1%;
 
-    background-color: rgb(140, 51, 167);
-    width: 100%;
+    background-color: var(--color-principal);
+    width: 50%;
+   
 }
 
 .boton-login:hover {
-    background: var(--color-principal);
+    transition: 0.2s;
+    letter-spacing: 0.20rem;
+    box-shadow: 0 0 25px var(--color-boton);
+    cursor: pointer;
 }
+
+
 
 .link-registro {
     color: var(--color-text);
@@ -515,10 +538,11 @@ hr {
     justify-content: center;
     align-items: center;
     margin: 3%;
+    font-size: 1.2rem;
 }
 
 .link-registro:hover {
-    color: var(--color-hover);
+    color: var(--color-label);
 }
 
 
@@ -1617,6 +1641,8 @@ footer:hover {
 
     min-width: calc(100vw / 4 - 1vw * .4);
     min-height: 7.5vh;
+
+    
 }
 
 .card-body {
@@ -1631,6 +1657,8 @@ footer:hover {
     min-height: inherit;
 
     transition: all 0.5s, transform 0.5s ease-in-out;
+
+    
 }
 
 .card-body:hover {

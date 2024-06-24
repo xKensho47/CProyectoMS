@@ -38,7 +38,7 @@
                         echo' <input class="input-login" name="nombre_usuario" type="text" maxlength="12" placeholder="Ingrese su nombre de usuario" required>
                         <input class="input-login" type="password" name="contraseña" maxlength="12" placeholder="Ingrese su contraseña" required>
                         <input class="boton-login" type="submit" value="Login" name="login">
-                        <a class="link-registro" href="registro.php">¿Todavia no sos usuario? Registrate.</a>
+                        <a class="link-registro " href="registro.php">¿Todavia no sos usuario? Registrate.</a>
                     </form>
                 </div>
             </article>
