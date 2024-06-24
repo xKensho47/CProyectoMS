@@ -5,12 +5,12 @@
     margin: 0;
     padding: 0;
 
-    transition: all .75s, transform 0.75s ease-in-out;
+    transition: all .45s, transform 0.45s ease-in-out;
 
     scroll-behavior: smooth;
 }
 *:hover{
-    transition: all .75s, transform 0.75s ease-in-out;
+    transition: all .45s, transform 0.45s ease-in-out;
 }
 
 :root {
@@ -401,13 +401,16 @@ body:not(.logeado) .main-principal {
     width: 100%;
 }
 
-hr {
+.hr-carrusel {
     position: relative;
     left: -25%;
     border: 2px solid rgb(170, 76, 207);
     margin-bottom: 4rem;
 
     width: 50%;
+}
+.hr-descripcion{
+    border: 2px solid rgb(170, 76, 207);
 }
 
 /* INICIO DE SESION */
@@ -470,6 +473,8 @@ hr {
     margin: auto;
     padding: 2%;
     width: 65%;
+    box-shadow: 16px 14px 20px #210230;
+  
 
 }
 
@@ -2122,7 +2127,7 @@ tbody {
 .info-titulo_titulo>h1 {
     font-size: 2.6rem;
     margin: 0;
-    color: #d3ccda; /* Color violeta */
+    color: #edebf0; /* Color violeta */
     text-shadow: 0 0 10px #ae10df, 0 0 20px #ae10df, 0 0 30px #ae10df, 0 0 40px #ae10df, 0 0 70px #ae10df, 0 0 80px #ae10df, 0 0 100px #ae10df, 0 0 150px #ae10df;
     animation: neon-glow 1.5s ease-in-out infinite alternate;
 }
@@ -2138,7 +2143,9 @@ tbody {
     justify-content: left;
     align-items: center;
     margin-bottom: 20px;
+    color: #edbef3;
 }
+
 
 .info-detalles>p {
     margin-right: 10px;
@@ -2180,13 +2187,19 @@ tbody {
 
 }
 
-.info-descripcion {
-    margin: 10px 0;
+.info-descripcion h2{
+   color: #fbfbfc;
 }
+
+
 
 .info-elenco {
     display: flex;
     margin: 10px 0;
+}
+
+.info-elenco h3{
+   color: #9415ad;
 }
 
 .elenco-actores {
@@ -2570,7 +2583,7 @@ tbody {
     /*color: var(--color-principal);*/
     width: 25%;
     margin-top: 30px;
-    color: #d3ccda; 
+    color: #f0ecf3; 
     text-shadow: 0 0 10px #ae10df, 0 0 20px #ae10df, 0 0 30px #ae10df, 0 0 40px #ae10df, 0 0 70px #ae10df, 0 0 80px #ae10df, 0 0 100px #ae10df, 0 0 150px #ae10df;
     animation: neon-glow 1.5s ease-in-out infinite alternate;
 }
@@ -2870,7 +2883,7 @@ tbody {
     animation: neon-glow 1.5s ease-in-out infinite alternate;
 }
 .usuarios-ad{
-    color: #d3ccda; 
+    color: #f3eeee; 
     text-shadow: 0 0 10px #ae10df, 0 0 20px #ae10df, 0 0 30px #ae10df, 0 0 40px #ae10df, 0 0 70px #ae10df, 0 0 80px #ae10df, 0 0 100px #ae10df, 0 0 150px #ae10df;
     animation: neon-glow 1.5s ease-in-out infinite alternate;
 }

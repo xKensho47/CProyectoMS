@@ -40,6 +40,7 @@
                         <input class="boton-login" type="submit" value="Login" name="login">
                         <a class="link-registro " href="registro.php">¿Todavia no sos usuario? Registrate.</a>
                     </form>
+                    <div class="light"></div>
                 </div>
             </article>
             <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>

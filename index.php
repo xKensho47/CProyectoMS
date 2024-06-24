@@ -32,7 +32,7 @@ include ('conexion.php');
                 <div class="hero" id="hero">
                     <div class="hero-texto">
                         <h1>Bienvenidos a <span class="titulo-hero">CineFlow</span></h1>
-                        <h2>Viví una experiencia única</h2>
+                        <h2>la mejor plataforma gratuita</h2>
                     </div>
                 </div>
                 ';
@@ -85,7 +85,7 @@ include ('conexion.php');
                         <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
                             <div class='movies-dinamic-tittle' id='movies-dinamic-tittle-$title'>
                                 <h2 class='x-tittle h2-animate animate-from-bottom' id='x-tittle-$title'>  $title  </h2>
-                                <hr>
+                                <hr class='hr-carrusel'>
                             </div>
                             <div class='x-carousel-container'>
                                 <button class='carousel-prev'>&#60</button>
@@ -144,7 +144,7 @@ include ('conexion.php');
                                 <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
                                     <div class='movies-dinamic-tittle' id='movies-dinamic-tittle-$title'>
                                         <h2 class='x-tittle h2-animate animate-from-bottom' id='x-tittle-$title'>  $title  </h2>
-                                        <hr>
+                                        <hr class='hr-carrusel'>
                                     </div>
                                     <div class='x-carousel-container'>
                                         <button class='carousel-prev'>&#60</button>
