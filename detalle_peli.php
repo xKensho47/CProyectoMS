@@ -182,11 +182,12 @@ mysqli_close($conexion);
                     <?php endif; ?>
                     <div class="info-descripcion">
                         <h2>Descripción</h2>
+                        <hr class="hr-descripcion">
                         <p><?php echo $row['descripcion'] ?></p>
                     </div>
                     <div class="info-elenco">
                         <div class="elenco-director">
-                            <h3>Director/es</h3>
+                            <h3 >Director/es</h3>
                             <?php if ($directores->num_rows > 0) : ?>
                                 <?php while ($r_directores = $directores->fetch_assoc()) : ?>
                                     <p><?php echo $r_directores['nombre'] . ' ' . $r_directores['apellido']; ?></p>
@@ -194,7 +195,7 @@ mysqli_close($conexion);
                             <?php endif; ?>
                         </div>
                         <div class="elenco-actores">
-                            <h3>Actores</h3>
+                            <h3 >Actores</h3>
                             <?php if ($actores->num_rows > 0) : ?>
                                 <?php while ($r_actores = $actores->fetch_assoc()) : ?>
                                     <p><?php echo $r_actores['nombre'] . ' ' . $r_actores['apellido']; ?></p>

@@ -104,7 +104,7 @@
                                     <td><?= $nombre_actor; ?></td>
                                     <td><?= $nombre_director; ?></td>
                                     <td>
-                                        <a href="#" class="btn btn-sm btn-warning mt-5 fs-6" data-bs-toggle="modal" data-bs-target="#editaModal" data-bs-id="<?= $id_peli; ?>" onclick="IdPeliculaEditarEnModal('<?= $id_peli ?>',
+                                        <a href="#" class="btn btn-sm btn-warning mt-2 fs-6" data-bs-toggle="modal" data-bs-target="#editaModal" data-bs-id="<?= $id_peli; ?>" onclick="IdPeliculaEditarEnModal('<?= $id_peli ?>',
                                                                     '<?= $titulo ?>',
                                                                     '<?= $descripcion ?>',
                                                                     '<?= $estreno ?>',
@@ -113,7 +113,7 @@
                                                                     '<?= $nombre_actor ?>',
                                                                     '<?= $nombre_director ?>')">
                                             <i class="fa-solid fa-pen-to-square"></i> Editar </a>
-                                        <a href="#" class="btn btn-sm btn-danger mt-4 fs-6" data-bs-toggle="modal" data-bs-target="#eliminaModal" data-bs-id="<?= $id_peli; ?>" onclick="IdPeliculaEliminarEnModal('<?= $id_peli ?>')"><i class="fa-solid fa-trash"></i> Eliminar</a>
+                                        <a href="#" class="btn btn-sm btn-danger mt-2 fs-6" data-bs-toggle="modal" data-bs-target="#eliminaModal" data-bs-id="<?= $id_peli; ?>" onclick="IdPeliculaEliminarEnModal('<?= $id_peli ?>')"><i class="fa-solid fa-trash"></i> Eliminar</a>
                                     </td>
                                 </tr>
                             <?php } ?>

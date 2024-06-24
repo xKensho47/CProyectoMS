@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-06-2024 a las 23:58:50
+-- Tiempo de generación: 24-06-2024 a las 00:50:28
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -198,9 +198,17 @@ INSERT INTO `actor` (`id_actor`, `nombre`, `apellido`) VALUES
 --
 
 CREATE TABLE `contacto` (
-  `id_cuenta` int(11) NOT NULL,
-  `mensaje` varchar(120) NOT NULL
+  `id_cuenta` int(8) NOT NULL,
+  `mensaje` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `contacto`
+--
+
+INSERT INTO `contacto` (`id_cuenta`, `mensaje`) VALUES
+(1, 'hola : fhfhrfhf'),
+(16, 'ghj : rhfh');
 
 -- --------------------------------------------------------
 
@@ -211,7 +219,6 @@ CREATE TABLE `contacto` (
 CREATE TABLE `cuenta_usuario` (
   `id_cuenta` int(8) NOT NULL,
   `about_me` text NOT NULL,
-  `cant_amigos` int(8) DEFAULT NULL,
   `id_usuario` int(8) NOT NULL,
   `id_img` int(1) DEFAULT NULL,
   `nombre_usuario` varchar(25) NOT NULL,
@@ -222,16 +229,18 @@ CREATE TABLE `cuenta_usuario` (
 -- Volcado de datos para la tabla `cuenta_usuario`
 --
 
-INSERT INTO `cuenta_usuario` (`id_cuenta`, `about_me`, `cant_amigos`, `id_usuario`, `id_img`, `nombre_usuario`, `contraseña`) VALUES
-(1, '', 0, 4, 3, 'jaz707', '$2y$10$.aJWgs53H1P8IrUwYdhg/eHh.od0lMy8XwGNmHP/JzbPsP1AjCuce'),
-(3, '', 0, 6, NULL, 'pepe', '$2y$10$44vuDnm7HRGEk2eS1DRT7.VsnIgiUxt9zbcJAQ69K8VOJE1ISEOZm'),
-(4, '', 0, 7, NULL, 'asda', '$2y$10$.aJWgs53H1P8IrUwYdhg/eHh.od0lMy8XwGNmHP/JzbPsP1AjCuce'),
-(5, '', 0, 8, 4, 'yaz606', '$2y$10$T4zdNCHO9OPK7iYS/Sp3q.y8PLnmgYd8FU109vP4F9bNCSEd5ZGSW'),
-(7, '', 0, 10, NULL, 'mari', '$2y$10$JvmBaMyhZdrvj9b2rmSW9O7/FSA2IcdNNeP0eUVlzE/6u912K.fCq'),
-(8, '', 0, 11, NULL, 'emi', '$2y$10$UsR9LW.dUo39hrBkEDqKmOl7TLtyy.lGZc9Np5XlSGOCOKOBIQAju'),
-(9, '', 0, 12, NULL, 'kensho', '$2y$10$i7Uvd36pUuZnXjtqEWiNBulT5EbkCvzvEXVULpp2H12xtv72VUHVu'),
-(10, '', 0, 13, NULL, 'vivi18', '$2y$10$V.hCiHFBGhzVjlu5pHivr.YzCgINkLO8gTEkIEWuUlmk8rYz2P4xq'),
-(11, '', 0, 14, NULL, 'agus', '$2y$10$HhVnHKuIfEdsaRRg.tNBKeKW5S.TdqUO2fSDhU6gz3RxRgj0rp6Xq');
+INSERT INTO `cuenta_usuario` (`id_cuenta`, `about_me`, `id_usuario`, `id_img`, `nombre_usuario`, `contraseña`) VALUES
+(1, '', 4, 3, 'jaz707', '$2y$10$.aJWgs53H1P8IrUwYdhg/eHh.od0lMy8XwGNmHP/JzbPsP1AjCuce'),
+(3, 'me encanta cineflow! fan n°1 <3', 6, 1, 'pepe', '$2y$10$44vuDnm7HRGEk2eS1DRT7.VsnIgiUxt9zbcJAQ69K8VOJE1ISEOZm'),
+(4, '', 7, NULL, 'asda', '$2y$10$.aJWgs53H1P8IrUwYdhg/eHh.od0lMy8XwGNmHP/JzbPsP1AjCuce'),
+(5, 'amo cineflow! fan n°1 <3', 8, 4, 'yaz606', '$2y$10$T4zdNCHO9OPK7iYS/Sp3q.y8PLnmgYd8FU109vP4F9bNCSEd5ZGSW'),
+(7, '', 10, 1, 'mari', '$2y$10$JvmBaMyhZdrvj9b2rmSW9O7/FSA2IcdNNeP0eUVlzE/6u912K.fCq'),
+(8, '', 11, NULL, 'emi', '$2y$10$UsR9LW.dUo39hrBkEDqKmOl7TLtyy.lGZc9Np5XlSGOCOKOBIQAju'),
+(9, '', 12, NULL, 'kensho', '$2y$10$i7Uvd36pUuZnXjtqEWiNBulT5EbkCvzvEXVULpp2H12xtv72VUHVu'),
+(10, '', 13, NULL, 'vivi18', '$2y$10$V.hCiHFBGhzVjlu5pHivr.YzCgINkLO8gTEkIEWuUlmk8rYz2P4xq'),
+(11, '', 14, NULL, 'agus', '$2y$10$HhVnHKuIfEdsaRRg.tNBKeKW5S.TdqUO2fSDhU6gz3RxRgj0rp6Xq'),
+(14, '', 17, NULL, 'ffhf', '$2y$10$L7p01h2pxfjVSpQqm3TweeNS3zMqJtUJ3mi55bPGRfAfrDorzdqsa'),
+(16, '', 21, NULL, 'hola', '$2y$10$o/HyyJ2ifBJ2UcrAIRxPueATEI1KcgGYObUugx4S8TbR52qwGHhPq');
 
 -- --------------------------------------------------------
 
@@ -365,7 +374,12 @@ INSERT INTO `genero_favorito` (`id_genero`, `id_cuenta`) VALUES
 (8, 1),
 (22, 1),
 (13, 1),
-(37, 7);
+(37, 7),
+(37, 3),
+(13, 3),
+(25, 3),
+(37, 5),
+(13, 5);
 
 -- --------------------------------------------------------
 
@@ -405,7 +419,9 @@ CREATE TABLE `lista_amigos` (
 
 INSERT INTO `lista_amigos` (`id_cuenta`, `amigo`) VALUES
 (3, 5),
-(5, 3);
+(5, 3),
+(1, 5),
+(5, 1);
 
 -- --------------------------------------------------------
 
@@ -423,7 +439,19 @@ CREATE TABLE `mas_tarde` (
 --
 
 INSERT INTO `mas_tarde` (`id_cuenta`, `id_peli`) VALUES
-(5, 48);
+(5, 48),
+(5, 99),
+(3, 74),
+(3, 119),
+(3, 101),
+(3, 107),
+(3, 116),
+(5, 119),
+(5, 107),
+(5, 116),
+(5, 100),
+(5, 93),
+(16, 73);
 
 -- --------------------------------------------------------
 
@@ -439,6 +467,18 @@ CREATE TABLE `notificacion` (
   `fecha` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `notificacion`
+--
+
+INSERT INTO `notificacion` (`usuario_envia`, `usuario_recibe`, `mensaje`, `id_peli`, `fecha`) VALUES
+(5, 3, 0, 113, '2024-06-17'),
+(1, 3, 1, 98, '2024-06-19'),
+(3, 5, 0, 113, '2024-06-20'),
+(3, 5, 0, 52, '2024-06-20'),
+(7, 5, 1, 122, '2024-06-20'),
+(16, 3, 1, 80, '2024-06-23');
+
 -- --------------------------------------------------------
 
 --
@@ -452,7 +492,6 @@ CREATE TABLE `peliculas` (
   `estreno` date NOT NULL,
   `path_poster` varchar(255) NOT NULL,
   `duracion` int(3) NOT NULL,
-  `video_iframe` varchar(255) DEFAULT NULL,
   `video_mp4` varchar(255) DEFAULT NULL,
   `fecha_subida` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -461,60 +500,60 @@ CREATE TABLE `peliculas` (
 -- Volcado de datos para la tabla `peliculas`
 --
 
-INSERT INTO `peliculas` (`id_peli`, `titulo`, `descripcion`, `estreno`, `path_poster`, `duracion`, `video_iframe`, `video_mp4`, `fecha_subida`) VALUES
-(48, 'Mi Vecino Totoro', 'Una familia japonesa se traslada al campo. Las dos hijas se encuentran con un espíritu llamado Totoro, que habita en el bosque. Junto a él, comparten mágicas aventuras.', '1988-04-16', 'posters/20230928200113to.jpg', 86, NULL, NULL, NULL),
-(49, 'Django Desencadenado', 'Acompañado por un cazarrecompensas alemán, un esclavo liberado, Django viaja a través de Estados Unidos para liberar a su esposa del sádico propietario de una plantación.', '2013-01-31', 'posters/20230928200128dj.jpg', 165, NULL, NULL, NULL),
-(52, 'Barbie', 'Barbie lleva una vida ideal en Barbieland, allí todo es perfecto, con fiestas llenas de música y color, todos los días son el mejor día. Claro que Barbie se hace algunas preguntas, cuestiones bastante incómodas que no encajan con el mundo idílico en el qu', '2023-07-20', 'posters/20230930155146barbi.jpg', 114, NULL, NULL, NULL),
-(73, 'Kill Bill', 'El día de su boda, una asesina profesional sufre el ataque de algunos miembros de su propia banda, que obedecen las órdenes de Bill, el jefe de la organización criminal. Logra sobrevivir al ataque, aunque queda en coma. Cuatro años después despierta domin', '2003-11-27', 'posters/20231003224718kb.jpg', 110, NULL, NULL, NULL),
-(74, 'La Princesa Mononoke', 'Tras sufrir el ataque de un monstruoso jabalí maldito, el joven Ashitaka emprende el camino en busca de la cura que detenga la infección. Mientras, los humanos están acabando con los bosques y los dioses convertidos en temibles bestias hacen todo lo posib', '1997-07-12', 'posters/20231003232650mo.jpg', 134, NULL, NULL, NULL),
-(75, 'Drive', 'Durante el día, Driver trabaja en un taller y es conductor especialista de cine, pero, algunas noches de forma esporádica, trabaja como chófer para delincuentes. Shannon, su mentor y jefe, que conoce bien su talento al volante, le busca directores de cine', '2012-03-01', 'posters/20231004005342dri.jpg', 100, NULL, NULL, NULL),
-(76, 'El Club de la Pelea', 'Un joven sin ilusiones lucha contra su insomnio, consecuencia quizás de su hastío por su gris y rutinaria vida. En un viaje en avión conoce a Tyler Durden, un carismático vendedor de jabón que sostiene una filosofía muy particular: el perfeccionismo es co', '1999-11-04', 'posters/20231003235405ec.jpg', 139, NULL, NULL, NULL),
-(77, 'Sweeney Todd: El barbero diabólico de la calle Fleet', 'Benjamin Barker, un hombre encarcelado 15 años injustamente en el otro lado del mundo, que escapa y vuelve a Londres con la promesa de vengarse, junto a su obsesiva y devota cómplice, la Sra. Nellie Lovett. Adoptando el disfraz de Sweeney Todd, Barker reg', '2008-01-25', 'posters/20231004005437sw.jpg', 117, NULL, NULL, NULL),
-(78, 'El Club de los Poetas Muetos', 'En un elitista y estricto colegio privado de Nueva Inglaterra, un grupo de alumnos descubrirá la poesía, el significado de \"Carpe Diem\" -aprovechar el momento- y la importancia de perseguir los sueños, gracias a un excéntrico profesor que despierta sus me', '1990-02-15', 'posters/20231004002321ecp.jpg', 128, NULL, NULL, NULL),
-(79, 'Joker', 'Arthur Fleck es un hombre ignorado por la sociedad, cuya motivación en la vida es hacer reír. Pero una serie de trágicos acontecimientos le llevarán a ver el mundo de otra forma. Película basada en Joker, el popular personaje de DC Comics y archivillano d', '2019-10-03', 'posters/20231004005315ej.jpg', 122, NULL, NULL, NULL),
-(80, 'Bohemian Rhapsody', 'Bohemian Rhapsody es una rotunda y sonora celebración de Queen, de su música y de su extraordinario cantante Freddie Mercury, que desafió estereotipos e hizo añicos tradiciones para convertirse en uno de los showmans más queridos del mundo. ', '2018-11-01', 'posters/20231004004942dh.jpg', 134, NULL, NULL, NULL),
-(85, 'Pantera Negra', 'Situada después de los eventos de Capitán América: Civil War, TChalla, hijo del fallecido rey TChaka, asciende al trono de Wakanda y se convierte en Pantera Negra, pero descubre que reinar su nación será un desafío para él, ya que no solo debe gobernar y ', '2018-02-15', 'posters/20231020223942bp.jpg', 134, NULL, NULL, NULL),
-(90, 'El asombroso mundo de Gumball', 'Las divertidas aventuras de Gumball y su peculiar familia en el idílico pueblecito de Elmore. Un papá conejo rosa de 1,95 metros, una madre que se gana la vida vendiendo arco iris, un gato azul muy torpe y una conejita con un cerebro superdotado componen ', '2011-05-03', 'posters/20231031203045dMYY2XqsQvDEdTtPfykTEOUZngK.jpg', 0, NULL, NULL, NULL),
-(91, 'Ben 10', 'Ben 10 cuenta las aventuras de Ben Tennyson, un niño normal de diez años que descubre en sus vacaciones de verano un extraño reloj extraterrestre dentro de un meteorito que chocó contra la Tierra. Ben pronto se da cuenta de que este reloj no es un aparato', '2005-12-27', 'posters/20231031203927eogRp6oAPK0SEvQmCrQ78LTlSdp.jpg', 0, NULL, NULL, NULL),
-(92, 'Las Chicas Superpoderosas', 'El profesor Utonium es un ingeniero genético que siempre está experimentando. Una noche decide hacer realidad su sueño más anhelado: crear una niña perfecta. El resultado es espectacular: en vez de una niña ha creado a tres superheroínas.', '1998-11-18', 'posters/20231031204708468mmhMd21pY4Yx0S0woqeEcxtL.jpg', 0, NULL, NULL, NULL),
-(93, 'Hora de Aventura', 'Finn un chico de doce años, fue encontrado en el bosque siendo un bebé por un perro de la familia, y su mejor amigo y hermano adoptivo es Jake, un perro de 28 años de edad, con poderes mágicos. Son aventureros que viven en \"La Tierra de Ooo\", un entorno l', '2010-04-05', 'posters/20231031205125vpnV0g2VOounP0kHNi86oBPceMY.jpg', 0, NULL, NULL, NULL),
-(94, 'Hotel Transilvania', 'Drácula regenta un hotel en el que se alojan personajes como Frankenstein, la Momia, el Hombre Invisible, hombres-lobo... El problema del conde es que tiene una hija de espíritu aventurero a la que le resulta difícil controlar. El conflicto surge cuando s', '2012-10-04', 'posters/20231031210125eJGvzGrsfe2sqTUPv5IwLWXjVuR.jpg', 91, NULL, NULL, NULL),
-(95, 'Tom y Jerry: Rápidos y Furiosos', 'Tom y Jerry, el dúo más famoso de la historia se ha quedado sin hogar. La simpática pareja decide inscribirse para participar en la Fabulosa Super-Carrera, un reality show de la TV donde el gran premio es una enorme mansión. Las travesuras de Tom y Jerry ', '2022-01-24', 'posters/20231031210840adfvcdfv.jpg', 75, NULL, NULL, NULL),
-(96, 'Cómo entrenar a tu dragón', 'la historia de Hipo, un vikingo adolescente que no encaja exactamente en la antiquísima reputación de su tribu como cazadores de dragones. El mundo de Hipo se trastoca al encontrar a un dragón que le desafía a él y a sus compañeros vikingos, a ver el mund', '2010-03-25', 'posters/20231031211241jjGyBXyhXs2aofZDVOf1zguTrvJ.jpg', 98, NULL, NULL, NULL),
-(97, 'Alvin y las ardillas', 'La vida de Dave Seville, un compositor sin éxito, es monótona y frustrante, hasta que encuentra con tres ardillas (Alvin, Simon y Theodore) que vienen del bosque. Dave las expulsa de su casa al no encontrar natural que las ardillas hablen, pero cambia de ', '2007-12-16', 'posters/20231031211814jkgbf.jpg', 90, NULL, NULL, NULL),
-(98, 'Cómo entrenar a tu dragón 2 ', 'Han pasado cinco años desde que Hipo empezó a entrenar a su dragón, rompiendo la tradición vikinga de cazarlos. Astrid y el resto de la pandilla han conseguido difundir en la isla un nuevo deporte: las carreras de dragones. Mientras realizan una carrera, ', '2014-06-20', 'posters/20231031212158dv.jpg', 105, NULL, NULL, NULL),
-(99, 'Cómo entrenar a tu dragón 3', 'Lo que comenzó como la inesperada amistad entre un joven vikingo y un temible dragón, Furia Nocturna, se ha convertido en una épica trilogía que ha recorrido sus vidas. En esta nueva entrega, Hipo y Desdentao descubrirán finalmente su verdadero destino: p', '2019-01-31', 'posters/20231031212436casc.jpg', 110, NULL, NULL, NULL),
-(100, 'Las Tortugas Ninja: Caos mutante', 'Después de pasar años apartados del mundo humano, los hermanos Tortuga se proponen ganarse el corazón de los habitantes de Nueva York y que les acepten como quinceañeros normales, llevando a cabo actos heroicos. Su nueva amiga April O\'Neil les ayuda a enf', '2023-08-17', 'posters/20231031212804asxs.jpg', 100, NULL, NULL, NULL),
-(101, 'Shrek', 'Hace mucho, mucho tiempo, en una lejanísima ciénaga vivía un intratable ogro llamado Shrek. Pero de repente, un día, su absoluta soledad se ve interrumpida por una invasión de sorprendentes personajes de cuento. Para conseguir salvar su terreno, y de paso', '2001-07-19', 'posters/20231031213318sdfs.jpg', 92, NULL, NULL, NULL),
-(102, 'Shrek 2', 'Cuando Shrek y la princesa Fiona regresan de su luna de miel, los padres de ella los invitan a visitar el reino de Muy Muy Lejano para celebrar la boda. Para Shrek, al que nunca abandona su fiel amigo Asno, esto constituye un gran problema. Los padres de ', '2004-06-17', 'posters/20231031213635dsd.jpg', 92, NULL, NULL, NULL),
-(103, 'Shrek tercero', 'Shrek se casó con Fiona, pero lo que no tuvo en cuenta es que al casarse con una princesa... tarde o temprano uno termina siendo rey. Cuando su suegro, el Rey Harold, cae enfermo, Shrek se encuentra en riesgo de tener que abandonar su amado pantano por el', '2007-05-17', 'posters/20231031214006gcg.jpg', 92, NULL, NULL, NULL),
-(104, 'El Señor de los Anillos: El Retorno del Rey', 'Las fuerzas de Saruman han sido destruidas, y su fortaleza sitiada. Ha llegado el momento de que se decida el destino de la Tierra Media. En Gondor, el último reducto de los hombres, y del cual Aragorn tendrá que reclamar el trono para ocupar su puesto de', '2004-01-01', 'posters/20231101121915es.jpg', 202, NULL, NULL, NULL),
-(105, 'El señor de los anillos: La comunidad del anillo', 'En la Tierra Media, el Señor Oscuro Saurón creó los Grandes Anillos de Poder, forjados por los herreros Elfos. Tres para los reyes Elfos, siete para los Señores Enanos, y nueve para los Hombres Mortales. Secretamente, Saurón también forjó un anillo maestr', '2002-01-31', 'posters/20231101122915esd.jpg', 179, NULL, NULL, NULL),
-(106, 'El señor de los anillos: Las dos torres', 'La Compañía del Anillo se ha disuelto. El portador del anillo Frodo y su fiel amigo Sam se dirigen hacia Mordor para destruir el Anillo Único y acabar con el poder de Sauron. Mientras, y tras la dura batalla contra los orcos donde cayó Boromir, el hombre ', '2002-12-18', 'posters/20231101123129esdl.jpg', 180, NULL, NULL, NULL),
-(107, 'El Gato con Botas: El último deseo ', 'El Gato con Botas descubre que, debido a su pasión por la aventura, ha gastado ya 8 de sus 9 vidas. Por tanto, emprende un peligroso viaje en busca del legendario Último Deseo para solicitar que le restauren las vidas que ya perdió.', '2023-01-05', 'posters/20231101123727ga.jpg', 103, NULL, NULL, NULL),
-(108, 'Harry Potter y la piedra filosofal ', 'Harry Potter es un huérfano que vive con sus desagradables tíos, los Dursley, y su repelente primo Dudley. Se acerca su undécimo cumpleaños y tiene pocas esperanzas de recibir algún regalo, ya que nunca nadie se acuerda de él. Sin embargo, pocos días ante', '2001-11-19', 'posters/20231101124438hpp.jpg', 152, NULL, NULL, NULL),
-(109, 'Indiana Jones: En busca del arca perdida', 'Año 1936. Indiana Jones es un profesor de arqueología, dispuesto a correr peligrosas aventuras con tal de conseguir valiosas reliquias históricas. Después de una infructuosa misión en Sudamérica, el gobierno estadounidense le encarga la búsqueda del Arca ', '1981-12-25', 'posters/20231101124850ind.jpg', 115, NULL, NULL, NULL),
-(110, 'Oppenheimer', 'Película sobre el físico J. Robert Oppenheimer y su papel como desarrollador de la bomba atómica. Basada en el libro \'American Prometheus: The Triumph and Tragedy of J. Robert Oppenheimer\' de Kai Bird y Martin J. Sherwin.', '2023-07-29', 'posters/20231101130431op.jpg', 181, NULL, NULL, NULL),
-(111, 'La caza', 'El mundo de un maestro de guardería se colapsa a su alrededor después de que una de sus estudiantes, que está enamorada de él, asegura que éste cometió un acto lascivo frente a ella. En ese momento, nadie le concede el beneficio de la duda y todo el puebl', '2013-06-13', 'posters/20231101131014th.jpg', 115, NULL, NULL, NULL),
-(112, 'Parásitos', 'Tanto Gi Taek como su familia están sin trabajo. Cuando su hijo mayor, Gi Woo, empieza a recibir clases particulares en casa de Park, las dos familias, que tienen mucho en común pese a pertenecer a dos mundos totalmente distintos, comienzan una interrelac', '2020-01-23', 'posters/20231101131628pa.jpg', 132, NULL, NULL, NULL),
-(113, 'Interstellar', 'La humanidad nació en la Tierra. Nunca estuvo destinada a morir aquí. Narra las aventuras de un grupo de exploradores que hacen uso de un agujero de gusano recientemente descubierto para superar las limitaciones de los viajes espaciales tripulados y vence', '2014-11-06', 'posters/20231101131945in.jpg', 169, NULL, NULL, NULL),
-(114, 'Fractura', 'Tras la desaparición de su esposa y de su hija herida de las urgencias del hospital, un hombre se embarca en una búsqueda frenética convencido de que le ocultan algo.', '2019-09-22', 'posters/20231101132343sacs.jpg', 160, NULL, NULL, NULL),
-(115, 'La Isla Siniestra', 'Verano de 1954. Los agentes judiciales Teddy Daniels y Chuck Aule son destinados a una remota isla del puerto de Boston para investigar la desaparición de una peligrosa asesina recluida en el hospital psiquiátrico Ashecliffe, un centro penitenciario para ', '2010-02-19', 'posters/20231101132840jdfvz.jpg', 138, NULL, NULL, NULL),
-(116, 'Perfect Blue', 'Tras años siendo una ídolo juvenil que forma parte del exitoso trío musical CHAM!, Mima Kirigoe decide abandonar el grupo para perseguir su sueño de convertirse en actriz, lo que provoca la ira de muchos de sus fans. Pronto descubre que alguien está escri', '1998-02-28', 'posters/20231101133324sdcsd.jpg', 81, NULL, NULL, NULL),
-(117, 'Paprika, detective de los sueños', 'El psiquiatra Atsuko Chiba ha desarrollado un método de terapia revolucionario denominado \"PT\", un prototipo de máquina experimental gracias a la cual es posible introducirse en la mente de los pacientes para tratar sus ansiedades. Pero uno de los modelos', '2006-10-21', 'posters/20231101133758gm.jpg', 90, NULL, NULL, NULL),
-(118, 'Hereditary', 'Cosas extrañas comienzan a suceder en casa de los Graham tras la muerte de la abuela y matriarca, que deja en herencia su casa a su hija Annie. Annie Graham, una galerista casada y con dos hijos, no tuvo una infancia demasiado feliz junto a su madre, y cr', '2018-06-07', 'posters/20231101134359gnfgn.jpg', 126, NULL, NULL, NULL),
-(119, 'Monster House', 'D.J. Walters es un chico de doce años al que se le ha metido en la cabeza que en la casa del anciano Nebbercracker, al otro lado de la calle, ocurre algo extraño. La víspera de Halloween, el balón con el que juegan D.J. y su amigo va a parar al jardín del', '2006-06-30', 'posters/20231101134754vmvjh.jpg', 91, NULL, NULL, NULL),
-(120, 'La matanza de Texas', 'Durante un viaje de Texas a México, un grupo de jóvenes recoge a una autoestopista ensangrentada que asegura que es la única superviviente de una masacre ocurrida la noche anterior en una casa cercana. Remake del clásico homónimo de Tobe Hooper (1974).', '2005-06-23', 'posters/20231101135133fh.jpg', 98, NULL, NULL, NULL),
-(121, 'Así en la Tierra como en el Infierno', 'Bajo los kilómetros y kilómetros de tortuosas catacumbas que hay bajo las calles de París, un grupo de exploradores se aventura entre los cientos de miles de huesos sin catalogar que ocupan el laberinto y acaban descubriendo cuál era la verdadera función ', '2014-08-29', 'posters/20231101135516sdvd.jpg', 93, NULL, NULL, NULL),
-(122, 'Ouija', 'Después de que uno de sus amigos sea brutalmente asesinado por un malvado ente oscuro, un grupo de amigos juega a la ouija para intentar hablar con él desde el más allá. Sin embargo, lo que consiguen es despertar a un antiguo espíritu y a los demonios más', '2014-10-14', 'posters/20231101140305kh.jpg', 89, NULL, NULL, NULL),
-(123, 'Scream', 'Una nueva entrega de la saga de terror \'Scream\' que seguirá a una mujer que regresa a su ciudad natal para intentar descubrir quién ha estado cometiendo una serie de crímenes atroces.', '2022-01-13', 'posters/20231101140529gbf.jpg', 120, NULL, NULL, NULL),
-(124, 'El Silencio de los Inocentes', 'El FBI busca a \'Buffalo Bill\', un asesino en serie que mata a sus víctimas, todas adolescentes, después de prepararlas minuciosamente y arrancarles la piel. Para poder atraparlo recurren a Clarice Starling, una brillante licenciada universitaria, que aspi', '1991-06-06', 'posters/20231101141522li.jpg', 118, NULL, NULL, NULL),
-(125, 'Guardianes de la Galaxia', 'El temerario aventurero Peter Quill es objeto de un implacable cazarrecompensas después de robar una misteriosa esfera codiciada por Ronan, un poderoso villano cuya ambición amenaza todo el universo. Para poder escapar del incansable Ronan, Quill se ve ob', '2014-08-13', 'posters/20231101142045gua.jpg', 122, NULL, NULL, NULL),
-(126, 'Scott Pilgrim contra el mundo', 'Scott Pilgrim, bajista de una banda de lo más corriente, los Sex Bob-omb. Este joven acaba de conocer a la chica de sus sueños… la de verdad. ¿Cuál es el problema a la hora de conquistar a Ramona Flowers? Los siete ex de la chica están decididos a matar a', '2010-07-27', 'posters/20231101142627sv.jpg', 112, NULL, NULL, NULL),
-(127, 'El Gran Hotel Budapest', 'El Sr. Gustave H., un legendario conserje de un famoso hotel europeo de entreguerras, entabla amistad con Zero Moustafa, un joven empleado al que convierte en su protegido. La historia trata sobre el robo y la recuperación de una pintura renacentista de v', '2014-03-07', 'posters/20231101142944bu.jpg', 99, NULL, NULL, NULL),
-(128, 'El lobo de Wall Street', 'A mediados de los años 80, Jordan  Belfort era un joven honrado que perseguía el sueño americano, pero pronto en la agencia de valores aprendió que lo más importante no era hacer ganar a sus clientes, sino ser ambicioso y ganar una buena comisión. Su enor', '2013-12-25', 'posters/20231101143259lo.jpg', 180, NULL, NULL, NULL),
-(129, 'Pulp Fiction', 'Jules y Vincent, dos asesinos a sueldo con muy pocas luces, trabajan para Marsellus Wallace. Vincent le confiesa a Jules que Marsellus le ha pedido que cuide de Mia, su mujer. Jules le recomienda prudencia porque es muy peligroso sobrepasarse con la novia', '1995-02-16', 'posters/20231101143527pf.jpg', 154, NULL, NULL, NULL),
-(130, 'El Padrino', 'Don Vito Corleone, conocido dentro de los círculos del hampa como \'El Padrino\', es el patriarca de una de las cinco familias que ejercen el mando de la Cosa Nostra en Nueva York en los años cuarenta. Don Corleone tiene cuatro hijos: una chica, Connie, y t', '2011-11-24', 'posters/20231101143827ep.jpg', 175, NULL, NULL, NULL);
+INSERT INTO `peliculas` (`id_peli`, `titulo`, `descripcion`, `estreno`, `path_poster`, `duracion`, `video_mp4`, `fecha_subida`) VALUES
+(48, 'Mi Vecino Totoro', 'Una familia japonesa se traslada al campo. Las dos hijas se encuentran con un espíritu llamado Totoro, que habita en el bosque. Junto a él, comparten mágicas aventuras.', '1988-04-16', 'posters/20230928200113to.jpg', 86, NULL, NULL),
+(49, 'Django Desencadenado', 'Acompañado por un cazarrecompensas alemán, un esclavo liberado, Django viaja a través de Estados Unidos para liberar a su esposa del sádico propietario de una plantación.', '2013-01-31', 'posters/20230928200128dj.jpg', 165, NULL, NULL),
+(52, 'Barbie', 'Barbie lleva una vida ideal en Barbieland, allí todo es perfecto, con fiestas llenas de música y color, todos los días son el mejor día. Claro que Barbie se hace algunas preguntas, cuestiones bastante incómodas que no encajan con el mundo idílico en el qu', '2023-07-20', 'posters/20230930155146barbi.jpg', 114, NULL, NULL),
+(73, 'Kill Bill', 'El día de su boda, una asesina profesional sufre el ataque de algunos miembros de su propia banda, que obedecen las órdenes de Bill, el jefe de la organización criminal. Logra sobrevivir al ataque, aunque queda en coma. Cuatro años después despierta domin', '2003-11-27', 'posters/20231003224718kb.jpg', 110, NULL, NULL),
+(74, 'La Princesa Mononoke', 'Tras sufrir el ataque de un monstruoso jabalí maldito, el joven Ashitaka emprende el camino en busca de la cura que detenga la infección. Mientras, los humanos están acabando con los bosques y los dioses convertidos en temibles bestias hacen todo lo posib', '1997-07-12', 'posters/20231003232650mo.jpg', 134, NULL, NULL),
+(75, 'Drive', 'Durante el día, Driver trabaja en un taller y es conductor especialista de cine, pero, algunas noches de forma esporádica, trabaja como chófer para delincuentes. Shannon, su mentor y jefe, que conoce bien su talento al volante, le busca directores de cine', '2012-03-01', 'posters/20231004005342dri.jpg', 100, NULL, NULL),
+(76, 'El Club de la Pelea', 'Un joven sin ilusiones lucha contra su insomnio, consecuencia quizás de su hastío por su gris y rutinaria vida. En un viaje en avión conoce a Tyler Durden, un carismático vendedor de jabón que sostiene una filosofía muy particular: el perfeccionismo es co', '1999-11-04', 'posters/20231003235405ec.jpg', 139, NULL, NULL),
+(77, 'Sweeney Todd: El barbero diabólico de la calle Fleet', 'Benjamin Barker, un hombre encarcelado 15 años injustamente en el otro lado del mundo, que escapa y vuelve a Londres con la promesa de vengarse, junto a su obsesiva y devota cómplice, la Sra. Nellie Lovett. Adoptando el disfraz de Sweeney Todd, Barker reg', '2008-01-25', 'posters/20231004005437sw.jpg', 117, NULL, NULL),
+(78, 'El Club de los Poetas Muetos', 'En un elitista y estricto colegio privado de Nueva Inglaterra, un grupo de alumnos descubrirá la poesía, el significado de \"Carpe Diem\" -aprovechar el momento- y la importancia de perseguir los sueños, gracias a un excéntrico profesor que despierta sus me', '1990-02-15', 'posters/20231004002321ecp.jpg', 128, NULL, NULL),
+(79, 'Joker', 'Arthur Fleck es un hombre ignorado por la sociedad, cuya motivación en la vida es hacer reír. Pero una serie de trágicos acontecimientos le llevarán a ver el mundo de otra forma. Película basada en Joker, el popular personaje de DC Comics y archivillano d', '2019-10-03', 'posters/20231004005315ej.jpg', 122, NULL, NULL),
+(80, 'Bohemian Rhapsody', 'Bohemian Rhapsody es una rotunda y sonora celebración de Queen, de su música y de su extraordinario cantante Freddie Mercury, que desafió estereotipos e hizo añicos tradiciones para convertirse en uno de los showmans más queridos del mundo. ', '2018-11-01', 'posters/20231004004942dh.jpg', 134, NULL, NULL),
+(85, 'Pantera Negra', 'Situada después de los eventos de Capitán América: Civil War, TChalla, hijo del fallecido rey TChaka, asciende al trono de Wakanda y se convierte en Pantera Negra, pero descubre que reinar su nación será un desafío para él, ya que no solo debe gobernar y ', '2018-02-15', 'posters/20231020223942bp.jpg', 134, NULL, NULL),
+(90, 'El asombroso mundo de Gumball', 'Las divertidas aventuras de Gumball y su peculiar familia en el idílico pueblecito de Elmore. Un papá conejo rosa de 1,95 metros, una madre que se gana la vida vendiendo arco iris, un gato azul muy torpe y una conejita con un cerebro superdotado componen ', '2011-05-03', 'posters/20231031203045dMYY2XqsQvDEdTtPfykTEOUZngK.jpg', 0, NULL, NULL),
+(91, 'Ben 10', 'Ben 10 cuenta las aventuras de Ben Tennyson, un niño normal de diez años que descubre en sus vacaciones de verano un extraño reloj extraterrestre dentro de un meteorito que chocó contra la Tierra. Ben pronto se da cuenta de que este reloj no es un aparato', '2005-12-27', 'posters/20231031203927eogRp6oAPK0SEvQmCrQ78LTlSdp.jpg', 0, NULL, NULL),
+(92, 'Las Chicas Superpoderosas', 'El profesor Utonium es un ingeniero genético que siempre está experimentando. Una noche decide hacer realidad su sueño más anhelado: crear una niña perfecta. El resultado es espectacular: en vez de una niña ha creado a tres superheroínas.', '1998-11-18', 'posters/20231031204708468mmhMd21pY4Yx0S0woqeEcxtL.jpg', 0, NULL, NULL),
+(93, 'Hora de Aventura', 'Finn un chico de doce años, fue encontrado en el bosque siendo un bebé por un perro de la familia, y su mejor amigo y hermano adoptivo es Jake, un perro de 28 años de edad, con poderes mágicos. Son aventureros que viven en \"La Tierra de Ooo\", un entorno l', '2010-04-05', 'posters/20231031205125vpnV0g2VOounP0kHNi86oBPceMY.jpg', 0, NULL, NULL),
+(94, 'Hotel Transilvania', 'Drácula regenta un hotel en el que se alojan personajes como Frankenstein, la Momia, el Hombre Invisible, hombres-lobo... El problema del conde es que tiene una hija de espíritu aventurero a la que le resulta difícil controlar. El conflicto surge cuando s', '2012-10-04', 'posters/20231031210125eJGvzGrsfe2sqTUPv5IwLWXjVuR.jpg', 91, NULL, NULL),
+(95, 'Tom y Jerry: Rápidos y Furiosos', 'Tom y Jerry, el dúo más famoso de la historia se ha quedado sin hogar. La simpática pareja decide inscribirse para participar en la Fabulosa Super-Carrera, un reality show de la TV donde el gran premio es una enorme mansión. Las travesuras de Tom y Jerry ', '2022-01-24', 'posters/20231031210840adfvcdfv.jpg', 75, NULL, NULL),
+(96, 'Cómo entrenar a tu dragón', 'la historia de Hipo, un vikingo adolescente que no encaja exactamente en la antiquísima reputación de su tribu como cazadores de dragones. El mundo de Hipo se trastoca al encontrar a un dragón que le desafía a él y a sus compañeros vikingos, a ver el mund', '2010-03-25', 'posters/20231031211241jjGyBXyhXs2aofZDVOf1zguTrvJ.jpg', 98, NULL, NULL),
+(97, 'Alvin y las ardillas', 'La vida de Dave Seville, un compositor sin éxito, es monótona y frustrante, hasta que encuentra con tres ardillas (Alvin, Simon y Theodore) que vienen del bosque. Dave las expulsa de su casa al no encontrar natural que las ardillas hablen, pero cambia de ', '2007-12-16', 'posters/20231031211814jkgbf.jpg', 90, NULL, NULL),
+(98, 'Cómo entrenar a tu dragón 2 ', 'Han pasado cinco años desde que Hipo empezó a entrenar a su dragón, rompiendo la tradición vikinga de cazarlos. Astrid y el resto de la pandilla han conseguido difundir en la isla un nuevo deporte: las carreras de dragones. Mientras realizan una carrera, ', '2014-06-20', 'posters/20231031212158dv.jpg', 105, NULL, NULL),
+(99, 'Cómo entrenar a tu dragón 3', 'Lo que comenzó como la inesperada amistad entre un joven vikingo y un temible dragón, Furia Nocturna, se ha convertido en una épica trilogía que ha recorrido sus vidas. En esta nueva entrega, Hipo y Desdentao descubrirán finalmente su verdadero destino: p', '2019-01-31', 'posters/20231031212436casc.jpg', 110, NULL, NULL),
+(100, 'Las Tortugas Ninja: Caos mutante', 'Después de pasar años apartados del mundo humano, los hermanos Tortuga se proponen ganarse el corazón de los habitantes de Nueva York y que les acepten como quinceañeros normales, llevando a cabo actos heroicos. Su nueva amiga April O\'Neil les ayuda a enf', '2023-08-17', 'posters/20231031212804asxs.jpg', 100, NULL, NULL),
+(101, 'Shrek', 'Hace mucho, mucho tiempo, en una lejanísima ciénaga vivía un intratable ogro llamado Shrek. Pero de repente, un día, su absoluta soledad se ve interrumpida por una invasión de sorprendentes personajes de cuento. Para conseguir salvar su terreno, y de paso', '2001-07-19', 'posters/20231031213318sdfs.jpg', 92, NULL, NULL),
+(102, 'Shrek 2', 'Cuando Shrek y la princesa Fiona regresan de su luna de miel, los padres de ella los invitan a visitar el reino de Muy Muy Lejano para celebrar la boda. Para Shrek, al que nunca abandona su fiel amigo Asno, esto constituye un gran problema. Los padres de ', '2004-06-17', 'posters/20231031213635dsd.jpg', 92, NULL, NULL),
+(103, 'Shrek tercero', 'Shrek se casó con Fiona, pero lo que no tuvo en cuenta es que al casarse con una princesa... tarde o temprano uno termina siendo rey. Cuando su suegro, el Rey Harold, cae enfermo, Shrek se encuentra en riesgo de tener que abandonar su amado pantano por el', '2007-05-17', 'posters/20231031214006gcg.jpg', 92, NULL, NULL),
+(104, 'El Señor de los Anillos: El Retorno del Rey', 'Las fuerzas de Saruman han sido destruidas, y su fortaleza sitiada. Ha llegado el momento de que se decida el destino de la Tierra Media. En Gondor, el último reducto de los hombres, y del cual Aragorn tendrá que reclamar el trono para ocupar su puesto de', '2004-01-01', 'posters/20231101121915es.jpg', 202, NULL, NULL),
+(105, 'El señor de los anillos: La comunidad del anillo', 'En la Tierra Media, el Señor Oscuro Saurón creó los Grandes Anillos de Poder, forjados por los herreros Elfos. Tres para los reyes Elfos, siete para los Señores Enanos, y nueve para los Hombres Mortales. Secretamente, Saurón también forjó un anillo maestr', '2002-01-31', 'posters/20231101122915esd.jpg', 179, NULL, NULL),
+(106, 'El señor de los anillos: Las dos torres', 'La Compañía del Anillo se ha disuelto. El portador del anillo Frodo y su fiel amigo Sam se dirigen hacia Mordor para destruir el Anillo Único y acabar con el poder de Sauron. Mientras, y tras la dura batalla contra los orcos donde cayó Boromir, el hombre ', '2002-12-18', 'posters/20231101123129esdl.jpg', 180, NULL, NULL),
+(107, 'El Gato con Botas: El último deseo ', 'El Gato con Botas descubre que, debido a su pasión por la aventura, ha gastado ya 8 de sus 9 vidas. Por tanto, emprende un peligroso viaje en busca del legendario Último Deseo para solicitar que le restauren las vidas que ya perdió.', '2023-01-05', 'posters/20231101123727ga.jpg', 103, NULL, NULL),
+(108, 'Harry Potter y la piedra filosofal ', 'Harry Potter es un huérfano que vive con sus desagradables tíos, los Dursley, y su repelente primo Dudley. Se acerca su undécimo cumpleaños y tiene pocas esperanzas de recibir algún regalo, ya que nunca nadie se acuerda de él. Sin embargo, pocos días ante', '2001-11-19', 'posters/20231101124438hpp.jpg', 152, NULL, NULL),
+(109, 'Indiana Jones: En busca del arca perdida', 'Año 1936. Indiana Jones es un profesor de arqueología, dispuesto a correr peligrosas aventuras con tal de conseguir valiosas reliquias históricas. Después de una infructuosa misión en Sudamérica, el gobierno estadounidense le encarga la búsqueda del Arca ', '1981-12-25', 'posters/20231101124850ind.jpg', 115, NULL, NULL),
+(110, 'Oppenheimer', 'Película sobre el físico J. Robert Oppenheimer y su papel como desarrollador de la bomba atómica. Basada en el libro \'American Prometheus: The Triumph and Tragedy of J. Robert Oppenheimer\' de Kai Bird y Martin J. Sherwin.', '2023-07-29', 'posters/20231101130431op.jpg', 181, NULL, NULL),
+(111, 'La caza', 'El mundo de un maestro de guardería se colapsa a su alrededor después de que una de sus estudiantes, que está enamorada de él, asegura que éste cometió un acto lascivo frente a ella. En ese momento, nadie le concede el beneficio de la duda y todo el puebl', '2013-06-13', 'posters/20231101131014th.jpg', 115, NULL, NULL),
+(112, 'Parásitos', 'Tanto Gi Taek como su familia están sin trabajo. Cuando su hijo mayor, Gi Woo, empieza a recibir clases particulares en casa de Park, las dos familias, que tienen mucho en común pese a pertenecer a dos mundos totalmente distintos, comienzan una interrelac', '2020-01-23', 'posters/20231101131628pa.jpg', 132, NULL, NULL),
+(113, 'Interstellar', 'La humanidad nació en la Tierra. Nunca estuvo destinada a morir aquí. Narra las aventuras de un grupo de exploradores que hacen uso de un agujero de gusano recientemente descubierto para superar las limitaciones de los viajes espaciales tripulados y vence', '2014-11-06', 'posters/20231101131945in.jpg', 169, NULL, NULL),
+(114, 'Fractura', 'Tras la desaparición de su esposa y de su hija herida de las urgencias del hospital, un hombre se embarca en una búsqueda frenética convencido de que le ocultan algo.', '2019-09-22', 'posters/20231101132343sacs.jpg', 160, NULL, NULL),
+(115, 'La Isla Siniestra', 'Verano de 1954. Los agentes judiciales Teddy Daniels y Chuck Aule son destinados a una remota isla del puerto de Boston para investigar la desaparición de una peligrosa asesina recluida en el hospital psiquiátrico Ashecliffe, un centro penitenciario para ', '2010-02-19', 'posters/20231101132840jdfvz.jpg', 138, NULL, NULL),
+(116, 'Perfect Blue', 'Tras años siendo una ídolo juvenil que forma parte del exitoso trío musical CHAM!, Mima Kirigoe decide abandonar el grupo para perseguir su sueño de convertirse en actriz, lo que provoca la ira de muchos de sus fans. Pronto descubre que alguien está escri', '1998-02-28', 'posters/20231101133324sdcsd.jpg', 81, NULL, NULL),
+(117, 'Paprika, detective de los sueños', 'El psiquiatra Atsuko Chiba ha desarrollado un método de terapia revolucionario denominado \"PT\", un prototipo de máquina experimental gracias a la cual es posible introducirse en la mente de los pacientes para tratar sus ansiedades. Pero uno de los modelos', '2006-10-21', 'posters/20231101133758gm.jpg', 90, NULL, NULL),
+(118, 'Hereditary', 'Cosas extrañas comienzan a suceder en casa de los Graham tras la muerte de la abuela y matriarca, que deja en herencia su casa a su hija Annie. Annie Graham, una galerista casada y con dos hijos, no tuvo una infancia demasiado feliz junto a su madre, y cr', '2018-06-07', 'posters/20231101134359gnfgn.jpg', 126, NULL, NULL),
+(119, 'Monster House', 'D.J. Walters es un chico de doce años al que se le ha metido en la cabeza que en la casa del anciano Nebbercracker, al otro lado de la calle, ocurre algo extraño. La víspera de Halloween, el balón con el que juegan D.J. y su amigo va a parar al jardín del', '2006-06-30', 'posters/20231101134754vmvjh.jpg', 91, NULL, NULL),
+(120, 'La matanza de Texas', 'Durante un viaje de Texas a México, un grupo de jóvenes recoge a una autoestopista ensangrentada que asegura que es la única superviviente de una masacre ocurrida la noche anterior en una casa cercana. Remake del clásico homónimo de Tobe Hooper (1974).', '2005-06-23', 'posters/20231101135133fh.jpg', 98, NULL, NULL),
+(121, 'Así en la Tierra como en el Infierno', 'Bajo los kilómetros y kilómetros de tortuosas catacumbas que hay bajo las calles de París, un grupo de exploradores se aventura entre los cientos de miles de huesos sin catalogar que ocupan el laberinto y acaban descubriendo cuál era la verdadera función ', '2014-08-29', 'posters/20231101135516sdvd.jpg', 93, NULL, NULL),
+(122, 'Ouija', 'Después de que uno de sus amigos sea brutalmente asesinado por un malvado ente oscuro, un grupo de amigos juega a la ouija para intentar hablar con él desde el más allá. Sin embargo, lo que consiguen es despertar a un antiguo espíritu y a los demonios más', '2014-10-14', 'posters/20231101140305kh.jpg', 89, NULL, NULL),
+(123, 'Scream', 'Una nueva entrega de la saga de terror \'Scream\' que seguirá a una mujer que regresa a su ciudad natal para intentar descubrir quién ha estado cometiendo una serie de crímenes atroces.', '2022-01-13', 'posters/20231101140529gbf.jpg', 120, NULL, NULL),
+(124, 'El Silencio de los Inocentes', 'El FBI busca a \'Buffalo Bill\', un asesino en serie que mata a sus víctimas, todas adolescentes, después de prepararlas minuciosamente y arrancarles la piel. Para poder atraparlo recurren a Clarice Starling, una brillante licenciada universitaria, que aspi', '1991-06-06', 'posters/20231101141522li.jpg', 118, NULL, NULL),
+(125, 'Guardianes de la Galaxia', 'El temerario aventurero Peter Quill es objeto de un implacable cazarrecompensas después de robar una misteriosa esfera codiciada por Ronan, un poderoso villano cuya ambición amenaza todo el universo. Para poder escapar del incansable Ronan, Quill se ve ob', '2014-08-13', 'posters/20231101142045gua.jpg', 122, NULL, NULL),
+(126, 'Scott Pilgrim contra el mundo', 'Scott Pilgrim, bajista de una banda de lo más corriente, los Sex Bob-omb. Este joven acaba de conocer a la chica de sus sueños… la de verdad. ¿Cuál es el problema a la hora de conquistar a Ramona Flowers? Los siete ex de la chica están decididos a matar a', '2010-07-27', 'posters/20231101142627sv.jpg', 112, NULL, NULL),
+(127, 'El Gran Hotel Budapest', 'El Sr. Gustave H., un legendario conserje de un famoso hotel europeo de entreguerras, entabla amistad con Zero Moustafa, un joven empleado al que convierte en su protegido. La historia trata sobre el robo y la recuperación de una pintura renacentista de v', '2014-03-07', 'posters/20231101142944bu.jpg', 99, NULL, NULL),
+(128, 'El lobo de Wall Street', 'A mediados de los años 80, Jordan  Belfort era un joven honrado que perseguía el sueño americano, pero pronto en la agencia de valores aprendió que lo más importante no era hacer ganar a sus clientes, sino ser ambicioso y ganar una buena comisión. Su enor', '2013-12-25', 'posters/20231101143259lo.jpg', 180, NULL, NULL),
+(129, 'Pulp Fiction', 'Jules y Vincent, dos asesinos a sueldo con muy pocas luces, trabajan para Marsellus Wallace. Vincent le confiesa a Jules que Marsellus le ha pedido que cuide de Mia, su mujer. Jules le recomienda prudencia porque es muy peligroso sobrepasarse con la novia', '1995-02-16', 'posters/20231101143527pf.jpg', 154, NULL, NULL),
+(130, 'El Padrino', 'Don Vito Corleone, conocido dentro de los círculos del hampa como \'El Padrino\', es el patriarca de una de las cinco familias que ejercen el mando de la Cosa Nostra en Nueva York en los años cuarenta. Don Corleone tiene cuatro hijos: una chica, Connie, y t', '2011-11-24', 'posters/20231101143827ep.jpg', 175, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -805,7 +844,12 @@ CREATE TABLE `peli_estrellas` (
 --
 
 INSERT INTO `peli_estrellas` (`id_cuenta`, `id_peli`, `estrellas`) VALUES
-(1, 113, 3);
+(1, 113, 3),
+(5, 97, 3),
+(3, 97, 2),
+(5, 49, 3),
+(5, 125, 5),
+(16, 73, 4);
 
 -- --------------------------------------------------------
 
@@ -823,8 +867,18 @@ CREATE TABLE `peli_favorita` (
 --
 
 INSERT INTO `peli_favorita` (`id_cuenta`, `id_peli`) VALUES
-(5, 48),
-(1, 99);
+(1, 99),
+(1, 106),
+(3, 113),
+(3, 97),
+(3, 79),
+(3, 73),
+(3, 74),
+(5, 102),
+(5, 107),
+(5, 117),
+(5, 119),
+(16, 73);
 
 -- --------------------------------------------------------
 
@@ -1004,7 +1058,14 @@ CREATE TABLE `peli_like` (
 INSERT INTO `peli_like` (`id_cuenta`, `id_peli`) VALUES
 (7, 79),
 (1, 49),
-(5, 48);
+(5, 48),
+(5, 97),
+(3, 49),
+(3, 97),
+(3, 79),
+(3, 73),
+(3, 74),
+(16, 73);
 
 -- --------------------------------------------------------
 
@@ -1065,7 +1126,9 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `mail`, `id_tipo`) V
 (11, 'emiliano', 'apellido', 'emi@gmail.com', 1),
 (12, 'kensho', 'seta', 'kensho@mail.com', 1),
 (13, 'vivi', 'apellido', 'viviana@gmail.com', 1),
-(14, 'agustina', 'apellido', 'agus@gmail.com', 1);
+(14, 'agustina', 'apellido', 'agus@gmail.com', 1),
+(17, 'manuela', 'fhfhfgh', 'fghfh@g', 2),
+(21, 'hola', 'hola', 'hola@gmail.com', 2);
 
 -- --------------------------------------------------------
 
@@ -1086,10 +1149,14 @@ CREATE TABLE `valoracion_peliculas` (
 --
 
 INSERT INTO `valoracion_peliculas` (`id_valores`, `id_peli`, `cant_estrellas`, `calificacion`, `cant_like`) VALUES
-(2, 79, 0, 0.0, 1),
-(3, 49, 0, 0.0, 1),
+(2, 79, 0, 0.0, 2),
+(3, 49, 3, 3.0, 2),
 (4, 48, 0, 0.0, 1),
-(6, 113, 3, 3.0, 0);
+(6, 113, 3, 3.0, 0),
+(7, 97, 5, 2.5, 2),
+(8, 73, 4, 4.0, 2),
+(9, 74, 0, 0.0, 1),
+(10, 125, 5, 5.0, 0);
 
 --
 -- Índices para tablas volcadas
@@ -1100,6 +1167,12 @@ INSERT INTO `valoracion_peliculas` (`id_valores`, `id_peli`, `cant_estrellas`, `
 --
 ALTER TABLE `actor`
   ADD PRIMARY KEY (`id_actor`);
+
+--
+-- Indices de la tabla `contacto`
+--
+ALTER TABLE `contacto`
+  ADD KEY `cuenta_usuario_id_cuenta_contacto` (`id_cuenta`);
 
 --
 -- Indices de la tabla `cuenta_usuario`
@@ -1239,25 +1312,25 @@ ALTER TABLE `valoracion_peliculas`
 -- AUTO_INCREMENT de la tabla `actor`
 --
 ALTER TABLE `actor`
-  MODIFY `id_actor` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
+  MODIFY `id_actor` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
 
 --
 -- AUTO_INCREMENT de la tabla `cuenta_usuario`
 --
 ALTER TABLE `cuenta_usuario`
-  MODIFY `id_cuenta` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_cuenta` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `director`
 --
 ALTER TABLE `director`
-  MODIFY `id_director` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id_director` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT de la tabla `genero`
 --
 ALTER TABLE `genero`
-  MODIFY `id_genero` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id_genero` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT de la tabla `img_perfil`
@@ -1281,17 +1354,23 @@ ALTER TABLE `tipo_usuario`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_usuario` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `valoracion_peliculas`
 --
 ALTER TABLE `valoracion_peliculas`
-  MODIFY `id_valores` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_valores` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `contacto`
+--
+ALTER TABLE `contacto`
+  ADD CONSTRAINT `cuenta_usuario_id_cuenta_contacto` FOREIGN KEY (`id_cuenta`) REFERENCES `cuenta_usuario` (`id_cuenta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `cuenta_usuario`

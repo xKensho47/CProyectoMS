@@ -161,7 +161,7 @@ class CCarousel
             <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
                 <div class='movies-dinamic-tittle' id='movies-dinamic-tittle-$title'>
                     <h2 class='x-tittle h2-animate animate-from-bottom' id='x-tittle-$title'>  $title  </h2>
-                    <hr>
+                    <hr class='hr-carrusel'>
                 </div>
                 <div class='x-carousel-container'>
                     <button class='carousel-prev'>&#60</button>

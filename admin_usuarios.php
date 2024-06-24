@@ -35,22 +35,27 @@
             if (isset($_GET['busqueda']) && !empty($_GET['busqueda'])) {
                 $busqueda = $conexion->real_escape_string($_GET['busqueda']);
 
-                //busco coincidencias
-                $sqlBusqueda = ("SELECT * 
-                                    FROM usuarios
-                                     WHERE nombre LIKE '%$busqueda%' 
-                                        OR apellido LIKE '%$busqueda%'
-                                        OR mail LIKE '%$busqueda%'");
+                $sqlBusqueda = ("SELECT u.id_usuario, u.nombre, u.apellido, u.mail, u.id_tipo, cu.nombre_usuario 
+                                    FROM usuarios u
+                                        LEFT JOIN cuenta_usuario cu ON u.id_usuario = cu.id_usuario
+                                            WHERE u.nombre LIKE '%$busqueda%'
+                                                OR u.apellido LIKE '%$busqueda%'
+                                                    OR u.mail LIKE '%$busqueda%'
+                                                        OR cu.nombre_usuario LIKE '%$busqueda%'");
+
+
+
             } else { //si no hay coincidencias, muestro todo
-                $sqlBusqueda = ("SELECT *
-                    FROM usuarios");
+                $sqlBusqueda = ("SELECT u.id_usuario, u.nombre, u.apellido, u.mail, u.id_tipo, cu.nombre_usuario 
+                                    FROM usuarios u
+                                        LEFT JOIN cuenta_usuario cu ON u.id_usuario = cu.id_usuario");
             }
 
             $infoUsuarios = $conexion->query($sqlBusqueda);
-
+           
             ?>
             <div class="crud animate-from-bottom ajuste-crud">
-                <div class="col-auto me-auto mt-1">
+                <div class="col-auto me-auto mt-5">
                     <h2 class="text-left pi h2-animate">Administrar Usuarios</h2>
                 </div>
 
@@ -81,12 +86,13 @@
                 <table class="table table-xl table-striped table-hover mt-3 ">
                     <thead class="table-dark fs-4">
                         <tr class="color-titulo-tabla">
-                            <th width="1">#</th>
-                            <th width="10">Nombre</th>
-                            <th width="10">Apellido</th>
-                            <th width="40">Mail</th>
-                            <th width="10">Tipo de Usuario</th>
-                            <th width="1">Acción</th>
+                            <th >#</th>
+                            <th >Nombre</th>
+                            <th >Apellido</th>
+                            <th >Mail</th>
+                            <th >Nombre Usuario</th>
+                            <th >Tipo de Usuario</th>
+                            <th width="100">Acción</th>
                         </tr>
                     </thead>
 
@@ -98,18 +104,22 @@
                             $nombre = $row->nombre;
                             $apellido = $row->apellido;
                             $mail = $row->mail;
+                            $nom_usuario = $row->nombre_usuario; 
                             $id_tipo = $row->id_tipo; ?>
+
                             <tr>
                                 <td><?= $id_usuario; ?></td>
                                 <td><?= $nombre; ?></td>
                                 <td><?= $apellido; ?></td>
                                 <td><?= $mail; ?></td>
+                                <td><?= $nom_usuario; ?></td>
 
                                 <?php if ($id_tipo == 1) { ?>
                                     <td><?= 'Administrador'; ?></td>
                                 <?php } else { ?>
                                     <td><?= 'Normal'; ?></td>
                                 <?php } ?>
+
 
                                 <td>
                                     <div class="d-flex flex-column align-items-center justify-content-center">
@@ -118,13 +128,13 @@
                                                                             '<?= $apellido ?>',
                                                                             '<?= $mail ?>',
                                                                             '<?= $id_tipo ?>')"> 
-                                            <i class="fa-solid fa-pen-to-square"></i> Editar</a>
+                                            <i class="fa-solid fa-pen-to-square "></i> Editar</a>
                                         <a href="#" class="btn btn-sm btn-danger mt-2 fs-6" data-bs-toggle="modal" data-bs-target="#eliminaModal" data-bs-id="<?= $id_usuario; ?>" onclick="IdUsuarioEliminarEnModal(<?= $id_usuario ?>)"><i class="fa-solid fa-trash"></i> Eliminar</a>
                                     </div>
                                 </td>
 
                             </tr>
-                        <?php } ?>
+                <?php   } ?>
 
                     </tbody>
                 </table>

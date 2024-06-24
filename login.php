@@ -26,7 +26,7 @@
             <article class="article-form-login">
                 <div class="div-form">
                     <form class="formulario-login log" action="login_process.php" method="post">
-                        <h1>Iniciar sesión</h1>';
+                        <h1 class="h2-animate">Iniciar sesión</h1>';
                         if (isset($_GET['status'])) {
                             // Verificar si el parámetro 'status' tiene el valor 'success'
                             if ($_GET['status'] === 'usuario_contra') {
@@ -38,8 +38,9 @@
                         echo' <input class="input-login" name="nombre_usuario" type="text" maxlength="12" placeholder="Ingrese su nombre de usuario" required>
                         <input class="input-login" type="password" name="contraseña" maxlength="12" placeholder="Ingrese su contraseña" required>
                         <input class="boton-login" type="submit" value="Login" name="login">
-                        <a class="link-registro" href="registro.php">¿Todavia no sos usuario? Registrate.</a>
+                        <a class="link-registro " href="registro.php">¿Todavia no sos usuario? Registrate.</a>
                     </form>
+                    <div class="light"></div>
                 </div>
             </article>
             <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>

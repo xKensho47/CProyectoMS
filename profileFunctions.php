@@ -30,7 +30,7 @@ function continueCarousel($conexion){
             <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
                 <div class='movies-dinamic-tittle' id='movies-dinamic-tittle-$title'>
                     <h2 class='x-tittle h2-animate' id='x-tittle-$title'>  $title  </h2>
-                    <hr>
+                    <hr class='hr-carrusel'>
                 </div>
                 <div class='x-carousel-container'>
                     <button class='carousel-prev'>&#60</button>
@@ -92,7 +92,7 @@ function laterCarousel($conexion){
             <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
                 <div class='movies-dinamic-tittle' id='movies-dinamic-tittle-$title'>
                     <h2 class='x-tittle h2-animate' id='x-tittle-$title'>  $title  </h2>
-                    <hr>
+                    <hr class='hr-carrusel'>
                 </div>
                 <div class='contenedor-peliculas'>
                     ";
@@ -150,7 +150,7 @@ function favoritesCarousel($conexion){
             <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
                 <div class='movies-dinamic-tittle' id='movies-dinamic-tittle-$title'>
                     <h2 class='x-tittle h2-animate' id='x-tittle-$title'>  $title  </h2>
-                    <hr>
+                    <hr class='hr-carrusel'>
                 </div>
                 <div class='contenedor-peliculas'>
                     ";
@@ -208,7 +208,7 @@ function continueCarousel2($conexion, $id_profile){
             <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
                 <div class='movies-dinamic-tittle' id='movies-dinamic-tittle-$title'>
                     <h2 class='x-tittle h2-animate' id='x-tittle-$title'>  $title  </h2>
-                    <hr>
+                    <hr class='hr-carrusel'>
                 </div>
                 <div class='x-carousel-container'>
                     <button class='carousel-prev'>&#60</button>
@@ -271,7 +271,7 @@ function laterCarousel2($conexion, $id_profile){
             <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
                 <div class='movies-dinamic-tittle' id='movies-dinamic-tittle-$title'>
                     <h2 class='x-tittle h2-animate' id='x-tittle-$title'>  $title  </h2>
-                    <hr>
+                    <hr class='hr-carrusel'>
                 </div>
                 <div class='x-carousel-container'>
                     <button class='carousel-prev'>&#60</button>
@@ -334,7 +334,7 @@ function favoritesCarousel2($conexion, $id_profile){
             <article class='x-carousel-tittle' id='x-carousel-tittle-$title'>
                 <div class='movies-dinamic-tittle' id='movies-dinamic-tittle-$title'>
                     <h2 class='x-tittle h2-animate' id='x-tittle-$title'>  $title  </h2>
-                    <hr>
+                    <hr class='hr-carrusel'>
                 </div>
                 <div class='x-carousel-container'>
                     <button class='carousel-prev'>&#60</button>
