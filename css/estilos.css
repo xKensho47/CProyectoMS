@@ -577,7 +577,7 @@ input::-webkit-input-placeholder {
 .title-profile {
 
     text-align: center;
-    color: #d3ccda; /* Color violeta */
+    color: #e9e6ec; /* Color violeta */
     text-shadow: 0 0 10px #ae10df, 0 0 20px #ae10df, 0 0 30px #ae10df, 0 0 40px #ae10df, 0 0 70px #ae10df, 0 0 80px #ae10df, 0 0 100px #ae10df, 0 0 150px #ae10df;
     animation: neon-glow 1.5s ease-in-out infinite alternate;
 }
