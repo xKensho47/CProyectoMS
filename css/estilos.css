@@ -2916,7 +2916,16 @@ tbody {
     height: 30px;
     background-color: var(--color-principal);
 }
-
+/*BIENVENIDA*/
+.bienvenida{
+    font-size: 3rem;
+    margin-top: 3vh;
+    margin-bottom: 7vh;
+    letter-spacing: 0.02rem;
+}
+.bienvenida span:hover{
+    letter-spacing: 0.2rem;
+}
 
 
 

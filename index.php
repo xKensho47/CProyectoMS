@@ -41,7 +41,12 @@ include ('conexion.php');
             echo '
             <main class="main-principal '; if (isset($_SESSION["id_cuenta"])) echo "show"; echo' " id="mainContent">
                 <section class="movies-containerp movies" id="movies-container movies">';
-
+                $sql_nombre=$conexion->query("SELECT  nombre_usuario FROM cuenta_usuario");
+                if ($sql_nombre->num_rows > 0) {
+                  
+                   $nombre = $sql_nombre->fetch_assoc();
+                   echo "<div class='bienvenida'>bienvenida<span> ".$nombre["nombre_usuario"]."</span></div>";
+                }
                 $titles = array("Películas más valoradas", "Recientes");
 
                 $carouseles = new CCarousel($conexion);

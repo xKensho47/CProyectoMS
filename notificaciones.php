@@ -123,19 +123,33 @@ session_start(); ?>
                     ?>
                 </div>
             </aside>
-            <aside class="contact">
-                <div class="contacto">
-                    <div style="position: relative; display: inline-block;">
-                        <h2 class="borde">¿Tenés alguna duda o consulta?</h2>
-                        <h2 class="wave" style="position: absolute; top: 0; left: 0;">¿Tenés alguna duda o consulta?</h2>
+            <?php 
+                if($id_tipo==2){
+
+                   echo' <aside class="contact">
+                        <div class="contacto">
+                            <div style="position: relative; display: inline-block;">
+                                <h2 class="borde">¿Tenés alguna duda o consulta?</h2>
+                                <h2 class="wave" style="position: absolute; top: 0; left: 0;">¿Tenés alguna duda o consulta?</h2>
+                            </div>
+                            <div style="position: relative; display: inline-block;">
+                                <h3 class="borde">¡Contactanos!</h3>
+                                <h3 class="wave" style="position: absolute; top: 0; left: 0;">¡Contactanos!</h3>
+                            </div>
+                            <a href="contacto.php">Contacto</a>
+                        </div>
+                    </aside>';
+                }else{
+                    echo' <aside class="contact">
+                    <div class="contacto">
+                        <div style="position: relative; display: inline-block;">
+                            <h2 class="borde">cineflow</h2>
+                            <h2 class="wave" style="position: absolute; top: 0; left: 0;">cineflow</h2>
+                        </div>
                     </div>
-                    <div style="position: relative; display: inline-block;">
-                        <h3 class="borde">¡Contactanos!</h3>
-                        <h3 class="wave" style="position: absolute; top: 0; left: 0;">¡Contactanos!</h3>
-                    </div>
-                    <a href="contacto.php">Contacto</a>
-                </div>
-            </aside>
+                    </aside>';
+                }
+            ?>
         </main>
     </div>
 
