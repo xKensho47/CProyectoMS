@@ -2918,13 +2918,24 @@ tbody {
 }
 /*BIENVENIDA*/
 .bienvenida{
-    font-size: 3rem;
     margin-top: 3vh;
     margin-bottom: 7vh;
     letter-spacing: 0.02rem;
+
 }
-.bienvenida span:hover{
-    letter-spacing: 0.2rem;
+.bienvenida h1{
+    font-size: 4rem;
+}
+.flex-container {
+    display: flex;
+    align-items:baseline; 
+}
+
+.flex-container h1, .flex-container p {
+    margin: 0 1vh; 
+}
+.flex-container p{
+    font-size: 1.5rem;
 }
 
 

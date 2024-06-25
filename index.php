@@ -37,15 +37,27 @@ include ('conexion.php');
                 </div>
                 ';
             }
-
+            
+            
+          
             echo '
             <main class="main-principal '; if (isset($_SESSION["id_cuenta"])) echo "show"; echo' " id="mainContent">
                 <section class="movies-containerp movies" id="movies-container movies">';
-                $sql_nombre=$conexion->query("SELECT  nombre_usuario FROM cuenta_usuario");
-                if ($sql_nombre->num_rows > 0) {
-                  
-                   $nombre = $sql_nombre->fetch_assoc();
-                   echo "<div class='bienvenida'>bienvenida<span> ".$nombre["nombre_usuario"]."</span></div>";
+                if (isset($_SESSION["id_cuenta"])) {
+
+                    $id_cuenta = $_SESSION["id_cuenta"];
+                    $sql_nombre=$conexion->query("SELECT  nombre_usuario FROM cuenta_usuario where id_cuenta=$id_cuenta");
+                    if ($sql_nombre->num_rows > 0) {
+                      
+                       $nombre = $sql_nombre->fetch_assoc();
+                       echo "<div class='bienvenida' style='position: relative; display: inline-block;'>
+                            <div class='flex-container'>
+                            <h1 class='borde'>bienvenido <span> ".$nombre["nombre_usuario"]."</span></h2>
+                            <h1 class='wave' style='position: absolute; top: 0; left: 0;'>bienvenido <span> ".$nombre["nombre_usuario"]."</span></h2>
+                            <p class='h2-animate'><i>hoy es un dia genial para maratonear...</i></p>
+                            </div>
+                            </div>";
+                    }
                 }
                 $titles = array("Películas más valoradas", "Recientes");
 
@@ -60,8 +72,6 @@ include ('conexion.php');
         <?php
 
             if (isset($_SESSION["id_cuenta"])) {
-
-                $id_cuenta = $_SESSION["id_cuenta"];
 
                 // carrusel 'ver mas tarde'
                 $q =
