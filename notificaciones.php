@@ -127,7 +127,7 @@ session_start(); ?>
                 if($id_tipo==2){
 
                    echo' <aside class="contact">
-                        <div class="contacto">
+                   <div class="contacto">
                             <div style="position: relative; display: inline-block;">
                                 <h2 class="borde">¿Tenés alguna duda o consulta?</h2>
                                 <h2 class="wave" style="position: absolute; top: 0; left: 0;">¿Tenés alguna duda o consulta?</h2>
@@ -140,14 +140,13 @@ session_start(); ?>
                         </div>
                     </aside>';
                 }else{
-                    echo' <aside class="contact">
-                    <div class="contacto">
-                        <div style="position: relative; display: inline-block;">
-                            <h2 class="borde">cineflow</h2>
-                            <h2 class="wave" style="position: absolute; top: 0; left: 0;">cineflow</h2>
-                        </div>
-                    </div>
-                    </aside>';
+                    echo'<aside class="contact ">
+ 
+                            <div class="notificacion">
+                                <p class="mensaje">¡tienes mails sin responder!</p>
+                                <span class="fecha"></span>
+                            </div>
+                        </aside>';
                 }
             ?>
         </main>
