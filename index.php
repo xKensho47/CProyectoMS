@@ -46,19 +46,23 @@ include ('conexion.php');
                 if (isset($_SESSION["id_cuenta"])) {
 
                     $id_cuenta = $_SESSION["id_cuenta"];
-                    $sql_nombre=$conexion->query("SELECT  nombre_usuario FROM cuenta_usuario where id_cuenta=$id_cuenta");
+                    $sql_nombre = $conexion->query("SELECT nombre_usuario FROM cuenta_usuario WHERE id_cuenta = $id_cuenta");
                     if ($sql_nombre->num_rows > 0) {
-                      
-                       $nombre = $sql_nombre->fetch_assoc();
-                       echo "<div class='bienvenida' style='position: relative; display: inline-block;'>
+                        $nombre = $sql_nombre->fetch_assoc();
+                        echo "
+                        <div class='bienvenida animate-from-bottom' style='position: relative; display: inline-block;'>
                             <div class='flex-container'>
-                            <h1 class='borde'>bienvenido <span> ".$nombre["nombre_usuario"]."</span></h2>
-                            <h1 class='wave' style='position: absolute; top: 0; left: 0;'>bienvenido <span> ".$nombre["nombre_usuario"]."</span></h2>
-                            <p class='h2-animate'><i>hoy es un dia genial para maratonear...</i></p>
+                                <h1 class='borde'>bienvenido <span>" . $nombre["nombre_usuario"] . "</span></h1>
+                                <h1 class='wave' style='position: absolute; top: 0; left: 0;'>bienvenido <span>" . $nombre["nombre_usuario"] . "</span></h1>
+                                <p class='h2-animate' id='dynamicPhrase'><i></i></p>
                             </div>
-                            </div>";
+                        </div>
+                        <script src='script/frasesAleatorias.js'></script>
+                        ";
                     }
                 }
+                
+                
                 $titles = array("Películas más valoradas", "Recientes");
 
                 $carouseles = new CCarousel($conexion);
