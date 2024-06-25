@@ -1,4 +1,11 @@
-<?php session_start(); ?>
+<?php session_start();
+
+if(!$_SESSION['tipo_usuario'] == 1){
+    header('Location: index.php');
+}
+
+
+?>
 
 <!doctype html>
 <html lang="es">
