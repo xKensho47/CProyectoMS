@@ -1,4 +1,10 @@
-<?php session_start(); ?>
+<?php session_start();
+
+if (!isset($_SESSION['id_cuenta'])) {
+    header("Location: index.php");
+} 
+
+?>
 <!doctype html>
 <html lang="es">
 
