@@ -2938,5 +2938,13 @@ tbody {
     font-size: 1.5rem;
 }
 
+.botones-contenedor{
+    display: flex;
+    gap: 1vw;
+}
 
-
+.boton-usuarios{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

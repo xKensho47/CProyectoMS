@@ -129,14 +129,14 @@ if(!$_SESSION['tipo_usuario'] == 1){
 
 
                                 <td>
-                                    <div class="d-flex flex-column align-items-center justify-content-center">
-                                        <a href="#" class="btn btn-sm btn-warning mt-2 fs-6" data-bs-toggle="modal" data-bs-target="#editaModal" data-bs-id="<?= $id_usuario; ?>" onclick="IdUsuarioEditarEnModal(<?= $id_usuario ?>,
+                                    <div class="botones-contenedor">
+                                        <a href="#" class="btn btn-sm btn-warning fs-6 boton-usuarios" data-bs-toggle="modal" data-bs-target="#editaModal" data-bs-id="<?= $id_usuario; ?>" onclick="IdUsuarioEditarEnModal(<?= $id_usuario ?>,
                                                                             '<?= $nombre ?>',
                                                                             '<?= $apellido ?>',
                                                                             '<?= $mail ?>',
                                                                             '<?= $id_tipo ?>')"> 
                                             <i class="fa-solid fa-pen-to-square "></i> Editar</a>
-                                        <a href="#" class="btn btn-sm btn-danger mt-2 fs-6" data-bs-toggle="modal" data-bs-target="#eliminaModal" data-bs-id="<?= $id_usuario; ?>" onclick="IdUsuarioEliminarEnModal(<?= $id_usuario ?>)"><i class="fa-solid fa-trash"></i> Eliminar</a>
+                                        <a href="#" class="btn btn-sm btn-danger fs-6 boton-usuarios" data-bs-toggle="modal" data-bs-target="#eliminaModal" data-bs-id="<?= $id_usuario; ?>" onclick="IdUsuarioEliminarEnModal(<?= $id_usuario ?>)"><i class="fa-solid fa-trash"></i> Eliminar</a>
                                     </div>
                                 </td>
 
