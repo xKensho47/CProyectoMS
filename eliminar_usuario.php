@@ -101,8 +101,10 @@ if (!empty($_POST['id_usuario'])) {
         //verifico si el usuario eliminado es el mismo que está en sesión
         if ($_SESSION['id_cuenta'] == $id_cuenta_eliminar) {
             // Redirigir a la página de inicio (index.php)
+            session_destroy();
             header('Location: index.php');
             exit();
+            
         } else {
             //redirigir a la página de administración con estado de éxito
             header('Location: admin_usuarios.php?status=success');
