@@ -151,7 +151,7 @@ class CProfile
                                     </h2>
                                 </div>
                                 <div class='user-info animate-from-bottom'>
-                                    <h3 class='info-name realname h2-animate'> 
+                                    <h3 class='info-name realname '> 
                                         " . htmlspecialchars($row['nombre'], ENT_QUOTES, 'UTF-8') . " " . htmlspecialchars($row['apellido'], ENT_QUOTES, 'UTF-8') ." 
                                     </h3>
                                 </div>

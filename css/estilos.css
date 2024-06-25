@@ -731,7 +731,7 @@ input::-webkit-input-placeholder {
     font-weight: bold;
 }
 .info-name.realname {
-    color: var(--color-text);
+    color: rgb(240, 167, 240);
     font-size: 1.5rem;
     font-weight: bold;
 }
