@@ -23,6 +23,7 @@ if (!function_exists('mostrarHeader')) {
                         </ul>
                     </nav>
                 </header>
+                <script src="script/pagActiva.js"></script>
                 ';
             break;
 
@@ -46,6 +47,7 @@ if (!function_exists('mostrarHeader')) {
                         </ul>
                     </nav>
                 </header>
+                <script src="script/pagActiva.js"></script>
                 ';
 
                 break;
@@ -62,6 +64,7 @@ if (!function_exists('mostrarHeader')) {
                             <li class="menu__item"><a href="registro.php">Registrarse</a></li>                        </ul>
                     </nav>
                 </header>
+                <script src="script/pagActiva.js"></script>
                 ';
                 break;
 

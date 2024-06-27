@@ -2958,3 +2958,7 @@ color: rgb(255, 231, 255);
 .notificacion .mensaje-contact{
     font-size: 1.3rem;
 }
+.menu__item a.active {
+    color: #ec9bfc; 
+    transition: color 0.5s;
+}
