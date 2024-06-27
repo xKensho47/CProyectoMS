@@ -36,8 +36,8 @@
                         <form class="formulario-login log" action="guardar_form_contacto.php" method="post">
                             <h1>Contáctate con Nosotros</h1>
                             <input type="hidden" name="id_cuenta" value='.($_SESSION['id_cuenta']).'>
-                            <input class="input-login" name="asunto" type="text" maxlength="12" placeholder="Asunto" required>
-                            <textarea class="input-login" name="mensaje" type="text" maxlength="100" placeholder="Mensaje" required cols="30" rows="5"></textarea>
+                            <input class="input-login" name="asunto" type="text" maxlength="40" placeholder="Asunto" required>
+                            <textarea class="input-login" name="mensaje" type="text" maxlength="300" placeholder="Mensaje" required cols="30" rows="5"></textarea>
                             <input class="boton-login" type="submit" value="Enviar" name="enviar">
                         </form>
                     </div>
