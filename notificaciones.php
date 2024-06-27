@@ -27,6 +27,8 @@ session_start(); ?>
         include("conexion.php");
         include("header.php");
         require_once("loginVerification.php");
+  
+        
 
 
         $notificacion = isset($_GET['notificacion']) && $_GET['notificacion'] == 1;
@@ -54,6 +56,10 @@ session_start(); ?>
                             WHERE n.usuario_recibe = $userId";
 
         $result_solicitud = $conexion->query($query_solicitud);
+        /*devuelve los nombres de usuarios que mandaron un correo*/
+        $nombre_cuenta=$conexion->query("SELECT u.nombre_usuario,c.*  FROM cuenta_usuario u
+                                RIGHT JOIN contacto c ON c.id_cuenta=u.id_cuenta");
+
         ?>
         <main class="notificaciones-main animate-from-bottom">
             <aside class="notif">
@@ -140,13 +146,20 @@ session_start(); ?>
                         </div>
                     </aside>';
                 }else{
-                    echo'<aside class="contact ">
- 
-                            <div class="notificacion">
-                                <p class="mensaje">¡tienes mails sin responder!</p>
-                                <span class="fecha"></span>
-                            </div>
-                        </aside>';
+                    echo'<aside class="notif ">
+                            <h2 class="h2-animate">Correo</h2>';
+                            if ($nombre_cuenta->num_rows > 0) {
+                                while($result_nombre=$nombre_cuenta->fetch_assoc()){
+                                   echo' <div class="notificaciones">
+                                            <div class="notificacion ">
+                                                <p class="mensaje">¡tienes mails sin responder de <span class="nombre-correo h2-animate">'.$result_nombre['nombre_usuario'].'</span> !</p>
+                                                 <p class="mensaje mensaje-contact"> '.$result_nombre['mensaje'].'</p>
+                                            </div>
+                                        </div>';
+                                }
+                            }
+                         echo' </aside>';
+                    
                 }
             ?>
         </main>
@@ -167,6 +180,7 @@ session_start(); ?>
                 window.location.href = 'detalle_peli.php?id_peli=' + idPeli;
             });
         });
+
     </script>
 
 

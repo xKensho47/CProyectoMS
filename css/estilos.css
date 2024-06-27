@@ -2949,3 +2949,12 @@ tbody {
     justify-content: center;
 }
 /*NOTIFICACIONES DE CONTACTO*/
+.nombre-correo{
+color: rgb(255, 231, 255);
+}
+.mensaje-contact{
+    color: violet;
+}
+.notificacion .mensaje-contact{
+    font-size: 1.3rem;
+}
