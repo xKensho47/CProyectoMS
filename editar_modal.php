@@ -105,7 +105,7 @@ $queryPelicula = $conexion->query($pelicula);
 
                     <div class="">
                         <button type="button" class="btn guardar" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" name="guardar" class="btn guardar">Guardar cambios</button>
+                        <button type="submit" name="guardar" class="btn salir">Guardar cambios</button>
                     </div>
                 </form>
             </div>

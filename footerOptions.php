@@ -37,8 +37,9 @@ if (!function_exists('mostrarfooter')) {
                                 <a href="#"><img class="red_social" src="./images/instagram.png" alt="Instagram"/></a>
                             </div>
                         </section>
-                    </nav>
+                    </nav> 
                 </footer>
+
                 ';
             break;
 
@@ -71,8 +72,8 @@ if (!function_exists('mostrarfooter')) {
                                 <a href="#"><img class="red_social" src="./images/instagram.png" alt="Instagram"/></a>
                             </div>
                         </section>
-                    </nav>
-                </footer>                
+                    </nav>   
+                </footer>     
                 ';
 
                 break;

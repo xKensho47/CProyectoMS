@@ -857,7 +857,7 @@ input::-webkit-input-placeholder {
 }
 
 .description-aboutme {
-    color: black;
+    color: rgb(255, 255, 255);
     padding: 1% 5%;
 
     width: 100%;
@@ -866,7 +866,7 @@ input::-webkit-input-placeholder {
 textarea {
     font-size: 1.3rem;
     border-radius: 5px;
-    background: rgb(228, 227, 227);
+    background: rgb(19, 19, 19);
     color: var(--blanco);
     resize: none;
     border:solid #a257e9;
