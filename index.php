@@ -17,6 +17,7 @@ include ('conexion.php');
     <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
     <link rel="manifest" href="./images/favicon/site.webmanifest">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-thin-straight/css/uicons-thin-straight.css'>
     <title>Home</title>
 </head>
 <body class="<?php if (isset($_SESSION["id_cuenta"])) { echo 'logeado'; } ?>">
@@ -34,6 +35,7 @@ include ('conexion.php');
                         <h1>Bienvenidos a <span class="titulo-hero">CineFlow</span></h1>
                         <h2>la mejor plataforma gratuita</h2>
                     </div>
+                    <div class="icono-flecha-hero"><i class="fi fi-ts-chevron-double-down"></i></div>
                 </div>
                 ';
             }

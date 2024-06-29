@@ -62,17 +62,17 @@ if (isset($_SESSION['id_cuenta'])) {
             
                 ?>
 
-                <form action="genero_fav.php" method="post" class="formulario animate-from-bottom" id="genero_form">
-                    <input type="hidden" name="id_genero" value="<?= $id ?>">
+                <form action="genero_fav.php" method="post" class="formulario animate-from-bottom " id="genero_form">
+                    <input type="hidden" name="id_genero" value="<?= $id ?>" >
                     <input type="hidden" name="user_id" value="<?= $user_id ?>">
                     <?php
                     // Verificamos si el género es favorito
                     if ($favorito->num_rows > 0) {
                         // Si es favorito, marcamos el checkbox
-                        echo '<input type="checkbox" id="genero_fav" name="genero_fav" value="yes" checked>';
+                        echo '<input type="checkbox" id="genero_fav" name="genero_fav" value="yes" class="mouse" checked>';
                     } else {
                         // Si no es favorito, dejamos el checkbox desmarcado
-                        echo '<input type="checkbox" id="genero_fav" name="genero_fav" value="yes">';
+                        echo '<input type="checkbox" id="genero_fav" name="genero_fav" value="yes" class="mouse">';
                     }
                     ?>
                     <label for="genero_fav">Marcar como género favorito</label>

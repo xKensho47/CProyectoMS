@@ -157,6 +157,12 @@ session_start(); ?>
                                             </div>
                                         </div>';
                                 }
+                            }else{
+                                echo '<div class="notificaciones">
+                                        <div class="notificacion">
+                                            <p class="mensaje">No hay nuevos correos.</p>
+                                        </div>
+                                    </div>';
                             }
                          echo' </aside>';
                     

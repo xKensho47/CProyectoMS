@@ -93,7 +93,7 @@ if(!$_SESSION['tipo_usuario'] == 1){
                 <table class="table table-xl table-striped table-hover mt-3 ">
                     <thead class="table-dark fs-4">
                         <tr class="color-titulo-tabla">
-                            <th >#</th>
+                            <th  >#</th>
                             <th >Nombre</th>
                             <th >Apellido</th>
                             <th >Mail</th>

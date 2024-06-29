@@ -241,16 +241,15 @@ header form input {
     background: linear-gradient(180deg, rgba(20, 0, 24, 0.7) 0%, #300345 100%), url(../images/hero.jpg) no-repeat center center;
     background-size: cover;
     text-align: center;
-
+  
     position: absolute;
     top: 0;
     left: 0;
-
+    flex-direction: column; /* Cambiar dirección a columna */
     display: flex;
     justify-content: center;
     align-items: center;
     transition: transform 0.25s ease-out, opacity 0.5s ease-out;
-
     height: 100vh;
     width: 100%;
 
@@ -278,6 +277,7 @@ header form input {
     font-size: 3rem;
     user-select: none;
     cursor: default;
+
 }
 
 .titulo-hero {
@@ -285,6 +285,7 @@ header form input {
     color: #d3ccda; /* Color violeta */
     text-shadow: 0 0 10px #ae10df, 0 0 20px #ae10df, 0 0 30px #ae10df, 0 0 40px #ae10df, 0 0 70px #ae10df, 0 0 80px #ae10df, 0 0 100px #ae10df, 0 0 150px #ae10df;
     animation: neon-glow 1.5s ease-in-out infinite alternate;
+    
  }
  
  @keyframes neon-glow {
@@ -295,7 +296,10 @@ header form input {
         text-shadow: 0 0 5px #ae10df, 0 0 10px #ae10df, 0 0 15px #ae10df, 0 0 20px #ae10df, 0 0 35px #ae10df, 0 0 40px #ae10df, 0 0 50px #ae10df, 0 0 75px #ae10df;
     }
  }
- 
+ .icono-flecha-hero{  
+    font-size: 2rem; /* Tamaño del icono */
+    color: #fff; /* Color del icono */
+ }
  
 
 
@@ -1580,6 +1584,7 @@ footer:hover {
     color: #d3ccda; /* Color violeta */
     text-shadow: 0 0 10px #ae10df, 0 0 20px #ae10df, 0 0 30px #ae10df, 0 0 40px #ae10df, 0 0 70px #ae10df, 0 0 80px #ae10df, 0 0 100px #ae10df, 0 0 150px #ae10df;
     animation: neon-glow 1.5s ease-in-out infinite alternate;
+    font-size: 1.5rem;
 }
 
 .redes_sociales {
@@ -1813,7 +1818,9 @@ footer:hover {
     height: auto;
     object-fit: cover;
 }
-
+.mouse{
+    cursor: pointer;
+}
 
 
 /* ARREGLO DEL MENU*/
