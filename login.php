@@ -42,8 +42,8 @@
                                 <i class="fi fi-sr-user"></i> 
                             </div>
                             <div class="input-with-icon">
-                                <i class="fi fi-sr-lock"></i>
-                                <input class="input-login" type="password" name="contraseña" maxlength="12" placeholder="Ingrese su contraseña" required>
+                            <input class="input-login" type="password" name="contraseña" maxlength="12" placeholder="Ingrese su contraseña" required>
+                            <i class="fi fi-sr-lock"></i>
                             </div>
                         <input class="boton-login" type="submit" value="Login" name="login">
                         <a class="link-registro " href="registro.php">¿Todavia no sos usuario? Registrate.</a>

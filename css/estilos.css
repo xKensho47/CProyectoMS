@@ -518,12 +518,14 @@ body:not(.logeado) .main-principal {
  
 }
 
-input::-webkit-input-placeholder {
+input::-webkit-input-placeholder, textarea::placeholder{
     color: #c1b2c7;
     opacity: 1;
     font-size: 1.099rem;
   }
-  
+
+
+
 .boton-login {
     color: var(--color-text);
     font-size: 2rem;

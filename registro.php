@@ -15,6 +15,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
     <link rel="manifest" href="./images/favicon/site.webmanifest">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-solid-straight/css/uicons-solid-straight.css'>
     <title>Registro</title>
     <script>
         function validarCorreo() {
@@ -43,13 +45,28 @@
                         <?php if (isset($_GET['error']) && $_GET['error'] === 'email') : ?>
                         <div class="mensaje-exito">El correo electrónico debe terminar con ".com"</div>
                         <?php endif; ?>
-                        <input class="input-login" type="text" name="nombre" required placeholder="Ingrese su nombre" autocomplete="off" />
-                        <input class="input-login" type="text" name="apellido" required placeholder="Ingrese su apellido" autocomplete="off" />
-                        <input class="input-login" type="email" name="mail" required placeholder="Ingrese su email" autocomplete="off" />
-                        <input class="input-login" type="text" name="nombre_usuario" maxlength="12"
+                        <div class="input-with-icon">
+                            <input class="input-login" type="text" name="nombre" required placeholder="Ingrese su nombre" autocomplete="off" />
+                            <i class="fi fi-sr-user"></i> 
+                        </div>
+                        <div class="input-with-icon">
+                            <input class="input-login" type="text" name="apellido" required placeholder="Ingrese su apellido" autocomplete="off" />
+                            <i class="fi fi-sr-user"></i> 
+                        </div>
+                        <div class="input-with-icon">
+                            <input class="input-login" type="email" name="mail" required placeholder="Ingrese su email" autocomplete="off" />
+                            <i class="fi fi-sr-at"></i>
+                        </div>
+                        <div class="input-with-icon">
+                            <input class="input-login" type="text" name="nombre_usuario" maxlength="12"
                             placeholder="Ingrese su nombre de usuario" autocomplete="off" />
-                        <input class="input-login" type="password" name="contraseña" maxlength="12"
+                            <i class="fi fi-ss-user-add"></i>
+                        </div>
+                        <div class="input-with-icon">
+                            <input class="input-login" type="password" name="contraseña" maxlength="12"
                             placeholder="Ingrese su contraseña" />
+                            <i class="fi fi-sr-lock"></i>
+                        </div>
                         <br>
                         <input class="boton-login" type="submit" value="Registrarse" name="registro" />
                         <a class="link-registro" href="login.php">¿Ya tienes usuario? Inicia sesión.</a>
