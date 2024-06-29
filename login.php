@@ -14,6 +14,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
     <link rel="manifest" href="./images/favicon/site.webmanifest">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <title>Log in</title>
 </head>
 
@@ -35,8 +36,15 @@
                                 echo '<div class="mensaje-exito ">CUENTA NO REGISTRADA.</div>';
                             }
                         }
-                        echo' <input class="input-login" name="nombre_usuario" type="text" maxlength="12" placeholder="Ingrese su nombre de usuario" required autocomplete="off">
-                        <input class="input-login" type="password" name="contraseña" maxlength="12" placeholder="Ingrese su contraseña" required>
+                        echo' 
+                             <div class="input-with-icon">
+                                <input class="input-login" name="nombre_usuario" type="text" maxlength="12" placeholder="Ingrese su nombre de usuario" required autocomplete="off">
+                                <i class="fi fi-sr-user"></i> 
+                            </div>
+                            <div class="input-with-icon">
+                                <i class="fi fi-sr-lock"></i>
+                                <input class="input-login" type="password" name="contraseña" maxlength="12" placeholder="Ingrese su contraseña" required>
+                            </div>
                         <input class="boton-login" type="submit" value="Login" name="login">
                         <a class="link-registro " href="registro.php">¿Todavia no sos usuario? Registrate.</a>
                     </form>

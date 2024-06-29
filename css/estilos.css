@@ -282,7 +282,7 @@ header form input {
 
 .titulo-hero {
  
-    color: #d3ccda; /* Color violeta */
+    color: #d3ccda; 
     text-shadow: 0 0 10px #ae10df, 0 0 20px #ae10df, 0 0 30px #ae10df, 0 0 40px #ae10df, 0 0 70px #ae10df, 0 0 80px #ae10df, 0 0 100px #ae10df, 0 0 150px #ae10df;
     animation: neon-glow 1.5s ease-in-out infinite alternate;
     
@@ -297,8 +297,9 @@ header form input {
     }
  }
  .icono-flecha-hero{  
-    font-size: 2rem; /* Tamaño del icono */
-    color: #fff; /* Color del icono */
+    font-size: 2rem; 
+    color: #fff; 
+   
  }
  
 
@@ -504,7 +505,7 @@ body:not(.logeado) .main-principal {
     border-radius: 3%;
     margin-bottom: 5%;
     padding: 3%;
-
+    padding-left: 40px; /* Espacio a la izquierda para el icono */
    
     outline: none;
     width: 90%;
@@ -558,6 +559,29 @@ input::-webkit-input-placeholder {
 .link-registro:hover {
     color: violet;
 }
+
+
+
+.input-with-icon {
+    position: relative;
+ 
+}
+
+
+
+.input-with-icon .fi {
+    position: absolute;
+
+    left: 3vh; /* Posición del icono a la izquierda */
+    top: 35%; /* Centra verticalmente */
+    transform: translateY(-50%); /* Ajusta verticalmente */
+
+}
+
+
+
+
+
 
 
 .show {
