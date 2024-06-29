@@ -49,9 +49,9 @@ $user_row = $resultado->fetch_assoc();
                     </div>
                     <div class="mb-3">
                         <label for="contraseña" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="contraseña" name="contraseña">
+                        <input type="password" class="form-control" id="contraseña" name="contraseña" placeholder="ingresar solo si quiere modificarla">
                     </div>
-                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    <button type="submit" class="btn guardar">Guardar Cambios</button>
                 </form>
             </div>
         </div>

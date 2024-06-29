@@ -67,7 +67,7 @@
                             placeholder="Ingrese su contraseña" />
                             <i class="fi fi-sr-lock"></i>
                         </div>
-                        <br>
+
                         <input class="boton-login" type="submit" value="Registrarse" name="registro" />
                         <a class="link-registro" href="login.php">¿Ya tienes usuario? Inicia sesión.</a>
                     </form>

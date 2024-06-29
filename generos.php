@@ -34,7 +34,7 @@ if (!isset($_SESSION['id_cuenta'])) {
         if(isset($_GET['status'])) {
             // Verificar si el parámetro 'status' tiene el valor 'success'
             if($_GET['status'] === 'success') {
-                echo '<div class="mensaje-exito genero-mensaje">Ya has seleccionado el máximo de 3 géneros favoritos.</div>';
+                echo '<div class="mensaje-exito genero-mensaje">No puedes tener mas de 3 géneros favoritos.</div>';
             }
         }
         ?>
