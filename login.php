@@ -35,12 +35,11 @@
                                 echo '<div class="mensaje-exito ">CUENTA NO REGISTRADA.</div>';
                             }
                         }
-                        echo' <input class="input-login" name="nombre_usuario" type="text" maxlength="12" placeholder="Ingrese su nombre de usuario" required>
+                        echo' <input class="input-login" name="nombre_usuario" type="text" maxlength="12" placeholder="Ingrese su nombre de usuario" required autocomplete="off">
                         <input class="input-login" type="password" name="contraseña" maxlength="12" placeholder="Ingrese su contraseña" required>
                         <input class="boton-login" type="submit" value="Login" name="login">
                         <a class="link-registro " href="registro.php">¿Todavia no sos usuario? Registrate.</a>
                     </form>
-                    <div class="light"></div>
                 </div>
             </article>
             <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>

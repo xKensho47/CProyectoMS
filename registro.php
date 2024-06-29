@@ -43,11 +43,11 @@
                         <?php if (isset($_GET['error']) && $_GET['error'] === 'email') : ?>
                         <div class="mensaje-exito">El correo electrónico debe terminar con ".com"</div>
                         <?php endif; ?>
-                        <input class="input-login" type="text" name="nombre" required placeholder="Ingrese su nombre" />
-                        <input class="input-login" type="text" name="apellido" required placeholder="Ingrese su apellido" />
-                        <input class="input-login" type="email" name="mail" required placeholder="Ingrese su email" />
+                        <input class="input-login" type="text" name="nombre" required placeholder="Ingrese su nombre" autocomplete="off" />
+                        <input class="input-login" type="text" name="apellido" required placeholder="Ingrese su apellido" autocomplete="off" />
+                        <input class="input-login" type="email" name="mail" required placeholder="Ingrese su email" autocomplete="off" />
                         <input class="input-login" type="text" name="nombre_usuario" maxlength="12"
-                            placeholder="Ingrese su nombre de usuario" />
+                            placeholder="Ingrese su nombre de usuario" autocomplete="off" />
                         <input class="input-login" type="password" name="contraseña" maxlength="12"
                             placeholder="Ingrese su contraseña" />
                         <br>
