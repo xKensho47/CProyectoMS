@@ -290,8 +290,9 @@ header form input {
 
 .flecha-hero{
     position: absolute;
-    left: 50%;
     bottom: 5vh;
+
+    width: 100%;
 }
  
  @keyframes neon-glow {
