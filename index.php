@@ -35,7 +35,7 @@ include ('conexion.php');
                         <h1>Bienvenidos a <span class="titulo-hero">CineFlow</span></h1>
                         <h2>la mejor plataforma gratuita</h2>
                     </div>
-                    <div class="icono-flecha-hero"><i class="fi fi-ts-chevron-double-down"></i></div>
+                    <div class="icono-flecha-hero flecha-hero h2-animate"><i class="fi fi-ts-chevron-double-down"></i></div>
                 </div>
                 ';
             }
