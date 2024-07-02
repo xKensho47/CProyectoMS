@@ -42,7 +42,13 @@
                 <div class="div-form">
                     <form class="formulario-login" action="registro_process.php" method="post" onsubmit="return validarCorreo()">
                         <h1 class="h2-animate">Regístrate</h1>
-                        <?php if (isset($_GET['error']) && $_GET['error'] === 'email') : ?>
+                        <?php if (isset($_GET['status'])) {
+                            // Verificar si el parámetro 'status' tiene el valor 'success'
+                            if ($_GET['status'] === 'ocupado') {
+                                echo '<div class="mensaje-exito ">EL USUARIO O CORREO YA ESTA REGISTRADO.</div>';
+                            }
+                        }
+                         if (isset($_GET['error']) && $_GET['error'] === 'email') : ?>
                         <div class="mensaje-exito">El correo electrónico debe terminar con ".com"</div>
                         <?php endif; ?>
                         <div class="input-with-icon">
