@@ -79,7 +79,7 @@ session_start(); ?>
                             $peli = $notificacion['id_peli'];
                             if ($mensaje) {
                                 echo '<div class="notificacion not">';
-                                echo '<p class="mensaje">' . htmlspecialchars($nombre_envia) . ' te añadió como amigo.</p>';
+                                echo '<p class="mensaje"><span class="mensaje-genero">' . htmlspecialchars($nombre_envia) . ' </span>te añadió como amigo.</p>';
                                 echo '<form method="post" action="procesar_solicitud.php" class="botones-solicitud">';
                                 echo '<input type="hidden" name="usuario_envia_id" value="' . $usuario_envia_id . '">';
                                 echo '<button type="submit" name="aceptar[]" value="' . $usuario_envia_id . '">Aceptar</button>';
@@ -91,7 +91,8 @@ session_start(); ?>
                                 $pelicula = $result_peli->fetch_assoc();
                                 $titulo_pelicula = $pelicula['titulo'];
                                 echo '<div class="notificacion">';
-                                echo '<p class="mensaje">' . htmlspecialchars($nombre_envia) . ' te recomendó ver: "' . htmlspecialchars($titulo_pelicula) . '"</p>';
+                                echo '<p class="mensaje"> <span class="nombre-correo h2-animate">' . htmlspecialchars($nombre_envia) . '</span>
+                                 te recomendó ver: <span class="mensaje-genero">"' . htmlspecialchars($titulo_pelicula) . '"</span></p>';
                                 echo '<span class="fecha">' . $fecha . '</span>';
                                 echo '<button type="submit" class="cerrar-notificacion ver" data-id-peli="' . $peli . '">Ver</button>';
                                 echo '<form method="post" action="eliminar_notificacion.php" class="eliminar-form">';
@@ -113,7 +114,9 @@ session_start(); ?>
                         $hayNotificacion = false;
                         while ($fila = $consulta_peli_nueva->fetch_assoc()) {
                             echo '<div class="notificacion">';
-                            echo '<p class="mensaje">¡Nueva película: "' . $fila["titulo"] . '" añadida a la categoría de ' . $fila["nombres_generos"] . '!</p>';
+                            echo '<p class="mensaje">¡Nueva película: " <span class="nombre-correo h2-animate">' . $fila["titulo"] . '
+                            </span>" añadida a la categoría de <span class="mensaje-genero"> ' . $fila["nombres_generos"] . 
+                            '</span>!</p>';
                             echo '<span class="fecha">' . $fila["fecha_subida"] . '</span>';
                             echo '</div>';
                         }

@@ -2992,7 +2992,7 @@ tbody {
 .nombre-correo{
 color: rgb(255, 231, 255);
 }
-.mensaje-contact{
+.mensaje-contact, .mensaje-genero{
     color: violet;
 }
 .notificacion .mensaje-contact{
