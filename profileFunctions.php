@@ -50,7 +50,7 @@ function continueCarousel($conexion){
             
                 }
             } else {
-                echo '<p>No movies found.</p>';
+                echo '<p>No se encontraron peliculas.</p>';
             }
     echo "
         </div>

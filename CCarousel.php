@@ -196,7 +196,7 @@ class CCarousel
                 $puesto++;
             }
         } else {
-            echo '<p>No movies found.</p>';
+            echo '<p>No hay peliculas.</p>';
         }
         echo "
               </div>

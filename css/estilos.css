@@ -2210,11 +2210,12 @@ tbody {
     margin-right: 15px;
     cursor: pointer;
     color: #fff;
-    transition: background-color .4s ease;
+    transition: all .4s ease;
 }
 
 .info-boton:hover {
     background-color: #7c0989;
+    padding: 19px 22px;
 }
 
 .boton-play>i {
